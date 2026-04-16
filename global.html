@@ -28,7 +28,7 @@
       text-align: center;
     }
     
-    /* Compact Year Navigation */
+    /* Compact Year Navigation - Centered */
     .year-nav-compact {
       display: inline-flex;
       gap: 4px;
@@ -37,6 +37,11 @@
       border-radius: 6px;
       margin: var(--spacing-md) auto 0;
       width: fit-content;
+      text-align: center;
+    }
+    
+    .year-nav-wrapper {
+      text-align: center;
     }
     
     .year-nav-compact .year-btn {
@@ -224,9 +229,11 @@
         <section class="home-header">
           <h1 class="home-title">TikTok Shop Stars Awards 2025</h1>
           <p class="home-subtitle">Celebrating excellence and innovation across our global teams</p>
-          <div class="year-nav-compact">
-            <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          <div class="year-nav-wrapper" style="text-align: center;">
+            <div class="year-nav-compact">
+              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            </div>
           </div>
         </section>
 
@@ -235,13 +242,12 @@
           <div class="section-header">
             <h2 class="section-title mb-3" style="font-size: 20px; margin: 0;">
               <span class="icon">🥇</span>
-              Global Top 3
+              Global Top 3 Winners (Full Year Rankings)
             </h2>
-            <span class="section-badge">Full Year Rankings</span>
           </div>
           
-          <!-- Inline Search inside podium section -->
-          <div class="inline-search">
+          <!-- Inline Search - Left aligned -->
+          <div class="inline-search" style="margin: 0 0 var(--spacing-lg) 0; justify-content: flex-start;">
             <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
             <button class="search-btn" id="search-btn">🔍 Search</button>
           </div>
@@ -263,22 +269,16 @@
         <div class="period-toggle">
           <button class="period-btn active" data-period="H1">
             H1
-            <span class="period-label">E-commerce Impactful Projects</span>
+            <span class="period-label">Global E-commerce Impactful Projects</span>
           </button>
           <button class="period-btn" data-period="H2">
             H2
-            <span class="period-label">E-commerce Impactful Projects</span>
+            <span class="period-label">Global E-commerce Impactful Projects</span>
           </button>
         </div>
 
         <!-- All Global Awards -->
         <section class="awards-section">
-          <div class="section-header">
-            <h2 class="section-title mb-3" style="font-size: 18px; margin: 0;">
-              <span class="icon">📋</span>
-              <span id="awards-label">H1</span> Awards
-            </h2>
-          </div>
           <div id="global-awards"></div>
         </section>
       </div>
