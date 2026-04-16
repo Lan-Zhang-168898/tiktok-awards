@@ -8,14 +8,14 @@
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
     .regional-header {
-      padding: var(--spacing-xl) 0 var(--spacing-md);
+      padding: var(--spacing-md) 0 var(--spacing-sm);
       text-align: center;
     }
     
     .regional-title {
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: var(--spacing-sm);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -23,15 +23,15 @@
     }
     
     .regional-subtitle {
-      font-size: 14px;
+      font-size: 12px;
       color: var(--text-secondary);
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
     }
     
     /* Year Navigation - Centered */
     .year-nav-wrapper {
       text-align: center;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-md);
     }
     
     .year-nav-compact {
@@ -107,16 +107,26 @@
     .section-title-main {
       font-size: 20px;
       font-weight: 600;
-      margin-bottom: var(--spacing-md);
-      text-align: center;
+      margin-bottom: var(--spacing-sm);
+      text-align: left;
     }
     
     /* Scoring Rule Note */
     .scoring-note {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--text-secondary);
-      text-align: center;
-      margin-bottom: var(--spacing-lg);
+      text-align: left;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    /* Regional Awards Title (Dynamic) */
+    .regional-awards-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: var(--spacing-md) 0;
+      padding-left: var(--spacing-sm);
+      border-left: 3px solid var(--primary-color);
     }
     
     /* Award Type Toggle - Tab Style, Centered */
@@ -245,6 +255,9 @@
             <button class="region-btn" data-region="pop">POP</button>
           </div>
         </div>
+
+        <!-- Dynamic Regional Awards Title -->
+        <h2 class="regional-awards-title" id="regional-awards-title">US Regional Awards</h2>
 
         <!-- Regional Top 3 Podium -->
         <section class="podium-section">
@@ -380,6 +393,12 @@
     // Update page labels and toggle visibility
     function updateLabels() {
       document.getElementById('region-name').textContent = regionNames[currentRegion];
+      
+      // Update regional awards title
+      const titleEl = document.getElementById('regional-awards-title');
+      if (titleEl) {
+        titleEl.textContent = regionNames[currentRegion] + ' Regional Awards';
+      }
       
       // Show/hide toggle wrappers based on region
       const awardTypeWrapper = document.getElementById('award-type-wrapper');
