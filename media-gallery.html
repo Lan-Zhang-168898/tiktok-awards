@@ -5,6 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Media Gallery - Global E-commerce Recognition Hub</title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* Page Title */
+    .page-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-xl);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .page-title-icon {
+      font-size: 28px;
+      -webkit-text-fill-color: initial;
+    }
+    
+    /* Video Section */
+    .video-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--text-primary);
+    }
+    
+    .section-title .icon {
+      font-size: 18px;
+    }
+    
+    .section-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    /* Video Grid */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--spacing-lg);
+    }
+    
+    /* Video Card - Link Style */
+    .video-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .video-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-color);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    
+    .video-thumbnail {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .video-thumbnail::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.4) 100%);
+    }
+    
+    .play-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .video-card:hover .play-icon {
+      transform: scale(1.1);
+      background: var(--primary-color);
+    }
+    
+    .video-card:hover .play-icon svg {
+      fill: white;
+    }
+    
+    .play-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--primary-color);
+      margin-left: 4px;
+    }
+    
+    .video-info {
+      padding: var(--spacing-md);
+    }
+    
+    .video-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+    
+    .video-description {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .video-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      align-items: center;
+    }
+    
+    .video-badge {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    
+    .video-duration {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    /* Featured Award Video */
+    .award-video-card {
+      max-width: 600px;
+    }
+    
+    .award-video-card .video-thumbnail {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 138, 0.2));
+    }
+    
+    /* External Link Indicator */
+    .external-link-hint {
+      font-size: 11px;
+      color: var(--text-secondary);
+      opacity: 0.7;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .external-link-hint svg {
+      width: 12px;
+      height: 12px;
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -39,23 +214,17 @@
         </h1>
         
         <!-- Award Video Section -->
-        <section class="video-section award-video-section">
+        <section class="video-section">
           <h2 class="section-title">
             <span class="icon">🏆</span>
             Award Video
           </h2>
-          <div class="video-card award-video-card">
-            <div class="video-wrapper">
-              <video controls poster="" preload="metadata">
-                <source src="https://bytedance.larkoffice.com/file/EEItb9HKGosD6sxUYO4cNCWwn2c" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-              <div class="video-play-overlay">
-                <button class="play-btn" aria-label="Play Video">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                  </svg>
-                </button>
+          <p class="section-description">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</p>
+          
+          <a href="https://bytedance.larkoffice.com/file/EEItb9HKGosD6sxUYO4cNCWwn2c" target="_blank" class="video-card award-video-card">
+            <div class="video-thumbnail">
+              <div class="play-icon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
               </div>
             </div>
             <div class="video-info">
@@ -65,8 +234,12 @@
                 <span class="video-badge">Featured</span>
                 <span class="video-duration">🎥 Official Recording</span>
               </div>
+              <p class="external-link-hint">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Click to watch in Feishu
+              </p>
             </div>
-          </div>
+          </a>
         </section>
 
         <!-- Opening Videos Section -->
@@ -79,186 +252,122 @@
           
           <div class="video-grid">
             <!-- SEA + EU Seller Stories -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/IUNrbaWK7oRErvx1p5HcfaHYntf" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/IUNrbaWK7oRErvx1p5HcfaHYntf" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">SEA + EU Seller Stories</h3>
                 <p class="video-duration">⏱ 5mins 20secs</p>
               </div>
-            </div>
+            </a>
 
             <!-- Global Selling -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/I1xFbC4tZozMGPxm7wTcFRNKn8b" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/I1xFbC4tZozMGPxm7wTcFRNKn8b" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">Global Selling Opening Video</h3>
                 <p class="video-duration">⏱ 2mins 10secs</p>
               </div>
-            </div>
+            </a>
 
             <!-- LATAM -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/N1Z9bEUaooU4jdxziswckLhSnGb" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/N1Z9bEUaooU4jdxziswckLhSnGb" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">TikTok Shop Brazil</h3>
                 <p class="video-duration">⏱ 1min 9secs</p>
               </div>
-            </div>
+            </a>
 
             <!-- US -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/AZrzbdDDUoAOEkxVMALcJOfbnyU" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/AZrzbdDDUoAOEkxVMALcJOfbnyU" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">TTS US #MadeMyYear</h3>
                 <p class="video-duration">⏱ 1min 48secs</p>
               </div>
-            </div>
+            </a>
 
             <!-- SEA Fast Delivery -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/G0wbbu9hFoYirQxiptIcMsqfnEb" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/OXpdbLlKPoA2Wvx5tAjcB76AnQb" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
-                <h3 class="video-title">Fast Delivery - Singapore</h3>
+                <h3 class="video-title">SEA Fast Delivery</h3>
                 <p class="video-duration">⏱ 30secs</p>
               </div>
-            </div>
+            </a>
 
             <!-- SEA Free Return -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/IjPib1B82oaVWrxc0XtcJvLGnee" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/UgsybsmKVo6QbDxmXDYc0AU3nLg" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
-                <h3 class="video-title">Free Return - Singapore</h3>
+                <h3 class="video-title">SEA Free Return</h3>
                 <p class="video-duration">⏱ 30secs</p>
               </div>
-            </div>
+            </a>
           </div>
         </section>
 
-        <!-- Leader Interview Section -->
+        <!-- Employee & Leader Stories Section -->
         <section class="video-section">
           <h2 class="section-title">
             <span class="icon">👥</span>
             Employee & Leader Stories
           </h2>
+          <p class="section-description">Inspiring stories from our team members and leadership</p>
           
           <div class="video-grid">
             <!-- Employee Street Interview -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/SxeSb0BgcoXr7ExIYjBcH0Vznrf" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/XZjedBRxJoPJvnxfnDRcQgNBnOb" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">Employee Street Interview</h3>
                 <p class="video-duration">⏱ 2mins 25secs</p>
-                <p class="video-badge-employee">🎯 Scale New Heights</p>
               </div>
-            </div>
+            </a>
 
             <!-- Leader Version -->
-            <div class="video-card">
-              <div class="video-wrapper">
-                <video controls preload="metadata">
-                  <source src="https://bytedance.larkoffice.com/file/VpObbA8VgoNcYHxSBpgcA5eRn9d" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-                <div class="video-play-overlay">
-                  <button class="play-btn" aria-label="Play Video">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
+            <a href="https://bytedance.larkoffice.com/file/KVCNbGUQboPCGcxPzjFcDkcmnBc" target="_blank" class="video-card">
+              <div class="video-thumbnail">
+                <div class="play-icon">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
               </div>
               <div class="video-info">
                 <h3 class="video-title">Scale New Heights - Leader Version</h3>
-                <p class="video-duration">🎥 All Hands Live Recording</p>
-                <p class="video-badge-employee">⭐ Leadership</p>
+                <p class="video-duration">⏱ ALL hands Leader 2.11 现场版</p>
               </div>
-            </div>
+            </a>
           </div>
         </section>
+
       </div>
     </main>
 
@@ -272,25 +381,8 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Video play button functionality
-    document.querySelectorAll('.video-card').forEach(card => {
-      const playBtn = card.querySelector('.play-btn');
-      const video = card.querySelector('video');
-      
-      if (playBtn && video) {
-        playBtn.addEventListener('click', () => {
-          video.play();
-          playBtn.style.opacity = '0';
-        });
-        
-        video.addEventListener('pause', () => {
-          playBtn.style.opacity = '1';
-        });
-        
-        video.addEventListener('ended', () => {
-          playBtn.style.opacity = '1';
-        });
-      }
+    document.addEventListener('DOMContentLoaded', () => {
+      highlightNavigation();
     });
   </script>
 </body>
