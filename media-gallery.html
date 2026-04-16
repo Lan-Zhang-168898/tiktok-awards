@@ -57,15 +57,14 @@
       gap: var(--spacing-lg);
     }
     
-    /* Video Card - Link Style */
+    /* Video Card */
     .video-card {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s ease;
-      text-decoration: none;
-      display: block;
+      cursor: pointer;
     }
     
     .video-card:hover {
@@ -165,19 +164,117 @@
       background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 107, 138, 0.2));
     }
     
-    /* External Link Indicator */
-    .external-link-hint {
-      font-size: 11px;
-      color: var(--text-secondary);
-      opacity: 0.7;
-      display: flex;
+    /* Video Modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      padding: var(--spacing-xl);
     }
     
-    .external-link-hint svg {
-      width: 12px;
-      height: 12px;
+    .video-modal.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: #1a1a2e;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 1000px;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .modal-close svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+    
+    .modal-body {
+      flex: 1;
+      position: relative;
+      background: #0f0f1a;
+    }
+    
+    .modal-body iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      border: none;
+    }
+    
+    .modal-footer {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .modal-hint a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    
+    .modal-hint a:hover {
+      text-decoration: underline;
+    }
+    
+    @media (max-width: 768px) {
+      .video-modal {
+        padding: var(--spacing-sm);
+      }
+      
+      .modal-content {
+        max-height: 95vh;
+      }
+      
+      .modal-body iframe {
+        min-height: 300px;
+      }
     }
   </style>
 </head>
@@ -221,7 +318,7 @@
           </h2>
           <p class="section-description">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</p>
           
-          <a href="https://bytedance.larkoffice.com/file/EEItb9HKGosD6sxUYO4cNCWwn2c" target="_blank" class="video-card award-video-card">
+          <div class="video-card award-video-card" data-video-url="https://bytedance.larkoffice.com/file/EEItb9HKGosD6sxUYO4cNCWwn2c" data-video-title="All Hands 颁奖典礼 (50p)">
             <div class="video-thumbnail">
               <div class="play-icon">
                 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -234,12 +331,8 @@
                 <span class="video-badge">Featured</span>
                 <span class="video-duration">🎥 Official Recording</span>
               </div>
-              <p class="external-link-hint">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Click to watch in Feishu
-              </p>
             </div>
-          </a>
+          </div>
         </section>
 
         <!-- Opening Videos Section -->
@@ -252,7 +345,7 @@
           
           <div class="video-grid">
             <!-- SEA + EU Seller Stories -->
-            <a href="https://bytedance.larkoffice.com/file/IUNrbaWK7oRErvx1p5HcfaHYntf" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/IUNrbaWK7oRErvx1p5HcfaHYntf" data-video-title="SEA + EU Seller Stories">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -262,10 +355,10 @@
                 <h3 class="video-title">SEA + EU Seller Stories</h3>
                 <p class="video-duration">⏱ 5mins 20secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- Global Selling -->
-            <a href="https://bytedance.larkoffice.com/file/I1xFbC4tZozMGPxm7wTcFRNKn8b" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/I1xFbC4tZozMGPxm7wTcFRNKn8b" data-video-title="Global Selling Opening Video">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -275,10 +368,10 @@
                 <h3 class="video-title">Global Selling Opening Video</h3>
                 <p class="video-duration">⏱ 2mins 10secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- LATAM -->
-            <a href="https://bytedance.larkoffice.com/file/N1Z9bEUaooU4jdxziswckLhSnGb" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/N1Z9bEUaooU4jdxziswckLhSnGb" data-video-title="TikTok Shop Brazil">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -288,10 +381,10 @@
                 <h3 class="video-title">TikTok Shop Brazil</h3>
                 <p class="video-duration">⏱ 1min 9secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- US -->
-            <a href="https://bytedance.larkoffice.com/file/AZrzbdDDUoAOEkxVMALcJOfbnyU" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/AZrzbdDDUoAOEkxVMALcJOfbnyU" data-video-title="TTS US #MadeMyYear">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -301,10 +394,10 @@
                 <h3 class="video-title">TTS US #MadeMyYear</h3>
                 <p class="video-duration">⏱ 1min 48secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- SEA Fast Delivery -->
-            <a href="https://bytedance.larkoffice.com/file/OXpdbLlKPoA2Wvx5tAjcB76AnQb" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/OXpdbLlKPoA2Wvx5tAjcB76AnQb" data-video-title="SEA Fast Delivery">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -314,10 +407,10 @@
                 <h3 class="video-title">SEA Fast Delivery</h3>
                 <p class="video-duration">⏱ 30secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- SEA Free Return -->
-            <a href="https://bytedance.larkoffice.com/file/UgsybsmKVo6QbDxmXDYc0AU3nLg" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/UgsybsmKVo6QbDxmXDYc0AU3nLg" data-video-title="SEA Free Return">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -327,7 +420,7 @@
                 <h3 class="video-title">SEA Free Return</h3>
                 <p class="video-duration">⏱ 30secs</p>
               </div>
-            </a>
+            </div>
           </div>
         </section>
 
@@ -341,7 +434,7 @@
           
           <div class="video-grid">
             <!-- Employee Street Interview -->
-            <a href="https://bytedance.larkoffice.com/file/XZjedBRxJoPJvnxfnDRcQgNBnOb" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/XZjedBRxJoPJvnxfnDRcQgNBnOb" data-video-title="Employee Street Interview">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -351,10 +444,10 @@
                 <h3 class="video-title">Employee Street Interview</h3>
                 <p class="video-duration">⏱ 2mins 25secs</p>
               </div>
-            </a>
+            </div>
 
             <!-- Leader Version -->
-            <a href="https://bytedance.larkoffice.com/file/KVCNbGUQboPCGcxPzjFcDkcmnBc" target="_blank" class="video-card">
+            <div class="video-card" data-video-url="https://bytedance.larkoffice.com/file/KVCNbGUQboPCGcxPzjFcDkcmnBc" data-video-title="Scale New Heights - Leader Version">
               <div class="video-thumbnail">
                 <div class="play-icon">
                   <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -364,12 +457,30 @@
                 <h3 class="video-title">Scale New Heights - Leader Version</h3>
                 <p class="video-duration">⏱ ALL hands Leader 2.11 现场版</p>
               </div>
-            </a>
+            </div>
           </div>
         </section>
 
       </div>
     </main>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modalTitle">Video Title</h3>
+          <button class="modal-close" id="modalClose">
+            <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe id="videoFrame" src="" allowfullscreen></iframe>
+        </div>
+        <div class="modal-footer">
+          <p class="modal-hint">💡 If video doesn't load, <a id="openInNewTab" href="#" target="_blank">open in new tab</a></p>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -383,6 +494,49 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       highlightNavigation();
+      
+      // Video Modal
+      const modal = document.getElementById('videoModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const videoFrame = document.getElementById('videoFrame');
+      const modalClose = document.getElementById('modalClose');
+      const openInNewTab = document.getElementById('openInNewTab');
+      
+      // Click on video card
+      document.querySelectorAll('.video-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const videoUrl = card.dataset.videoUrl;
+          const title = card.dataset.videoTitle;
+          
+          modalTitle.textContent = title;
+          videoFrame.src = videoUrl;
+          openInNewTab.href = videoUrl;
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      // Close modal
+      const closeModal = () => {
+        modal.classList.remove('active');
+        videoFrame.src = '';
+        document.body.style.overflow = '';
+      };
+      
+      modalClose.addEventListener('click', closeModal);
+      
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+      
+      // ESC key to close
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
     });
   </script>
 </body>
