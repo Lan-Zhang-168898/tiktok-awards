@@ -373,21 +373,21 @@ img {
 
 .podium-item.first {
   order: 2;
-  height: 280px;
+  min-height: 220px;
   background: linear-gradient(180deg, rgba(255, 215, 0, 0.15) 0%, var(--bg-card) 100%);
   border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .podium-item.second {
   order: 1;
-  height: 240px;
+  min-height: 200px;
   background: linear-gradient(180deg, rgba(192, 192, 192, 0.1) 0%, var(--bg-card) 100%);
   border: 1px solid rgba(192, 192, 192, 0.2);
 }
 
 .podium-item.third {
   order: 3;
-  height: 200px;
+  min-height: 180px;
   background: linear-gradient(180deg, rgba(205, 127, 50, 0.1) 0%, var(--bg-card) 100%);
   border: 1px solid rgba(205, 127, 50, 0.2);
 }
@@ -421,6 +421,9 @@ img {
   color: var(--text-secondary);
   text-align: center;
   margin-bottom: var(--spacing-sm);
+  max-width: 140px;
+  word-wrap: break-word;
+  line-height: 1.4;
 }
 
 .podium-score {
