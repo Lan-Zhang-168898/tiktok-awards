@@ -456,15 +456,16 @@ function renderPodium(top3, containerId, title) {
 
 function renderRankingList(rankings, startRank = 4, containerId) {
   const container = document.getElementById(containerId);
-  if (!container || !rankings || rankings.length < startRank) return;
+  if (!container || !rankings || rankings.length === 0) return;
   
   let html = '<div class="ranking-list">';
   
-  for (let i = startRank - 1; i < Math.min(rankings.length, 10); i++) {
+  // rankings already contains items starting from the correct rank
+  for (let i = 0; i < rankings.length; i++) {
     const r = rankings[i];
     html += `
       <div class="ranking-item">
-        <span class="ranking-rank">#${r.rank || i + 1}</span>
+        <span class="ranking-rank">#${r.rank || i + startRank}</span>
         <span class="ranking-name">${r.name}</span>
         <span class="ranking-dept">${r.department || r.region || ''}</span>
         <span class="ranking-score">${r.points || r.score || 0} pts</span>
