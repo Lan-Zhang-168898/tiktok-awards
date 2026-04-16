@@ -403,6 +403,59 @@ function calculateRegionTop3(regionData, region, period) {
     .slice(0, 3);
 }
 
+// Full Year Regional Top 3 - ignores award type filter, combines all regional awards
+function calculateRegionTop3FullYear(regionData, region) {
+  if (!regionData) return [];
+  
+  let memberScores = {};
+  
+  const getSafeDept = (dept, reg, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    if (reg && reg !== 'undefined' && reg !== 'null' && reg !== '') return reg;
+    return defaultVal || 'Regional';
+  };
+  
+  // Include ALL award types for full year ranking
+  const h1Awards = getH1ProjectAwards(regionData);
+  const h2Awards = getH2ProjectAwards(regionData);
+  const allIndividualAwards = region === 'latam' 
+    ? getIndividualAwardsByQuarter(regionData, 'Q1').concat(
+        getIndividualAwardsByQuarter(regionData, 'Q2'),
+        getIndividualAwardsByQuarter(regionData, 'Q3'),
+        getIndividualAwardsByQuarter(regionData, 'Q4')
+      )
+    : getAllIndividualAwards(regionData);
+  
+  // Process all awards (3 pts each)
+  [...h1Awards, ...h2Awards].forEach(award => {
+    if (!award.members) return;
+    const dept = getSafeDept(award.department, region, 'Regional');
+    award.members.forEach(memberName => {
+      if (!memberScores[memberName]) {
+        memberScores[memberName] = { name: memberName, score: 0, awards: 0, department: dept };
+      }
+      memberScores[memberName].score += 3;
+      memberScores[memberName].awards += 1;
+    });
+  });
+  
+  allIndividualAwards.forEach(award => {
+    const key = award.winner_name || award.member_name;
+    if (key) {
+      const dept = getSafeDept(award.department, region, 'Regional');
+      if (!memberScores[key]) {
+        memberScores[key] = { name: key, score: 0, awards: 0, department: dept };
+      }
+      memberScores[key].score += 3;
+      memberScores[key].awards += 1;
+    }
+  });
+  
+  return Object.values(memberScores)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards)
+    .slice(0, 3);
+}
+
 // ==================== Render Functions ====================
 function renderPodium(top3, containerId, title) {
   const container = document.getElementById(containerId);
@@ -869,6 +922,11 @@ function renderProjectCards(awards, region, half) {
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
     
+    // Handle award name display - if team_award is "Yes" or empty, show default
+    const awardName = (project.team_award && project.team_award !== 'Yes' && project.team_award !== 'true') 
+      ? project.team_award 
+      : 'Impactful XFN Project';
+    
     html += `
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
@@ -878,7 +936,7 @@ function renderProjectCards(awards, region, half) {
         <div class="card-body">
           <div class="card-period">${half}</div>
           <div class="card-award">
-            <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
+            <span class="card-award-name">🏆 ${awardName}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
           <div class="card-reason-scroll">
@@ -896,7 +954,7 @@ function renderProjectCards(awards, region, half) {
             <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
               💬 Comment
             </button>
-            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${awardName}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
               📤 Share
             </button>
           </div>

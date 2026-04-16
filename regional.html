@@ -387,8 +387,8 @@
           // Update page title
           updateLabels();
           
-          // Calculate and render Top 3
-          const top3 = calculateRegionTop3(regionalData, region, currentAwardType);
+          // Calculate and render Top 3 (Full Year Rankings - all award types combined)
+          const top3 = calculateRegionTop3FullYear(regionalData, region);
           renderPodium(top3, 'regional-top3');
           
           // Render all awards
@@ -445,7 +445,8 @@
           updateLabels();
           
           if (regionalData) {
-            const top3 = calculateRegionTop3(regionalData, currentRegion, currentAwardType);
+            // Top 3 stays as Full Year Rankings (doesn't change with award type)
+            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
             renderPodium(top3, 'regional-top3');
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
           }
@@ -464,7 +465,7 @@
           AppData.currentLatamQuarter = btn.dataset.quarter;
           
           if (regionalData) {
-            const top3 = calculateRegionTop3(regionalData, currentRegion, currentAwardType);
+            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
             renderPodium(top3, 'regional-top3');
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
           }
