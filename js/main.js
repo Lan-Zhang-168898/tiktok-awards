@@ -751,6 +751,11 @@ function renderGlobalAwards(data, containerId, half) {
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
     
+    // Handle award name display - if team_award is "Yes" or empty, show default
+    const awardName = (project.team_award && project.team_award !== 'Yes' && project.team_award !== 'true') 
+      ? project.team_award 
+      : 'Global E-commerce Impactful Projects';
+    
     html += `
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
@@ -760,7 +765,7 @@ function renderGlobalAwards(data, containerId, half) {
         <div class="card-body">
           <div class="card-period">${half}</div>
           <div class="card-award">
-            <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
+            <span class="card-award-name">🏆 ${awardName}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
           <div class="card-reason-scroll">
@@ -778,7 +783,7 @@ function renderGlobalAwards(data, containerId, half) {
             <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
               💬 Comment
             </button>
-            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${awardName}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
               📤 Share
             </button>
           </div>
