@@ -873,7 +873,15 @@ function renderRegionalAwards(data, containerId, period, region) {
   
   let html = '';
   
-  if (period === 'H1项目奖') {
+  // LATAM quarter awards (Q1, Q2, Q3, Q4)
+  if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
+    const quarterAwards = getIndividualAwardsByQuarter(data, period);
+    if (quarterAwards.length === 0) {
+      html = `<div class="no-data-msg">No ${period} individual awards available for LATAM</div>`;
+    } else {
+      html = renderIndividualCards(quarterAwards, region, period);
+    }
+  } else if (period === 'H1项目奖') {
     const h1Awards = getH1ProjectAwards(data);
     if (h1Awards.length === 0) {
       html = '<div class="no-data-msg">No H1 project awards available for this region</div>';
@@ -888,20 +896,12 @@ function renderRegionalAwards(data, containerId, period, region) {
       html = renderProjectCards(h2Awards, region, 'H2');
     }
   } else if (period === 'H2个人奖') {
-    if (region === 'latam') {
-      const quarterAwards = getIndividualAwardsByQuarter(data, AppData.currentLatamQuarter);
-      if (quarterAwards.length === 0) {
-        html = `<div class="no-data-msg">No ${AppData.currentLatamQuarter} individual awards available for LATAM</div>`;
-      } else {
-        html = renderIndividualCards(quarterAwards, region, AppData.currentLatamQuarter);
-      }
+    // Non-LATAM individual awards
+    const individualAwards = getAllIndividualAwards(data);
+    if (individualAwards.length === 0) {
+      html = '<div class="no-data-msg">No individual awards (Stellar Contributors) available for this region</div>';
     } else {
-      const individualAwards = getAllIndividualAwards(data);
-      if (individualAwards.length === 0) {
-        html = '<div class="no-data-msg">No individual awards (Stellar Contributors) available for this region</div>';
-      } else {
-        html = renderIndividualCards(individualAwards, region, 'H2');
-      }
+      html = renderIndividualCards(individualAwards, region, 'H2');
     }
   }
   
