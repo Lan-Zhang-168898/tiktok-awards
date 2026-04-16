@@ -146,13 +146,22 @@
         <!-- Department Navigation -->
         <div class="region-nav-wrapper">
           <div class="region-nav">
-            <button class="region-btn active" data-category="sea">SEA (9 Depts)</button>
-            <button class="region-btn" data-category="eu">EU & UK & JP (9 Depts)</button>
-            <button class="region-btn" data-category="us">US (2 Depts)</button>
-            <button class="region-btn" data-category="latam">LATAM (2 Depts)</button>
-            <button class="region-btn" data-category="global">Global Selling (2 Depts)</button>
-            <button class="region-btn" data-category="key">Global Key Accounts (1 Dept)</button>
-            <button class="region-btn" data-category="support">Support Teams (9 Depts)</button>
+            <button class="region-btn active" data-dept="sea-ops">SEA Operations</button>
+            <button class="region-btn" data-dept="jp-ops">Japan Operations</button>
+            <button class="region-btn" data-dept="uk-ops">UK Operations</button>
+            <button class="region-btn" data-dept="eu-ops">EU Operations</button>
+            <button class="region-btn" data-dept="pop">UK&EU&JP POP</button>
+            <button class="region-btn" data-dept="us-ops">US Operations & US Ops Center & GKA</button>
+            <button class="region-btn" data-dept="latam-ops">LATAM Operations</button>
+            <button class="region-btn" data-dept="fs-pop">Full Service POP</button>
+            <button class="region-btn" data-dept="governance">Governance and Experience</button>
+            <button class="region-btn" data-dept="supply-chain">Supply Chain and Logistics</button>
+            <button class="region-btn" data-dept="product">Product Design</button>
+            <button class="region-btn" data-dept="growth">User & Promotion Growth</button>
+            <button class="region-btn" data-dept="data">Data Science</button>
+            <button class="region-btn" data-dept="research">User Research</button>
+            <button class="region-btn" data-dept="strategy">Strategic Readiness and Business Communication</button>
+            <button class="region-btn" data-dept="analytics">Strategy Analytics & Resource Management</button>
           </div>
         </div>
 
@@ -201,12 +210,12 @@
   <script>
     // Departmental page specific initialization
     document.addEventListener('DOMContentLoaded', () => {
-      // Category buttons
-      const categoryBtns = document.querySelectorAll('.region-btn[data-category]');
+      // Department buttons
+      const deptBtns = document.querySelectorAll('.region-btn[data-dept]');
       
-      categoryBtns.forEach(btn => {
+      deptBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          categoryBtns.forEach(b => b.classList.remove('active'));
+          deptBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
         });
       });
