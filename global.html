@@ -371,12 +371,21 @@
         
         globalData = await loadData('global');
         
+        console.log('=== GLOBAL PAGE DEBUG ===');
+        console.log('globalData loaded:', !!globalData);
+        if (globalData) {
+          console.log('H1项目奖 count:', (globalData['H1项目奖'] || []).length);
+          console.log('H2项目奖 count:', (globalData['H2项目奖'] || []).length);
+          console.log('Data keys:', Object.keys(globalData));
+        }
+        
         if (globalData) {
           // Calculate and render FULL YEAR Top 3
           const top3 = calculateGlobalTop3FullYear(globalData);
           renderPodium(top3, 'global-top3');
           
-          // Render H1 awards by default
+          // Render awards by default (H1)
+          console.log('Calling renderGlobalAwards with half:', currentHalf);
           renderGlobalAwards(globalData, 'global-awards', currentHalf);
         }
         
