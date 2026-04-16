@@ -418,15 +418,42 @@
       initYearNavigation();
       
       try {
-        // Load rankings data for podium display
-        const rankings = await loadRankings();
+        // Load all data for stats (H1 + H2)
+        const [rankings, global, us, eu, sea, latam] = await Promise.all([
+          loadRankings(),
+          loadData('global'),
+          loadData('regional', 'us'),
+          loadData('regional', 'eu'),
+          loadData('regional', 'sea'),
+          loadData('regional', 'latam')
+        ]);
+        
+        // Build member to department mapping from all data
+        const memberDeptMap = {};
+        const allData = [global, us, eu, sea, latam];
+        allData.forEach(data => {
+          if (!data) return;
+          const allAwards = [
+            ...(data['H1项目奖'] || []),
+            ...(data['H2项目奖'] || []),
+            ...(data['H2个人奖'] || [])
+          ];
+          allAwards.forEach(award => {
+            const dept = award.department || 'TikTok Shop';
+            (award.members || []).forEach(member => {
+              if (!memberDeptMap[member]) {
+                memberDeptMap[member] = dept;
+              }
+            });
+          });
+        });
         
         if (rankings && rankings.top10 && rankings.top10.length > 0) {
-          // Render Top 3 Podium from rankings data
+          // Render Top 3 Podium from rankings data (with department lookup)
           const top3 = rankings.top10.slice(0, 3).map(r => ({
             name: r.name,
             score: r.points,
-            department: 'TikTok Shop' // rankings.json doesn't have department
+            department: memberDeptMap[r.name] || 'TikTok Shop'
           }));
           renderPodium(top3, 'top3-podium');
           
@@ -436,20 +463,11 @@
               rank: i + 4,
               name: r.name,
               score: r.points,
-              department: ''
+              department: memberDeptMap[r.name] || ''
             }));
             renderRankingList(rankingList, 4, 'top10-list');
           }
         }
-        
-        // Load all data for stats (H1 + H2)
-        const [global, us, eu, sea, latam] = await Promise.all([
-          loadData('global'),
-          loadData('regional', 'us'),
-          loadData('regional', 'eu'),
-          loadData('regional', 'sea'),
-          loadData('regional', 'latam')
-        ]);
         
         // Calculate and render stats
         renderHomeStats(global, { us, eu, sea, latam });
