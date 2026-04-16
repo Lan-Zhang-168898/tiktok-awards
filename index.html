@@ -224,47 +224,77 @@
       grid-column: 3;
     }
     
-    /* Stats Grid - Full Width at Bottom */
+    /* Stats Grid - 3x2 Grid Layout */
     .stats-grid-full {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: var(--spacing-md);
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid-full {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     
     .stat-card {
       text-align: center;
-      padding: var(--spacing-md);
-      background: var(--bg-card);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-color);
-      transition: all 0.2s ease;
+      padding: var(--spacing-lg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border-radius: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     }
     
     .stat-card:hover {
       border-color: var(--primary-color);
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(255, 45, 85, 0.2);
     }
     
     .stat-card.highlight {
-      background: linear-gradient(135deg, rgba(255, 45, 85, 0.1), rgba(255, 149, 0, 0.1));
+      background: linear-gradient(145deg, rgba(255, 45, 85, 0.15), rgba(255, 149, 0, 0.1));
       border-color: var(--primary-color);
     }
     
+    .stat-card.highlight::before {
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+    }
+    
     .stat-icon {
-      font-size: 20px;
-      margin-bottom: 4px;
+      font-size: 32px;
+      margin-bottom: var(--spacing-sm);
     }
     
     .stat-value {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 2px;
+      font-size: 36px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--spacing-xs);
     }
     
     .stat-label {
-      font-size: 10px;
+      font-size: 13px;
       color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     /* Region Rank List */
