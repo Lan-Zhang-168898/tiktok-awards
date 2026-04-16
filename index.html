@@ -278,10 +278,37 @@
   <script src="js/main.js"></script>
   <script>
     // Home page specific initialization
-    // Note: Wait for main.js to load first, then use its functions
-    window.addEventListener('load', async () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize navigation immediately
+      highlightNavigation();
+      initYearNavigation();
+      
       try {
-        // Load all data first (global + regional) for combined rankings calculation
+        // Load rankings data for podium display
+        const rankings = await loadRankings();
+        
+        if (rankings && rankings.top10 && rankings.top10.length > 0) {
+          // Render Top 3 Podium from rankings data
+          const top3 = rankings.top10.slice(0, 3).map(r => ({
+            name: r.name,
+            score: r.points,
+            department: 'TikTok Shop' // rankings.json doesn't have department
+          }));
+          renderPodium(top3, 'top3-podium');
+          
+          // Render Top 10 List (4-10)
+          if (rankings.top10.length > 3) {
+            const rankingList = rankings.top10.slice(3).map((r, i) => ({
+              rank: i + 4,
+              name: r.name,
+              score: r.points,
+              department: ''
+            }));
+            renderRankingList(rankingList, 4, 'top10-list');
+          }
+        }
+        
+        // Load all data for stats (H1 + H2)
         const [global, us, eu, sea, latam] = await Promise.all([
           loadData('global'),
           loadData('regional', 'us'),
@@ -289,23 +316,6 @@
           loadData('regional', 'sea'),
           loadData('regional', 'latam')
         ]);
-        
-        // Wait a bit to ensure AppData is updated
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Calculate combined rankings from H1+H2 data with department info
-        const combinedRankings = calculateCombinedRankings();
-        
-        if (combinedRankings && combinedRankings.length > 0) {
-          // Render Top 3 Podium using combined rankings (with department info)
-          const top3 = combinedRankings.slice(0, 3);
-          renderPodium(top3, 'top3-podium');
-          
-          // Render Top 10 List (4-10)
-          if (combinedRankings.length > 3) {
-            renderRankingList(combinedRankings, 4, 'top10-list');
-          }
-        }
         
         // Calculate and render stats
         renderHomeStats({ global, regional: { us, eu, sea, latam } });
@@ -316,12 +326,6 @@
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
-    });
-    
-    // Initialize navigation immediately
-    document.addEventListener('DOMContentLoaded', () => {
-      highlightNavigation();
-      initYearNavigation();
     });
     
     // Render Home Stats - Now includes H1 + H2 data
