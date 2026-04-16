@@ -870,34 +870,52 @@ function renderSearchResults(results, containerId) {
 }
 
 // ==================== Initialize ====================
-document.addEventListener('DOMContentLoaded', () => {
-  highlightNavigation();
-  initYearNavigation();
-  initRegionNavigation();
-  initDeptNavigation();
-  initSearch();
-  
-  // Setup search handlers
-  const searchInput = document.getElementById('search-input');
-  const searchBtn = document.getElementById('search-btn');
-  
-  if (searchBtn) {
-    searchBtn.addEventListener('click', () => {
-      const query = searchInput?.value || '';
-      const results = performSearch(query);
-      renderSearchResults(results, 'search-results');
-      document.getElementById('search-results')?.classList.add('active');
-    });
-  }
-  
-  if (searchInput) {
-    searchInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        const query = e.target.value || '';
+// Only run main.js initialization if not on home page
+const isHomePage = document.getElementById('top3-podium');
+const isSearchPage = document.getElementById('search-input');
+
+if (isHomePage) {
+  // Home page uses its own initialization in inline script
+  console.log('Home page detected - using page-specific initialization');
+} else if (isSearchPage) {
+  // Other pages use search initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    highlightNavigation();
+    initYearNavigation();
+    initRegionNavigation();
+    initDeptNavigation();
+    initSearch();
+    
+    // Setup search handlers
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    
+    if (searchBtn) {
+      searchBtn.addEventListener('click', () => {
+        const query = searchInput?.value || '';
         const results = performSearch(query);
         renderSearchResults(results, 'search-results');
         document.getElementById('search-results')?.classList.add('active');
-      }
-    });
-  }
-});
+      });
+    }
+    
+    if (searchInput) {
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const query = e.target.value || '';
+          const results = performSearch(query);
+          renderSearchResults(results, 'search-results');
+          document.getElementById('search-results')?.classList.add('active');
+        }
+      });
+    }
+  });
+} else {
+  // Generic page initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    highlightNavigation();
+    initYearNavigation();
+    initRegionNavigation();
+    initDeptNavigation();
+  });
+}
