@@ -266,6 +266,13 @@ function calculateGlobalTop3(globalData) {
 function calculateCombinedRankings() {
   const memberScores = {};
   
+  // Helper to get safe department value
+  const getSafeDept = (dept, region, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    if (region && region !== 'undefined' && region !== 'null' && region !== '') return region;
+    return defaultVal || 'TikTok Shop';
+  };
+  
   // Process Global awards
   if (AppData.global) {
     const globalAwards = getAllProjectAwards(AppData.global);
@@ -278,7 +285,7 @@ function calculateCombinedRankings() {
             score: 0,
             awards: 0,
             email: award.email || '',
-            department: award.department || 'Global'
+            department: getSafeDept(award.department, award.region, 'Global')
           };
         }
         memberScores[memberName].score += 5; // Global = 5 points
@@ -302,7 +309,7 @@ function calculateCombinedRankings() {
             score: 0,
             awards: 0,
             email: award.email || '',
-            department: award.department || award.region || 'Regional'
+            department: getSafeDept(award.department, award.region, 'Regional')
           };
         }
         memberScores[memberName].score += 3; // Regional = 3 points
@@ -319,7 +326,7 @@ function calculateCombinedRankings() {
             score: 0,
             awards: 0,
             email: award.email || '',
-            department: award.department || award.region || 'Regional'
+            department: getSafeDept(award.department, award.region, 'Regional')
           };
         }
         memberScores[award.winner_name].score += 3;
