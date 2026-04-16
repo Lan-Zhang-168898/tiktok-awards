@@ -117,35 +117,54 @@
       background: var(--primary-color);
     }
     
-    /* Overview Stats - Compact Grid */
-    .stats-compact {
+    /* Two Column Layout */
+    .home-two-columns {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-lg);
-      justify-content: center;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      grid-template-columns: 1fr 360px;
+      gap: var(--spacing-lg);
+      align-items: start;
     }
     
-    .stat-item {
+    /* Stats Grid - Right Column */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-sm);
+    }
+    
+    .stat-card {
       text-align: center;
       padding: var(--spacing-md);
       background: var(--bg-card);
       border-radius: var(--radius-md);
       border: 1px solid var(--border-color);
+      transition: all 0.2s ease;
+    }
+    
+    .stat-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+    
+    .stat-card.highlight {
+      background: linear-gradient(135deg, rgba(255, 45, 85, 0.1), rgba(255, 149, 0, 0.1));
+      border-color: var(--primary-color);
+    }
+    
+    .stat-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
     }
     
     .stat-value {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 2px;
     }
     
     .stat-label {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-secondary);
     }
     
@@ -160,8 +179,18 @@
     }
     
     /* Responsive */
+    @media (max-width: 900px) {
+      .home-two-columns {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
     @media (max-width: 768px) {
-      .stats-compact {
+      .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
       
@@ -202,69 +231,86 @@
     <main class="main-content">
       <div class="container">
         <!-- Year Selection -->
-        <div class="year-nav-wrapper" style="text-align: center; margin: var(--spacing-lg) 0 var(--spacing-md);">
+        <div class="year-nav-wrapper" style="text-align: center; margin: var(--spacing-lg) 0 var(--spacing-lg);">
           <div class="year-nav-compact">
             <button class="year-btn active" data-year="2025">2025</button>
             <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
           </div>
         </div>
 
-        <!-- Top 10 Section with Inline Search -->
-        <section class="top10-section">
-          <div class="section-header">
-            <h2 class="section-title" style="font-size: 20px; margin: 0;">
-              <span class="icon">🌟</span>
-              Global Top 10 Winners (Full Year Rankings)
-            </h2>
-          </div>
-          
-          <!-- Scoring Rule Note -->
-          <p style="font-size: 12px; color: var(--text-secondary); margin: var(--spacing-sm) 0;">
-            <strong>Scoring:</strong> Global Award = 5 pts | Regional Award = 3 pts | Departmental Award = 1 pt
-          </p>
-          
-          <!-- Inline Search -->
-          <div class="inline-search">
-            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
-            <button class="search-btn" id="search-btn">🔍 Search</button>
-          </div>
-          
-          <!-- Podium (Top 3) -->
-          <div id="top3-podium"></div>
-          
-          <!-- Ranking List (4-10) -->
-          <div id="top10-list"></div>
-          
-          <!-- Search Results -->
-          <div id="search-results" class="search-results-section"></div>
-        </section>
+        <!-- Two Column Layout -->
+        <div class="home-two-columns">
+          <!-- Left Column: Top 10 Rankings -->
+          <section class="top10-section">
+            <div class="section-header">
+              <h2 class="section-title" style="font-size: 18px; margin: 0;">
+                <span class="icon">🌟</span>
+                Global Top 10 Winners
+              </h2>
+            </div>
+            
+            <!-- Scoring Rule Note -->
+            <p style="font-size: 11px; color: var(--text-secondary); margin: var(--spacing-xs) 0 var(--spacing-sm);">
+              <strong>Scoring:</strong> Global=5pts | Regional=3pts | Departmental=1pt
+            </p>
+            
+            <!-- Inline Search -->
+            <div class="inline-search">
+              <input type="text" class="search-input" id="search-input" placeholder="Search by name, project...">
+              <button class="search-btn" id="search-btn">🔍</button>
+            </div>
+            
+            <!-- Podium (Top 3) -->
+            <div id="top3-podium"></div>
+            
+            <!-- Ranking List (4-10) -->
+            <div id="top10-list"></div>
+            
+            <!-- Search Results -->
+            <div id="search-results" class="search-results-section"></div>
+          </section>
 
-        <!-- Overview Stats - Compact -->
-        <section class="overview-section" style="text-align: center;">
-          <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
-            <span class="icon">📊</span>
-            Award Summary
-          </h2>
-          <div class="stats-compact" id="overview-stats">
-            <!-- Stats will be rendered by JS -->
-            <div class="stat-item">
-              <div class="stat-value">-</div>
-              <div class="stat-label">Global Projects</div>
+          <!-- Right Column: Award Summary -->
+          <section class="overview-section">
+            <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
+              <span class="icon">📊</span>
+              Award Summary
+            </h2>
+            <div class="stats-grid" id="overview-stats">
+              <!-- Stats will be rendered by JS -->
+              <div class="stat-card highlight">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Global Projects</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🌍</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Regional Projects</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Individual Awards</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Total Bonus</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Team Members</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon">🌐</div>
+                <div class="stat-value">-</div>
+                <div class="stat-label">Regions</div>
+              </div>
             </div>
-            <div class="stat-item">
-              <div class="stat-value">-</div>
-              <div class="stat-label">Regional Projects</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">-</div>
-              <div class="stat-label">Individual Awards</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-value">-</div>
-              <div class="stat-label">Total Bonus</div>
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </main>
 
