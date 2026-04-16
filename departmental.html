@@ -5,6 +5,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departmental Awards - Global E-commerce Recognition Hub</title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* Page Header */
+    .regional-header {
+      padding: var(--spacing-md) 0 var(--spacing-sm);
+      text-align: center;
+    }
+    
+    .regional-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .regional-subtitle {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    /* Year Navigation - Centered */
+    .year-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .year-nav-compact {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: 6px;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Department Navigation - Tab Style, Centered */
+    .region-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .region-nav {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 12px;
+    }
+    
+    .region-btn {
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .region-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .region-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -32,27 +129,31 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Year Navigation -->
-        <div class="year-nav">
-          <button class="year-btn active" data-year="2025">2025</button>
-          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
+        <!-- Page Header -->
+        <div class="regional-header">
+          <h1 class="regional-title">Departmental Awards</h1>
+          <p class="regional-subtitle">Recognizing outstanding contributions across departments</p>
         </div>
 
-        <!-- Page Title -->
-        <h1 class="section-title" style="margin-bottom: var(--spacing-lg);">
-          <span class="icon">🏢</span>
-          Departmental Awards
-        </h1>
+        <!-- Year Navigation -->
+        <div class="year-nav-wrapper">
+          <div class="year-nav-compact">
+            <button class="year-btn active" data-year="2025">2025</button>
+            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          </div>
+        </div>
 
-        <!-- Department Navigation (Categories) -->
-        <div class="dept-nav" style="margin-bottom: var(--spacing-xl);">
-          <button class="dept-btn active" data-category="sea">SEA (9 Depts)</button>
-          <button class="dept-btn" data-category="eu">EU & UK & JP (9 Depts)</button>
-          <button class="dept-btn" data-category="us">US (2 Depts)</button>
-          <button class="dept-btn" data-category="latam">LATAM (2 Depts)</button>
-          <button class="dept-btn" data-category="global">Global Selling (2 Depts)</button>
-          <button class="dept-btn" data-category="key">Global Key Accounts (1 Dept)</button>
-          <button class="dept-btn" data-category="support">Support Teams (9 Depts)</button>
+        <!-- Department Navigation -->
+        <div class="region-nav-wrapper">
+          <div class="region-nav">
+            <button class="region-btn active" data-category="sea">SEA (9 Depts)</button>
+            <button class="region-btn" data-category="eu">EU & UK & JP (9 Depts)</button>
+            <button class="region-btn" data-category="us">US (2 Depts)</button>
+            <button class="region-btn" data-category="latam">LATAM (2 Depts)</button>
+            <button class="region-btn" data-category="global">Global Selling (2 Depts)</button>
+            <button class="region-btn" data-category="key">Global Key Accounts (1 Dept)</button>
+            <button class="region-btn" data-category="support">Support Teams (9 Depts)</button>
+          </div>
         </div>
 
         <!-- Coming Soon Message -->
@@ -101,7 +202,7 @@
     // Departmental page specific initialization
     document.addEventListener('DOMContentLoaded', () => {
       // Category buttons
-      const categoryBtns = document.querySelectorAll('.dept-btn[data-category]');
+      const categoryBtns = document.querySelectorAll('.region-btn[data-category]');
       
       categoryBtns.forEach(btn => {
         btn.addEventListener('click', () => {
