@@ -183,7 +183,38 @@ img {
   border-radius: 2px;
 }
 
-/* ==================== Year Navigation ==================== */
+/* ==================== Year Navigation (Compact Style) ==================== */
+.year-nav-compact {
+  display: inline-flex;
+  gap: 4px;
+  background: var(--bg-card);
+  padding: 3px;
+  border-radius: 6px;
+  margin: 16px auto 0;
+  width: fit-content;
+}
+
+.year-nav-compact .year-btn {
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.year-nav-compact .year-btn:hover {
+  color: var(--text-primary);
+}
+
+.year-nav-compact .year-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* ==================== Year Navigation (Full Style - Legacy) ==================== */
 .year-nav {
   display: flex;
   gap: var(--spacing-sm);

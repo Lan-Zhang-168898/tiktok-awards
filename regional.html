@@ -5,6 +5,133 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - TikTok Shop Stars Awards</title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ==================== Regional Page Specific Styles ==================== */
+    .home-header {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+    }
+    
+    .home-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-sm);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    
+    .home-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+    
+    /* Compact Year Navigation */
+    .year-nav-compact {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: 6px;
+      margin: var(--spacing-md) auto 0;
+      width: fit-content;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Section header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    
+    .section-badge {
+      padding: 4px 10px;
+      background: var(--primary-color);
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    /* Search */
+    .search-box {
+      display: flex;
+      gap: var(--spacing-md);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .search-input {
+      flex: 1;
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      color: var(--text-primary);
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
+    }
+    
+    .search-btn {
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: var(--primary-color);
+      transition: all 0.3s ease;
+    }
+    
+    .search-results {
+      margin-top: var(--spacing-xl);
+      display: none;
+    }
+    
+    .search-results.active {
+      display: block;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .search-box {
+        flex-direction: column;
+      }
+      
+      .home-title {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -30,11 +157,15 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Year Navigation -->
-        <div class="year-nav">
-          <button class="year-btn active" data-year="2025">2025</button>
-          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
-        </div>
+        <!-- Home Header with Compact Year Nav -->
+        <section class="home-header">
+          <h1 class="home-title">TikTok Shop Stars Awards 2025</h1>
+          <p class="home-subtitle">Celebrating excellence and innovation across our regional teams</p>
+          <div class="year-nav-compact">
+            <button class="year-btn active" data-year="2025">2025</button>
+            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          </div>
+        </section>
 
         <!-- Page Title -->
         <h1 class="section-title" style="margin-bottom: var(--spacing-lg);">
@@ -50,21 +181,44 @@
           <button class="region-btn" data-region="latam">LATAM</button>
         </div>
 
+        <!-- Award Type Toggle -->
+        <div class="award-type-toggle" id="award-type-toggle">
+          <button class="award-type-btn active" data-type="H1项目奖">H1项目奖</button>
+          <button class="award-type-btn" data-type="H2项目奖">H2项目奖</button>
+          <button class="award-type-btn" data-type="H2个人奖">H2个人奖</button>
+        </div>
+
+        <!-- Quarter Toggle (for LATAM) -->
+        <div class="quarter-toggle" id="quarter-toggle" style="display: none;">
+          <button class="quarter-btn active" data-quarter="Q1">Q1</button>
+          <button class="quarter-btn" data-quarter="Q2">Q2</button>
+          <button class="quarter-btn" data-quarter="Q3">Q3</button>
+          <button class="quarter-btn" data-quarter="Q4">Q4</button>
+        </div>
+
         <!-- Regional Top 3 -->
         <section class="podium-section">
-          <h2 class="section-title mb-3">
-            <span class="icon" id="region-icon">🥇</span>
-            <span id="region-title">US</span> Top 3
-          </h2>
+          <div class="section-header">
+            <h2 class="section-title mb-3" style="font-size: 20px; margin: 0;">
+              <span class="icon">🥇</span>
+              <span id="region-icon">🏆</span>
+              <span id="region-title">US</span> 
+              <span id="type-label">H1项目奖</span> Top 3
+            </h2>
+            <span class="section-badge">Live Rankings</span>
+          </div>
           <div id="regional-top3"></div>
         </section>
 
         <!-- All Regional Awards -->
         <section class="awards-section">
-          <h2 class="section-title mb-3">
-            <span class="icon">📋</span>
-            <span id="awards-title">US</span> Awards
-          </h2>
+          <div class="section-header">
+            <h2 class="section-title mb-3" style="font-size: 18px; margin: 0;">
+              <span class="icon">📋</span>
+              <span id="awards-region">US</span> 
+              <span id="awards-type">H1项目奖</span> Awards
+            </h2>
+          </div>
           <div id="regional-awards"></div>
         </section>
 
@@ -102,6 +256,23 @@
     </div>
   </div>
 
+  <!-- Comments Modal -->
+  <div class="comments-modal" id="comments-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="comments-modal-title">Comments</h3>
+        <button class="modal-close" onclick="closeCommentsModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="comment-list"></div>
+        <div class="comment-input-wrapper">
+          <input type="text" class="comment-input" id="comment-input" placeholder="Write a comment...">
+          <button class="comment-submit-btn" onclick="submitComment()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   <script>
     // Regional page specific initialization
@@ -112,42 +283,156 @@
       latam: 'LATAM'
     };
     
-    async function loadRegionalData(region) {
-      try {
-        const data = await loadData('regional', region);
-        
-        if (data) {
-          // Update page title
-          document.getElementById('region-title').textContent = regionNames[region];
-          document.getElementById('awards-title').textContent = regionNames[region];
-          
-          // Calculate and render Top 3
-          const top3 = calculateRegionTop3(data, region);
-          renderPodium(top3, 'regional-top3');
-          
-          // Render all awards
-          renderRegionalAwards(data, 'regional-awards');
-        } else {
-          document.getElementById('regional-awards').innerHTML = '<p style="color: var(--text-secondary);">No data available for this region.</p>';
-        }
-      } catch (error) {
-        console.error('Error loading regional data:', error);
-        document.getElementById('regional-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+    let currentRegion = 'us';
+    let currentAwardType = 'H1项目奖';
+    let regionalData = null;
+    
+    // Update page labels
+    function updateLabels() {
+      document.getElementById('region-title').textContent = regionNames[currentRegion];
+      document.getElementById('awards-region').textContent = regionNames[currentRegion];
+      document.getElementById('type-label').textContent = currentAwardType;
+      document.getElementById('awards-type').textContent = currentAwardType;
+      
+      // Show/hide quarter toggle for LATAM individual awards
+      const quarterToggle = document.getElementById('quarter-toggle');
+      if (currentRegion === 'latam' && currentAwardType === 'H2个人奖') {
+        quarterToggle.style.display = 'flex';
+      } else {
+        quarterToggle.style.display = 'none';
       }
     }
     
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Get region from URL or default to US
-      const urlParams = new URLSearchParams(window.location.search);
-      let currentRegion = urlParams.get('region') || 'us';
-      
-      // Handle latam data file (might be empty)
-      if (currentRegion === 'latam') {
-        // Check if we need to handle empty data
+    // Load and render regional data
+    async function loadRegionalData(region) {
+      try {
+        regionalData = await loadData('regional', region);
+        
+        if (regionalData) {
+          // Update page title
+          updateLabels();
+          
+          // Calculate and render Top 3
+          const top3 = calculateRegionTop3(regionalData, region, currentAwardType);
+          renderPodium(top3, 'regional-top3');
+          
+          // Render all awards
+          renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
+        } else {
+          document.getElementById('regional-awards').innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
+        }
+      } catch (error) {
+        console.error('Error loading regional data:', error);
+        document.getElementById('regional-awards').innerHTML = '<div class="no-data-msg">Failed to load data. Please try again later.</div>';
       }
+    }
+    
+    // Initialize region navigation
+    function initRegionNav() {
+      const regionBtns = document.querySelectorAll('.region-btn');
+      const urlRegion = getUrlParam('region') || 'us';
+      currentRegion = urlRegion;
+      
+      regionBtns.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.region === urlRegion) {
+          btn.classList.add('active');
+        }
+        
+        btn.addEventListener('click', () => {
+          regionBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentRegion = btn.dataset.region;
+          loadRegionalData(currentRegion);
+        });
+      });
+    }
+    
+    // Initialize award type toggle
+    function initAwardTypeToggle() {
+      const typeBtns = document.querySelectorAll('.award-type-btn');
+      
+      typeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          typeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type;
+          
+          // Reset quarter for LATAM
+          if (currentRegion === 'latam' && currentAwardType === 'H2个人奖') {
+            AppData.currentLatamQuarter = 'Q1';
+            document.querySelectorAll('.quarter-btn').forEach(b => {
+              b.classList.toggle('active', b.dataset.quarter === 'Q1');
+            });
+          }
+          
+          updateLabels();
+          
+          if (regionalData) {
+            const top3 = calculateRegionTop3(regionalData, currentRegion, currentAwardType);
+            renderPodium(top3, 'regional-top3');
+            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+          }
+        });
+      });
+    }
+    
+    // Initialize quarter toggle (for LATAM)
+    function initQuarterToggle() {
+      const quarterBtns = document.querySelectorAll('.quarter-btn');
+      
+      quarterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          quarterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          AppData.currentLatamQuarter = btn.dataset.quarter;
+          
+          if (regionalData) {
+            const top3 = calculateRegionTop3(regionalData, currentRegion, currentAwardType);
+            renderPodium(top3, 'regional-top3');
+            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+          }
+        });
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Initialize navigation
+      highlightNavigation();
+      initYearNavigation();
+      initRegionNav();
+      initAwardTypeToggle();
+      initQuarterToggle();
       
       // Load initial region data
       await loadRegionalData(currentRegion);
+      
+      // Initialize search
+      initSearch();
+      
+      // Search handlers
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          const query = searchInput?.value || '';
+          const results = performSearch(query);
+          renderSearchResults(results, 'search-results');
+          document.getElementById('search-results')?.classList.add('active');
+        });
+      }
+      
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            const query = e.target.value || '';
+            const results = performSearch(query);
+            renderSearchResults(results, 'search-results');
+            document.getElementById('search-results')?.classList.add('active');
+          }
+        });
+      }
     });
   </script>
 </body>

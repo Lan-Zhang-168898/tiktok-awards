@@ -12,7 +12,9 @@ const AppData = {
   rankings: null,
   currentYear: '2025',
   currentRegion: 'us',
-  currentDept: null
+  currentPeriod: 'H1项目奖', // For Regional page: H1项目奖 | H2项目奖 | H2个人奖
+  currentHalf: 'H1', // For Global page: H1 | H2
+  currentLatamQuarter: 'Q1' // For LATAM individual awards: Q1 | Q2 | Q3 | Q4
 };
 
 // ==================== Utility Functions ====================
@@ -30,6 +32,17 @@ function setUrlParam(param, value) {
 function formatCurrency(amount) {
   if (!amount) return 'TBD';
   return '$' + Number(amount).toLocaleString();
+}
+
+function formatBonus(amount) {
+  if (!amount || amount === 0) return 'TBD';
+  if (amount >= 1000000) {
+    return '$' + (amount / 1000000).toFixed(1) + 'M';
+  }
+  if (amount >= 1000) {
+    return '$' + (amount / 1000).toFixed(0) + 'K';
+  }
+  return '$' + amount;
 }
 
 function truncateText(text, maxLength = 200) {
@@ -165,6 +178,18 @@ async function loadRankings() {
 
 // ==================== Helper Functions for H1+H2 Data ====================
 
+// Get H1 project awards only
+function getH1ProjectAwards(data) {
+  if (!data) return [];
+  return data['H1项目奖'] || [];
+}
+
+// Get H2 project awards only
+function getH2ProjectAwards(data) {
+  if (!data) return [];
+  return data['H2项目奖'] || [];
+}
+
 // Combine H1 and H2 project awards into single array
 function getAllProjectAwards(data) {
   if (!data) return [];
@@ -176,55 +201,90 @@ function getAllProjectAwards(data) {
 // Get all individual awards
 function getAllIndividualAwards(data) {
   if (!data) return [];
-  const h2Individual = data['H2个人奖'] || [];
-  return h2Individual;
+  return data['H2个人奖'] || [];
+}
+
+// Get individual awards by quarter (for LATAM)
+function getIndividualAwardsByQuarter(data, quarter) {
+  if (!data) return [];
+  const allIndividual = data['H2个人奖'] || [];
+  return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
 }
 
 // ==================== Ranking Functions ====================
-function calculateRegionTop3(regionData, region) {
+function calculateRegionTop3(regionData, region, period) {
   if (!regionData) return [];
   
-  const allAwards = getAllProjectAwards(regionData);
-  const individualAwards = getAllIndividualAwards(regionData);
+  let memberScores = {};
   
-  // Calculate member scores for projects
-  const memberScores = {};
+  // Helper to get safe department value
+  const getSafeDept = (dept, reg, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    if (reg && reg !== 'undefined' && reg !== 'null' && reg !== '') return reg;
+    return defaultVal || 'TikTok Shop';
+  };
   
-  allAwards.forEach(award => {
-    if (!award.members) return;
-    award.members.forEach(memberName => {
-      const key = memberName;
-      if (!memberScores[key]) {
-        memberScores[key] = {
-          name: memberName,
-          score: 0,
-          awards: 0,
-          email: award.email || '',
-          department: award.department || region
-        };
-      }
-      memberScores[key].score += 3; // Regional = 3 points
-      memberScores[key].awards += 1;
+  if (period === 'H1项目奖') {
+    const h1Awards = getH1ProjectAwards(regionData);
+    h1Awards.forEach(award => {
+      if (!award.members) return;
+      award.members.forEach(memberName => {
+        const key = memberName;
+        if (!memberScores[key]) {
+          memberScores[key] = {
+            name: memberName,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: getSafeDept(award.department, region, 'Regional')
+          };
+        }
+        memberScores[key].score += 3;
+        memberScores[key].awards += 1;
+      });
     });
-  });
-  
-  // Add individual awards
-  individualAwards.forEach(award => {
-    const key = award.winner_name;
-    if (key) {
-      if (!memberScores[key]) {
-        memberScores[key] = {
-          name: award.winner_name,
-          score: 0,
-          awards: 0,
-          email: award.email || '',
-          department: award.department || region
-        };
+  } else if (period === 'H2项目奖') {
+    const h2Awards = getH2ProjectAwards(regionData);
+    h2Awards.forEach(award => {
+      if (!award.members) return;
+      award.members.forEach(memberName => {
+        const key = memberName;
+        if (!memberScores[key]) {
+          memberScores[key] = {
+            name: memberName,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: getSafeDept(award.department, region, 'Regional')
+          };
+        }
+        memberScores[key].score += 3;
+        memberScores[key].awards += 1;
+      });
+    });
+  } else if (period === 'H2个人奖') {
+    // For LATAM, use quarter-specific individual awards
+    const individualAwards = region === 'latam' 
+      ? getIndividualAwardsByQuarter(regionData, AppData.currentLatamQuarter)
+      : getAllIndividualAwards(regionData);
+    
+    individualAwards.forEach(award => {
+      const key = award.winner_name;
+      if (key) {
+        if (!memberScores[key]) {
+          memberScores[key] = {
+            name: award.winner_name,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: getSafeDept(award.department, region, 'Regional')
+          };
+        }
+        memberScores[key].score += 3;
+        memberScores[key].awards += 1;
       }
-      memberScores[key].score += 3;
-      memberScores[key].awards += 1;
-    }
-  });
+    });
+  }
   
   // Sort and get top 3
   return Object.values(memberScores)
@@ -232,14 +292,25 @@ function calculateRegionTop3(regionData, region) {
     .slice(0, 3);
 }
 
-function calculateGlobalTop3(globalData) {
+function calculateGlobalTop3(globalData, half) {
   if (!globalData) return [];
-  
-  const allAwards = getAllProjectAwards(globalData);
   
   const memberScores = {};
   
-  allAwards.forEach(award => {
+  // Helper to get safe department value
+  const getSafeDept = (dept, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    return defaultVal || 'Global';
+  };
+  
+  let awards = [];
+  if (half === 'H1') {
+    awards = getH1ProjectAwards(globalData);
+  } else {
+    awards = getH2ProjectAwards(globalData);
+  }
+  
+  awards.forEach(award => {
     if (!award.members) return;
     award.members.forEach(memberName => {
       const key = memberName;
@@ -249,7 +320,7 @@ function calculateGlobalTop3(globalData) {
           score: 0,
           awards: 0,
           email: award.email || '',
-          department: award.department || 'Global'
+          department: getSafeDept(award.department, 'Global')
         };
       }
       memberScores[key].score += 5; // Global = 5 points
@@ -295,7 +366,7 @@ function calculateCombinedRankings() {
   }
   
   // Process Regional awards
-  Object.values(AppData.regional).forEach(regionData => {
+  Object.entries(AppData.regional).forEach(([region, regionData]) => {
     if (!regionData) return;
     const regionalAwards = getAllProjectAwards(regionData);
     const individualAwards = getAllIndividualAwards(regionData);
@@ -309,7 +380,7 @@ function calculateCombinedRankings() {
             score: 0,
             awards: 0,
             email: award.email || '',
-            department: getSafeDept(award.department, award.region, 'Regional')
+            department: getSafeDept(award.department, region, 'Regional')
           };
         }
         memberScores[memberName].score += 3; // Regional = 3 points
@@ -326,7 +397,7 @@ function calculateCombinedRankings() {
             score: 0,
             awards: 0,
             email: award.email || '',
-            department: getSafeDept(award.department, award.region, 'Regional')
+            department: getSafeDept(award.department, region, 'Regional')
           };
         }
         memberScores[award.winner_name].score += 3;
@@ -347,7 +418,12 @@ function calculateCombinedRankings() {
 // ==================== Render Functions ====================
 function renderPodium(top3, containerId, title) {
   const container = document.getElementById(containerId);
-  if (!container || top3.length === 0) return;
+  if (!container) return;
+  
+  if (top3.length === 0) {
+    container.innerHTML = '<div class="no-data-msg">No rankings available for this selection</div>';
+    return;
+  }
   
   // Helper to get display department or fallback
   const getDept = (item) => {
@@ -413,18 +489,152 @@ function renderRankingList(rankings, startRank = 4, containerId) {
   container.innerHTML = html;
 }
 
-function renderGlobalAwards(data, containerId) {
+// ==================== Card Interaction Functions ====================
+
+// Toggle like (heart)
+function toggleLike(cardId, awardType, awardName) {
+  const storageKey = `like_${cardId}`;
+  let likes = JSON.parse(localStorage.getItem('likes') || '{}');
+  
+  if (likes[storageKey]) {
+    delete likes[storageKey];
+  } else {
+    likes[storageKey] = {
+      type: awardType,
+      name: awardName,
+      timestamp: Date.now()
+    };
+  }
+  
+  localStorage.setItem('likes', JSON.stringify(likes));
+  updateLikeDisplay(cardId, likes[storageKey]);
+}
+
+function updateLikeDisplay(cardId, isLiked) {
+  const likeBtn = document.querySelector(`[data-card-id="${cardId}"] .like-btn`);
+  if (likeBtn) {
+    const countSpan = likeBtn.querySelector('.like-count');
+    if (countSpan) {
+      countSpan.textContent = isLiked ? '1' : '0';
+    }
+    if (isLiked) {
+      likeBtn.classList.add('liked');
+    } else {
+      likeBtn.classList.remove('liked');
+    }
+  }
+}
+
+function getLikeCount(cardId) {
+  const storageKey = `like_${cardId}`;
+  const likes = JSON.parse(localStorage.getItem('likes') || '{}');
+  return likes[storageKey] ? 1 : 0;
+}
+
+// Toggle expand/collapse reason
+function toggleReason(element) {
+  element.classList.toggle('expanded');
+  const toggleBtn = element.parentElement.querySelector('.reason-toggle');
+  if (toggleBtn) {
+    toggleBtn.textContent = element.classList.contains('expanded') ? 'Show less ▲' : 'Show more ▼';
+  }
+}
+
+// Show comments modal
+function showComments(cardId, awardName, awardType) {
+  const modal = document.getElementById('comments-modal');
+  const modalTitle = document.getElementById('comments-modal-title');
+  const modalBody = document.getElementById('comments-modal-body');
+  const commentInput = document.getElementById('comment-input');
+  const commentList = document.getElementById('comment-list');
+  
+  if (!modal) return;
+  
+  modalTitle.textContent = `Comments: ${awardName}`;
+  
+  // Load existing comments
+  const storageKey = `comments_${cardId}`;
+  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  
+  if (comments.length === 0) {
+    commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first to comment!</div>';
+  } else {
+    commentList.innerHTML = comments.map((c, i) => `
+      <div class="comment-item">
+        <div class="comment-author">${c.author || 'Anonymous'}</div>
+        <div class="comment-text">${c.text}</div>
+        <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  }
+  
+  // Store current card info for submit
+  modal.dataset.cardId = cardId;
+  modal.dataset.awardName = awardName;
+  modal.dataset.awardType = awardType;
+  
+  modal.classList.add('active');
+}
+
+function submitComment() {
+  const modal = document.getElementById('comments-modal');
+  const commentInput = document.getElementById('comment-input');
+  const commentList = document.getElementById('comment-list');
+  
+  if (!modal || !commentInput) return;
+  
+  const text = commentInput.value.trim();
+  if (!text) return;
+  
+  const storageKey = `comments_${modal.dataset.cardId}`;
+  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  
+  comments.push({
+    text: text,
+    author: 'You',
+    timestamp: Date.now()
+  });
+  
+  localStorage.setItem(storageKey, JSON.stringify(comments));
+  commentInput.value = '';
+  
+  // Update display
+  commentList.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-author">${c.author || 'Anonymous'}</div>
+      <div class="comment-text">${c.text}</div>
+      <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
+    </div>
+  `).join('');
+}
+
+function closeCommentsModal() {
+  const modal = document.getElementById('comments-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+}
+
+// ==================== Global Page Functions ====================
+function renderGlobalAwards(data, containerId, half) {
   const container = document.getElementById(containerId);
   if (!container || !data) return;
   
-  // Get BOTH H1 and H2 awards
-  const h1Awards = data['H1项目奖'] || [];
-  const h2Awards = data['H2项目奖'] || [];
-  const allAwards = [...h1Awards, ...h2Awards];
+  let awards = [];
+  if (half === 'H1') {
+    awards = getH1ProjectAwards(data);
+  } else {
+    awards = getH2ProjectAwards(data);
+  }
+  
+  if (awards.length === 0) {
+    container.innerHTML = '<div class="no-data-msg">No awards available for this period</div>';
+    return;
+  }
   
   // Group by project name
   const projectGroups = {};
-  allAwards.forEach(award => {
+  awards.forEach(award => {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
@@ -434,12 +644,8 @@ function renderGlobalAwards(data, containerId) {
         reason: award.reason,
         members: [],
         department: award.department,
-        period: award.period,
-        periods: new Set()
+        period: award.period
       };
-    }
-    if (award.period) {
-      projectGroups[key].periods.add(award.period);
     }
     award.members.forEach(m => {
       if (!projectGroups[key].members.find(mem => mem.name === m)) {
@@ -451,29 +657,39 @@ function renderGlobalAwards(data, containerId) {
   let html = '<div class="awards-grid">';
   
   Object.values(projectGroups).forEach(project => {
-    const periodsDisplay = Array.from(project.periods).join(' + ') || 'H1+H2';
+    const cardId = `global_${project.project_name.replace(/\s+/g, '_')}`;
+    const likeCount = getLikeCount(cardId);
+    const reasonText = project.reason || '';
+    const needsExpand = reasonText.length > 150;
+    
     html += `
-      <div class="card project-card">
+      <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
           <span class="card-icon">📦</span>
           <span class="card-title">${project.project_name}</span>
         </div>
         <div class="card-body">
-          <div class="card-period">${periodsDisplay}</div>
+          <div class="card-period">${half}</div>
           <div class="card-award">
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
-          <div class="card-reason" onclick="this.classList.toggle('expanded')">
-            ${project.reason}
+          <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
+            <span class="reason-text">${reasonText}</span>
+            ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
           </div>
         </div>
         <div class="card-footer">
-          <button class="members-btn" onclick="showMembersModal('${project.project_name}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+          <button class="members-btn" onclick="showMembersModal('${project.project_name.replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
             Team Members (${project.members.length})
           </button>
           <div class="card-actions">
-            <span class="action-btn">❤️ 0</span>
+            <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'global_project', '${project.project_name.replace(/'/g, "\\'")}')">
+              ❤️ <span class="like-count">${likeCount}</span>
+            </button>
+            <button class="comment-btn" onclick="showComments('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
+              💬 Comment
+            </button>
           </div>
         </div>
       </div>
@@ -484,19 +700,53 @@ function renderGlobalAwards(data, containerId) {
   container.innerHTML = html;
 }
 
-function renderRegionalAwards(data, containerId) {
+// ==================== Regional Page Functions ====================
+function renderRegionalAwards(data, containerId, period, region) {
   const container = document.getElementById(containerId);
   if (!container || !data) return;
   
-  // Get BOTH H1 and H2 project awards, plus individual awards
-  const h1Awards = data['H1项目奖'] || [];
-  const h2Awards = data['H2项目奖'] || [];
-  const allAwards = [...h1Awards, ...h2Awards];
-  const individualAwards = getAllIndividualAwards(data);
+  let html = '';
   
-  // Group projects
+  if (period === 'H1项目奖') {
+    const h1Awards = getH1ProjectAwards(data);
+    if (h1Awards.length === 0) {
+      html = '<div class="no-data-msg">No H1 project awards available for this region</div>';
+    } else {
+      html = renderProjectCards(h1Awards, region, 'H1');
+    }
+  } else if (period === 'H2项目奖') {
+    const h2Awards = getH2ProjectAwards(data);
+    if (h2Awards.length === 0) {
+      html = '<div class="no-data-msg">No H2 project awards available for this region</div>';
+    } else {
+      html = renderProjectCards(h2Awards, region, 'H2');
+    }
+  } else if (period === 'H2个人奖') {
+    if (region === 'latam') {
+      // LATAM individual awards by quarter
+      const quarterAwards = getIndividualAwardsByQuarter(data, AppData.currentLatamQuarter);
+      if (quarterAwards.length === 0) {
+        html = `<div class="no-data-msg">No ${AppData.currentLatamQuarter} individual awards available for LATAM</div>`;
+      } else {
+        html = renderIndividualCards(quarterAwards, region, AppData.currentLatamQuarter);
+      }
+    } else {
+      const individualAwards = getAllIndividualAwards(data);
+      if (individualAwards.length === 0) {
+        html = '<div class="no-data-msg">No individual awards (Stellar Contributors) available for this region</div>';
+      } else {
+        html = renderIndividualCards(individualAwards, region, 'H2');
+      }
+    }
+  }
+  
+  container.innerHTML = html;
+}
+
+function renderProjectCards(awards, region, half) {
+  // Group by project name
   const projectGroups = {};
-  allAwards.forEach(award => {
+  awards.forEach(award => {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
@@ -506,13 +756,8 @@ function renderRegionalAwards(data, containerId) {
         reason: award.reason,
         members: [],
         department: award.department,
-        region: award.region,
-        period: award.period,
-        periods: new Set()
+        region: award.region
       };
-    }
-    if (award.period) {
-      projectGroups[key].periods.add(award.period);
     }
     award.members.forEach(m => {
       if (!projectGroups[key].members.find(mem => mem.name === m)) {
@@ -523,58 +768,87 @@ function renderRegionalAwards(data, containerId) {
   
   let html = '<div class="awards-grid">';
   
-  // Project awards
   Object.values(projectGroups).forEach(project => {
-    const periodsDisplay = Array.from(project.periods).join(' + ') || 'H1+H2';
+    const cardId = `regional_${region}_${project.project_name.replace(/\s+/g, '_')}`;
+    const likeCount = getLikeCount(cardId);
+    const reasonText = project.reason || '';
+    const needsExpand = reasonText.length > 150;
+    
     html += `
-      <div class="card project-card">
+      <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
           <span class="card-icon">📦</span>
           <span class="card-title">${project.project_name}</span>
         </div>
         <div class="card-body">
-          <div class="card-period">${periodsDisplay}</div>
+          <div class="card-period">${half}</div>
           <div class="card-award">
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
-          <div class="card-reason" onclick="this.classList.toggle('expanded')">
-            ${project.reason}
+          <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
+            <span class="reason-text">${reasonText}</span>
+            ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
           </div>
         </div>
         <div class="card-footer">
-          <button class="members-btn" onclick="showMembersModal('${project.project_name}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+          <button class="members-btn" onclick="showMembersModal('${project.project_name.replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
             Team Members (${project.members.length})
           </button>
           <div class="card-actions">
-            <span class="action-btn">❤️ 0</span>
+            <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'regional_project', '${project.project_name.replace(/'/g, "\\'")}')">
+              ❤️ <span class="like-count">${likeCount}</span>
+            </button>
+            <button class="comment-btn" onclick="showComments('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
+              💬 Comment
+            </button>
           </div>
         </div>
       </div>
     `;
   });
   
-  // Individual awards
-  individualAwards.forEach(award => {
+  html += '</div>';
+  return html;
+}
+
+function renderIndividualCards(awards, region, half) {
+  let html = '<div class="awards-grid">';
+  
+  awards.forEach(award => {
     if (award.winner_name) {
+      const cardId = `individual_${region}_${award.winner_name.replace(/\s+/g, '_')}`;
+      const likeCount = getLikeCount(cardId);
+      const reasonText = award.reason || '';
+      const needsExpand = reasonText.length > 150;
+      const deptDisplay = award.department || award.region || region;
+      
       html += `
-        <div class="card individual-card">
+        <div class="card individual-card" data-card-id="${cardId}">
           <div class="card-header">
             <span class="card-icon">👤</span>
-            <span class="card-title">${award.winner_name} | ${award.department || award.region}</span>
+            <span class="card-title">${award.winner_name}</span>
           </div>
+          <div class="card-meta">${deptDisplay}</div>
           <div class="card-body">
+            <div class="card-period">${half} | ${award.quarter || 'Q1-Q4'}</div>
             <div class="card-award">
               <span class="card-award-name">🌟 ${award.team_award || 'Stellar Contributor'}</span>
             </div>
             <div class="card-amount">${formatCurrency(award.bonus)}</div>
-            <div class="card-reason" onclick="this.classList.toggle('expanded')">
-              ${award.reason || ''}
+            <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
+              <span class="reason-text">${reasonText}</span>
+              ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
             </div>
           </div>
           <div class="card-footer">
             <div class="card-actions">
-              <span class="action-btn">❤️ 0</span>
+              <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${award.winner_name.replace(/'/g, "\\'")}')">
+                ❤️ <span class="like-count">${likeCount}</span>
+              </button>
+              <button class="comment-btn" onclick="showComments('${cardId}', '${award.winner_name.replace(/'/g, "\\'")}', 'Stellar Contributor')">
+                💬 Comment
+              </button>
             </div>
           </div>
         </div>
@@ -583,91 +857,7 @@ function renderRegionalAwards(data, containerId) {
   });
   
   html += '</div>';
-  container.innerHTML = html;
-}
-
-function renderOverviewStats(data, regionalData) {
-  const container = document.getElementById('overview-stats');
-  if (!container) return;
-  
-  // Calculate stats from ALL data (H1 + H2)
-  let globalProjectCount = 0;
-  let regionalProjectCount = 0;
-  let individualCount = 0;
-  let totalBonus = 0;
-  let uniqueWinners = new Set();
-  
-  // Process Global awards
-  if (data) {
-    const h1Global = data['H1项目奖'] || [];
-    const h2Global = data['H2项目奖'] || [];
-    const allGlobal = [...h1Global, ...h2Global];
-    
-    globalProjectCount = allGlobal.length;
-    
-    // Count unique winners and bonuses
-    allGlobal.forEach(award => {
-      if (award.bonus) totalBonus += Number(award.bonus);
-      if (award.members) {
-        award.members.forEach(m => uniqueWinners.add(m));
-      }
-    });
-  }
-  
-  // Process Regional awards
-  Object.values(regionalData || {}).forEach(regionData => {
-    if (!regionData) return;
-    const h1Regional = regionData['H1项目奖'] || [];
-    const h2Regional = regionData['H2项目奖'] || [];
-    const individualAwards = regionData['H2个人奖'] || [];
-    
-    regionalProjectCount += h1Regional.length + h2Regional.length;
-    
-    [...h1Regional, ...h2Regional].forEach(award => {
-      if (award.bonus) totalBonus += Number(award.bonus);
-      if (award.members) {
-        award.members.forEach(m => uniqueWinners.add(m));
-      }
-    });
-    
-    individualAwards.forEach(award => {
-      if (award.bonus) totalBonus += Number(award.bonus);
-      if (award.winner_name) {
-        uniqueWinners.add(award.winner_name);
-        individualCount++;
-      }
-    });
-  });
-  
-  container.innerHTML = `
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-value">${globalProjectCount + regionalProjectCount}</div>
-        <div class="stat-label">Total Awarded Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🌍</div>
-        <div class="stat-value">${globalProjectCount}</div>
-        <div class="stat-label">Global Awarded Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🌏</div>
-        <div class="stat-value">${regionalProjectCount}</div>
-        <div class="stat-label">Regional Awarded Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-value">${uniqueWinners.size}</div>
-        <div class="stat-label">Award Winners</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">💰</div>
-        <div class="stat-value">${formatCurrency(totalBonus)}</div>
-        <div class="stat-label">Total Bonus Pool</div>
-      </div>
-    </div>
-  `;
+  return html;
 }
 
 // ==================== Modal Functions ====================
@@ -680,7 +870,7 @@ function showMembersModal(projectName, members) {
   
   modalTitle.textContent = projectName;
   
-  let membersHtml = '';
+  let membersHtml = '<div class="members-list">';
   members.forEach(member => {
     membersHtml += `
       <div class="member-item">
@@ -689,6 +879,7 @@ function showMembersModal(projectName, members) {
       </div>
     `;
   });
+  membersHtml += '</div>';
   
   modalBody.innerHTML = membersHtml;
   modal.classList.add('active');
@@ -707,12 +898,17 @@ document.addEventListener('click', (e) => {
   if (e.target === modal) {
     closeModal();
   }
+  const commentsModal = document.getElementById('comments-modal');
+  if (e.target === commentsModal) {
+    closeCommentsModal();
+  }
 });
 
 // Close modal on escape key
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();
+    closeCommentsModal();
   }
 });
 
@@ -860,7 +1056,7 @@ function renderSearchResults(results, containerId) {
           ${result.period ? `<span style="color: var(--accent-color); font-size: 11px;">${result.period}</span>` : ''}
         </div>
         <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
-        <div style="color: var(--accent-color); font-size: 14px;">${result.award || result.points + ' pts'}</div>
+        <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
         ${result.department ? `<div style="color: var(--text-secondary); font-size: 12px;">${result.department}</div>` : ''}
       </div>
     `;
@@ -870,7 +1066,6 @@ function renderSearchResults(results, containerId) {
 }
 
 // ==================== Initialize ====================
-// Only run main.js initialization if not on home page
 const isHomePage = document.getElementById('top3-podium');
 const isSearchPage = document.getElementById('search-input');
 

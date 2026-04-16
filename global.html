@@ -5,6 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - TikTok Shop Stars Awards</title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ==================== Global Page Specific Styles ==================== */
+    .home-header {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+    }
+    
+    .home-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-sm);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+    }
+    
+    .home-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+    
+    /* Compact Year Navigation */
+    .year-nav-compact {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: 6px;
+      margin: var(--spacing-md) auto 0;
+      width: fit-content;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Section header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+    }
+    
+    .section-badge {
+      padding: 4px 10px;
+      background: var(--primary-color);
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+    }
+    
+    /* Inline Search */
+    .inline-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 400px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .inline-search .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+    }
+    
+    .inline-search .search-input:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .inline-search .search-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+    }
+    
+    /* Search Results */
+    .search-results-section {
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+    
+    .search-results-section.active {
+      display: block;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .inline-search {
+        max-width: 100%;
+      }
+      
+      .home-title {
+        font-size: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -30,10 +155,20 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Year Navigation -->
-        <div class="year-nav">
-          <button class="year-btn active" data-year="2025">2025</button>
-          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
+        <!-- Home Header with Compact Year Nav -->
+        <section class="home-header">
+          <h1 class="home-title">TikTok Shop Stars Awards 2025</h1>
+          <p class="home-subtitle">Celebrating excellence and innovation across our global teams</p>
+          <div class="year-nav-compact">
+            <button class="year-btn active" data-year="2025">2025</button>
+            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          </div>
+        </section>
+
+        <!-- H1/H2 Period Toggle -->
+        <div class="period-toggle">
+          <button class="period-btn active" data-period="H1">H1</button>
+          <button class="period-btn" data-period="H2">H2</button>
         </div>
 
         <!-- Page Title -->
@@ -44,19 +179,24 @@
 
         <!-- Global Top 3 -->
         <section class="podium-section">
-          <h2 class="section-title mb-3">
-            <span class="icon">🥇</span>
-            Top Performers
-          </h2>
+          <div class="section-header">
+            <h2 class="section-title mb-3" style="font-size: 20px; margin: 0;">
+              <span class="icon">🥇</span>
+              <span id="period-label">H1</span> Top Performers
+            </h2>
+            <span class="section-badge">Live Rankings</span>
+          </div>
           <div id="global-top3"></div>
         </section>
 
         <!-- All Global Awards -->
         <section class="awards-section">
-          <h2 class="section-title mb-3">
-            <span class="icon">📋</span>
-            All Global Awards
-          </h2>
+          <div class="section-header">
+            <h2 class="section-title mb-3" style="font-size: 18px; margin: 0;">
+              <span class="icon">📋</span>
+              <span id="awards-label">H1</span> Awards
+            </h2>
+          </div>
           <div id="global-awards"></div>
         </section>
 
@@ -94,21 +234,104 @@
     </div>
   </div>
 
+  <!-- Comments Modal -->
+  <div class="comments-modal" id="comments-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="comments-modal-title">Comments</h3>
+        <button class="modal-close" onclick="closeCommentsModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="comment-list"></div>
+        <div class="comment-input-wrapper">
+          <input type="text" class="comment-input" id="comment-input" placeholder="Write a comment...">
+          <button class="comment-submit-btn" onclick="submitComment()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/main.js"></script>
   <script>
     // Global page specific initialization
+    let currentHalf = 'H1';
+    let globalData = null;
+    
+    // Period toggle handler
+    function initPeriodToggle() {
+      const periodBtns = document.querySelectorAll('.period-btn');
+      
+      periodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const period = btn.dataset.period;
+          if (period === currentHalf) return;
+          
+          // Update active state
+          periodBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          currentHalf = period;
+          
+          // Update labels
+          document.getElementById('period-label').textContent = period;
+          document.getElementById('awards-label').textContent = period;
+          
+          // Re-render awards
+          if (globalData) {
+            const top3 = calculateGlobalTop3(globalData, currentHalf);
+            renderPodium(top3, 'global-top3');
+            renderGlobalAwards(globalData, 'global-awards', currentHalf);
+          }
+        });
+      });
+    }
+    
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        const data = await loadData('global');
+        // Initialize navigation
+        highlightNavigation();
+        initYearNavigation();
+        initPeriodToggle();
         
-        if (data) {
-          // Calculate and render Top 3
-          const top3 = calculateGlobalTop3(data);
+        // Load data
+        globalData = await loadData('global');
+        
+        if (globalData) {
+          // Calculate and render Top 3 for H1
+          const top3 = calculateGlobalTop3(globalData, currentHalf);
           renderPodium(top3, 'global-top3');
           
-          // Render all awards
-          renderGlobalAwards(data, 'global-awards');
+          // Render all awards for H1
+          renderGlobalAwards(globalData, 'global-awards', currentHalf);
         }
+        
+        // Initialize search
+        initSearch();
+        
+        // Search handlers
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        
+        if (searchBtn) {
+          searchBtn.addEventListener('click', () => {
+            const query = searchInput?.value || '';
+            const results = performSearch(query);
+            renderSearchResults(results, 'search-results');
+            document.getElementById('search-results')?.classList.add('active');
+          });
+        }
+        
+        if (searchInput) {
+          searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              const query = e.target.value || '';
+              const results = performSearch(query);
+              renderSearchResults(results, 'search-results');
+              document.getElementById('search-results')?.classList.add('active');
+            }
+          });
+        }
+        
       } catch (error) {
         console.error('Error loading global page:', error);
         document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
