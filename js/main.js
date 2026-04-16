@@ -479,51 +479,55 @@ function renderPodium(top3, containerId, title) {
   
   const getScore = (item) => item.score || item.points || 0;
   
-  // Check if all top 3 have the same score
-  const allSameScore = top3.length >= 2 && top3.every(item => getScore(item) === getScore(top3[0]));
-  
-  // Get the display rank based on scores
-  const getDisplayRank = (index) => {
-    if (allSameScore) return '#1'; // All same score = all #1
-    return `#${index + 1}`;
+  // Calculate actual rank based on scores (ties get same rank)
+  const calculateRanks = (items) => {
+    const sortedScores = [...new Set(items.map(getScore))].sort((a, b) => b - a);
+    return items.map(item => {
+      const score = getScore(item);
+      return sortedScores.indexOf(score) + 1;
+    });
   };
   
-  const getMedal = (index) => {
-    if (allSameScore) return '🥇'; // All same score = all gold
-    const medals = ['🥇', '🥈', '🥉'];
-    return medals[index] || '';
+  const ranks = calculateRanks(top3);
+  
+  const getMedal = (rank) => {
+    if (rank === 1) return '🥇';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
+    return '';
   };
   
-  const getPodiumClass = (index) => {
-    if (allSameScore) return 'first'; // All same score = all first place style
-    const classes = ['first', 'second', 'third'];
-    return classes[index] || '';
+  const getPodiumClass = (rank) => {
+    if (rank === 1) return 'first';
+    if (rank === 2) return 'second';
+    if (rank === 3) return 'third';
+    return '';
   };
   
   let html = `
     <div class="podium">
       ${top3[1] ? `
-        <div class="podium-item ${getPodiumClass(1)}">
-          <div class="podium-medal">${getMedal(1)}</div>
-          <div class="podium-rank">${getDisplayRank(1)}</div>
+        <div class="podium-item ${getPodiumClass(ranks[1])}">
+          <div class="podium-medal">${getMedal(ranks[1])}</div>
+          <div class="podium-rank">#${ranks[1]}</div>
           <div class="podium-name">${top3[1].name}</div>
           <div class="podium-dept">${getDept(top3[1])}</div>
           <div class="podium-score">${getScore(top3[1])} pts</div>
         </div>
       ` : ''}
       ${top3[0] ? `
-        <div class="podium-item ${getPodiumClass(0)}">
-          <div class="podium-medal">${getMedal(0)}</div>
-          <div class="podium-rank">${getDisplayRank(0)}</div>
+        <div class="podium-item ${getPodiumClass(ranks[0])}">
+          <div class="podium-medal">${getMedal(ranks[0])}</div>
+          <div class="podium-rank">#${ranks[0]}</div>
           <div class="podium-name">${top3[0].name}</div>
           <div class="podium-dept">${getDept(top3[0])}</div>
           <div class="podium-score">${getScore(top3[0])} pts</div>
         </div>
       ` : ''}
       ${top3[2] ? `
-        <div class="podium-item ${getPodiumClass(2)}">
-          <div class="podium-medal">${getMedal(2)}</div>
-          <div class="podium-rank">${getDisplayRank(2)}</div>
+        <div class="podium-item ${getPodiumClass(ranks[2])}">
+          <div class="podium-medal">${getMedal(ranks[2])}</div>
+          <div class="podium-rank">#${ranks[2]}</div>
           <div class="podium-name">${top3[2].name}</div>
           <div class="podium-dept">${getDept(top3[2])}</div>
           <div class="podium-score">${getScore(top3[2])} pts</div>
