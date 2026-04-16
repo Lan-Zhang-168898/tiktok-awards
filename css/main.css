@@ -906,3 +906,221 @@ img {
     font-size: 22px;
   }
 }
+
+/* ==================== Card Reason Scroll Area ==================== */
+.card-reason-scroll {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-height: 120px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+}
+
+.card-reason-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-reason-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-reason-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 2px;
+}
+
+/* ==================== Share Button ==================== */
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+/* ==================== Share Modal ==================== */
+.share-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+}
+
+.share-modal.active {
+  display: flex;
+}
+
+.share-modal .modal-content {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  max-width: 450px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.share-actions {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  justify-content: center;
+}
+
+.download-btn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(255, 45, 85, 0.3);
+}
+
+/* ==================== Poster Styles ==================== */
+.poster-container {
+  width: 100%;
+  aspect-ratio: 3/4;
+  position: relative;
+  background: linear-gradient(180deg, #0d1b3e 0%, #000000 100%);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.poster-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, 
+    rgba(13, 27, 62, 0.9) 0%, 
+    rgba(0, 0, 0, 0.95) 50%,
+    rgba(0, 0, 0, 1) 100%);
+  z-index: 1;
+}
+
+.poster-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 30px;
+  text-align: center;
+}
+
+.poster-header {
+  margin-bottom: 30px;
+}
+
+.poster-brand {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #d4af37;
+  text-transform: uppercase;
+}
+
+.poster-project {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  max-width: 90%;
+}
+
+.poster-award {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #d4af37;
+  margin-bottom: 24px;
+}
+
+.poster-bonus {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.poster-reason {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-height: 100px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.poster-members-label {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #d4af37;
+  margin-bottom: 8px;
+}
+
+.poster-members {
+  font-size: 13px;
+  color: white;
+  line-height: 1.5;
+  max-width: 85%;
+}
+
+.poster-footer {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+}
+
+.poster-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin-bottom: 16px;
+}
+
+.poster-brand-footer {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+}
+
+/* ==================== Like Button Update ==================== */
+.like-btn.liked {
+  background: rgba(255, 45, 85, 0.15);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}

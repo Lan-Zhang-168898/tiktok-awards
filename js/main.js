@@ -212,12 +212,125 @@ function getIndividualAwardsByQuarter(data, quarter) {
 }
 
 // ==================== Ranking Functions ====================
+
+// Calculate FULL YEAR Top 3 for Global (combining H1 + H2)
+function calculateGlobalTop3FullYear(globalData) {
+  if (!globalData) return [];
+  
+  const allAwards = getAllProjectAwards(globalData);
+  const memberScores = {};
+  
+  // Helper to get safe department value
+  const getSafeDept = (dept, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    return defaultVal || 'Global';
+  };
+  
+  allAwards.forEach(award => {
+    if (!award.members) return;
+    award.members.forEach(memberName => {
+      const key = memberName;
+      if (!memberScores[key]) {
+        memberScores[key] = {
+          name: memberName,
+          score: 0,
+          awards: 0,
+          email: award.email || '',
+          department: getSafeDept(award.department, 'Global')
+        };
+      }
+      memberScores[key].score += 5; // Global = 5 points
+      memberScores[key].awards += 1;
+    });
+  });
+  
+  return Object.values(memberScores)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards)
+    .slice(0, 3);
+}
+
+// Calculate FULL YEAR Top 10 for Global (combining H1 + H2)
+function calculateGlobalTop10FullYear(globalData) {
+  if (!globalData) return [];
+  
+  const allAwards = getAllProjectAwards(globalData);
+  const memberScores = {};
+  
+  const getSafeDept = (dept, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    return defaultVal || 'Global';
+  };
+  
+  allAwards.forEach(award => {
+    if (!award.members) return;
+    award.members.forEach(memberName => {
+      const key = memberName;
+      if (!memberScores[key]) {
+        memberScores[key] = {
+          name: memberName,
+          score: 0,
+          awards: 0,
+          email: award.email || '',
+          department: getSafeDept(award.department, 'Global')
+        };
+      }
+      memberScores[key].score += 5;
+      memberScores[key].awards += 1;
+    });
+  });
+  
+  return Object.values(memberScores)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards)
+    .slice(0, 10)
+    .map((item, index) => ({ ...item, rank: index + 1 }));
+}
+
+// Calculate Top 3 by period (H1 or H2 only)
+function calculateGlobalTop3(globalData, half) {
+  if (!globalData) return [];
+  
+  const memberScores = {};
+  
+  const getSafeDept = (dept, defaultVal) => {
+    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
+    return defaultVal || 'Global';
+  };
+  
+  let awards = [];
+  if (half === 'H1') {
+    awards = getH1ProjectAwards(globalData);
+  } else {
+    awards = getH2ProjectAwards(globalData);
+  }
+  
+  awards.forEach(award => {
+    if (!award.members) return;
+    award.members.forEach(memberName => {
+      const key = memberName;
+      if (!memberScores[key]) {
+        memberScores[key] = {
+          name: memberName,
+          score: 0,
+          awards: 0,
+          email: award.email || '',
+          department: getSafeDept(award.department, 'Global')
+        };
+      }
+      memberScores[key].score += 5;
+      memberScores[key].awards += 1;
+    });
+  });
+  
+  return Object.values(memberScores)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards)
+    .slice(0, 3);
+}
+
 function calculateRegionTop3(regionData, region, period) {
   if (!regionData) return [];
   
   let memberScores = {};
   
-  // Helper to get safe department value
   const getSafeDept = (dept, reg, defaultVal) => {
     if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
     if (reg && reg !== 'undefined' && reg !== 'null' && reg !== '') return reg;
@@ -263,7 +376,6 @@ function calculateRegionTop3(regionData, region, period) {
       });
     });
   } else if (period === 'H2个人奖') {
-    // For LATAM, use quarter-specific individual awards
     const individualAwards = region === 'latam' 
       ? getIndividualAwardsByQuarter(regionData, AppData.currentLatamQuarter)
       : getAllIndividualAwards(regionData);
@@ -286,133 +398,9 @@ function calculateRegionTop3(regionData, region, period) {
     });
   }
   
-  // Sort and get top 3
   return Object.values(memberScores)
     .sort((a, b) => b.score - a.score || b.awards - a.awards)
     .slice(0, 3);
-}
-
-function calculateGlobalTop3(globalData, half) {
-  if (!globalData) return [];
-  
-  const memberScores = {};
-  
-  // Helper to get safe department value
-  const getSafeDept = (dept, defaultVal) => {
-    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
-    return defaultVal || 'Global';
-  };
-  
-  let awards = [];
-  if (half === 'H1') {
-    awards = getH1ProjectAwards(globalData);
-  } else {
-    awards = getH2ProjectAwards(globalData);
-  }
-  
-  awards.forEach(award => {
-    if (!award.members) return;
-    award.members.forEach(memberName => {
-      const key = memberName;
-      if (!memberScores[key]) {
-        memberScores[key] = {
-          name: memberName,
-          score: 0,
-          awards: 0,
-          email: award.email || '',
-          department: getSafeDept(award.department, 'Global')
-        };
-      }
-      memberScores[key].score += 5; // Global = 5 points
-      memberScores[key].awards += 1;
-    });
-  });
-  
-  return Object.values(memberScores)
-    .sort((a, b) => b.score - a.score || b.awards - a.awards)
-    .slice(0, 3);
-}
-
-// Calculate rankings from combined H1+H2 data
-function calculateCombinedRankings() {
-  const memberScores = {};
-  
-  // Helper to get safe department value
-  const getSafeDept = (dept, region, defaultVal) => {
-    if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
-    if (region && region !== 'undefined' && region !== 'null' && region !== '') return region;
-    return defaultVal || 'TikTok Shop';
-  };
-  
-  // Process Global awards
-  if (AppData.global) {
-    const globalAwards = getAllProjectAwards(AppData.global);
-    globalAwards.forEach(award => {
-      if (!award.members) return;
-      award.members.forEach(memberName => {
-        if (!memberScores[memberName]) {
-          memberScores[memberName] = {
-            name: memberName,
-            score: 0,
-            awards: 0,
-            email: award.email || '',
-            department: getSafeDept(award.department, award.region, 'Global')
-          };
-        }
-        memberScores[memberName].score += 5; // Global = 5 points
-        memberScores[memberName].awards += 1;
-      });
-    });
-  }
-  
-  // Process Regional awards
-  Object.entries(AppData.regional).forEach(([region, regionData]) => {
-    if (!regionData) return;
-    const regionalAwards = getAllProjectAwards(regionData);
-    const individualAwards = getAllIndividualAwards(regionData);
-    
-    regionalAwards.forEach(award => {
-      if (!award.members) return;
-      award.members.forEach(memberName => {
-        if (!memberScores[memberName]) {
-          memberScores[memberName] = {
-            name: memberName,
-            score: 0,
-            awards: 0,
-            email: award.email || '',
-            department: getSafeDept(award.department, region, 'Regional')
-          };
-        }
-        memberScores[memberName].score += 3; // Regional = 3 points
-        memberScores[memberName].awards += 1;
-      });
-    });
-    
-    // Add individual awards
-    individualAwards.forEach(award => {
-      if (award.winner_name) {
-        if (!memberScores[award.winner_name]) {
-          memberScores[award.winner_name] = {
-            name: award.winner_name,
-            score: 0,
-            awards: 0,
-            email: award.email || '',
-            department: getSafeDept(award.department, region, 'Regional')
-          };
-        }
-        memberScores[award.winner_name].score += 3;
-        memberScores[award.winner_name].awards += 1;
-      }
-    });
-  });
-  
-  // Sort and add rank
-  const rankings = Object.values(memberScores)
-    .sort((a, b) => b.score - a.score || b.awards - a.awards)
-    .slice(0, 10)
-    .map((item, index) => ({ ...item, rank: index + 1 }));
-  
-  return rankings;
 }
 
 // ==================== Render Functions ====================
@@ -425,7 +413,6 @@ function renderPodium(top3, containerId, title) {
     return;
   }
   
-  // Helper to get display department or fallback
   const getDept = (item) => {
     if (item.department && item.department !== 'undefined') return item.department;
     if (item.region && item.region !== 'undefined') return item.region;
@@ -531,88 +518,95 @@ function getLikeCount(cardId) {
   return likes[storageKey] ? 1 : 0;
 }
 
-// Toggle expand/collapse reason
-function toggleReason(element) {
-  element.classList.toggle('expanded');
-  const toggleBtn = element.parentElement.querySelector('.reason-toggle');
-  if (toggleBtn) {
-    toggleBtn.textContent = element.classList.contains('expanded') ? 'Show less ▲' : 'Show more ▼';
-  }
-}
+// ==================== Share/Poster Functions ====================
 
-// Show comments modal
-function showComments(cardId, awardName, awardType) {
-  const modal = document.getElementById('comments-modal');
-  const modalTitle = document.getElementById('comments-modal-title');
-  const modalBody = document.getElementById('comments-modal-body');
-  const commentInput = document.getElementById('comment-input');
-  const commentList = document.getElementById('comment-list');
+function showShareModal(projectName, teamAward, bonus, reason, members) {
+  const modal = document.getElementById('share-modal');
+  const modalTitle = document.getElementById('share-modal-title');
+  const posterPreview = document.getElementById('poster-preview');
   
   if (!modal) return;
   
-  modalTitle.textContent = `Comments: ${awardName}`;
+  modalTitle.textContent = 'Share Award';
   
-  // Load existing comments
-  const storageKey = `comments_${cardId}`;
-  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  // Format members list
+  const memberNames = members.map(m => m.name || m).join(', ');
   
-  if (comments.length === 0) {
-    commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first to comment!</div>';
-  } else {
-    commentList.innerHTML = comments.map((c, i) => `
-      <div class="comment-item">
-        <div class="comment-author">${c.author || 'Anonymous'}</div>
-        <div class="comment-text">${c.text}</div>
-        <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
+  // Generate poster HTML
+  posterPreview.innerHTML = `
+    <div class="poster-container" id="poster-content">
+      <div class="poster-gradient"></div>
+      <div class="poster-content">
+        <div class="poster-header">
+          <div class="poster-brand">TikTok Shop Stars Awards</div>
+        </div>
+        
+        <div class="poster-project">${projectName}</div>
+        
+        <div class="poster-award">Global Excellence Award</div>
+        
+        <div class="poster-bonus">${formatCurrency(bonus)}</div>
+        
+        <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
+        
+        <div class="poster-members-label">Team Members</div>
+        <div class="poster-members">${memberNames}</div>
+        
+        <div class="poster-footer">
+          <div class="poster-line"></div>
+          <div class="poster-brand-footer">TikTok Shop</div>
+        </div>
       </div>
-    `).join('');
-  }
-  
-  // Store current card info for submit
-  modal.dataset.cardId = cardId;
-  modal.dataset.awardName = awardName;
-  modal.dataset.awardType = awardType;
+    </div>
+  `;
   
   modal.classList.add('active');
 }
 
-function submitComment() {
-  const modal = document.getElementById('comments-modal');
-  const commentInput = document.getElementById('comment-input');
-  const commentList = document.getElementById('comment-list');
-  
-  if (!modal || !commentInput) return;
-  
-  const text = commentInput.value.trim();
-  if (!text) return;
-  
-  const storageKey = `comments_${modal.dataset.cardId}`;
-  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
-  
-  comments.push({
-    text: text,
-    author: 'You',
-    timestamp: Date.now()
-  });
-  
-  localStorage.setItem(storageKey, JSON.stringify(comments));
-  commentInput.value = '';
-  
-  // Update display
-  commentList.innerHTML = comments.map((c, i) => `
-    <div class="comment-item">
-      <div class="comment-author">${c.author || 'Anonymous'}</div>
-      <div class="comment-text">${c.text}</div>
-      <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
-    </div>
-  `).join('');
-}
-
-function closeCommentsModal() {
-  const modal = document.getElementById('comments-modal');
+function closeShareModal() {
+  const modal = document.getElementById('share-modal');
   if (modal) {
     modal.classList.remove('active');
   }
+}
+
+async function downloadPoster() {
+  const posterContent = document.getElementById('poster-content');
+  if (!posterContent) return;
+  
+  // Use html2canvas to generate image
+  try {
+    // Dynamically load html2canvas if not already loaded
+    if (!window.html2canvas) {
+      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    }
+    
+    const canvas = await html2canvas(posterContent, {
+      backgroundColor: null,
+      scale: 2,
+      useCORS: true,
+      logging: false
+    });
+    
+    // Convert to image and download
+    const link = document.createElement('a');
+    link.download = 'award-poster.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  } catch (error) {
+    console.error('Error generating poster:', error);
+    alert('Failed to generate poster. Please try again.');
+  }
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
 }
 
 // ==================== Global Page Functions ====================
@@ -660,7 +654,6 @@ function renderGlobalAwards(data, containerId, half) {
     const cardId = `global_${project.project_name.replace(/\s+/g, '_')}`;
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
-    const needsExpand = reasonText.length > 150;
     
     html += `
       <div class="card project-card" data-card-id="${cardId}">
@@ -674,9 +667,8 @@ function renderGlobalAwards(data, containerId, half) {
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
-          <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
-            <span class="reason-text">${reasonText}</span>
-            ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
+          <div class="card-reason-scroll">
+            ${reasonText}
           </div>
         </div>
         <div class="card-footer">
@@ -687,8 +679,8 @@ function renderGlobalAwards(data, containerId, half) {
             <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'global_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
             </button>
-            <button class="comment-btn" onclick="showComments('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
-              💬 Comment
+            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+              📤 Share
             </button>
           </div>
         </div>
@@ -723,7 +715,6 @@ function renderRegionalAwards(data, containerId, period, region) {
     }
   } else if (period === 'H2个人奖') {
     if (region === 'latam') {
-      // LATAM individual awards by quarter
       const quarterAwards = getIndividualAwardsByQuarter(data, AppData.currentLatamQuarter);
       if (quarterAwards.length === 0) {
         html = `<div class="no-data-msg">No ${AppData.currentLatamQuarter} individual awards available for LATAM</div>`;
@@ -744,7 +735,6 @@ function renderRegionalAwards(data, containerId, period, region) {
 }
 
 function renderProjectCards(awards, region, half) {
-  // Group by project name
   const projectGroups = {};
   awards.forEach(award => {
     const key = award.project_name;
@@ -772,7 +762,6 @@ function renderProjectCards(awards, region, half) {
     const cardId = `regional_${region}_${project.project_name.replace(/\s+/g, '_')}`;
     const likeCount = getLikeCount(cardId);
     const reasonText = project.reason || '';
-    const needsExpand = reasonText.length > 150;
     
     html += `
       <div class="card project-card" data-card-id="${cardId}">
@@ -786,9 +775,8 @@ function renderProjectCards(awards, region, half) {
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
           <div class="card-amount">${formatCurrency(project.bonus)}</div>
-          <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
-            <span class="reason-text">${reasonText}</span>
-            ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
+          <div class="card-reason-scroll">
+            ${reasonText}
           </div>
         </div>
         <div class="card-footer">
@@ -799,8 +787,8 @@ function renderProjectCards(awards, region, half) {
             <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'regional_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
             </button>
-            <button class="comment-btn" onclick="showComments('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
-              💬 Comment
+            <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
+              📤 Share
             </button>
           </div>
         </div>
@@ -820,7 +808,6 @@ function renderIndividualCards(awards, region, half) {
       const cardId = `individual_${region}_${award.winner_name.replace(/\s+/g, '_')}`;
       const likeCount = getLikeCount(cardId);
       const reasonText = award.reason || '';
-      const needsExpand = reasonText.length > 150;
       const deptDisplay = award.department || award.region || region;
       
       html += `
@@ -836,9 +823,8 @@ function renderIndividualCards(awards, region, half) {
               <span class="card-award-name">🌟 ${award.team_award || 'Stellar Contributor'}</span>
             </div>
             <div class="card-amount">${formatCurrency(award.bonus)}</div>
-            <div class="card-reason ${needsExpand ? '' : 'expanded'}" onclick="toggleReason(this)">
-              <span class="reason-text">${reasonText}</span>
-              ${needsExpand ? '<button class="reason-toggle">Show more ▼</button>' : ''}
+            <div class="card-reason-scroll">
+              ${reasonText}
             </div>
           </div>
           <div class="card-footer">
@@ -846,8 +832,8 @@ function renderIndividualCards(awards, region, half) {
               <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${award.winner_name.replace(/'/g, "\\'")}')">
                 ❤️ <span class="like-count">${likeCount}</span>
               </button>
-              <button class="comment-btn" onclick="showComments('${cardId}', '${award.winner_name.replace(/'/g, "\\'")}', 'Stellar Contributor')">
-                💬 Comment
+              <button class="share-btn" onclick="showShareModal('${award.winner_name.replace(/'/g, "\\'")}', '${award.team_award || 'Stellar Contributor'}', '${award.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', [{name: '${award.winner_name}', email: '${award.email || ''}'}])">
+                📤 Share
               </button>
             </div>
           </div>
@@ -872,10 +858,12 @@ function showMembersModal(projectName, members) {
   
   let membersHtml = '<div class="members-list">';
   members.forEach(member => {
+    const name = member.name || member;
+    const email = member.email || '';
     membersHtml += `
       <div class="member-item">
-        <div class="member-name">${member.name}</div>
-        <div class="member-email">${member.email || ''}</div>
+        <div class="member-name">${name}</div>
+        <div class="member-email">${email}</div>
       </div>
     `;
   });
@@ -898,9 +886,9 @@ document.addEventListener('click', (e) => {
   if (e.target === modal) {
     closeModal();
   }
-  const commentsModal = document.getElementById('comments-modal');
-  if (e.target === commentsModal) {
-    closeCommentsModal();
+  const shareModal = document.getElementById('share-modal');
+  if (e.target === shareModal) {
+    closeShareModal();
   }
 });
 
@@ -908,7 +896,7 @@ document.addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();
-    closeCommentsModal();
+    closeShareModal();
   }
 });
 
@@ -917,7 +905,6 @@ let searchData = null;
 
 async function initSearch() {
   try {
-    // Load all data for search
     const [global, us, eu, sea, latam, rankings] = await Promise.all([
       fetch('data/global.json').then(r => r.json()).catch(() => null),
       fetch('data/us.json').then(r => r.json()).catch(() => null),
@@ -943,7 +930,6 @@ function performSearch(query) {
   const results = [];
   const searchTerm = query.toLowerCase();
   
-  // Search in Global awards (H1 + H2)
   if (searchData.global) {
     const h1Awards = searchData.global['H1项目奖'] || [];
     const h2Awards = searchData.global['H2项目奖'] || [];
@@ -970,7 +956,6 @@ function performSearch(query) {
     });
   }
   
-  // Search in Regional awards (H1 + H2)
   ['us', 'eu', 'sea', 'latam'].forEach(region => {
     const data = searchData.regional[region];
     if (!data) return;
@@ -1016,7 +1001,6 @@ function performSearch(query) {
     });
   });
   
-  // Search in Rankings
   if (searchData.rankings) {
     const rankings = searchData.rankings.top10 || [];
     rankings.forEach(r => {
@@ -1070,10 +1054,8 @@ const isHomePage = document.getElementById('top3-podium');
 const isSearchPage = document.getElementById('search-input');
 
 if (isHomePage) {
-  // Home page uses its own initialization in inline script
   console.log('Home page detected - using page-specific initialization');
 } else if (isSearchPage) {
-  // Other pages use search initialization
   document.addEventListener('DOMContentLoaded', () => {
     highlightNavigation();
     initYearNavigation();
@@ -1081,7 +1063,6 @@ if (isHomePage) {
     initDeptNavigation();
     initSearch();
     
-    // Setup search handlers
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     
@@ -1106,7 +1087,6 @@ if (isHomePage) {
     }
   });
 } else {
-  // Generic page initialization
   document.addEventListener('DOMContentLoaded', () => {
     highlightNavigation();
     initYearNavigation();
