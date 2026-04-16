@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="css/main.css">
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
-    .home-header {
+    .regional-header {
       padding: var(--spacing-xl) 0 var(--spacing-md);
+      text-align: center;
     }
     
-    .home-title {
+    .regional-title {
       font-size: 32px;
       font-weight: 800;
       margin-bottom: var(--spacing-sm);
@@ -19,24 +20,26 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      text-align: center;
     }
     
-    .home-subtitle {
+    .regional-subtitle {
       font-size: 14px;
       color: var(--text-secondary);
-      text-align: center;
+      margin-bottom: var(--spacing-md);
     }
     
-    /* Compact Year Navigation */
+    /* Year Navigation - Centered */
+    .year-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    
     .year-nav-compact {
       display: inline-flex;
       gap: 4px;
       background: var(--bg-card);
       padding: 3px;
       border-radius: 6px;
-      margin: var(--spacing-md) auto 0;
-      width: fit-content;
     }
     
     .year-nav-compact .year-btn {
@@ -59,76 +62,133 @@
       color: white;
     }
     
-    /* Section header */
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* Region Navigation - Tab Style, Centered */
+    .region-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .region-nav {
+      display: inline-flex;
+      gap: 0;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 12px;
+    }
+    
+    .region-btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .region-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .region-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
+    }
+    
+    /* Podium Section */
+    .podium-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-title-main {
+      font-size: 20px;
+      font-weight: 600;
       margin-bottom: var(--spacing-md);
-      flex-wrap: wrap;
-      gap: var(--spacing-sm);
+      text-align: center;
     }
     
-    .section-badge {
-      padding: 4px 10px;
-      background: var(--primary-color);
-      border-radius: var(--radius-sm);
-      font-size: 11px;
-      font-weight: 600;
+    /* Scoring Rule Note */
+    .scoring-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
     }
     
-    /* Search */
-    .search-box {
-      display: flex;
-      gap: var(--spacing-md);
-      max-width: 600px;
-      margin: 0 auto;
+    /* Award Type Toggle - Tab Style, Centered */
+    .award-type-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
     }
     
-    .search-input {
+    .award-type-toggle {
+      display: inline-flex;
+      gap: 0;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 12px;
+      max-width: 700px;
+    }
+    
+    .award-type-btn {
       flex: 1;
-      padding: var(--spacing-md) var(--spacing-lg);
-      border-radius: var(--radius-md);
-      font-size: 16px;
-      color: var(--text-primary);
-      background: var(--bg-dark);
-      border: 1px solid var(--border-color);
-      outline: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
       transition: all 0.3s ease;
+      text-align: center;
+      line-height: 1.4;
+      cursor: pointer;
     }
     
-    .search-input:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
+    .award-type-btn:hover {
+      color: var(--text-primary);
     }
     
-    .search-btn {
-      padding: var(--spacing-md) var(--spacing-xl);
-      border-radius: var(--radius-md);
-      font-size: 16px;
+    .award-type-btn.active {
+      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+      color: white;
       font-weight: 600;
-      color: var(--text-primary);
-      background: var(--primary-color);
-      transition: all 0.3s ease;
+      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
     }
     
-    .search-results {
-      margin-top: var(--spacing-xl);
-      display: none;
-    }
-    
-    .search-results.active {
+    .award-type-btn .btn-subtitle {
       display: block;
+      font-size: 10px;
+      opacity: 0.8;
+      margin-top: 2px;
     }
     
     /* Responsive */
     @media (max-width: 768px) {
-      .search-box {
+      .regional-title {
+        font-size: 24px;
+      }
+      
+      .region-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .region-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+      
+      .award-type-toggle {
         flex-direction: column;
       }
       
-      .home-title {
-        font-size: 24px;
+      .award-type-btn {
+        font-size: 11px;
       }
     }
   </style>
@@ -157,83 +217,81 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Home Header with Compact Year Nav -->
-        <section class="home-header">
-          <h1 class="home-title">Global E-commerce Recognition Hub 2025</h1>
-          <p class="home-subtitle">Celebrating excellence and innovation across our regional teams</p>
-          <div class="year-nav-compact">
-            <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+        
+        <!-- Regional Header -->
+        <section class="regional-header">
+          <h1 class="regional-title">Regional Awards</h1>
+          <p class="regional-subtitle">Celebrating regional excellence and impact</p>
+          
+          <!-- Year Navigation - Centered -->
+          <div class="year-nav-wrapper">
+            <div class="year-nav-compact">
+              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            </div>
           </div>
         </section>
 
-        <!-- Page Title -->
-        <h1 class="section-title" style="margin-bottom: var(--spacing-lg);">
-          <span class="icon">🌏</span>
-          Regional Awards
-        </h1>
-
-        <!-- Region Navigation -->
-        <div class="region-nav">
-          <button class="region-btn active" data-region="us">US</button>
-          <button class="region-btn" data-region="eu">EU+UK+JP</button>
-          <button class="region-btn" data-region="sea">SEA</button>
-          <button class="region-btn" data-region="latam">LATAM</button>
-        </div>
-
-        <!-- Award Type Toggle -->
-        <div class="award-type-toggle" id="award-type-toggle">
-          <button class="award-type-btn active" data-type="H1项目奖">H1项目奖</button>
-          <button class="award-type-btn" data-type="H2项目奖">H2项目奖</button>
-          <button class="award-type-btn" data-type="H2个人奖">H2个人奖</button>
-        </div>
-
-        <!-- Quarter Toggle (for LATAM) -->
-        <div class="quarter-toggle" id="quarter-toggle" style="display: none;">
-          <button class="quarter-btn active" data-quarter="Q1">Q1</button>
-          <button class="quarter-btn" data-quarter="Q2">Q2</button>
-          <button class="quarter-btn" data-quarter="Q3">Q3</button>
-          <button class="quarter-btn" data-quarter="Q4">Q4</button>
-        </div>
-
-        <!-- Regional Top 3 -->
-        <section class="podium-section">
-          <div class="section-header">
-            <h2 class="section-title mb-3" style="font-size: 20px; margin: 0;">
-              <span class="icon">🥇</span>
-              <span id="region-icon">🏆</span>
-              <span id="region-title">US</span> 
-              <span id="type-label">H1项目奖</span> Top 3
-            </h2>
-            <span class="section-badge">Live Rankings</span>
+        <!-- Region Navigation - Tab Style -->
+        <div class="region-nav-wrapper">
+          <div class="region-nav">
+            <button class="region-btn active" data-region="us">US</button>
+            <button class="region-btn" data-region="eu">EU+UK+JP</button>
+            <button class="region-btn" data-region="sea">SEA</button>
+            <button class="region-btn" data-region="latam">LATAM</button>
+            <button class="region-btn" data-region="fs">FS</button>
+            <button class="region-btn" data-region="pop">POP</button>
           </div>
+        </div>
+
+        <!-- Regional Top 3 Podium -->
+        <section class="podium-section">
+          <h2 class="section-title-main">
+            <span id="region-icon">🏆</span>
+            <span id="region-name">US</span> Top 3 Winners (Full Year Rankings)
+          </h2>
+          
+          <!-- Scoring Rule Note -->
+          <p class="scoring-note">
+            <strong>Scoring:</strong> Regional Award = 3 pts
+          </p>
+          
           <div id="regional-top3"></div>
         </section>
 
-        <!-- All Regional Awards -->
-        <section class="awards-section">
-          <div class="section-header">
-            <h2 class="section-title mb-3" style="font-size: 18px; margin: 0;">
-              <span class="icon">📋</span>
-              <span id="awards-region">US</span> 
-              <span id="awards-type">H1项目奖</span> Awards
-            </h2>
+        <!-- Award Type Toggle -->
+        <div class="award-type-wrapper">
+          <div class="award-type-toggle">
+            <button class="award-type-btn active" data-type="H1项目奖">
+              H1
+              <span class="btn-subtitle">Impactful XFN Projects</span>
+            </button>
+            <button class="award-type-btn" data-type="H2项目奖">
+              H2
+              <span class="btn-subtitle">Impactful XFN Projects</span>
+            </button>
+            <button class="award-type-btn" data-type="H2个人奖">
+              H2 BFCM
+              <span class="btn-subtitle">Stellar Contributors</span>
+            </button>
           </div>
+        </div>
+
+        <!-- Quarter Toggle (for LATAM) -->
+        <div class="award-type-wrapper" id="quarter-toggle" style="display: none;">
+          <div class="award-type-toggle">
+            <button class="quarter-btn active" data-quarter="Q1">Q1</button>
+            <button class="quarter-btn" data-quarter="Q2">Q2</button>
+            <button class="quarter-btn" data-quarter="Q3">Q3</button>
+            <button class="quarter-btn" data-quarter="Q4">Q4</button>
+          </div>
+        </div>
+
+        <!-- Regional Awards Grid -->
+        <section class="awards-section">
           <div id="regional-awards"></div>
         </section>
 
-        <!-- Search Section -->
-        <section class="search-section">
-          <h3 class="section-title text-center mb-3">
-            <span class="icon">🔍</span>
-            Search Awards
-          </h3>
-          <div class="search-box">
-            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
-            <button class="search-btn" id="search-btn">Search</button>
-          </div>
-          <div id="search-results" class="search-results"></div>
-        </section>
       </div>
     </main>
 
@@ -296,7 +354,9 @@
       us: 'US',
       eu: 'EU+UK+JP',
       sea: 'SEA',
-      latam: 'LATAM'
+      latam: 'LATAM',
+      fs: 'FS',
+      pop: 'POP'
     };
     
     let currentRegion = 'us';
@@ -305,15 +365,12 @@
     
     // Update page labels
     function updateLabels() {
-      document.getElementById('region-title').textContent = regionNames[currentRegion];
-      document.getElementById('awards-region').textContent = regionNames[currentRegion];
-      document.getElementById('type-label').textContent = currentAwardType;
-      document.getElementById('awards-type').textContent = currentAwardType;
+      document.getElementById('region-name').textContent = regionNames[currentRegion];
       
       // Show/hide quarter toggle for LATAM individual awards
       const quarterToggle = document.getElementById('quarter-toggle');
       if (currentRegion === 'latam' && currentAwardType === 'H2个人奖') {
-        quarterToggle.style.display = 'flex';
+        quarterToggle.style.display = 'block';
       } else {
         quarterToggle.style.display = 'none';
       }
@@ -321,6 +378,8 @@
     
     // Load and render regional data
     async function loadRegionalData(region) {
+      const awardsContainer = document.getElementById('regional-awards');
+      
       try {
         regionalData = await loadData('regional', region);
         
@@ -335,11 +394,11 @@
           // Render all awards
           renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
         } else {
-          document.getElementById('regional-awards').innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
+          awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
       } catch (error) {
         console.error('Error loading regional data:', error);
-        document.getElementById('regional-awards').innerHTML = '<div class="no-data-msg">Failed to load data. Please try again later.</div>';
+        awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
       }
     }
     
@@ -359,6 +418,7 @@
           regionBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentRegion = btn.dataset.region;
+          updateLabels();
           loadRegionalData(currentRegion);
         });
       });
