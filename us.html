@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇺🇸 US Awards - TikTok Shop Stars</title>
+    
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    color: #fff;
+    line-height: 1.6;
+}
+
+.nav-bar {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-link {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.nav-link:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 3em;
+    background: linear-gradient(135deg, #ffd700, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 2em;
+    color: #ffd700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #a0a0a0;
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+/* 统计卡片 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.stat-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+.stat-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.stat-label {
+    color: #a0a0a0;
+    font-size: 1.1em;
+}
+
+/* 区域卡片入口 */
+.region-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.region-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+    border-radius: 25px;
+    padding: 35px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.region-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s;
+}
+
+.region-card:hover::before {
+    left: 100%;
+}
+
+.region-card:hover {
+    transform: scale(1.03);
+    border-color: #ffd700;
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+}
+
+.region-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+.region-title {
+    font-size: 1.8em;
+    color: #ffd700;
+    margin-bottom: 10px;
+}
+
+.region-desc {
+    color: #b0b0b0;
+    font-size: 0.95em;
+}
+
+.region-stats {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-around;
+}
+
+.region-stat {
+    text-align: center;
+}
+
+.region-stat-value {
+    font-size: 1.5em;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.region-stat-label {
+    font-size: 0.85em;
+    color: #888;
+}
+
+/* Tab导航 */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover, .tab-btn.active {
+    background: linear-gradient(135deg, #ffd700, #ff6b6b);
+    border-color: transparent;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* 项目卡片 */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+}
+
+.project-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+    border-radius: 20px;
+    padding: 25px;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 215, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.project-name {
+    font-size: 1.3em;
+    color: #ffd700;
+    font-weight: bold;
+    flex: 1;
+    padding-right: 15px;
+}
+
+.bonus-badge {
+    background: linear-gradient(135deg, #ffd700, #ff6b6b);
+    color: #1a1a2e;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.project-meta {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #a0a0a0;
+    font-size: 0.9em;
+}
+
+.meta-icon {
+    color: #ffd700;
+}
+
+.team-award {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.85em;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.members-section {
+    margin-bottom: 15px;
+}
+
+.members-label {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 8px;
+}
+
+.members-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.member-tag {
+    background: rgba(255, 215, 0, 0.15);
+    color: #ffd700;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+}
+
+.reason-section {
+    margin-top: 15px;
+}
+
+.reason-toggle {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #a0a0a0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s;
+    font-size: 0.9em;
+}
+
+.reason-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.reason-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.reason-content.expanded {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.reason-text {
+    padding: 15px;
+    font-size: 0.9em;
+    color: #c0c0c0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
+/* 个人奖卡片 */
+.person-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.person-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255, 215, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.person-card:hover {
+    transform: translateX(5px);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+.person-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffd700, #ff6b6b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1a1a2e;
+    flex-shrink: 0;
+}
+
+.person-info {
+    flex: 1;
+}
+
+.person-name {
+    color: #ffd700;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.person-project {
+    color: #888;
+    font-size: 0.85em;
+}
+
+.person-bonus {
+    background: linear-gradient(135deg, #ff6b6b, #ffd700);
+    color: #1a1a2e;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* 点赞和评论 */
+.interaction-bar {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.like-btn, .comment-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #a0a0a0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.85em;
+}
+
+.like-btn:hover, .comment-btn:hover {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    color: #ffd700;
+}
+
+.like-btn.liked {
+    background: rgba(255, 107, 107, 0.3);
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+/* 评论区 */
+.comment-section {
+    margin-top: 15px;
+    display: none;
+}
+
+.comment-section.show {
+    display: block;
+}
+
+.comment-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    color: #fff;
+    font-size: 0.9em;
+    resize: vertical;
+    min-height: 60px;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: #ffd700;
+}
+
+.comment-submit {
+    background: linear-gradient(135deg, #ffd700, #ff6b6b);
+    border: none;
+    color: #1a1a2e;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.comment-submit:hover {
+    transform: scale(1.05);
+}
+
+.comments-list {
+    margin-top: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.comment-author {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
+.comment-text {
+    color: #c0c0c0;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.comment-time {
+    color: #666;
+    font-size: 0.75em;
+    margin-top: 5px;
+}
+
+/* 底部 */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 60px;
+}
+
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+/* 空状态 */
+.empty-state {
+    text-align: center;
+    padding: 60px;
+    color: #888;
+}
+
+.empty-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    .project-grid, .person-grid { grid-template-columns: 1fr; }
+    .nav-bar { gap: 10px; padding: 10px 15px; }
+    .nav-link { padding: 6px 12px; font-size: 12px; }
+    .region-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+</head>
+<body>
+    
+<div class="nav-bar">
+    <a href="https://www.coze.cn/s/kSovuCMEfyk/" class="nav-link">Home</a>
+    <a href="https://www.coze.cn/s/joLr79r-BBM/" class="nav-link">Global</a>
+    <a href="https://www.coze.cn/s/iaJMGPEoU9k/" class="nav-link">Regional</a>
+    <a href="#" class="nav-link">Departmental</a>
+    <a href="#" class="nav-link">Media Gallery</a>
+    <a href="#" class="nav-link">Profile</a>
+</div>
+
+    
+    <div class="container">
+        <h1>🇺🇸 US Awards</h1>
+        <p class="subtitle">Regional Excellence in E-Commerce</p>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">Project Awards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-number">35</div>
+                <div class="stat-label">Personal Awards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">244</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-number">$74,500</div>
+                <div class="stat-label">Total Bonus</div>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('h1')">H1项目奖 (5)</button>
+            <button class="tab-btn" onclick="switchTab('h2')">H2项目奖 (5)</button>
+            <button class="tab-btn" onclick="switchTab('person')">H2个人奖 (35)</button>
+        </div>
+        
+        <div id="h1" class="tab-content active">
+            <div class="project-grid">
+                
+<div class="project-card" id="h1_0">
+    <div class="project-header">
+        <div class="project-name">Central Live T100</div>
+        <div class="bonus-badge">$5,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>19 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>US Operations Center-Live</span>
+        </div>
+    </div>
+    <div class="team-award">Impactful XFN Project</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">胡浩</span><span class="member-tag">栾文嫣</span><span class="member-tag">陈耀阳</span><span class="member-tag">李秀钻</span><span class="member-tag">钟文瑞</span><span class="member-tag">Renee Chen</span><span class="member-tag">马志敏</span><span class="member-tag">邹梦婷</span><span class="member-tag">杨钊</span><span class="member-tag">林熙泽</span><span class="member-tag">康宁</span><span class="member-tag">杨聪敏</span><span class="member-tag">卓亚琴</span><span class="member-tag">汪琦鹏</span><span class="member-tag">Chen Zhou</span><span class="member-tag">Ivy Luo</span><span class="member-tag">Jiangtong TIAN</span><span class="member-tag">Biying Wu</span><span class="member-tag">Quanyi Liu</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">1. Built benchmark livestreaming cases and established scalable methodologies. The share of livestream GMV from T100 Project sellers increased to 20% of the total. In June, there were over 80 sessions exceeding $100K each, including a $2M MEGA LIVE for PopMart Labubu and a $680K new product launch for Oakcha perfume. Meanwhile, livestream GMV accounted for over 50% of total shop GMV for sellers such as Noely and Divi. We consolidated and documented operational methodologies across different industries and provided training to sellers.
+2. Identified and drove optimization of several fundamental issues within the livestream ecosystem, including: 1) refining livestream product workflows, improving advertising, GNE, and Pontos-related issues; 2) enhanced user interaction tools; 3) iterated traffic analytics tools such as the LIVE Dashboard, traffic analysis and video-to-live traffic diagnosis; 4) improved hosts’ data analysis and post-analysis action capabilities; 5) collaborated with the Shop Tab team to build the Livestream "Trending" channel and launched the strategy to display livestream cards by default in comprehensive search to strengthen the livestream awareness.
+3. Acted as a key driver for the 0-to-1 development of the US livestream ecosystem, we worked with the recommendation & algo team to increase the weighting of content interaction metrics. Previously, the content distribution relied heavily on transaction indicators, leading to an ecosystem dominated by single hero products. After the recommendation algorithm adjustment, the strengthened focus on content-driven livestreams resulted in effective growth in show PV and GPM. The operations team implemented training rapidly, resulting in significant improvements in livestream content quality. The ecosystem is now forming a virtuous cycle, advancing both content strength and transactional performance, establishing a solid base for mid-term to long-term development.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="Central Live T100" data-type="project" onclick="toggleLike('Central Live T100', 'project')">
+            ❤️ <span data-like="project_Central Live T100">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('Central Live T100')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="Central Live T100">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('Central Live T100')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h1_1">
+    <div class="project-header">
+        <div class="project-name">TikTok Shop US Summit</div>
+        <div class="bonus-badge">$5,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>21 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>US Ops Center  - IMC</span>
+        </div>
+    </div>
+    <div class="team-award">Impactful XFN Project</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">Evan Wang</span><span class="member-tag">Nora Essien</span><span class="member-tag">Lin LIN</span><span class="member-tag">YIF CHEN</span><span class="member-tag">石淇源</span><span class="member-tag">李信一</span><span class="member-tag">石奔</span><span class="member-tag">Simba Bai</span><span class="member-tag">Aileen Zou</span><span class="member-tag">Peilun Huang</span><span class="member-tag">Ajay Salpekar</span><span class="member-tag">闫艺杰</span><span class="member-tag">Ruby Wang</span><span class="member-tag">Austin Peng</span><span class="member-tag">Ryan一帆</span><span class="member-tag">Diego Puente</span><span class="member-tag">熊维佳</span><span class="member-tag">Patrick Nommensen</span><span class="member-tag">Carrie Fan</span><span class="member-tag">Shireen McCleary</span><span class="member-tag">Niki Do</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">On June 10, we made history — launching the first-ever TikTok Shop US Summit in Los Angeles, with 600+ Sellers/Partners, 100+ Creators, 150+ Staff, making a bold chapter in our mission to transform e-commerce through content, community, and culture.
+This full-day event brought together top sellers, creators and partners to spotlight what’s next for discovery ecommerce — and how to grow with TikTok Shop.
+🔥 The energy was real: spots filled up fast, and attendees came eager to engage, learn, and connect. Whether participants were new to TikTok Shop or ready to scale, they left with fresh perspectives, deeper trust, and actionable ideas. ✨</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="TikTok Shop US Summit" data-type="project" onclick="toggleLike('TikTok Shop US Summit', 'project')">
+            ❤️ <span data-like="project_TikTok Shop US Summit">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('TikTok Shop US Summit')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="TikTok Shop US Summit">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('TikTok Shop US Summit')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h1_2">
+    <div class="project-header">
+        <div class="project-name">Free Shipping</div>
+        <div class="bonus-badge">$5,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>22 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>User Product</span>
+        </div>
+    </div>
+    <div class="team-award">Impactful XFN Project</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">孟海潮</span><span class="member-tag">汪立军</span><span class="member-tag">Jinn 郭怀瑾</span><span class="member-tag">李渊</span><span class="member-tag">Kevin Ma</span><span class="member-tag">Yanfei Gong</span><span class="member-tag">赖绪鹏 Star</span><span class="member-tag">李骁睿</span><span class="member-tag">冯健</span><span class="member-tag">李谜</span><span class="member-tag">梁洁莉</span><span class="member-tag">赵楚心</span><span class="member-tag">裴桐Kino</span><span class="member-tag">Xinran Zhang</span><span class="member-tag">张世远</span><span class="member-tag">康君慧</span><span class="member-tag">付雪晴Cecilia</span><span class="member-tag">崔贤师</span><span class="member-tag">Angela Qu</span><span class="member-tag">蔡润强</span><span class="member-tag">Minh Le</span><span class="member-tag">汪洋</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">The project involved over ten teams across various departments. Through tight cross-functional collaboration, we overcame coordination challenges and implemented effective solutions. By H1, we upgraded the seller product flow , optimized the free shipping traffic, and integrated with the campaign mechanism to encourage more sellers to provide freeshipping. Together with 2 round withdrawals of shipping subsidy completed and welldone GTM, and the project was delivered a month ahead of schedule. 
+After the withdrawal, the free shipping subsidy, the free shipping rate is not only stable but keep increasing(target completion by 116%). The seller self-configured free shippingrate rose from 40% to 75%, saving the project over $100 million in the annual budget."</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="Free Shipping" data-type="project" onclick="toggleLike('Free Shipping', 'project')">
+            ❤️ <span data-like="project_Free Shipping">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('Free Shipping')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="Free Shipping">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('Free Shipping')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h1_3">
+    <div class="project-header">
+        <div class="project-name">Partner Ecosystem Enhancement</div>
+        <div class="bonus-badge">$5,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>16 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>Product-Global Business Mid-Platform</span>
+        </div>
+    </div>
+    <div class="team-award">Impactful XFN Project</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">李叶舜卿</span><span class="member-tag">姜杰夫</span><span class="member-tag">刘益佳</span><span class="member-tag">周梦媛</span><span class="member-tag">余辉</span><span class="member-tag">Ge Wu</span><span class="member-tag">Leon Zhong</span><span class="member-tag">Tianyu Lu</span><span class="member-tag">Kyu Park</span><span class="member-tag">孙文康</span><span class="member-tag">高婷</span><span class="member-tag">范晓赫</span><span class="member-tag">徐琦峰</span><span class="member-tag">张弛</span><span class="member-tag">肖潇</span><span class="member-tag">王庆敏 Anna</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">To build a healthy partner ecosystem supporting TikTok Shop creators and sellers, this project revamped the partner onboarding process, launched a partner tiering system, and established a standard collaboration process. 
+It brought in 1,000 new registered agencies per week in June, clarified TSP contributions with verified live management GMV from 0% to 75%, and enabled over 30K partners to collaborate weekly on Shoppable Videos and LIVEs.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="Partner Ecosystem Enhancement" data-type="project" onclick="toggleLike('Partner Ecosystem Enhancement', 'project')">
+            ❤️ <span data-like="project_Partner Ecosystem Enhancement">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('Partner Ecosystem Enhancement')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="Partner Ecosystem Enhancement">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('Partner Ecosystem Enhancement')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h1_4">
+    <div class="project-header">
+        <div class="project-name">Subscriptions & Save Launch</div>
+        <div class="bonus-badge">$5,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>9 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>US Ops-Health</span>
+        </div>
+    </div>
+    <div class="team-award">Impactful XFN Project</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">Jason Tsai</span><span class="member-tag">Christian Haddad</span><span class="member-tag">王小芳</span><span class="member-tag">何庆边</span><span class="member-tag">谢朝旭</span><span class="member-tag">Yao Yu</span><span class="member-tag">孙康莉</span><span class="member-tag">Shelby Tai</span><span class="member-tag">胡耀华</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">- **Strategic Impact:&nbsp;**The subscription feature represents critical strategic value for TikTok Shop ecosystem. It provides competitive parity with core rivals Amazon and DTC platforms, enabling enhanced long-term user retention and stable repeat purchases that drive merchant revenue and profitability. Users demonstrate 40% repeat purchase rates in subsequent months. Long term category revenue growth potential is high - Amazon + other DTC sellers see 30% to 60% of their revenue coming from subscriptions.
+- **Cross-Functional Sophisticated Execution:&nbsp;**The subscription feature represents a comprehensive 0-to-1 development process within TikTok Shop, requiring seamless collaboration across product, marketing, engineering, GNE, and Health BizOps teams. The initiative successfully navigated complex challenges through continuous user journey optimization (including Apple Pay integration) while delivering on schedule.
+- **High Business Impact:&nbsp;**The subscription feature has rapidly demonstrated significant GMV impact, led by the health cluster with multi-cluster scalability. Within 12 days of launch, ~2,800 products enabled SnS functionality (health ~50% share), generated daily GMV $150K (health ~80% share), and the overall platform penetration achieved 1.6% (health 4.5%), with 95K user subscriptions (health ~ 79% share)."</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="Subscriptions & Save Launch" data-type="project" onclick="toggleLike('Subscriptions & Save Launch', 'project')">
+            ❤️ <span data-like="project_Subscriptions & Save Launch">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('Subscriptions & Save Launch')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="Subscriptions & Save Launch">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('Subscriptions & Save Launch')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+            </div>
+        </div>
+        
+        <div id="h2" class="tab-content">
+            <div class="project-grid">
+                
+<div class="project-card" id="h2_0">
+    <div class="project-header">
+        <div class="project-name">BFCM Campaign</div>
+        <div class="bonus-badge">$9,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>66 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>US Ops Center-Campaign</span>
+        </div>
+    </div>
+    <div class="team-award">Yes</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">王瑶</span><span class="member-tag">潘姿颖</span><span class="member-tag">裴桐Kino</span><span class="member-tag">Windson Liu</span><span class="member-tag">Lin LIN</span><span class="member-tag">Aileen Zou</span><span class="member-tag">Ajay Salpekar</span><span class="member-tag">石奔</span><span class="member-tag">Simba Bai</span><span class="member-tag">Peilun Huang</span><span class="member-tag">李信一</span><span class="member-tag">于晓旭 Shaw</span><span class="member-tag">徐金谦</span><span class="member-tag">汤维</span><span class="member-tag">王娇玥</span><span class="member-tag">沈佳栋</span><span class="member-tag">张庆</span><span class="member-tag">费子轩</span><span class="member-tag">Eli Dai</span><span class="member-tag">Xi Lin</span><span class="member-tag">Moud Eltaweel</span><span class="member-tag">Santo</span><span class="member-tag">希瑞</span><span class="member-tag">祝硕宏</span><span class="member-tag">姜志</span><span class="member-tag">Yuan Gao</span><span class="member-tag">黄远健 Jared</span><span class="member-tag">Qianle(Alex) 郭乾乐</span><span class="member-tag">XinLing 信陵</span><span class="member-tag">Alice Wang</span><span class="member-tag">汪洋</span><span class="member-tag">马佳</span><span class="member-tag">孙彬晖</span><span class="member-tag">陈舟</span><span class="member-tag">齐临Kay</span><span class="member-tag">Yifei Bao</span><span class="member-tag">陈悦</span><span class="member-tag">Wilfred Halim</span><span class="member-tag">TY</span><span class="member-tag">Andy Rowe</span><span class="member-tag">向婕</span><span class="member-tag">刘智渊</span><span class="member-tag">谢照男</span><span class="member-tag">Clark Guo 郭紫君</span><span class="member-tag">江佳晓</span><span class="member-tag">吕高攀</span><span class="member-tag">黄强</span><span class="member-tag">吕名扬</span><span class="member-tag">龚冠仁</span><span class="member-tag">白戈</span><span class="member-tag">林熙泽</span><span class="member-tag">Xiaomin Tang</span><span class="member-tag">Yayin Cai</span><span class="member-tag">周阳鹏</span><span class="member-tag">张慧婷</span><span class="member-tag">Rachel Park</span><span class="member-tag">陈洪超</span><span class="member-tag">徐绮睿</span><span class="member-tag">林夏</span><span class="member-tag">洪谦</span><span class="member-tag">KAI Ayn</span><span class="member-tag">Claude Z</span><span class="member-tag">Cissy Chen</span><span class="member-tag">Carrie Fan</span><span class="member-tag">黄俊 Jun</span><span class="member-tag">周明易</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">Despite negative load adjustments, the team achieved 100.1% of the GMV target during Black Friday–Cyber Monday, ~$7M budget savings, Margin1 at -0.4% (better than -1.4% target), and a 1.5-year AB-GMV-BP-ROI of 1.03 (vs. 1.0 baseline). The campaign brought together 10 international brands and 25 major brands with 153 specialty items, strengthening market visibility and brand momentum.
+Meanwhile, the project has achieved milestone results in product revenue and income, smart promotion to increase resource efficiency, strategic key merchants/merchandise, 0-1 MVP trial (Premium offers, Unbox Your Year creator project and etc), and shopping experience optimization（FBT, GNE, payment, CBT and etc).
+Long term, the team established traffic benchmarking and collaboration mechanisms, refined BC-side efficiency models, defined subsidy efficiency with centralized funding mechanisms, and implemented binding models with GMV MAX—forming scalable playbooks and cross-functional SOPs.
+The project required extensive cross-team collaboration, from strategy alignment to execution and operational support, with shared ownership ensuring stable campaign delivery.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="BFCM Campaign" data-type="project" onclick="toggleLike('BFCM Campaign', 'project')">
+            ❤️ <span data-like="project_BFCM Campaign">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('BFCM Campaign')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="BFCM Campaign">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('BFCM Campaign')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h2_1">
+    <div class="project-header">
+        <div class="project-name">US Dropshipping Merchant Governance Initiative</div>
+        <div class="bonus-badge">$4,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>24 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>Global E-Commerce-Data Science-Business Ecosystem Data Science-Seller and Platform</span>
+        </div>
+    </div>
+    <div class="team-award">Yes</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">宣艳华</span><span class="member-tag">张弛</span><span class="member-tag">韩子樵</span><span class="member-tag">Mya Chen</span><span class="member-tag">陈宗镭</span><span class="member-tag">侯新雨</span><span class="member-tag">苏志翔</span><span class="member-tag">Qianle(Alex) 郭乾乐</span><span class="member-tag">Yiqing (Kiera) Qi</span><span class="member-tag">Tong Zhao</span><span class="member-tag">刘子威</span><span class="member-tag">Tianyu Zhang</span><span class="member-tag">Huanyu Wang</span><span class="member-tag">崔少岩</span><span class="member-tag">姜志</span><span class="member-tag">蒋西</span><span class="member-tag">李延芳</span><span class="member-tag">Wessy</span><span class="member-tag">袁典飘</span><span class="member-tag">沈佳栋</span><span class="member-tag">余晨</span><span class="member-tag">连鑫</span><span class="member-tag">齐桂彤</span><span class="member-tag">赵拓</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">Dropshipping identification rules and business model risks were clearly defined, with alignment across Recommendation, Search, GNE, and ISV. A full-lifecycle governance framework covering onboarding, publishing, traffic, and fulfillment was launched, driving iterations of the US onboarding, deposit, and ISV mechanisms. The solution was replicated across US FS, the UK, Japan, and Mexico.
+In Q4, dropshipping scale significantly contracted, improving marketplace structure and resolving traffic misallocation.
+New product volume from dropshipping merchants declined by 90%, and controllable cold-start traffic dropped by 98%. Dropshipping share across supply, traffic, and GMV fell by over 70% (merchant -73%, GMV -77%).
+Marketplace efficiency improved, with a 1% statistically significant uplift in 30-day 10-order conversion. Traffic allocation for new products was optimized (POP 60%→50%, L2L 29%→35%, FS 11%→15%). Assortment diversity improved, with per-user transaction clusters +0.24%, and US NPS on product variety +1pt in Q4.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="US Dropshipping Merchant Governance Initiative" data-type="project" onclick="toggleLike('US Dropshipping Merchant Governance Initiative', 'project')">
+            ❤️ <span data-like="project_US Dropshipping Merchant Governance Initiative">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('US Dropshipping Merchant Governance Initiative')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="US Dropshipping Merchant Governance Initiative">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('US Dropshipping Merchant Governance Initiative')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h2_2">
+    <div class="project-header">
+        <div class="project-name">Premium Offer Project</div>
+        <div class="bonus-badge">$4,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>15 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>Ops</span>
+        </div>
+    </div>
+    <div class="team-award">Yes</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">于晓旭 Shaw</span><span class="member-tag">May Wen</span><span class="member-tag">庞蓓</span><span class="member-tag">徐金谦</span><span class="member-tag">刘菡姝</span><span class="member-tag">Alice Wang</span><span class="member-tag">陈晨</span><span class="member-tag">Kevin Ma</span><span class="member-tag">Mark Morud</span><span class="member-tag">Ivy Luo</span><span class="member-tag">李岚涛</span><span class="member-tag">蒲红鑫</span><span class="member-tag">刘开元</span><span class="member-tag">乔威</span><span class="member-tag">潘能</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">Premium Offers shoptab focuses on high-end branded products to strengthen user perception of TTS as a destination for good products.
+Since launch in October, daily GMV increased 20 times within two months. During BFCM, daily GMV +172% vs. +106pp overall, contributing 11.3% incremental GMV. 37 of 178 products ranked within top 100/1,000 GMV. Penetration among high-LTI users and core female segments reached 73% and 50% (vs. 63% and 41% overall). AB testing showed DAU revisit rate +1% and purchase days per user +0.71%, indicating improved conversion and retention.
+To expand supply, the team scaled invitations from 2K to 7K merchants during BFCM, accelerating onboarding and reaching 3K registered products with daily GMV of 110% vs target. Inventory and price monitoring, along with automated allocation tools, improved replenishment efficiency and maintained high-price rate at ~4% (vs. 21% overall).
+Through cross-channel coordination—prime exposure, ads, CRM, recommendation traffic, and creator matching—the channel drove strong GMV growth: product cards +303%, short video +125%, live +230%, all outperforming overall levels.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="Premium Offer Project" data-type="project" onclick="toggleLike('Premium Offer Project', 'project')">
+            ❤️ <span data-like="project_Premium Offer Project">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('Premium Offer Project')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="Premium Offer Project">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('Premium Offer Project')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h2_3">
+    <div class="project-header">
+        <div class="project-name">GNE/TnS/Eco Governance collaboration</div>
+        <div class="bonus-badge">$4,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>13 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>Global E-commerce-US Operations Center-Seller Content-Multi-Category Seller Live</span>
+        </div>
+    </div>
+    <div class="team-award">Yes</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">程传炽 Cooper</span><span class="member-tag">徐琦峰</span><span class="member-tag">褚芙玮</span><span class="member-tag">Quanyi Liu</span><span class="member-tag">許芯瑜</span><span class="member-tag">Lester Sun</span><span class="member-tag">朱瑞</span><span class="member-tag">王茜 Xi</span><span class="member-tag">吕百杨</span><span class="member-tag">武欣</span><span class="member-tag">胡怡林</span><span class="member-tag">察兴业</span><span class="member-tag">姜映如</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">Cross-functional penalty data has been integrated into Thunder, enabling global content governance and business operations teams to track enforcement records. A corresponding monitoring dashboard will be completed by end of 2026 Q1.
+Leakage and false positive rates across governance teams were closely monitored and reduced. In collaboration with TNS, mid-risk “weight loss & muscle gain” control rules were removed, and reviewers were retrained for other high false-positive policies. For TikTok Live, precision checks were completed on two high-frequency policies; the recorded-stream model was decommissioned, and leakage cases were fed back to the e-commerce algorithm team for optimization.
+To support BFCM, a cross-functional protection mechanism was established. In partnership with the rapid response team, a 7×24 on-call model was launched for Trust & Safety penalties, preventing unexpected live-stream disruptions. Full time-zone coverage and peak-hour on-site support were ensured throughout the campaign.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="GNE/TnS/Eco Governance collaboration" data-type="project" onclick="toggleLike('GNE/TnS/Eco Governance collaboration', 'project')">
+            ❤️ <span data-like="project_GNE/TnS/Eco Governance collaboration">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('GNE/TnS/Eco Governance collaboration')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="GNE/TnS/Eco Governance collaboration">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('GNE/TnS/Eco Governance collaboration')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+<div class="project-card" id="h2_4">
+    <div class="project-header">
+        <div class="project-name">US Collections by TikTok (CBT) Service</div>
+        <div class="bonus-badge">$4,000</div>
+    </div>
+    <div class="project-meta">
+        <div class="meta-item">
+            <span class="meta-icon">👥</span>
+            <span>38 members</span>
+        </div>
+        <div class="meta-item">
+            <span class="meta-icon">🏢</span>
+            <span>Logistics</span>
+        </div>
+    </div>
+    <div class="team-award">Yes</div>
+    <div class="members-section">
+        <div class="members-label">Team Members</div>
+        <div class="members-list"><span class="member-tag">陈滋泳</span><span class="member-tag">江佳晓</span><span class="member-tag">谢照男</span><span class="member-tag">张兴厚</span><span class="member-tag">陶诗悦</span><span class="member-tag">Starrk Sang</span><span class="member-tag">贾晨光</span><span class="member-tag">刘智渊</span><span class="member-tag">肖扬</span><span class="member-tag">Kevin Han</span><span class="member-tag">Mike Lin</span><span class="member-tag">Aria Wang</span><span class="member-tag">Kristin Cheng</span><span class="member-tag">Wenxin Zhang</span><span class="member-tag">王隽锋</span><span class="member-tag">潘健</span><span class="member-tag">Jeffery Liu</span><span class="member-tag">昌铁钢</span><span class="member-tag">Leo Zhao</span><span class="member-tag">孙小轩</span><span class="member-tag">贺江山</span><span class="member-tag">朱宇然</span><span class="member-tag">Weiping Jiang</span><span class="member-tag">孔祥骏</span><span class="member-tag">龚平</span><span class="member-tag">Dennis Liu</span><span class="member-tag">Angela Qu</span><span class="member-tag">Xi He</span><span class="member-tag">Siyu Zhang</span><span class="member-tag">Sean He</span><span class="member-tag">Yifu Ma</span><span class="member-tag">张锋</span><span class="member-tag">Erica Zhang</span><span class="member-tag">Sylvia Li</span><span class="member-tag">Di Chen</span><span class="member-tag">Nicole wang</span><span class="member-tag">吴以加 Chris</span><span class="member-tag">Oliver Lai</span></div>
+    </div>
+    <div class="reason-section">
+        <button class="reason-toggle" onclick="toggleReason(this)">Show Reason ▼</button>
+        <div class="reason-content">
+            <div class="reason-text">**Results**
+ In 2025, the US CBT team built and scaled the network from 0 to 1 within three months, covering the West Coast, East Coast, and Texas, and successfully supported the BFCM peak. Daily volume exceeded 220K within three months of launch, with a peak of 470K and stable penetration at 13–14%. Off-peak average delivery time improved from 140+ hours to ~100 hours. The outbound discrepancy rate improved from 0.4% to 0.05%, with stable performance maintained during Black Friday.
+**Key Actions**
+ The network was built within four months with multiple carriers onboarded, and system and operational transitions were completed within 20 days. A standardized 6-week launch SOP and weekly governance cadence were established, with strengthened process controls, exception monitoring, and KPI integration into contracts to enhance service quality.
+**Impact**
+ The project enabled scaled fulfillment within a short cycle and established a scalable, replicable, and governable logistics system, laying a strong foundation for the long-term development of a platform-controlled logistics model.</div>
+        </div>
+    </div>
+    <div class="interaction-bar">
+        <button class="like-btn" data-project="US Collections by TikTok (CBT) Service" data-type="project" onclick="toggleLike('US Collections by TikTok (CBT) Service', 'project')">
+            ❤️ <span data-like="project_US Collections by TikTok (CBT) Service">0</span>
+        </button>
+        <button class="comment-btn" onclick="toggleComment('US Collections by TikTok (CBT) Service')">
+            💬 Comment
+        </button>
+    </div>
+    <div class="comment-section" data-comment="US Collections by TikTok (CBT) Service">
+        <textarea class="comment-input" placeholder="Share your thoughts..."></textarea>
+        <button class="comment-submit" onclick="submitComment('US Collections by TikTok (CBT) Service')">Post</button>
+        <div class="comments-list"></div>
+    </div>
+</div>
+            </div>
+        </div>
+        
+        <div id="person" class="tab-content">
+            <div class="person-grid">
+                
+<div class="person-card" id="person_0">
+    <div class="person-avatar">A</div>
+    <div class="person-info">
+        <div class="person-name">Ahyoon Kim</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_1">
+    <div class="person-avatar">M</div>
+    <div class="person-info">
+        <div class="person-name">Michael Kang</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_2">
+    <div class="person-avatar">P</div>
+    <div class="person-info">
+        <div class="person-name">Phoebe Jiang</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_3">
+    <div class="person-avatar">A</div>
+    <div class="person-info">
+        <div class="person-name">Allison Li</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_4">
+    <div class="person-avatar">S</div>
+    <div class="person-info">
+        <div class="person-name">Sarah Luo</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_5">
+    <div class="person-avatar">J</div>
+    <div class="person-info">
+        <div class="person-name">Julianna Lee</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_6">
+    <div class="person-avatar">A</div>
+    <div class="person-info">
+        <div class="person-name">Arshad Mohammed</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_7">
+    <div class="person-avatar">杨</div>
+    <div class="person-info">
+        <div class="person-name">杨翌</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_8">
+    <div class="person-avatar">康</div>
+    <div class="person-info">
+        <div class="person-name">康君慧</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_9">
+    <div class="person-avatar">L</div>
+    <div class="person-info">
+        <div class="person-name">Lexie</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_10">
+    <div class="person-avatar">王</div>
+    <div class="person-info">
+        <div class="person-name">王瑶</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_11">
+    <div class="person-avatar">L</div>
+    <div class="person-info">
+        <div class="person-name">Luke Anderson</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_12">
+    <div class="person-avatar">王</div>
+    <div class="person-info">
+        <div class="person-name">王溶萱 Rosy</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">US Ops & Ops Center & GKA</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_13">
+    <div class="person-avatar">C</div>
+    <div class="person-info">
+        <div class="person-name">Chunli (Samsara) Yang</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">GNE</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_14">
+    <div class="person-avatar">赵</div>
+    <div class="person-info">
+        <div class="person-name">赵溪月</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">GNE</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_15">
+    <div class="person-avatar">郭</div>
+    <div class="person-info">
+        <div class="person-name">郭利洁</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">GNE</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_16">
+    <div class="person-avatar">L</div>
+    <div class="person-info">
+        <div class="person-name">Leslie Zheng</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">GNE</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_17">
+    <div class="person-avatar">A</div>
+    <div class="person-info">
+        <div class="person-name">Alan Hu</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">GNE</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_18">
+    <div class="person-avatar">D</div>
+    <div class="person-info">
+        <div class="person-name">Di Chen</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Logistics</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_19">
+    <div class="person-avatar">陈</div>
+    <div class="person-info">
+        <div class="person-name">陈滋泳</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Logistics</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_20">
+    <div class="person-avatar">支</div>
+    <div class="person-info">
+        <div class="person-name">支安博</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Logistics</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_21">
+    <div class="person-avatar">吴</div>
+    <div class="person-info">
+        <div class="person-name">吴心昊</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Product</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_22">
+    <div class="person-avatar">汪</div>
+    <div class="person-info">
+        <div class="person-name">汪洋</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Product</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_23">
+    <div class="person-avatar">王</div>
+    <div class="person-info">
+        <div class="person-name">王公卓</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Product</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_24">
+    <div class="person-avatar">白</div>
+    <div class="person-info">
+        <div class="person-name">白哲</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Tech</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_25">
+    <div class="person-avatar">K</div>
+    <div class="person-info">
+        <div class="person-name">Kefan Xu</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Tech</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_26">
+    <div class="person-avatar">L</div>
+    <div class="person-info">
+        <div class="person-name">Lico Lu</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Tech</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_27">
+    <div class="person-avatar">Z</div>
+    <div class="person-info">
+        <div class="person-name">Zexia Ding</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Tech</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_28">
+    <div class="person-avatar">Z</div>
+    <div class="person-info">
+        <div class="person-name">Ziwei Shi</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">UG</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_29">
+    <div class="person-avatar">C</div>
+    <div class="person-info">
+        <div class="person-name">Claude Z</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">PIPO</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_30">
+    <div class="person-avatar">林</div>
+    <div class="person-info">
+        <div class="person-name">林熙泽</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Data/Algo</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_31">
+    <div class="person-avatar">E</div>
+    <div class="person-info">
+        <div class="person-name">Emily Pan</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Strategy</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_32">
+    <div class="person-avatar">N</div>
+    <div class="person-info">
+        <div class="person-name">Nina Xiang</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Data Science</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_33">
+    <div class="person-avatar">陈</div>
+    <div class="person-info">
+        <div class="person-name">陈洪超</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">Design</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+<div class="person-card" id="person_34">
+    <div class="person-avatar">D</div>
+    <div class="person-info">
+        <div class="person-name">Donggeng Xia</div>
+        <div class="person-project">BFCM Stellar Contributors</div>
+        <div class="person-project">USDS</div>
+    </div>
+    <div class="person-bonus">$700</div>
+</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2024 TikTok Shop | <a href="regional.html">← Back to Regional</a> | <a href="main.html">Home</a></p>
+    </div>
+    
+    
+<script>
+// Tab切换
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    document.querySelector(`[onclick="switchTab('${tabId}')"]`).classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+}
+
+// 展开/收起获奖理由
+function toggleReason(btn) {
+    const content = btn.nextElementSibling;
+    if (content.classList.contains('expanded')) {
+        content.classList.remove('expanded');
+        btn.textContent = 'Show Reason ▼';
+    } else {
+        content.classList.add('expanded');
+        btn.textContent = 'Hide Reason ▲';
+    }
+}
+
+// 点赞功能
+let likedItems = JSON.parse(localStorage.getItem('likedItems') || '{}');
+
+function toggleLike(projectName, type) {
+    const key = `${type}_${projectName}`;
+    const btn = event.target.closest('.like-btn');
+    
+    if (likedItems[key]) {
+        likedItems[key]--;
+        btn.classList.remove('liked');
+    } else {
+        likedItems[key] = 1;
+        btn.classList.add('liked');
+    }
+    
+    localStorage.setItem('likedItems', JSON.stringify(likedItems));
+    updateLikeCount(projectName, type);
+}
+
+function updateLikeCount(projectName, type) {
+    const key = `${type}_${projectName}`;
+    const count = likedItems[key] || 0;
+    const countSpan = document.querySelector(`[data-like="${key}"]`);
+    if (countSpan) {
+        countSpan.textContent = count;
+    }
+}
+
+// 初始化点赞状态
+document.querySelectorAll('.like-btn').forEach(btn => {
+    const projectName = btn.dataset.project;
+    const type = btn.dataset.type;
+    const key = `${type}_${projectName}`;
+    if (likedItems[key]) {
+        btn.classList.add('liked');
+    }
+});
+
+// 评论区
+function toggleComment(projectName) {
+    const section = document.querySelector(`[data-comment="${projectName}"]`);
+    section.classList.toggle('show');
+}
+
+function submitComment(projectName) {
+    const input = document.querySelector(`[data-comment="${projectName}"] .comment-input`);
+    const text = input.value.trim();
+    if (!text) return;
+    
+    const list = document.querySelector(`[data-comment="${projectName}"] .comments-list`);
+    const comment = document.createElement('div');
+    comment.className = 'comment-item';
+    comment.innerHTML = `
+        <div class="comment-author">Anonymous</div>
+        <div class="comment-text">${text}</div>
+        <div class="comment-time">Just now</div>
+    `;
+    list.insertBefore(comment, list.firstChild);
+    input.value = '';
+}
+</script>
+
+</body>
+</html>
