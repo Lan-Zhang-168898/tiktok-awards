@@ -518,6 +518,89 @@ function getLikeCount(cardId) {
   return likes[storageKey] ? 1 : 0;
 }
 
+// ==================== Comment Functions ====================
+function showCommentsModal(cardId, awardName, awardType) {
+  const modal = document.getElementById('comments-modal');
+  const modalTitle = document.getElementById('comments-modal-title');
+  const commentList = document.getElementById('comment-list');
+  const commentInput = document.getElementById('comment-input');
+  
+  if (!modal) return;
+  
+  modalTitle.textContent = `${awardName}`;
+  
+  // Load existing comments
+  const storageKey = `comments_${cardId}`;
+  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  
+  if (comments.length === 0) {
+    commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
+  } else {
+    commentList.innerHTML = comments.map(c => `
+      <div class="comment-item">
+        <div class="comment-author">${c.author || 'Anonymous'}</div>
+        <div class="comment-text">${c.text}</div>
+        <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
+      </div>
+    `).join('');
+  }
+  
+  // Store current card info
+  modal.dataset.cardId = cardId;
+  modal.dataset.awardName = awardName;
+  modal.dataset.awardType = awardType;
+  
+  // Clear and focus input
+  if (commentInput) {
+    commentInput.value = '';
+    commentInput.focus();
+  }
+  
+  modal.classList.add('active');
+}
+
+function submitComment() {
+  const modal = document.getElementById('comments-modal');
+  const commentInput = document.getElementById('comment-input');
+  const commentList = document.getElementById('comment-list');
+  
+  if (!modal || !commentInput) return;
+  
+  const text = commentInput.value.trim();
+  if (!text) return;
+  
+  const storageKey = `comments_${modal.dataset.cardId}`;
+  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  
+  comments.push({
+    text: text,
+    author: 'You',
+    timestamp: Date.now()
+  });
+  
+  localStorage.setItem(storageKey, JSON.stringify(comments));
+  commentInput.value = '';
+  
+  // Update display
+  if (comments.length === 1) {
+    commentList.innerHTML = '';
+  }
+  commentList.innerHTML += `
+    <div class="comment-item">
+      <div class="comment-author">You</div>
+      <div class="comment-text">${text}</div>
+      <div class="comment-date">Just now</div>
+    </div>
+  `;
+}
+
+function closeCommentsModal() {
+  const modal = document.getElementById('comments-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+}
+
 // ==================== Share/Poster Functions ====================
 
 function showShareModal(projectName, teamAward, bonus, reason, members) {
@@ -525,12 +608,15 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   const modalTitle = document.getElementById('share-modal-title');
   const posterPreview = document.getElementById('poster-preview');
   
-  if (!modal) return;
+  if (!modal) {
+    console.error('Share modal not found');
+    return;
+  }
   
   modalTitle.textContent = 'Share Award';
   
   // Format members list
-  const memberNames = members.map(m => m.name || m).join(', ');
+  const memberNames = Array.isArray(members) ? members.map(m => m.name || m).join(', ') : members;
   
   // Generate poster HTML
   posterPreview.innerHTML = `
@@ -543,7 +629,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
         
         <div class="poster-project">${projectName}</div>
         
-        <div class="poster-award">Global Excellence Award</div>
+        <div class="poster-award">${teamAward || 'Global Excellence Award'}</div>
         
         <div class="poster-bonus">${formatCurrency(bonus)}</div>
         
@@ -572,17 +658,26 @@ function closeShareModal() {
 
 async function downloadPoster() {
   const posterContent = document.getElementById('poster-content');
-  if (!posterContent) return;
+  if (!posterContent) {
+    alert('Poster content not found');
+    return;
+  }
   
-  // Use html2canvas to generate image
   try {
-    // Dynamically load html2canvas if not already loaded
-    if (!window.html2canvas) {
-      await loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
+    // Check if html2canvas is available
+    if (typeof html2canvas === 'undefined') {
+      // Try loading dynamically
+      await new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
     }
     
     const canvas = await html2canvas(posterContent, {
-      backgroundColor: null,
+      backgroundColor: '#0d1b3e',
       scale: 2,
       useCORS: true,
       logging: false
@@ -597,16 +692,6 @@ async function downloadPoster() {
     console.error('Error generating poster:', error);
     alert('Failed to generate poster. Please try again.');
   }
-}
-
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
 }
 
 // ==================== Global Page Functions ====================
@@ -678,6 +763,9 @@ function renderGlobalAwards(data, containerId, half) {
           <div class="card-actions">
             <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'global_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
+            </button>
+            <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Global Project Award')">
+              💬 Comment
             </button>
             <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
               📤 Share
@@ -787,6 +875,9 @@ function renderProjectCards(awards, region, half) {
             <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'regional_project', '${project.project_name.replace(/'/g, "\\'")}')">
               ❤️ <span class="like-count">${likeCount}</span>
             </button>
+            <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${project.project_name.replace(/'/g, "\\'")}', 'Regional Project Award')">
+              💬 Comment
+            </button>
             <button class="share-btn" onclick="showShareModal('${project.project_name.replace(/'/g, "\\'")}', '${project.team_award || 'Award'}', '${project.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', ${JSON.stringify(project.members).replace(/"/g, '&quot;')})">
               📤 Share
             </button>
@@ -831,6 +922,9 @@ function renderIndividualCards(awards, region, half) {
             <div class="card-actions">
               <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${award.winner_name.replace(/'/g, "\\'")}')">
                 ❤️ <span class="like-count">${likeCount}</span>
+              </button>
+              <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${award.winner_name.replace(/'/g, "\\'")}', 'Individual Award')">
+                💬 Comment
               </button>
               <button class="share-btn" onclick="showShareModal('${award.winner_name.replace(/'/g, "\\'")}', '${award.team_award || 'Stellar Contributor'}', '${award.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', [{name: '${award.winner_name}', email: '${award.email || ''}'}])">
                 📤 Share
