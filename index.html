@@ -311,43 +311,58 @@
       }
     });
     
-    // Render Home Stats
+    // Render Home Stats - Now includes H1 + H2 data
     function renderHomeStats(data) {
       let globalProjects = 0;
       let regionalProjects = 0;
       let individualAwards = 0;
       let totalBonus = 0;
+      let uniqueWinners = new Set();
       
-      // Count Global Projects
+      // Count Global Projects (H1 + H2)
       if (data.global) {
-        const globalAwards = data.global['H1项目奖'] || [];
+        const h1Awards = data.global['H1项目奖'] || [];
+        const h2Awards = data.global['H2项目奖'] || [];
+        const allGlobalAwards = [...h1Awards, ...h2Awards];
+        
         // Count unique projects
-        const uniqueProjects = new Set(globalAwards.map(a => a.project_name));
+        const uniqueProjects = new Set(allGlobalAwards.map(a => a.project_name));
         globalProjects = uniqueProjects.size;
-        // Sum bonuses
-        globalAwards.forEach(a => {
+        
+        // Sum bonuses and collect winners
+        allGlobalAwards.forEach(a => {
           if (a.bonus) totalBonus += Number(a.bonus);
+          if (a.members) {
+            a.members.forEach(m => uniqueWinners.add(m));
+          }
         });
       }
       
-      // Count Regional Projects & Individuals
+      // Count Regional Projects & Individuals (H1 + H2)
       const regions = ['us', 'eu', 'sea', 'latam'];
       regions.forEach(region => {
         const regionData = data.regional?.[region];
         if (regionData) {
-          const projAwards = regionData['H1项目奖'] || regionData['H2项目奖'] || [];
-          const uniqueProjects = new Set(projAwards.map(a => a.project_name));
+          const h1Proj = regionData['H1项目奖'] || [];
+          const h2Proj = regionData['H2项目奖'] || [];
+          const allProjAwards = [...h1Proj, ...h2Proj];
+          
+          const uniqueProjects = new Set(allProjAwards.map(a => a.project_name));
           regionalProjects += uniqueProjects.size;
           
           const indivAwards = regionData['H2个人奖'] || [];
           individualAwards += indivAwards.length;
           
-          // Sum regional bonuses
-          projAwards.forEach(a => {
+          // Sum regional bonuses and collect winners
+          allProjAwards.forEach(a => {
             if (a.bonus) totalBonus += Number(a.bonus);
+            if (a.members) {
+              a.members.forEach(m => uniqueWinners.add(m));
+            }
           });
           indivAwards.forEach(a => {
             if (a.bonus) totalBonus += Number(a.bonus);
+            if (a.winner_name) uniqueWinners.add(a.winner_name);
           });
         }
       });

@@ -163,17 +163,34 @@ async function loadRankings() {
   }
 }
 
+// ==================== Helper Functions for H1+H2 Data ====================
+
+// Combine H1 and H2 project awards into single array
+function getAllProjectAwards(data) {
+  if (!data) return [];
+  const h1Awards = data['H1项目奖'] || [];
+  const h2Awards = data['H2项目奖'] || [];
+  return [...h1Awards, ...h2Awards];
+}
+
+// Get all individual awards
+function getAllIndividualAwards(data) {
+  if (!data) return [];
+  const h2Individual = data['H2个人奖'] || [];
+  return h2Individual;
+}
+
 // ==================== Ranking Functions ====================
 function calculateRegionTop3(regionData, region) {
   if (!regionData) return [];
   
-  const awards = regionData['H1项目奖'] || regionData['H2项目奖'] || [];
-  const individualAwards = regionData['H2个人奖'] || [];
+  const allAwards = getAllProjectAwards(regionData);
+  const individualAwards = getAllIndividualAwards(regionData);
   
   // Calculate member scores for projects
   const memberScores = {};
   
-  awards.forEach(award => {
+  allAwards.forEach(award => {
     if (!award.members) return;
     award.members.forEach(memberName => {
       const key = memberName;
@@ -194,17 +211,19 @@ function calculateRegionTop3(regionData, region) {
   // Add individual awards
   individualAwards.forEach(award => {
     const key = award.winner_name;
-    if (!memberScores[key]) {
-      memberScores[key] = {
-        name: award.winner_name,
-        score: 0,
-        awards: 0,
-        email: award.email || '',
-        department: award.department || region
-      };
+    if (key) {
+      if (!memberScores[key]) {
+        memberScores[key] = {
+          name: award.winner_name,
+          score: 0,
+          awards: 0,
+          email: award.email || '',
+          department: award.department || region
+        };
+      }
+      memberScores[key].score += 3;
+      memberScores[key].awards += 1;
     }
-    memberScores[key].score += 3;
-    memberScores[key].awards += 1;
   });
   
   // Sort and get top 3
@@ -216,11 +235,11 @@ function calculateRegionTop3(regionData, region) {
 function calculateGlobalTop3(globalData) {
   if (!globalData) return [];
   
-  const awards = globalData['H1项目奖'] || globalData['H2项目奖'] || [];
+  const allAwards = getAllProjectAwards(globalData);
   
   const memberScores = {};
   
-  awards.forEach(award => {
+  allAwards.forEach(award => {
     if (!award.members) return;
     award.members.forEach(memberName => {
       const key = memberName;
@@ -241,6 +260,81 @@ function calculateGlobalTop3(globalData) {
   return Object.values(memberScores)
     .sort((a, b) => b.score - a.score || b.awards - a.awards)
     .slice(0, 3);
+}
+
+// Calculate rankings from combined H1+H2 data
+function calculateCombinedRankings() {
+  const memberScores = {};
+  
+  // Process Global awards
+  if (AppData.global) {
+    const globalAwards = getAllProjectAwards(AppData.global);
+    globalAwards.forEach(award => {
+      if (!award.members) return;
+      award.members.forEach(memberName => {
+        if (!memberScores[memberName]) {
+          memberScores[memberName] = {
+            name: memberName,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: award.department || 'Global'
+          };
+        }
+        memberScores[memberName].score += 5; // Global = 5 points
+        memberScores[memberName].awards += 1;
+      });
+    });
+  }
+  
+  // Process Regional awards
+  Object.values(AppData.regional).forEach(regionData => {
+    if (!regionData) return;
+    const regionalAwards = getAllProjectAwards(regionData);
+    const individualAwards = getAllIndividualAwards(regionData);
+    
+    regionalAwards.forEach(award => {
+      if (!award.members) return;
+      award.members.forEach(memberName => {
+        if (!memberScores[memberName]) {
+          memberScores[memberName] = {
+            name: memberName,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: award.department || award.region || 'Regional'
+          };
+        }
+        memberScores[memberName].score += 3; // Regional = 3 points
+        memberScores[memberName].awards += 1;
+      });
+    });
+    
+    // Add individual awards
+    individualAwards.forEach(award => {
+      if (award.winner_name) {
+        if (!memberScores[award.winner_name]) {
+          memberScores[award.winner_name] = {
+            name: award.winner_name,
+            score: 0,
+            awards: 0,
+            email: award.email || '',
+            department: award.department || award.region || 'Regional'
+          };
+        }
+        memberScores[award.winner_name].score += 3;
+        memberScores[award.winner_name].awards += 1;
+      }
+    });
+  });
+  
+  // Sort and add rank
+  const rankings = Object.values(memberScores)
+    .sort((a, b) => b.score - a.score || b.awards - a.awards)
+    .slice(0, 10)
+    .map((item, index) => ({ ...item, rank: index + 1 }));
+  
+  return rankings;
 }
 
 // ==================== Render Functions ====================
@@ -309,11 +403,14 @@ function renderGlobalAwards(data, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !data) return;
   
-  const awards = data['H1项目奖'] || [];
+  // Get BOTH H1 and H2 awards
+  const h1Awards = data['H1项目奖'] || [];
+  const h2Awards = data['H2项目奖'] || [];
+  const allAwards = [...h1Awards, ...h2Awards];
   
   // Group by project name
   const projectGroups = {};
-  awards.forEach(award => {
+  allAwards.forEach(award => {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
@@ -323,8 +420,12 @@ function renderGlobalAwards(data, containerId) {
         reason: award.reason,
         members: [],
         department: award.department,
-        period: award.period
+        period: award.period,
+        periods: new Set()
       };
+    }
+    if (award.period) {
+      projectGroups[key].periods.add(award.period);
     }
     award.members.forEach(m => {
       if (!projectGroups[key].members.find(mem => mem.name === m)) {
@@ -336,6 +437,7 @@ function renderGlobalAwards(data, containerId) {
   let html = '<div class="awards-grid">';
   
   Object.values(projectGroups).forEach(project => {
+    const periodsDisplay = Array.from(project.periods).join(' + ') || 'H1+H2';
     html += `
       <div class="card project-card">
         <div class="card-header">
@@ -343,6 +445,7 @@ function renderGlobalAwards(data, containerId) {
           <span class="card-title">${project.project_name}</span>
         </div>
         <div class="card-body">
+          <div class="card-period">${periodsDisplay}</div>
           <div class="card-award">
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
@@ -371,12 +474,15 @@ function renderRegionalAwards(data, containerId) {
   const container = document.getElementById(containerId);
   if (!container || !data) return;
   
-  const awards = data['H1项目奖'] || [];
-  const individualAwards = data['H2个人奖'] || [];
+  // Get BOTH H1 and H2 project awards, plus individual awards
+  const h1Awards = data['H1项目奖'] || [];
+  const h2Awards = data['H2项目奖'] || [];
+  const allAwards = [...h1Awards, ...h2Awards];
+  const individualAwards = getAllIndividualAwards(data);
   
   // Group projects
   const projectGroups = {};
-  awards.forEach(award => {
+  allAwards.forEach(award => {
     const key = award.project_name;
     if (!projectGroups[key]) {
       projectGroups[key] = {
@@ -387,8 +493,12 @@ function renderRegionalAwards(data, containerId) {
         members: [],
         department: award.department,
         region: award.region,
-        period: award.period
+        period: award.period,
+        periods: new Set()
       };
+    }
+    if (award.period) {
+      projectGroups[key].periods.add(award.period);
     }
     award.members.forEach(m => {
       if (!projectGroups[key].members.find(mem => mem.name === m)) {
@@ -401,6 +511,7 @@ function renderRegionalAwards(data, containerId) {
   
   // Project awards
   Object.values(projectGroups).forEach(project => {
+    const periodsDisplay = Array.from(project.periods).join(' + ') || 'H1+H2';
     html += `
       <div class="card project-card">
         <div class="card-header">
@@ -408,6 +519,7 @@ function renderRegionalAwards(data, containerId) {
           <span class="card-title">${project.project_name}</span>
         </div>
         <div class="card-body">
+          <div class="card-period">${periodsDisplay}</div>
           <div class="card-award">
             <span class="card-award-name">🏆 ${project.team_award || 'Award'}</span>
           </div>
@@ -430,73 +542,110 @@ function renderRegionalAwards(data, containerId) {
   
   // Individual awards
   individualAwards.forEach(award => {
-    html += `
-      <div class="card individual-card">
-        <div class="card-header">
-          <span class="card-icon">👤</span>
-          <span class="card-title">${award.winner_name} | ${award.department || award.region}</span>
-        </div>
-        <div class="card-body">
-          <div class="card-award">
-            <span class="card-award-name">🌟 ${award.team_award || 'Stellar Contributor'}</span>
+    if (award.winner_name) {
+      html += `
+        <div class="card individual-card">
+          <div class="card-header">
+            <span class="card-icon">👤</span>
+            <span class="card-title">${award.winner_name} | ${award.department || award.region}</span>
           </div>
-          <div class="card-amount">${formatCurrency(award.bonus)}</div>
-          <div class="card-reason" onclick="this.classList.toggle('expanded')">
-            ${award.reason || ''}
+          <div class="card-body">
+            <div class="card-award">
+              <span class="card-award-name">🌟 ${award.team_award || 'Stellar Contributor'}</span>
+            </div>
+            <div class="card-amount">${formatCurrency(award.bonus)}</div>
+            <div class="card-reason" onclick="this.classList.toggle('expanded')">
+              ${award.reason || ''}
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="card-actions">
+              <span class="action-btn">❤️ 0</span>
+            </div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="card-actions">
-            <span class="action-btn">❤️ 0</span>
-          </div>
-        </div>
-      </div>
-    `;
+      `;
+    }
   });
   
   html += '</div>';
   container.innerHTML = html;
 }
 
-function renderOverviewStats(rankings) {
+function renderOverviewStats(data, regionalData) {
   const container = document.getElementById('overview-stats');
-  if (!container || !rankings) return;
+  if (!container) return;
   
-  const totalEmployees = rankings.total_employees || 0;
-  const totalGlobal = rankings.total_global_awards || 0;
-  const totalRegional = rankings.total_regional_awards || 0;
-  const totalAwards = totalGlobal + totalRegional;
-  
-  // Calculate total bonus
+  // Calculate stats from ALL data (H1 + H2)
+  let globalProjectCount = 0;
+  let regionalProjectCount = 0;
+  let individualCount = 0;
   let totalBonus = 0;
-  if (AppData.global) {
-    const globalAwards = AppData.global['H1项目奖'] || [];
-    globalAwards.forEach(a => {
-      if (a.bonus) totalBonus += Number(a.bonus);
+  let uniqueWinners = new Set();
+  
+  // Process Global awards
+  if (data) {
+    const h1Global = data['H1项目奖'] || [];
+    const h2Global = data['H2项目奖'] || [];
+    const allGlobal = [...h1Global, ...h2Global];
+    
+    globalProjectCount = allGlobal.length;
+    
+    // Count unique winners and bonuses
+    allGlobal.forEach(award => {
+      if (award.bonus) totalBonus += Number(award.bonus);
+      if (award.members) {
+        award.members.forEach(m => uniqueWinners.add(m));
+      }
     });
   }
+  
+  // Process Regional awards
+  Object.values(regionalData || {}).forEach(regionData => {
+    if (!regionData) return;
+    const h1Regional = regionData['H1项目奖'] || [];
+    const h2Regional = regionData['H2项目奖'] || [];
+    const individualAwards = regionData['H2个人奖'] || [];
+    
+    regionalProjectCount += h1Regional.length + h2Regional.length;
+    
+    [...h1Regional, ...h2Regional].forEach(award => {
+      if (award.bonus) totalBonus += Number(award.bonus);
+      if (award.members) {
+        award.members.forEach(m => uniqueWinners.add(m));
+      }
+    });
+    
+    individualAwards.forEach(award => {
+      if (award.bonus) totalBonus += Number(award.bonus);
+      if (award.winner_name) {
+        uniqueWinners.add(award.winner_name);
+        individualCount++;
+      }
+    });
+  });
   
   container.innerHTML = `
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-icon">🏆</div>
-        <div class="stat-value">${totalAwards}</div>
-        <div class="stat-label">Total Awards</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-value">${totalEmployees}</div>
-        <div class="stat-label">Award Winners</div>
+        <div class="stat-value">${globalProjectCount + regionalProjectCount}</div>
+        <div class="stat-label">Total Awarded Projects</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">🌍</div>
-        <div class="stat-value">${totalGlobal}</div>
-        <div class="stat-label">Global Awards</div>
+        <div class="stat-value">${globalProjectCount}</div>
+        <div class="stat-label">Global Awarded Projects</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">🌏</div>
-        <div class="stat-value">${totalRegional}</div>
-        <div class="stat-label">Regional Awards</div>
+        <div class="stat-value">${regionalProjectCount}</div>
+        <div class="stat-label">Regional Awarded Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-value">${uniqueWinners.size}</div>
+        <div class="stat-label">Award Winners</div>
       </div>
       <div class="stat-card">
         <div class="stat-icon">💰</div>
@@ -584,10 +733,13 @@ function performSearch(query) {
   const results = [];
   const searchTerm = query.toLowerCase();
   
-  // Search in Global awards
+  // Search in Global awards (H1 + H2)
   if (searchData.global) {
-    const awards = searchData.global['H1项目奖'] || [];
-    awards.forEach(award => {
+    const h1Awards = searchData.global['H1项目奖'] || [];
+    const h2Awards = searchData.global['H2项目奖'] || [];
+    const allGlobalAwards = [...h1Awards, ...h2Awards];
+    
+    allGlobalAwards.forEach(award => {
       const matchName = award.project_name?.toLowerCase().includes(searchTerm);
       const matchMember = award.members?.some(m => m.toLowerCase().includes(searchTerm));
       const matchDept = award.department?.toLowerCase().includes(searchTerm);
@@ -597,6 +749,7 @@ function performSearch(query) {
         results.push({
           type: 'Project Award',
           level: 'Global',
+          period: award.period || 'H1/H2',
           name: award.project_name,
           award: award.team_award,
           members: award.members,
@@ -607,13 +760,16 @@ function performSearch(query) {
     });
   }
   
-  // Search in Regional awards
+  // Search in Regional awards (H1 + H2)
   ['us', 'eu', 'sea', 'latam'].forEach(region => {
     const data = searchData.regional[region];
     if (!data) return;
     
-    const awards = data['H1项目奖'] || [];
-    awards.forEach(award => {
+    const h1Awards = data['H1项目奖'] || [];
+    const h2Awards = data['H2项目奖'] || [];
+    const allRegionalAwards = [...h1Awards, ...h2Awards];
+    
+    allRegionalAwards.forEach(award => {
       const matchName = award.project_name?.toLowerCase().includes(searchTerm);
       const matchMember = award.members?.some(m => m.toLowerCase().includes(searchTerm));
       const matchDept = award.department?.toLowerCase().includes(searchTerm);
@@ -622,6 +778,7 @@ function performSearch(query) {
         results.push({
           type: 'Project Award',
           level: `Regional - ${region.toUpperCase()}`,
+          period: award.period || 'H1/H2',
           name: award.project_name,
           award: award.team_award,
           members: award.members,
@@ -632,17 +789,19 @@ function performSearch(query) {
     
     const individualAwards = data['H2个人奖'] || [];
     individualAwards.forEach(award => {
-      const matchName = award.winner_name?.toLowerCase().includes(searchTerm);
-      const matchDept = award.department?.toLowerCase().includes(searchTerm);
-      
-      if (matchName || matchDept) {
-        results.push({
-          type: 'Individual Award',
-          level: `Regional - ${region.toUpperCase()}`,
-          name: award.winner_name,
-          award: award.team_award,
-          department: award.department
-        });
+      if (award.winner_name) {
+        const matchName = award.winner_name.toLowerCase().includes(searchTerm);
+        const matchDept = award.department?.toLowerCase().includes(searchTerm);
+        
+        if (matchName || matchDept) {
+          results.push({
+            type: 'Individual Award',
+            level: `Regional - ${region.toUpperCase()}`,
+            name: award.winner_name,
+            award: award.team_award,
+            department: award.department
+          });
+        }
       }
     });
   });
@@ -684,6 +843,7 @@ function renderSearchResults(results, containerId) {
             ${result.type}
           </span>
           <span style="color: var(--text-secondary); font-size: 12px;">${result.level}</span>
+          ${result.period ? `<span style="color: var(--accent-color); font-size: 11px;">${result.period}</span>` : ''}
         </div>
         <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
         <div style="color: var(--accent-color); font-size: 14px;">${result.award || result.points + ' pts'}</div>
