@@ -59,6 +59,10 @@
       color: white;
     }
     
+    .year-nav-wrapper {
+      text-align: center;
+    }
+    
     /* Top 10 Section */
     .top10-section {
       margin-bottom: var(--spacing-lg);
@@ -195,9 +199,11 @@
         <section class="home-header">
           <h1 class="home-title">Global E-commerce Recognition Hub 2025</h1>
           <p class="home-subtitle">Celebrating award-winning projects and individuals across Global E-commerce business.</p>
-          <div class="year-nav-compact">
-            <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          <div class="year-nav-wrapper" style="text-align: center;">
+            <div class="year-nav-compact">
+              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            </div>
           </div>
         </section>
 
@@ -206,10 +212,14 @@
           <div class="section-header">
             <h2 class="section-title" style="font-size: 20px; margin: 0;">
               <span class="icon">🌟</span>
-              Global Top 10
+              Global Top 10 Winners (Full Year Rankings)
             </h2>
-            <span class="section-badge">Live Rankings</span>
           </div>
+          
+          <!-- Scoring Rule Note -->
+          <p style="font-size: 12px; color: var(--text-secondary); margin: var(--spacing-sm) 0;">
+            <strong>Scoring:</strong> Global = 5 pts, Regional = 3 pts, Departmental = 1 pt
+          </p>
           
           <!-- Inline Search -->
           <div class="inline-search">
