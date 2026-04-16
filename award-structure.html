@@ -5,6 +5,450 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Award Structure & Timeline - Global E-commerce Recognition Hub</title>
   <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ==================== Award Structure Page Styles ==================== */
+    .page-header {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
+      text-align: center;
+    }
+    
+    .page-title {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-sm);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .page-subtitle {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    /* Year Navigation */
+    .year-nav-wrapper {
+      text-align: center;
+      margin: var(--spacing-md) 0 var(--spacing-xl);
+    }
+    
+    .year-nav-compact {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: 6px;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* ==================== Award Structure Section ==================== */
+    .award-structure-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+    
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 28px;
+      background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+    
+    /* Award Tier Cards */
+    .award-tiers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    @media (max-width: 992px) {
+      .award-tiers {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .award-tier-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .award-tier-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+    }
+    
+    .award-tier-card.global::before {
+      background: linear-gradient(90deg, #FFD700, #FFA500);
+    }
+    
+    .award-tier-card.regional::before {
+      background: linear-gradient(90deg, #C0C0C0, #A8A8A8);
+    }
+    
+    .award-tier-card.departmental::before {
+      background: linear-gradient(90deg, #CD7F32, #B87333);
+    }
+    
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .award-tier-card.global .tier-badge {
+      background: rgba(255, 215, 0, 0.15);
+      color: #FFD700;
+    }
+    
+    .award-tier-card.regional .tier-badge {
+      background: rgba(192, 192, 192, 0.15);
+      color: #C0C0C0;
+    }
+    
+    .award-tier-card.departmental .tier-badge {
+      background: rgba(205, 127, 50, 0.15);
+      color: #CD7F32;
+    }
+    
+    .tier-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .tier-description {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+      line-height: 1.6;
+    }
+    
+    .tier-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+    
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+    
+    .detail-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .detail-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .detail-value.highlight {
+      color: var(--accent-color);
+    }
+    
+    /* Award Types List */
+    .award-types-list {
+      margin-top: var(--spacing-lg);
+    }
+    
+    .award-type-item {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .award-type-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .award-type-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .award-type-bonus {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-color);
+      background: rgba(255, 107, 138, 0.1);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    
+    .award-type-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .award-type-criteria {
+      margin-top: var(--spacing-sm);
+      padding-top: var(--spacing-sm);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .award-type-criteria strong {
+      color: var(--text-primary);
+    }
+    
+    /* ==================== Timeline/Calendar Section ==================== */
+    .calendar-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .calendar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+      justify-content: center;
+    }
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    
+    .legend-dot.dept {
+      background: #6366f1;
+    }
+    
+    .legend-dot.regional-individual {
+      background: #22c55e;
+    }
+    
+    .legend-dot.regional-project {
+      background: #f59e0b;
+    }
+    
+    .legend-dot.global-project {
+      background: #ef4444;
+    }
+    
+    /* Calendar Grid */
+    .calendar-grid {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .calendar-header {
+      display: grid;
+      grid-template-columns: 120px repeat(12, 1fr);
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .calendar-header-cell {
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 120px repeat(12, 1fr);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    
+    .calendar-row:last-child {
+      border-bottom: none;
+    }
+    
+    .calendar-row-label {
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .calendar-cell {
+      padding: 8px 4px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+    }
+    
+    .calendar-event {
+      width: 100%;
+      height: 28px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    
+    .calendar-event.dept {
+      background: #6366f1;
+    }
+    
+    .calendar-event.regional-individual {
+      background: #22c55e;
+    }
+    
+    .calendar-event.regional-project {
+      background: #f59e0b;
+    }
+    
+    .calendar-event.global-project {
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+    }
+    
+    /* Responsive Calendar */
+    @media (max-width: 768px) {
+      .calendar-header {
+        grid-template-columns: 80px repeat(12, 1fr);
+      }
+      
+      .calendar-row {
+        grid-template-columns: 80px repeat(12, 1fr);
+      }
+      
+      .calendar-header-cell {
+        font-size: 10px;
+        padding: 8px 2px;
+      }
+      
+      .calendar-row-label {
+        font-size: 11px;
+        padding: 8px;
+      }
+      
+      .calendar-event {
+        font-size: 8px;
+        height: 24px;
+      }
+    }
+    
+    /* Summary Stats */
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-xl);
+    }
+    
+    @media (max-width: 768px) {
+      .summary-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-md);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -26,19 +470,341 @@
         </nav>
       </div>
     </header>
-
+    
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Coming Soon -->
-        <div class="coming-soon">
-          <div class="coming-soon-icon">⏳</div>
-          <h2 class="coming-soon-title">Coming Soon</h2>
-          <p class="coming-soon-text">Award Structure & Timeline information<br>will be available soon!</p>
-        </div>
+        
+        <!-- Page Header -->
+        <section class="page-header">
+          <h1 class="page-title">Award Structure & Timeline</h1>
+          <p class="page-subtitle">Understanding our multi-tier recognition system</p>
+          
+          <!-- Year Navigation -->
+          <div class="year-nav-wrapper">
+            <div class="year-nav-compact">
+              <button class="year-btn active" data-year="2025">2025</button>
+              <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- ==================== Award Structure Section ==================== -->
+        <section class="award-structure-section">
+          <h2 class="section-title">Award Structure</h2>
+          
+          <!-- Three Tiers -->
+          <div class="award-tiers">
+            <!-- Global Tier -->
+            <div class="award-tier-card global">
+              <div class="tier-badge">🥇 Global</div>
+              <h3 class="tier-title">Global Impactful XFN Project Award</h3>
+              <p class="tier-description">The highest recognition for cross-functional projects that drive significant business impact across the organization.</p>
+              <div class="tier-details">
+                <div class="detail-item">
+                  <span class="detail-label">Bonus</span>
+                  <span class="detail-value highlight">$30,000/project</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Frequency</span>
+                  <span class="detail-value">Twice a year</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Timing</span>
+                  <span class="detail-value">H1 (Jul-Aug), H2 (Jan-Feb)</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Slots</span>
+                  <span class="detail-value">Up to 10 projects/year</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Nominator</span>
+                  <span class="detail-value">Bob's -1s</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Decision</span>
+                  <span class="detail-value">Bob</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Regional Tier -->
+            <div class="award-tier-card regional">
+              <div class="tier-badge">🥈 Regional</div>
+              <h3 class="tier-title">Regional Impactful XFN Project Award</h3>
+              <p class="tier-description">Recognizes cross-functional projects that contribute significantly to regional business objectives.</p>
+              <div class="tier-details">
+                <div class="detail-item">
+                  <span class="detail-label">Bonus</span>
+                  <span class="detail-value highlight">Defined by region</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Frequency</span>
+                  <span class="detail-value">Twice a year</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Timing</span>
+                  <span class="detail-value">H1 (July), H2 (January)</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">US+POP</span>
+                  <span class="detail-value">Mason</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">SEA</span>
+                  <span class="detail-value">Weiqi</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">EU/UK/JP</span>
+                  <span class="detail-value">Kevin</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Departmental Tier -->
+            <div class="award-tier-card departmental">
+              <div class="tier-badge">🥉 Departmental</div>
+              <h3 class="tier-title">Departmental Awards</h3>
+              <p class="tier-description">Flexible recognition programs designed by each department to celebrate team and individual contributions.</p>
+              <div class="tier-details">
+                <div class="detail-item">
+                  <span class="detail-label">Bonus</span>
+                  <span class="detail-value highlight">Defined by dept</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Frequency</span>
+                  <span class="detail-value">Quarterly</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Timing</span>
+                  <span class="detail-value">Apr, Jul, Oct, Jan</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Typical</span>
+                  <span class="detail-value">Spot Bonus</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Design</span>
+                  <span class="detail-value">By each dept</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Decision</span>
+                  <span class="detail-value">Dept Lead</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Additional Award Types -->
+          <h3 style="font-size: 18px; margin: var(--spacing-lg) 0 var(--spacing-md);">Special Award Categories</h3>
+          
+          <div class="award-types-list">
+            <!-- LATAM Stellar Contributors -->
+            <div class="award-type-item">
+              <div class="award-type-header">
+                <span class="award-type-name">🇧🇷 LATAM Stellar Contributors</span>
+                <span class="award-type-bonus">$700/winner</span>
+              </div>
+              <div class="award-type-meta">
+                <span class="meta-item">📅 Quarterly</span>
+                <span class="meta-item">📍 LATAM Region</span>
+                <span class="meta-item">👥 Individual Recognition</span>
+              </div>
+              <div class="award-type-criteria">
+                <strong>Criteria:</strong> Recognizing outstanding individual contributions in LATAM region on a quarterly basis.
+              </div>
+            </div>
+            
+            <!-- Regional Decision Makers -->
+            <div class="award-type-item">
+              <div class="award-type-header">
+                <span class="award-type-name">🏅 Regional Decision Makers</span>
+                <span class="award-type-bonus">Regional Budget</span>
+              </div>
+              <div class="award-type-meta">
+                <span class="meta-item">📅 Twice a year</span>
+                <span class="meta-item">🏗️ Cross-functional Projects</span>
+                <span class="meta-item">🤝 XFN Collaboration</span>
+              </div>
+              <div class="award-type-criteria">
+                <strong>Decision Makers:</strong> US+POP (Mason), SEA (Weiqi), EU/UK/JP (Kevin), FS (Sean)
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- ==================== Awards Calendar Section ==================== -->
+        <section class="calendar-section">
+          <h2 class="section-title">Awards Calendar 2025</h2>
+          
+          <!-- Legend -->
+          <div class="calendar-legend">
+            <div class="legend-item">
+              <span class="legend-dot dept"></span>
+              <span>Dept Spot Bonus</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot regional-individual"></span>
+              <span>LATAM Stellar Contributors</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot regional-project"></span>
+              <span>Regional XFN Projects</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot global-project"></span>
+              <span>Global XFN Projects</span>
+            </div>
+          </div>
+          
+          <!-- Calendar Grid -->
+          <div class="calendar-grid">
+            <div class="calendar-header">
+              <div class="calendar-header-cell"></div>
+              <div class="calendar-header-cell">Jan</div>
+              <div class="calendar-header-cell">Feb</div>
+              <div class="calendar-header-cell">Mar</div>
+              <div class="calendar-header-cell">Apr</div>
+              <div class="calendar-header-cell">May</div>
+              <div class="calendar-header-cell">Jun</div>
+              <div class="calendar-header-cell">Jul</div>
+              <div class="calendar-header-cell">Aug</div>
+              <div class="calendar-header-cell">Sep</div>
+              <div class="calendar-header-cell">Oct</div>
+              <div class="calendar-header-cell">Nov</div>
+              <div class="calendar-header-cell">Dec</div>
+            </div>
+            
+            <!-- Dept Spot Bonus Row -->
+            <div class="calendar-row">
+              <div class="calendar-row-label">
+                <span style="width: 10px; height: 10px; background: #6366f1; border-radius: 2px;"></span>
+                Dept Spot Bonus
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event dept">Q1 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event dept">Q2 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event dept">Q3 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+            </div>
+            
+            <!-- LATAM Stellar Contributors Row -->
+            <div class="calendar-row">
+              <div class="calendar-row-label">
+                <span style="width: 10px; height: 10px; background: #22c55e; border-radius: 2px;"></span>
+                LATAM Stellar
+              </div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-individual">Q4 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-individual">Q1 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-individual">Q2 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-individual">Q3 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+            </div>
+            
+            <!-- Regional XFN Projects Row -->
+            <div class="calendar-row">
+              <div class="calendar-row-label">
+                <span style="width: 10px; height: 10px; background: #f59e0b; border-radius: 2px;"></span>
+                Regional XFN
+              </div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-project">H2 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-project">H1 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event regional-project">H2 Selection</span>
+              </div>
+            </div>
+            
+            <!-- Global XFN Projects Row -->
+            <div class="calendar-row">
+              <div class="calendar-row-label">
+                <span style="width: 10px; height: 10px; background: #ef4444; border-radius: 2px;"></span>
+                Global XFN
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event global-project">H2 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell">
+                <span class="calendar-event global-project">H1 Selection</span>
+              </div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+              <div class="calendar-cell"></div>
+            </div>
+          </div>
+          
+          <!-- Summary Stats -->
+          <div class="summary-stats">
+            <div class="stat-card">
+              <div class="stat-value">4</div>
+              <div class="stat-label">Award Types</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">3</div>
+              <div class="stat-label">Award Tiers</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">12+</div>
+              <div class="stat-label">Selection Periods</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">$30K</div>
+              <div class="stat-label">Max Global Bonus</div>
+            </div>
+          </div>
+        </section>
+        
       </div>
     </main>
-
+    
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
@@ -46,7 +812,14 @@
       </div>
     </footer>
   </div>
-
+  
   <script src="js/main.js"></script>
+  <script>
+    // Page-specific initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      highlightNavigation();
+      initYearNavigation();
+    });
+  </script>
 </body>
 </html>
