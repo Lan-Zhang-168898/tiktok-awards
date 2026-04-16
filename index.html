@@ -6,46 +6,164 @@
   <title>TikTok Shop Stars Awards 2025</title>
   <link rel="stylesheet" href="css/main.css">
   <style>
-    .hero-section {
-      text-align: center;
-      padding: var(--spacing-xxl) 0;
-      background: linear-gradient(180deg, rgba(255, 45, 85, 0.1) 0%, transparent 100%);
+    /* ==================== Home Page Specific Styles ==================== */
+    .home-header {
+      padding: var(--spacing-xl) 0 var(--spacing-md);
     }
     
-    .hero-title {
-      font-size: 48px;
+    .home-title {
+      font-size: 32px;
       font-weight: 800;
-      margin-bottom: var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
       background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      text-align: center;
     }
     
-    .hero-subtitle {
-      font-size: 18px;
+    .home-subtitle {
+      font-size: 14px;
       color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
+      text-align: center;
     }
     
+    /* Compact Year Navigation */
+    .year-nav-compact {
+      display: inline-flex;
+      gap: var(--spacing-xs);
+      background: var(--bg-card);
+      padding: 3px;
+      border-radius: var(--radius-sm);
+      margin: var(--spacing-md) auto 0;
+      width: fit-content;
+    }
+    
+    .year-nav-compact .year-btn {
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.2s ease;
+    }
+    
+    .year-nav-compact .year-btn:hover {
+      color: var(--text-primary);
+    }
+    
+    .year-nav-compact .year-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    /* Top 10 Section */
     .top10-section {
-      margin-bottom: var(--spacing-xxl);
+      margin-bottom: var(--spacing-lg);
     }
     
     .section-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
     }
     
     .section-badge {
-      padding: var(--spacing-xs) var(--spacing-md);
+      padding: 4px 10px;
       background: var(--primary-color);
       border-radius: var(--radius-sm);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
+    }
+    
+    /* Inline Search */
+    .inline-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 400px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .inline-search .search-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+    }
+    
+    .inline-search .search-input:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .inline-search .search-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+    }
+    
+    /* Overview Stats - Compact Grid */
+    .stats-compact {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: var(--spacing-md);
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    
+    /* Search Results - Full Width */
+    .search-results-section {
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+    
+    .search-results-section.active {
+      display: block;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-compact {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .inline-search {
+        max-width: 100%;
+      }
+      
+      .home-title {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
@@ -73,26 +191,30 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="container">
-        <!-- Year Navigation -->
-        <div class="year-nav">
-          <button class="year-btn active" data-year="2025">2025</button>
-          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
-        </div>
-
-        <!-- Hero Section -->
-        <section class="hero-section">
-          <h1 class="hero-title">TikTok Shop Stars Awards 2025</h1>
-          <p class="hero-subtitle">Celebrating excellence and innovation across our global teams</p>
+        <!-- Home Header with Compact Year Nav -->
+        <section class="home-header">
+          <h1 class="home-title">TikTok Shop Stars Awards 2025</h1>
+          <p class="home-subtitle">Celebrating excellence and innovation across our global teams</p>
+          <div class="year-nav-compact">
+            <button class="year-btn active" data-year="2025">2025</button>
+            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+          </div>
         </section>
 
-        <!-- Top 10 Section -->
+        <!-- Top 10 Section with Inline Search -->
         <section class="top10-section">
           <div class="section-header">
-            <h2 class="section-title">
+            <h2 class="section-title" style="font-size: 20px; margin: 0;">
               <span class="icon">🌟</span>
               Global Top 10
             </h2>
             <span class="section-badge">Live Rankings</span>
+          </div>
+          
+          <!-- Inline Search -->
+          <div class="inline-search">
+            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+            <button class="search-btn" id="search-btn">🔍 Search</button>
           </div>
           
           <!-- Podium (Top 3) -->
@@ -100,28 +222,36 @@
           
           <!-- Ranking List (4-10) -->
           <div id="top10-list"></div>
+          
+          <!-- Search Results -->
+          <div id="search-results" class="search-results-section"></div>
         </section>
 
-        <!-- Overview Stats -->
+        <!-- Overview Stats - Compact -->
         <section class="overview-section">
-          <h2 class="section-title">
+          <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
             <span class="icon">📊</span>
-            2025 Overview
+            Award Summary
           </h2>
-          <div id="overview-stats"></div>
-        </section>
-
-        <!-- Search Section -->
-        <section class="search-section">
-          <h3 class="section-title text-center mb-3">
-            <span class="icon">🔍</span>
-            Search Awards
-          </h3>
-          <div class="search-box">
-            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
-            <button class="search-btn" id="search-btn">Search</button>
+          <div class="stats-compact" id="overview-stats">
+            <!-- Stats will be rendered by JS -->
+            <div class="stat-item">
+              <div class="stat-value">-</div>
+              <div class="stat-label">Global Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">-</div>
+              <div class="stat-label">Regional Projects</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">-</div>
+              <div class="stat-label">Individual Awards</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">-</div>
+              <div class="stat-label">Total Bonus</div>
+            </div>
           </div>
-          <div id="search-results" class="search-results"></div>
         </section>
       </div>
     </main>
@@ -162,18 +292,128 @@
           if (rankings.top10?.length > 3) {
             renderRankingList(rankings.top10, 4, 'top10-list');
           }
-          
-          // Render Overview Stats
-          renderOverviewStats(rankings);
         }
         
-        // Load global data for reference
-        await loadData('global');
+        // Load all data for stats
+        const [global, us, eu, sea, latam] = await Promise.all([
+          loadData('global'),
+          loadData('regional', 'us'),
+          loadData('regional', 'eu'),
+          loadData('regional', 'sea'),
+          loadData('regional', 'latam')
+        ]);
+        
+        // Calculate and render stats
+        renderHomeStats({ global, regional: { us, eu, sea, latam } });
         
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
     });
+    
+    // Render Home Stats
+    function renderHomeStats(data) {
+      let globalProjects = 0;
+      let regionalProjects = 0;
+      let individualAwards = 0;
+      let totalBonus = 0;
+      
+      // Count Global Projects
+      if (data.global) {
+        const globalAwards = data.global['H1项目奖'] || [];
+        // Count unique projects
+        const uniqueProjects = new Set(globalAwards.map(a => a.project_name));
+        globalProjects = uniqueProjects.size;
+        // Sum bonuses
+        globalAwards.forEach(a => {
+          if (a.bonus) totalBonus += Number(a.bonus);
+        });
+      }
+      
+      // Count Regional Projects & Individuals
+      const regions = ['us', 'eu', 'sea', 'latam'];
+      regions.forEach(region => {
+        const regionData = data.regional?.[region];
+        if (regionData) {
+          const projAwards = regionData['H1项目奖'] || regionData['H2项目奖'] || [];
+          const uniqueProjects = new Set(projAwards.map(a => a.project_name));
+          regionalProjects += uniqueProjects.size;
+          
+          const indivAwards = regionData['H2个人奖'] || [];
+          individualAwards += indivAwards.length;
+          
+          // Sum regional bonuses
+          projAwards.forEach(a => {
+            if (a.bonus) totalBonus += Number(a.bonus);
+          });
+          indivAwards.forEach(a => {
+            if (a.bonus) totalBonus += Number(a.bonus);
+          });
+        }
+      });
+      
+      // Render stats
+      const container = document.getElementById('overview-stats');
+      if (container) {
+        container.innerHTML = `
+          <div class="stat-item">
+            <div class="stat-value">${globalProjects}</div>
+            <div class="stat-label">Global Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">${regionalProjects}</div>
+            <div class="stat-label">Regional Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">${individualAwards}</div>
+            <div class="stat-label">Individual Awards</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">${formatBonus(totalBonus)}</div>
+            <div class="stat-label">Total Bonus</div>
+          </div>
+        `;
+      }
+    }
+    
+    function formatBonus(amount) {
+      if (!amount || amount === 0) return 'TBD';
+      if (amount >= 1000000) {
+        return '$' + (amount / 1000000).toFixed(1) + 'M';
+      }
+      if (amount >= 1000) {
+        return '$' + (amount / 1000).toFixed(0) + 'K';
+      }
+      return '$' + amount;
+    }
+    
+    // Search functionality
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const searchResults = document.getElementById('search-results');
+    
+    function performAndShowSearch() {
+      const query = searchInput?.value || '';
+      if (!query) {
+        searchResults.classList.remove('active');
+        return;
+      }
+      const results = performSearch(query);
+      renderSearchResults(results, 'search-results');
+      searchResults.classList.add('active');
+    }
+    
+    if (searchBtn) {
+      searchBtn.addEventListener('click', performAndShowSearch);
+    }
+    
+    if (searchInput) {
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          performAndShowSearch();
+        }
+      });
+    }
   </script>
 </body>
 </html>
