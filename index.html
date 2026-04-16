@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Shop Stars Awards 2025</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    .hero-section {
+      text-align: center;
+      padding: var(--spacing-xxl) 0;
+      background: linear-gradient(180deg, rgba(255, 45, 85, 0.1) 0%, transparent 100%);
+    }
+    
+    .hero-title {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: var(--spacing-md);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .top10-section {
+      margin-bottom: var(--spacing-xxl);
+    }
+    
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .section-badge {
+      padding: var(--spacing-xs) var(--spacing-md);
+      background: var(--primary-color);
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <span class="logo-text">TikTok Shop Stars Awards</span>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html" class="nav-item active">Home</a>
+          <a href="global.html" class="nav-item">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
+          <a href="profile.html" class="nav-item">Profile</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Year Navigation -->
+        <div class="year-nav">
+          <button class="year-btn active" data-year="2025">2025</button>
+          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <h1 class="hero-title">TikTok Shop Stars Awards 2025</h1>
+          <p class="hero-subtitle">Celebrating excellence and innovation across our global teams</p>
+        </section>
+
+        <!-- Top 10 Section -->
+        <section class="top10-section">
+          <div class="section-header">
+            <h2 class="section-title">
+              <span class="icon">🌟</span>
+              Global Top 10
+            </h2>
+            <span class="section-badge">Live Rankings</span>
+          </div>
+          
+          <!-- Podium (Top 3) -->
+          <div id="top3-podium"></div>
+          
+          <!-- Ranking List (4-10) -->
+          <div id="top10-list"></div>
+        </section>
+
+        <!-- Overview Stats -->
+        <section class="overview-section">
+          <h2 class="section-title">
+            <span class="icon">📊</span>
+            2025 Overview
+          </h2>
+          <div id="overview-stats"></div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+          <h3 class="section-title text-center mb-3">
+            <span class="icon">🔍</span>
+            Search Awards
+          </h3>
+          <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+            <button class="search-btn" id="search-btn">Search</button>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 TikTok Shop Stars Awards. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Members Modal -->
+  <div class="members-modal" id="members-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Home page specific initialization
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        // Load rankings data
+        const rankings = await loadRankings();
+        
+        if (rankings) {
+          // Render Top 3 Podium
+          const top3 = rankings.top10?.slice(0, 3) || [];
+          renderPodium(top3, 'top3-podium');
+          
+          // Render Top 10 List (4-10)
+          if (rankings.top10?.length > 3) {
+            renderRankingList(rankings.top10, 4, 'top10-list');
+          }
+          
+          // Render Overview Stats
+          renderOverviewStats(rankings);
+        }
+        
+        // Load global data for reference
+        await loadData('global');
+        
+      } catch (error) {
+        console.error('Error loading home page data:', error);
+      }
+    });
+  </script>
+</body>
+</html>

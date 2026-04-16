@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Awards - TikTok Shop Stars Awards</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <span class="logo-text">TikTok Shop Stars Awards</span>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item active">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
+          <a href="profile.html" class="nav-item">Profile</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Year Navigation -->
+        <div class="year-nav">
+          <button class="year-btn active" data-year="2025">2025</button>
+          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
+        </div>
+
+        <!-- Page Title -->
+        <h1 class="section-title" style="margin-bottom: var(--spacing-xl);">
+          <span class="icon">🌍</span>
+          Global Awards
+        </h1>
+
+        <!-- Global Top 3 -->
+        <section class="podium-section">
+          <h2 class="section-title mb-3">
+            <span class="icon">🥇</span>
+            Top Performers
+          </h2>
+          <div id="global-top3"></div>
+        </section>
+
+        <!-- All Global Awards -->
+        <section class="awards-section">
+          <h2 class="section-title mb-3">
+            <span class="icon">📋</span>
+            All Global Awards
+          </h2>
+          <div id="global-awards"></div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+          <h3 class="section-title text-center mb-3">
+            <span class="icon">🔍</span>
+            Search Awards
+          </h3>
+          <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+            <button class="search-btn" id="search-btn">Search</button>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 TikTok Shop Stars Awards. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Members Modal -->
+  <div class="members-modal" id="members-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Global page specific initialization
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const data = await loadData('global');
+        
+        if (data) {
+          // Calculate and render Top 3
+          const top3 = calculateGlobalTop3(data);
+          renderPodium(top3, 'global-top3');
+          
+          // Render all awards
+          renderGlobalAwards(data, 'global-awards');
+        }
+      } catch (error) {
+        console.error('Error loading global page:', error);
+        document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+      }
+    });
+  </script>
+</body>
+</html>

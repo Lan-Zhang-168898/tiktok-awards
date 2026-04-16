@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Departmental Awards - TikTok Shop Stars Awards</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <span class="logo-text">TikTok Shop Stars Awards</span>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item active">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure & Timeline</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
+          <a href="profile.html" class="nav-item">Profile</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Year Navigation -->
+        <div class="year-nav">
+          <button class="year-btn active" data-year="2025">2025</button>
+          <button class="year-btn" data-year="2026">2026 <span class="coming-soon">Coming Soon</span></button>
+        </div>
+
+        <!-- Page Title -->
+        <h1 class="section-title" style="margin-bottom: var(--spacing-lg);">
+          <span class="icon">🏢</span>
+          Departmental Awards
+        </h1>
+
+        <!-- Department Navigation (Categories) -->
+        <div class="dept-nav" style="margin-bottom: var(--spacing-xl);">
+          <button class="dept-btn active" data-category="sea">SEA (9 Depts)</button>
+          <button class="dept-btn" data-category="eu">EU & UK & JP (9 Depts)</button>
+          <button class="dept-btn" data-category="us">US (2 Depts)</button>
+          <button class="dept-btn" data-category="latam">LATAM (2 Depts)</button>
+          <button class="dept-btn" data-category="global">Global Selling (2 Depts)</button>
+          <button class="dept-btn" data-category="key">Global Key Accounts (1 Dept)</button>
+          <button class="dept-btn" data-category="support">Support Teams (9 Depts)</button>
+        </div>
+
+        <!-- Coming Soon Message -->
+        <div class="coming-soon">
+          <div class="coming-soon-icon">⏳</div>
+          <h2 class="coming-soon-title">Coming Soon</h2>
+          <p class="coming-soon-text">Departmental awards will be available after the award ceremony.<br>Please check back later!</p>
+        </div>
+
+        <!-- Search Section -->
+        <section class="search-section" style="margin-top: var(--spacing-xxl);">
+          <h3 class="section-title text-center mb-3">
+            <span class="icon">🔍</span>
+            Search Awards
+          </h3>
+          <div class="search-box">
+            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+            <button class="search-btn" id="search-btn">Search</button>
+          </div>
+          <div id="search-results" class="search-results"></div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 TikTok Shop Stars Awards. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Members Modal -->
+  <div class="members-modal" id="members-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Team Members</h3>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Departmental page specific initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      // Category buttons
+      const categoryBtns = document.querySelectorAll('.dept-btn[data-category]');
+      
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

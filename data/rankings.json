@@ -1,0 +1,7127 @@
+{
+  "generated_at": "2024-01-01",
+  "scoring_rules": {
+    "global_project": 5,
+    "regional_project": 3,
+    "departmental": 1
+  },
+  "total_employees": 1006,
+  "total_global_awards": 394,
+  "total_regional_awards": 824,
+  "top10": [
+    {
+      "rank": 1,
+      "name": "王东",
+      "points": 17,
+      "global_count": 1,
+      "regional_count": 4
+    },
+    {
+      "rank": 2,
+      "name": "朱家琦",
+      "points": 15,
+      "global_count": 0,
+      "regional_count": 5
+    },
+    {
+      "rank": 3,
+      "name": "田勇",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 4,
+      "name": "潘星宇",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 5,
+      "name": "刘少伟",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 6,
+      "name": "王吉文",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 7,
+      "name": "李国趸",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 8,
+      "name": "俞泽西",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 9,
+      "name": "王子昂",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 10,
+      "name": "梁洁莉",
+      "points": 12,
+      "global_count": 0,
+      "regional_count": 4
+    }
+  ],
+  "all_rankings": [
+    {
+      "rank": 1,
+      "name": "王东",
+      "points": 17,
+      "global_count": 1,
+      "regional_count": 4
+    },
+    {
+      "rank": 2,
+      "name": "朱家琦",
+      "points": 15,
+      "global_count": 0,
+      "regional_count": 5
+    },
+    {
+      "rank": 3,
+      "name": "田勇",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 4,
+      "name": "潘星宇",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 5,
+      "name": "刘少伟",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 6,
+      "name": "王吉文",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 7,
+      "name": "李国趸",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 8,
+      "name": "俞泽西",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 9,
+      "name": "王子昂",
+      "points": 13,
+      "global_count": 2,
+      "regional_count": 1
+    },
+    {
+      "rank": 10,
+      "name": "梁洁莉",
+      "points": 12,
+      "global_count": 0,
+      "regional_count": 4
+    },
+    {
+      "rank": 11,
+      "name": "裴桐Kino",
+      "points": 11,
+      "global_count": 1,
+      "regional_count": 2
+    },
+    {
+      "rank": 12,
+      "name": "Angela Qu",
+      "points": 11,
+      "global_count": 1,
+      "regional_count": 2
+    },
+    {
+      "rank": 13,
+      "name": "Daniel Morales",
+      "points": 11,
+      "global_count": 1,
+      "regional_count": 2
+    },
+    {
+      "rank": 14,
+      "name": "高赛霞",
+      "points": 11,
+      "global_count": 1,
+      "regional_count": 2
+    },
+    {
+      "rank": 15,
+      "name": "赵问源",
+      "points": 11,
+      "global_count": 1,
+      "regional_count": 2
+    },
+    {
+      "rank": 16,
+      "name": "吴国寯",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 17,
+      "name": "徐捷",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 18,
+      "name": "智佳",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 19,
+      "name": "杨天舒",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 20,
+      "name": "付蕊",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 21,
+      "name": "邓东升",
+      "points": 10,
+      "global_count": 2,
+      "regional_count": 0
+    },
+    {
+      "rank": 22,
+      "name": "林熙泽",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 23,
+      "name": "汪洋",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 24,
+      "name": "薛悦",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 25,
+      "name": "黄苏惠",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 26,
+      "name": "田雨",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 27,
+      "name": "李涛",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 28,
+      "name": "Chiara Zuppiroli",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 29,
+      "name": "代丹阳",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 30,
+      "name": "沈童",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 31,
+      "name": "Passion Chiang",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 32,
+      "name": "丁文祥",
+      "points": 9,
+      "global_count": 0,
+      "regional_count": 3
+    },
+    {
+      "rank": 33,
+      "name": "Ryan一帆",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 34,
+      "name": "齐临Kay",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 35,
+      "name": "Clark Guo 郭紫君",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 36,
+      "name": "姜映如",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 37,
+      "name": "Starrk Sang",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 38,
+      "name": "潘健",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 39,
+      "name": "Jeffery Liu",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 40,
+      "name": "Weiping Jiang",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 41,
+      "name": "Dennis Liu",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 42,
+      "name": "Xi He",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 43,
+      "name": "Siyu Zhang",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 44,
+      "name": "王溶萱 Rosy",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 45,
+      "name": "郭利洁",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 46,
+      "name": "支安博",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 47,
+      "name": "Yin Xu",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 48,
+      "name": "高泰尔",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 49,
+      "name": "陈洁蕾",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 50,
+      "name": "胡芙蓉",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 51,
+      "name": "何杰",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 52,
+      "name": "朱振南",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 53,
+      "name": "万山川",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 54,
+      "name": "张晓龙",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 55,
+      "name": "卢嘉龙",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 56,
+      "name": "陈烨魁",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 57,
+      "name": "蔡世滢",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 58,
+      "name": "吴桐",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 59,
+      "name": "杨南海",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 60,
+      "name": "唐志伟",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 61,
+      "name": "宋歌",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 62,
+      "name": "李意",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 63,
+      "name": "尚文杰",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 64,
+      "name": "Shadow",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 65,
+      "name": "吴乐祺",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 66,
+      "name": "李昂",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 67,
+      "name": "蔡淑芬",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 68,
+      "name": "杨菀之",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 69,
+      "name": "潘晓梦",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 70,
+      "name": "秦余可",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 71,
+      "name": "胡根",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 72,
+      "name": "Sitian Lu",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 73,
+      "name": "Haoyu Jiang",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 74,
+      "name": "Ming Yao",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 75,
+      "name": "谢豪",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 76,
+      "name": "张延聪",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 77,
+      "name": "Xiaohui Liang",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 78,
+      "name": "张颖",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 79,
+      "name": "石涛",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 80,
+      "name": "闫可",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 81,
+      "name": "纪雪云",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 82,
+      "name": "Ruijie Qiao",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 83,
+      "name": "卢明昊",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 84,
+      "name": "张玲",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 85,
+      "name": "雷明",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 86,
+      "name": "许牧",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 87,
+      "name": "邹淦升",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 88,
+      "name": "莫凯凯",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 89,
+      "name": "Yilei Wan",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 90,
+      "name": "林孝天",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 91,
+      "name": "徐潇Virginia",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 92,
+      "name": "崔子媛",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 93,
+      "name": "丁见亚",
+      "points": 8,
+      "global_count": 1,
+      "regional_count": 1
+    },
+    {
+      "rank": 94,
+      "name": "Ivy Luo",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 95,
+      "name": "Quanyi Liu",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 96,
+      "name": "Lin LIN",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 97,
+      "name": "李信一",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 98,
+      "name": "石奔",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 99,
+      "name": "Simba Bai",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 100,
+      "name": "Aileen Zou",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 101,
+      "name": "Peilun Huang",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 102,
+      "name": "Ajay Salpekar",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 103,
+      "name": "Carrie Fan",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 104,
+      "name": "Kevin Ma",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 105,
+      "name": "康君慧",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 106,
+      "name": "徐琦峰",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 107,
+      "name": "张弛",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 108,
+      "name": "王瑶",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 109,
+      "name": "于晓旭 Shaw",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 110,
+      "name": "徐金谦",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 111,
+      "name": "沈佳栋",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 112,
+      "name": "姜志",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 113,
+      "name": "Qianle(Alex) 郭乾乐",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 114,
+      "name": "Alice Wang",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 115,
+      "name": "刘智渊",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 116,
+      "name": "谢照男",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 117,
+      "name": "江佳晓",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 118,
+      "name": "陈洪超",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 119,
+      "name": "Claude Z",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 120,
+      "name": "陈滋泳",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 121,
+      "name": "Di Chen",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 122,
+      "name": "潘拓云 Sherry",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 123,
+      "name": "刘雪晴 Vanessa",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 124,
+      "name": "蔡玉川",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 125,
+      "name": "Javier Manzanares",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 126,
+      "name": "Yue Wang",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 127,
+      "name": "Lucía García",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 128,
+      "name": "彭森",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 129,
+      "name": "蔡琳",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 130,
+      "name": "江溪澄",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 131,
+      "name": "Laura Kuroki",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 132,
+      "name": "Natalie Leutner",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 133,
+      "name": "Katey McElroy",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 134,
+      "name": "Agna Pradisti Putri",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 135,
+      "name": "刘一丝",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 136,
+      "name": "Mario Lyu",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 137,
+      "name": "Gerry Jiao",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 138,
+      "name": "陈伟皓",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 139,
+      "name": "黄丹蕾",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 140,
+      "name": "陈娇娇",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 141,
+      "name": "李晓飞",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 142,
+      "name": "Eggie Chen",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 143,
+      "name": "Mengting Schubert",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 144,
+      "name": "王诗雨",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 145,
+      "name": "刘瑞华",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 146,
+      "name": "卞智",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 147,
+      "name": "Santiago Allier",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 148,
+      "name": "Salvatore Ganzerli（萨学东）",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 149,
+      "name": "Marco Trovato Mascali",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 150,
+      "name": "沈吟",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 151,
+      "name": "Vale Serangeli",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 152,
+      "name": "林詠龍",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 153,
+      "name": "陈锋杰",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 154,
+      "name": "叶维熊",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 155,
+      "name": "宋泓谦",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 156,
+      "name": "Neha Mashhood",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 157,
+      "name": "Faye Liu",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 158,
+      "name": "王晓晖",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 159,
+      "name": "Tracy Shen",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 160,
+      "name": "陈思颖",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 161,
+      "name": "金佳子",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 162,
+      "name": "Lexa Zhang",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 163,
+      "name": "黄珂予Hazel",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 164,
+      "name": "丁雨昕 Yancey",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 165,
+      "name": "Freya Yuan",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 166,
+      "name": "Bridie Gilbert",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 167,
+      "name": "刘凯霖",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 168,
+      "name": "侯娅婕Ann",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 169,
+      "name": "Gerard Ferreiro",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 170,
+      "name": "Nan PENG",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 171,
+      "name": "Neva Zhou",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 172,
+      "name": "宋小远",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 173,
+      "name": "刘金芸",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 174,
+      "name": "Jeremy Gao",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 175,
+      "name": "贺丹",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 176,
+      "name": "林影",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 177,
+      "name": "张宸祎",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 178,
+      "name": "张佳俐",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 179,
+      "name": "徐逸敏Steven",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 180,
+      "name": "潘扬洋",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 181,
+      "name": "梁劲",
+      "points": 6,
+      "global_count": 0,
+      "regional_count": 2
+    },
+    {
+      "rank": 182,
+      "name": "董嘉豪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 183,
+      "name": "姚岚",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 184,
+      "name": "冯家浩 Francis",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 185,
+      "name": "汪昊",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 186,
+      "name": "瞿蔚",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 187,
+      "name": "王琪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 188,
+      "name": "郑爽",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 189,
+      "name": "许立波",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 190,
+      "name": "郭祥龙",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 191,
+      "name": "Julie(yanshu) Zheng",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 192,
+      "name": "Justin Cao",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 193,
+      "name": "Flora Chen",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 194,
+      "name": "Sohan Shinde",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 195,
+      "name": "Shane Koh",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 196,
+      "name": "Frank Jiang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 197,
+      "name": "Dave Pysher",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 198,
+      "name": "Catherine Collins",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 199,
+      "name": "Will Lin",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 200,
+      "name": "Konstantin Micevski",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 201,
+      "name": "Jenny Brian",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 202,
+      "name": "Stella Hu",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 203,
+      "name": "Sam Li",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 204,
+      "name": "Sophie Ji",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 205,
+      "name": "EMMA WANG",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 206,
+      "name": "Yuhan Wang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 207,
+      "name": "Sarim Ali",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 208,
+      "name": "Krati Agrawal",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 209,
+      "name": "Molly Barrett",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 210,
+      "name": "Pratik Bhalchandra Kadave",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 211,
+      "name": "何鑫",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 212,
+      "name": "Teresa Wang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 213,
+      "name": "孙天豪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 214,
+      "name": "Jenny Jing",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 215,
+      "name": "孙晓晨",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 216,
+      "name": "张艳晗",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 217,
+      "name": "汤晟佳",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 218,
+      "name": "贾雪娇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 219,
+      "name": "王亚林",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 220,
+      "name": "谢言",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 221,
+      "name": "卢炜媛 Ana",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 222,
+      "name": "江海",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 223,
+      "name": "孙子晟",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 224,
+      "name": "龚诗平",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 225,
+      "name": "叶舟",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 226,
+      "name": "陶杨懿",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 227,
+      "name": "华怡慷",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 228,
+      "name": "胡丽琳",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 229,
+      "name": "朱燊",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 230,
+      "name": "Keliang Wang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 231,
+      "name": "谢磊",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 232,
+      "name": "亦初",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 233,
+      "name": "夏浩",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 234,
+      "name": "廖希密",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 235,
+      "name": "Charles Chang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 236,
+      "name": "吴星宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 237,
+      "name": "冯俞楷",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 238,
+      "name": "Cora Gao",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 239,
+      "name": "李小龙",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 240,
+      "name": "邓湘川",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 241,
+      "name": "钱曹宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 242,
+      "name": "郑操",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 243,
+      "name": "房长江",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 244,
+      "name": "刘海",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 245,
+      "name": "孙晓晓",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 246,
+      "name": "祝凯林",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 247,
+      "name": "冯麟智",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 248,
+      "name": "高梁",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 249,
+      "name": "魏嘉斌",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 250,
+      "name": "张强",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 251,
+      "name": "周鹏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 252,
+      "name": "王红珠",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 253,
+      "name": "吴邦宪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 254,
+      "name": "王鹏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 255,
+      "name": "Sandy Huang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 256,
+      "name": "Kaylin Nguyen",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 257,
+      "name": "Nat Tientrakul",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 258,
+      "name": "Xinyi Chen",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 259,
+      "name": "Amsyar Jamil",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 260,
+      "name": "Fajar Purnomo Adi",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 261,
+      "name": "Bryan Lee",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 262,
+      "name": "Natalie Lim",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 263,
+      "name": "MX Li",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 264,
+      "name": "Wei Xuan Setoh",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 265,
+      "name": "Joy Panyasathikanonth",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 266,
+      "name": "Sahil Gupta",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 267,
+      "name": "Roy Ng",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 268,
+      "name": "Inggrit Longdong",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 269,
+      "name": "Ngô Võ Phương Trinh",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 270,
+      "name": "Phung Sao Ly",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 271,
+      "name": "刘嘉淇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 272,
+      "name": "Gerald Tan",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 273,
+      "name": "多美丽",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 274,
+      "name": "Pamela Low",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 275,
+      "name": "陈含",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 276,
+      "name": "Zhi Wen Goh",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 277,
+      "name": "屈紫薇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 278,
+      "name": "刘岩",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 279,
+      "name": "Ho Kim Thao",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 280,
+      "name": "Natcha Patcharawethin",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 281,
+      "name": "Yaoyuan Deng",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 282,
+      "name": "Simon Diao",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 283,
+      "name": "梁勇胜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 284,
+      "name": "张逸飞",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 285,
+      "name": "Joel Wong",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 286,
+      "name": "李胜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 287,
+      "name": "宋耀伦",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 288,
+      "name": "Labina",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 289,
+      "name": "Elaine Elaine",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 290,
+      "name": "胡月",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 291,
+      "name": "王诗苑",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 292,
+      "name": "徐剑鹏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 293,
+      "name": "林嘉业",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 294,
+      "name": "Trịnh Khánh Vy",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 295,
+      "name": "邓万鹏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 296,
+      "name": "阿圣 (Gabriel)",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 297,
+      "name": "梁先瑞",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 298,
+      "name": "赵楚涵",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 299,
+      "name": "何莉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 300,
+      "name": "Stella Tarjono",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 301,
+      "name": "Hastya Maulana Fikri",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 302,
+      "name": "Melia Retno Astrini",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 303,
+      "name": "付秒",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 304,
+      "name": "Yin Mun Seah",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 305,
+      "name": "吴瑞雪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 306,
+      "name": "陈诺",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 307,
+      "name": "王玉昕",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 308,
+      "name": "Hilda",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 309,
+      "name": "赵博羽",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 310,
+      "name": "Mick Ryan",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 311,
+      "name": "Ray YANG",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 312,
+      "name": "Jaya Sharma",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 313,
+      "name": "Ellie Holmes",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 314,
+      "name": "柳慧颖",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 315,
+      "name": "薛永灵",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 316,
+      "name": "周宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 317,
+      "name": "Beatrice Vieira",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 318,
+      "name": "Grazielle Passos",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 319,
+      "name": "杨雪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 320,
+      "name": "刘田雨",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 321,
+      "name": "Marina Carmo",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 322,
+      "name": "Mariana Parnes",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 323,
+      "name": "Carol Merlo",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 324,
+      "name": "黄照容",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 325,
+      "name": "纪孟然",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 326,
+      "name": "曾小中 Eden",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 327,
+      "name": "徐正辉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 328,
+      "name": "宋青玲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 329,
+      "name": "姚佳慧",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 330,
+      "name": "黄淳熠",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 331,
+      "name": "Liping Chen",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 332,
+      "name": "张蔓萍",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 333,
+      "name": "刘琦玉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 334,
+      "name": "张本立",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 335,
+      "name": "屈仟",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 336,
+      "name": "路超男",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 337,
+      "name": "陈慧娜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 338,
+      "name": "宋欣鹏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 339,
+      "name": "陈琮",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 340,
+      "name": "王怡浩",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 341,
+      "name": "Zhao Hongyi",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 342,
+      "name": "黄依乔",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 343,
+      "name": "李茜茜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 344,
+      "name": "陈冰",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 345,
+      "name": "Wayne Chung",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 346,
+      "name": "李子晴",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 347,
+      "name": "张佳瑜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 348,
+      "name": "于琳娜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 349,
+      "name": "陈思旭",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 350,
+      "name": "Kayla Xie",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 351,
+      "name": "钟时佳",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 352,
+      "name": "许淑媛",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 353,
+      "name": "李为",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 354,
+      "name": "方逸知 Finn",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 355,
+      "name": "周玲玲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 356,
+      "name": "陈思宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 357,
+      "name": "Freya Lee",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 358,
+      "name": "Nan Shen",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 359,
+      "name": "汪浩",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 360,
+      "name": "刘岩涛",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 361,
+      "name": "罗钟福",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 362,
+      "name": "李军柱",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 363,
+      "name": "Jiayi Wang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 364,
+      "name": "勾爱利",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 365,
+      "name": "訾润青",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 366,
+      "name": "徐瑞 Rosie",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 367,
+      "name": "Ken Yu",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 368,
+      "name": "陈菲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 369,
+      "name": "李玥宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 370,
+      "name": "李妍",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 371,
+      "name": "涂钊婷",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 372,
+      "name": "丁亚东",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 373,
+      "name": "林哲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 374,
+      "name": "Jiayao Zhang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 375,
+      "name": "郑玉昆",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 376,
+      "name": "林书恒",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 377,
+      "name": "王天宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 378,
+      "name": "王宝江",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 379,
+      "name": "康家琪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 380,
+      "name": "王世海",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 381,
+      "name": "孙峰瑶",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 382,
+      "name": "雷婷",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 383,
+      "name": "邹浩正",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 384,
+      "name": "王胤洲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 385,
+      "name": "骆伟岸",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 386,
+      "name": "Yinyin Gong",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 387,
+      "name": "董金玉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 388,
+      "name": "陈明哲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 389,
+      "name": "高翔",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 390,
+      "name": "张铭戈",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 391,
+      "name": "任鹏飞",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 392,
+      "name": "傅卓",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 393,
+      "name": "费慧通",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 394,
+      "name": "张亚森",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 395,
+      "name": "龙俊桦",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 396,
+      "name": "黄泽灏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 397,
+      "name": "周子秋",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 398,
+      "name": "王业",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 399,
+      "name": "杨凯迪",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 400,
+      "name": "王悦",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 401,
+      "name": "毛璀",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 402,
+      "name": "姚舜禹",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 403,
+      "name": "Feifei Zhang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 404,
+      "name": "王哲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 405,
+      "name": "张之梁",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 406,
+      "name": "齐晓辰",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 407,
+      "name": "王巍",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 408,
+      "name": "阮泽凡",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 409,
+      "name": "饶梦南",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 410,
+      "name": "魏奕欣",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 411,
+      "name": "易涛",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 412,
+      "name": "刘琼泽",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 413,
+      "name": "Brian Bai",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 414,
+      "name": "龙美娟",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 415,
+      "name": "陆思雁",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 416,
+      "name": "赵若龙",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 417,
+      "name": "任玲渔",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 418,
+      "name": "俞可欣",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 419,
+      "name": "张炫锐 Bryan",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 420,
+      "name": "陆晓芸",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 421,
+      "name": "Sofia Jifei Huang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 422,
+      "name": "简嘉慧",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 423,
+      "name": "杨楠 (Eve)",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 424,
+      "name": "刘承谕",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 425,
+      "name": "June Liu",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 426,
+      "name": "罗闻乐",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 427,
+      "name": "Qing Liu",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 428,
+      "name": "Fei Gao",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 429,
+      "name": "Kenny Phua",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 430,
+      "name": "Wai Kum Boon",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 431,
+      "name": "张志辉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 432,
+      "name": "邱晓辰",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 433,
+      "name": "李泽峰",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 434,
+      "name": "宋航",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 435,
+      "name": "蔡益东",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 436,
+      "name": "李林峰",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 437,
+      "name": "Junting Pan",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 438,
+      "name": "曾怡",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 439,
+      "name": "任玉强",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 440,
+      "name": "夏伯谦",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 441,
+      "name": "祝贺",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 442,
+      "name": "李新宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 443,
+      "name": "侯舟帆",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 444,
+      "name": "王沛文",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 445,
+      "name": "尹恒",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 446,
+      "name": "谭冲",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 447,
+      "name": "田凯",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 448,
+      "name": "Boyang Zhang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 449,
+      "name": "李阳",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 450,
+      "name": "洪婕",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 451,
+      "name": "于扬",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 452,
+      "name": "王贤",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 453,
+      "name": "杨敏",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 454,
+      "name": "赵紫望",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 455,
+      "name": "高源",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 456,
+      "name": "Jeff Zhang",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 457,
+      "name": "马一潇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 458,
+      "name": "陈晓燕",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 459,
+      "name": "王楠Luke",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 460,
+      "name": "张宇杰 Jason",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 461,
+      "name": "贺良才",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 462,
+      "name": "赵璐",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 463,
+      "name": "王千",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 464,
+      "name": "张晓宇",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 465,
+      "name": "吴泽正",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 466,
+      "name": "莫广帅",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 467,
+      "name": "魏博伟",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 468,
+      "name": "扈晓娜",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 469,
+      "name": "李治远",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 470,
+      "name": "毛晨光",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 471,
+      "name": "王舜浩",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 472,
+      "name": "王汉成",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 473,
+      "name": "倪光玉",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 474,
+      "name": "官怡婷",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 475,
+      "name": "张宗刚",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 476,
+      "name": "林浩然",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 477,
+      "name": "张志文",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 478,
+      "name": "Yanlong He",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 479,
+      "name": "Danyang Ren",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 480,
+      "name": "Xinye Lei",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 481,
+      "name": "苏韦铨",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 482,
+      "name": "彭瑾",
+      "points": 5,
+      "global_count": 1,
+      "regional_count": 0
+    },
+    {
+      "rank": 483,
+      "name": "胡浩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 484,
+      "name": "栾文嫣",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 485,
+      "name": "陈耀阳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 486,
+      "name": "李秀钻",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 487,
+      "name": "钟文瑞",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 488,
+      "name": "Renee Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 489,
+      "name": "马志敏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 490,
+      "name": "邹梦婷",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 491,
+      "name": "杨钊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 492,
+      "name": "康宁",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 493,
+      "name": "杨聪敏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 494,
+      "name": "卓亚琴",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 495,
+      "name": "汪琦鹏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 496,
+      "name": "Chen Zhou",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 497,
+      "name": "Jiangtong TIAN",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 498,
+      "name": "Biying Wu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 499,
+      "name": "Evan Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 500,
+      "name": "Nora Essien",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 501,
+      "name": "YIF CHEN",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 502,
+      "name": "石淇源",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 503,
+      "name": "闫艺杰",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 504,
+      "name": "Ruby Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 505,
+      "name": "Austin Peng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 506,
+      "name": "Diego Puente",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 507,
+      "name": "熊维佳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 508,
+      "name": "Patrick Nommensen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 509,
+      "name": "Shireen McCleary",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 510,
+      "name": "Niki Do",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 511,
+      "name": "孟海潮",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 512,
+      "name": "汪立军",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 513,
+      "name": "Jinn 郭怀瑾",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 514,
+      "name": "李渊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 515,
+      "name": "Yanfei Gong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 516,
+      "name": "赖绪鹏 Star",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 517,
+      "name": "李骁睿",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 518,
+      "name": "冯健",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 519,
+      "name": "李谜",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 520,
+      "name": "赵楚心",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 521,
+      "name": "Xinran Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 522,
+      "name": "张世远",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 523,
+      "name": "付雪晴Cecilia",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 524,
+      "name": "崔贤师",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 525,
+      "name": "蔡润强",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 526,
+      "name": "Minh Le",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 527,
+      "name": "李叶舜卿",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 528,
+      "name": "姜杰夫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 529,
+      "name": "刘益佳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 530,
+      "name": "周梦媛",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 531,
+      "name": "余辉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 532,
+      "name": "Ge Wu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 533,
+      "name": "Leon Zhong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 534,
+      "name": "Tianyu Lu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 535,
+      "name": "Kyu Park",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 536,
+      "name": "孙文康",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 537,
+      "name": "高婷",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 538,
+      "name": "范晓赫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 539,
+      "name": "肖潇",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 540,
+      "name": "王庆敏 Anna",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 541,
+      "name": "Jason Tsai",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 542,
+      "name": "Christian Haddad",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 543,
+      "name": "王小芳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 544,
+      "name": "何庆边",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 545,
+      "name": "谢朝旭",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 546,
+      "name": "Yao Yu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 547,
+      "name": "孙康莉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 548,
+      "name": "Shelby Tai",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 549,
+      "name": "胡耀华",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 550,
+      "name": "潘姿颖",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 551,
+      "name": "Windson Liu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 552,
+      "name": "汤维",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 553,
+      "name": "王娇玥",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 554,
+      "name": "张庆",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 555,
+      "name": "费子轩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 556,
+      "name": "Eli Dai",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 557,
+      "name": "Xi Lin",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 558,
+      "name": "Moud Eltaweel",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 559,
+      "name": "Santo",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 560,
+      "name": "希瑞",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 561,
+      "name": "祝硕宏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 562,
+      "name": "Yuan Gao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 563,
+      "name": "黄远健 Jared",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 564,
+      "name": "XinLing 信陵",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 565,
+      "name": "马佳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 566,
+      "name": "孙彬晖",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 567,
+      "name": "陈舟",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 568,
+      "name": "Yifei Bao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 569,
+      "name": "陈悦",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 570,
+      "name": "Wilfred Halim",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 571,
+      "name": "TY",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 572,
+      "name": "Andy Rowe",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 573,
+      "name": "向婕",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 574,
+      "name": "吕高攀",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 575,
+      "name": "黄强",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 576,
+      "name": "吕名扬",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 577,
+      "name": "龚冠仁",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 578,
+      "name": "白戈",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 579,
+      "name": "Xiaomin Tang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 580,
+      "name": "Yayin Cai",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 581,
+      "name": "周阳鹏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 582,
+      "name": "张慧婷",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 583,
+      "name": "Rachel Park",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 584,
+      "name": "徐绮睿",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 585,
+      "name": "林夏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 586,
+      "name": "洪谦",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 587,
+      "name": "KAI Ayn",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 588,
+      "name": "Cissy Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 589,
+      "name": "黄俊 Jun",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 590,
+      "name": "周明易",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 591,
+      "name": "宣艳华",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 592,
+      "name": "韩子樵",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 593,
+      "name": "Mya Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 594,
+      "name": "陈宗镭",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 595,
+      "name": "侯新雨",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 596,
+      "name": "苏志翔",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 597,
+      "name": "Yiqing (Kiera) Qi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 598,
+      "name": "Tong Zhao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 599,
+      "name": "刘子威",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 600,
+      "name": "Tianyu Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 601,
+      "name": "Huanyu Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 602,
+      "name": "崔少岩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 603,
+      "name": "蒋西",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 604,
+      "name": "李延芳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 605,
+      "name": "Wessy",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 606,
+      "name": "袁典飘",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 607,
+      "name": "余晨",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 608,
+      "name": "连鑫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 609,
+      "name": "齐桂彤",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 610,
+      "name": "赵拓",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 611,
+      "name": "May Wen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 612,
+      "name": "庞蓓",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 613,
+      "name": "刘菡姝",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 614,
+      "name": "陈晨",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 615,
+      "name": "Mark Morud",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 616,
+      "name": "李岚涛",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 617,
+      "name": "蒲红鑫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 618,
+      "name": "刘开元",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 619,
+      "name": "乔威",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 620,
+      "name": "潘能",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 621,
+      "name": "程传炽 Cooper",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 622,
+      "name": "褚芙玮",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 623,
+      "name": "許芯瑜",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 624,
+      "name": "Lester Sun",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 625,
+      "name": "朱瑞",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 626,
+      "name": "王茜 Xi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 627,
+      "name": "吕百杨",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 628,
+      "name": "武欣",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 629,
+      "name": "胡怡林",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 630,
+      "name": "察兴业",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 631,
+      "name": "张兴厚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 632,
+      "name": "陶诗悦",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 633,
+      "name": "贾晨光",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 634,
+      "name": "肖扬",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 635,
+      "name": "Kevin Han",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 636,
+      "name": "Mike Lin",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 637,
+      "name": "Aria Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 638,
+      "name": "Kristin Cheng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 639,
+      "name": "Wenxin Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 640,
+      "name": "王隽锋",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 641,
+      "name": "昌铁钢",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 642,
+      "name": "Leo Zhao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 643,
+      "name": "孙小轩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 644,
+      "name": "贺江山",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 645,
+      "name": "朱宇然",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 646,
+      "name": "孔祥骏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 647,
+      "name": "龚平",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 648,
+      "name": "Sean He",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 649,
+      "name": "Yifu Ma",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 650,
+      "name": "张锋",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 651,
+      "name": "Erica Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 652,
+      "name": "Sylvia Li",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 653,
+      "name": "Nicole wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 654,
+      "name": "吴以加 Chris",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 655,
+      "name": "Oliver Lai",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 656,
+      "name": "Ahyoon Kim",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 657,
+      "name": "Michael Kang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 658,
+      "name": "Phoebe Jiang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 659,
+      "name": "Allison Li",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 660,
+      "name": "Sarah Luo",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 661,
+      "name": "Julianna Lee",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 662,
+      "name": "Arshad Mohammed",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 663,
+      "name": "杨翌",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 664,
+      "name": "Lexie",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 665,
+      "name": "Luke Anderson",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 666,
+      "name": "Chunli (Samsara) Yang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 667,
+      "name": "赵溪月",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 668,
+      "name": "Leslie Zheng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 669,
+      "name": "Alan Hu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 670,
+      "name": "吴心昊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 671,
+      "name": "王公卓",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 672,
+      "name": "白哲",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 673,
+      "name": "Kefan Xu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 674,
+      "name": "Lico Lu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 675,
+      "name": "Zexia Ding",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 676,
+      "name": "Ziwei Shi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 677,
+      "name": "Emily Pan",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 678,
+      "name": "Nina Xiang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 679,
+      "name": "Donggeng Xia",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 680,
+      "name": "杜家瑜",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 681,
+      "name": "Echo HAN",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 682,
+      "name": "Benedikt Pohl",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 683,
+      "name": "张倩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 684,
+      "name": "何佳忆",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 685,
+      "name": "文岚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 686,
+      "name": "孟承超",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 687,
+      "name": "孙鹏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 688,
+      "name": "方宝",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 689,
+      "name": "王心怡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 690,
+      "name": "Lucy Li",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 691,
+      "name": "何俊逸",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 692,
+      "name": "Hao Hu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 693,
+      "name": "包邱桑子",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 694,
+      "name": "王将迪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 695,
+      "name": "黄思媛 Sandra",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 696,
+      "name": "张甄",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 697,
+      "name": "傅思涵",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 698,
+      "name": "郭华",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 699,
+      "name": "夏素云 Anaya",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 700,
+      "name": "王丹 Alice",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 701,
+      "name": "李昳 Sandy",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 702,
+      "name": "周云",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 703,
+      "name": "周雨婷Lydia",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 704,
+      "name": "陈雁羽",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 705,
+      "name": "Gigi Zhang 吉吉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 706,
+      "name": "姬波",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 707,
+      "name": "任欢欢",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 708,
+      "name": "吴荣林",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 709,
+      "name": "李致远",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 710,
+      "name": "王江",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 711,
+      "name": "程召",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 712,
+      "name": "周程",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 713,
+      "name": "张浩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 714,
+      "name": "胡骏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 715,
+      "name": "肖明宇",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 716,
+      "name": "周舒意",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 717,
+      "name": "胡琪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 718,
+      "name": "万迪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 719,
+      "name": "马枢杰",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 720,
+      "name": "Lukas Hendrischke",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 721,
+      "name": "Max Burianek",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 722,
+      "name": "Mehdi Meghzifene",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 723,
+      "name": "毛未凡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 724,
+      "name": "赫梦珂",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 725,
+      "name": "Valerie Fwah",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 726,
+      "name": "Neville Farrell",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 727,
+      "name": "赵敏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 728,
+      "name": "Niclas Schubert",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 729,
+      "name": "Crissian Stangherlin",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 730,
+      "name": "Jake Murphy",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 731,
+      "name": "Sophie Liao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 732,
+      "name": "MinHyuck Choi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 733,
+      "name": "袖山 貴史",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 734,
+      "name": "黄 益",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 735,
+      "name": "王 喆",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 736,
+      "name": "朱 沢全",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 737,
+      "name": "樊响Amber",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 738,
+      "name": "李 晨君（Roger）",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 739,
+      "name": "Yoli Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 740,
+      "name": "周怡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 741,
+      "name": "邓宁欣",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 742,
+      "name": "张维宇",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 743,
+      "name": "张同鑫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 744,
+      "name": "王立仪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 745,
+      "name": "Sylvia Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 746,
+      "name": "田辛鹿",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 747,
+      "name": "曾海鹏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 748,
+      "name": "张艺",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 749,
+      "name": "黄译纬",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 750,
+      "name": "子安",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 751,
+      "name": "黄珂",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 752,
+      "name": "李川",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 753,
+      "name": "祁军成",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 754,
+      "name": "王晓叶",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 755,
+      "name": "孙轶凡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 756,
+      "name": "刘军",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 757,
+      "name": "汪晓凡Reco",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 758,
+      "name": "Chris",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 759,
+      "name": "丁宁",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 760,
+      "name": "李晨箔",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 761,
+      "name": "谭翘楚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 762,
+      "name": "朱柯舟 Muko",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 763,
+      "name": "Jennifer Goh",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 764,
+      "name": "陈卫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 765,
+      "name": "Jeffery Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 766,
+      "name": "张琳娜",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 767,
+      "name": "Rachel Breslin",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 768,
+      "name": "程洁菲",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 769,
+      "name": "柳小龙",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 770,
+      "name": "曹晏玮",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 771,
+      "name": "徐荣阳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 772,
+      "name": "Illya Symonenko",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 773,
+      "name": "Rahul Berry",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 774,
+      "name": "Ying Wu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 775,
+      "name": "Cameron Ritchie",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 776,
+      "name": "Rebecca Ann Wong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 777,
+      "name": "Vivian Qi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 778,
+      "name": "张蔚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 779,
+      "name": "Anna Walker",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 780,
+      "name": "Katie Yorke",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 781,
+      "name": "Camila Alves de Brito",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 782,
+      "name": "Carla McCloskey",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 783,
+      "name": "David Foley",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 784,
+      "name": "Marcus Phelan",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 785,
+      "name": "Claire Mulhern",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 786,
+      "name": "Ed Gilmartin",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 787,
+      "name": "隗晓",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 788,
+      "name": "Arief Kusuma",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 789,
+      "name": "Gary Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 790,
+      "name": "Judy Ou",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 791,
+      "name": "Benjamin Music 乐杰",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 792,
+      "name": "Laura McGuinness",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 793,
+      "name": "Niall Barrow",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 794,
+      "name": "Alex Moulsley",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 795,
+      "name": "Lian Liang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 796,
+      "name": "Jessica Mazdon-Binns",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 797,
+      "name": "Barney Waugh",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 798,
+      "name": "邢佳佳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 799,
+      "name": "Chantelle Wong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 800,
+      "name": "Maira Kiani",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 801,
+      "name": "Yiqing 亦青",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 802,
+      "name": "Seth Li",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 803,
+      "name": "Emma Dong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 804,
+      "name": "Wen Jia Chang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 805,
+      "name": "吴雯雯",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 806,
+      "name": "Mandy Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 807,
+      "name": "Stephen Chorlton",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 808,
+      "name": "Elyse Simek",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 809,
+      "name": "Niklas Brunn",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 810,
+      "name": "Junadia Rosinta",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 811,
+      "name": "Anna-Theresa Gstrein",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 812,
+      "name": "Laura FIETKAU",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 813,
+      "name": "Philipp Auerbach",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 814,
+      "name": "Alberto Rojo",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 815,
+      "name": "王艾嘉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 816,
+      "name": "Joan Nakhoul",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 817,
+      "name": "Soane Hsein",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 818,
+      "name": "Marie Pautou",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 819,
+      "name": "Maggie Hanlon",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 820,
+      "name": "Sarine Azimi",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 821,
+      "name": "Dayang CHEN",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 822,
+      "name": "张佳琪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 823,
+      "name": "Tana-Maria Schächtele",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 824,
+      "name": "Liqing WANG",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 825,
+      "name": "郭一琳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 826,
+      "name": "王梦云",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 827,
+      "name": "洪奇慧",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 828,
+      "name": "Jimmy Yang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 829,
+      "name": "Wa Sappakijjanon",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 830,
+      "name": "Francesco Passaretti",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 831,
+      "name": "蒋翔",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 832,
+      "name": "楚金帅",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 833,
+      "name": "李昊泽",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 834,
+      "name": "陈佳城",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 835,
+      "name": "郑天Jam",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 836,
+      "name": "李昌运",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 837,
+      "name": "李鸿韬",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 838,
+      "name": "张子健",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 839,
+      "name": "陈曦 Jason",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 840,
+      "name": "曾婧祎",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 841,
+      "name": "赵钕森",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 842,
+      "name": "徐海良",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 843,
+      "name": "叶玉杰",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 844,
+      "name": "Jason Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 845,
+      "name": "沈甄明",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 846,
+      "name": "刘方舟",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 847,
+      "name": "涂晶晶",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 848,
+      "name": "王泽",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 849,
+      "name": "张昱东",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 850,
+      "name": "傅文泽",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 851,
+      "name": "吕其聪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 852,
+      "name": "Chang Liu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 853,
+      "name": "陈伟",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 854,
+      "name": "任磊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 855,
+      "name": "胡心宇",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 856,
+      "name": "Sijia Li",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 857,
+      "name": "半田 敏一",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 858,
+      "name": "中井 利忠",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 859,
+      "name": "Joanna ZHU",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 860,
+      "name": "Jin Pu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 861,
+      "name": "郑秀春Nora",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 862,
+      "name": "潘伟",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 863,
+      "name": "许加祺 Elena Xu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 864,
+      "name": "XuDong Lew",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 865,
+      "name": "郗广明",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 866,
+      "name": "杨旭东",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 867,
+      "name": "Haersh Sahita",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 868,
+      "name": "杨韵琪",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 869,
+      "name": "余康菲",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 870,
+      "name": "赵凡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 871,
+      "name": "Qiqi Wang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 872,
+      "name": "陈国宝",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 873,
+      "name": "韩琳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 874,
+      "name": "刘伟东",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 875,
+      "name": "仵坤",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 876,
+      "name": "Kai Fu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 877,
+      "name": "郭泽鑫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 878,
+      "name": "向卉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 879,
+      "name": "Lucia Liu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 880,
+      "name": "Yuxi Chen",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 881,
+      "name": "施雨晴",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 882,
+      "name": "崔海抒",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 883,
+      "name": "刘辉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 884,
+      "name": "王晓",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 885,
+      "name": "蒋路影",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 886,
+      "name": "阎彦",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 887,
+      "name": "春雨Diana",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 888,
+      "name": "Evan Peng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 889,
+      "name": "叶敏韬Crystal",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 890,
+      "name": "黄雅芝",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 891,
+      "name": "陈雅量",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 892,
+      "name": "Gege Tian",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 893,
+      "name": "乔文松",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 894,
+      "name": "Evelyn Zhang",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 895,
+      "name": "黄映杰",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 896,
+      "name": "郭夏玮",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 897,
+      "name": "李润华",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 898,
+      "name": "邱方堃",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 899,
+      "name": "成政兴",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 900,
+      "name": "马鸣苑",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 901,
+      "name": "赵纯",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 902,
+      "name": "罗照秋",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 903,
+      "name": "林晗",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 904,
+      "name": "苏飞",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 905,
+      "name": "罗泽荣",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 906,
+      "name": "吴邦瑜",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 907,
+      "name": "Antonia Adega",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 908,
+      "name": "Hilmi Adrianto",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 909,
+      "name": "翁佳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 910,
+      "name": "赵梦雯",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 911,
+      "name": "Annabel",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 912,
+      "name": "Tri Boby Candra",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 913,
+      "name": "Andre Husada",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 914,
+      "name": "Azzahra Shabrina Larasati",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 915,
+      "name": "Ika Putri Risma Yanti",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 916,
+      "name": "钟成鸣",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 917,
+      "name": "王颖玲 Elaine",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 918,
+      "name": "赵梦予",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 919,
+      "name": "Brian Zhao",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 920,
+      "name": "张坤轩",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 921,
+      "name": "朱琳",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 922,
+      "name": "周婕",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 923,
+      "name": "高文垚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 924,
+      "name": "益坚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 925,
+      "name": "王宁",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 926,
+      "name": "饶天林",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 927,
+      "name": "Hao Yan Chong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 928,
+      "name": "Kharisma Dany",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 929,
+      "name": "张俊强",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 930,
+      "name": "Opal Parawee O.",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 931,
+      "name": "小刘 (Kenny)",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 932,
+      "name": "Jidi Ng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 933,
+      "name": "梁彦琳Charlene",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 934,
+      "name": "孙婷婷",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 935,
+      "name": "何运鑫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 936,
+      "name": "陈俊宏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 937,
+      "name": "Zayn Xu",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 938,
+      "name": "闵炎华",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 939,
+      "name": "姚婧",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 940,
+      "name": "方赢",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 941,
+      "name": "何川",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 942,
+      "name": "Thanyathon (New) Phimsupama",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 943,
+      "name": "李瑞棠",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 944,
+      "name": "俞璐",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 945,
+      "name": "蔡汾锫",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 946,
+      "name": "张涵",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 947,
+      "name": "Winston .S",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 948,
+      "name": "吴莹",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 949,
+      "name": "陈崧",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 950,
+      "name": "唐瑭",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 951,
+      "name": "徐玉莹",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 952,
+      "name": "吴思影",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 953,
+      "name": "张佳雯",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 954,
+      "name": "向洁",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 955,
+      "name": "柏崴",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 956,
+      "name": "Cathy Chiong",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 957,
+      "name": "Bhadra Aditya",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 958,
+      "name": "牛紫薇",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 959,
+      "name": "Samuel Sung",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 960,
+      "name": "Jonathan Low",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 961,
+      "name": "白晓莉",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 962,
+      "name": "谈盛捷",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 963,
+      "name": "Enzo Rojas",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 964,
+      "name": "Casey Liaw",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 965,
+      "name": "ณัฐพร ประวีณเมธ",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 966,
+      "name": "Angghita Dewi Nadhifa",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 967,
+      "name": "李嘉麒",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 968,
+      "name": "张雪禾",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 969,
+      "name": "Tio Darmawan",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 970,
+      "name": "Beatrice Kezia Nedoda da Costa",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 971,
+      "name": "Kario Teguh",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 972,
+      "name": "Adwina Handari Paramita",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 973,
+      "name": "Erwin Tanuwijaya",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 974,
+      "name": "Haslia Asriningrum",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 975,
+      "name": "丁磊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 976,
+      "name": "Cù Nhiên Đằng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 977,
+      "name": "Nguyen Ngoc (Mike)",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 978,
+      "name": "徐梦临 Ares",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 979,
+      "name": "Kinh Văn Trung",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 980,
+      "name": "Nick",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 981,
+      "name": "Nadhirah",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 982,
+      "name": "Zhung Tan",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 983,
+      "name": "Cheryl Lim",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 984,
+      "name": "Benjamin John Miranda III",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 985,
+      "name": "Nicole Abad",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 986,
+      "name": "Andre Azcarraga",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 987,
+      "name": "อนาอิส นุโส่ม",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 988,
+      "name": "อุไรวรรณ ขัดเชียงแสน",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 989,
+      "name": "Nuch Chunyanuch",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 990,
+      "name": "钱梦亚",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 991,
+      "name": "Aaron Ng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 992,
+      "name": "Queenie Loh",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 993,
+      "name": "梁亮",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 994,
+      "name": "Geska Dwi Putri Septiani",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 995,
+      "name": "Yunus Adithya",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 996,
+      "name": "李诗元",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 997,
+      "name": "邵佳怡",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 998,
+      "name": "Shi Yue",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 999,
+      "name": "Kadek Nanda Puspasari",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1000,
+      "name": "佘静",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1001,
+      "name": "di zeng",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1002,
+      "name": "高鹏",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1003,
+      "name": "黄钊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1004,
+      "name": "黄凌珊",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1005,
+      "name": "王西彦",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    },
+    {
+      "rank": 1006,
+      "name": "张云翔",
+      "points": 3,
+      "global_count": 0,
+      "regional_count": 1
+    }
+  ]
+}
