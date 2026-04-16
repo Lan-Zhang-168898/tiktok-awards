@@ -120,7 +120,7 @@
     /* Two Column Layout */
     .home-two-columns {
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: 1fr 400px;
       gap: var(--spacing-lg);
       align-items: start;
       position: relative;
@@ -129,18 +129,65 @@
     .home-two-columns::before {
       content: '';
       position: absolute;
-      left: calc(100% - 360px - var(--spacing-lg)/2);
+      left: calc(100% - 400px - var(--spacing-lg)/2);
       top: 0;
       bottom: 0;
       width: 1px;
       background: linear-gradient(to bottom, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
     }
     
-    /* Stats Grid - Right Column */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+    /* Search Section */
+    .search-section {
+      position: sticky;
+      top: 80px;
+    }
+    
+    .search-box-wrapper {
+      display: flex;
+      flex-direction: column;
       gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .search-input-full {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    
+    .search-input-full:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .search-btn-full {
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border: none;
+      border-radius: var(--radius-md);
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .search-btn-full:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+    }
+    
+    /* Stats Grid - Full Width at Bottom */
+    .stats-grid-full {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--spacing-md);
     }
     
     .stat-card {
@@ -280,18 +327,22 @@
         grid-template-columns: 1fr;
       }
       
-      .stats-grid {
+      .home-two-columns::before {
+        display: none;
+      }
+      
+      .search-section {
+        position: static;
+      }
+      
+      .stats-grid-full {
         grid-template-columns: repeat(3, 1fr);
       }
     }
     
     @media (max-width: 768px) {
-      .stats-grid {
+      .stats-grid-full {
         grid-template-columns: repeat(2, 1fr);
-      }
-      
-      .inline-search {
-        max-width: 100%;
       }
       
       .home-title {
@@ -350,112 +401,71 @@
               <strong>Scoring:</strong> Global=5pts | Regional=3pts | Departmental=1pt
             </p>
             
-            <!-- Inline Search -->
-            <div class="inline-search">
-              <input type="text" class="search-input" id="search-input" placeholder="Search by name, project...">
-              <button class="search-btn" id="search-btn">🔍</button>
-            </div>
-            
             <!-- Podium (Top 3) -->
             <div id="top3-podium"></div>
             
             <!-- Ranking List (4-10) -->
             <div id="top10-list"></div>
+          </section>
+
+          <!-- Right Column: Search & Results -->
+          <section class="search-section">
+            <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
+              <span class="icon">🔍</span>
+              Search Awards
+            </h2>
+            
+            <!-- Search Bar -->
+            <div class="search-box-wrapper">
+              <input type="text" class="search-input-full" id="search-input" placeholder="Search by name, project, department...">
+              <button class="search-btn-full" id="search-btn">Search</button>
+            </div>
             
             <!-- Search Results -->
             <div id="search-results" class="search-results-section"></div>
           </section>
-
-          <!-- Right Column: Award Summary -->
-          <section class="overview-section">
-            <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md);">
-              <span class="icon">📊</span>
-              Award Summary
-            </h2>
-            <div class="stats-grid" id="overview-stats">
-              <!-- Stats will be rendered by JS -->
-              <div class="stat-card highlight">
-                <div class="stat-icon">🏆</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Global Projects</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">🌍</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Regional Projects</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">⭐</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Individual Awards</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">💰</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Total Bonus</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">👥</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Team Members</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-icon">🌐</div>
-                <div class="stat-value">-</div>
-                <div class="stat-label">Regions</div>
-              </div>
-            </div>
-            
-            <!-- Top Regions -->
-            <div class="top-regions-section" style="margin-top: var(--spacing-lg);">
-              <h3 class="section-title" style="font-size: 14px; margin-bottom: var(--spacing-sm); color: var(--text-secondary);">
-                🏅 Top Regions by Awards
-              </h3>
-              <div class="region-rank-list" id="region-rank-list">
-                <div class="region-rank-item">
-                  <span class="rank-num">1</span>
-                  <span class="region-name">US</span>
-                  <span class="region-count">12 awards</span>
-                </div>
-                <div class="region-rank-item">
-                  <span class="rank-num">2</span>
-                  <span class="region-name">SEA</span>
-                  <span class="region-count">10 awards</span>
-                </div>
-                <div class="region-rank-item">
-                  <span class="rank-num">3</span>
-                  <span class="region-name">EU+UK+JP</span>
-                  <span class="region-count">8 awards</span>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Quick Links -->
-            <div class="quick-links-section" style="margin-top: var(--spacing-lg);">
-              <h3 class="section-title" style="font-size: 14px; margin-bottom: var(--spacing-sm); color: var(--text-secondary);">
-                🔗 Quick Access
-              </h3>
-              <div class="quick-links-grid">
-                <a href="global.html" class="quick-link-card">
-                  <span class="quick-link-icon">🌐</span>
-                  <span class="quick-link-text">Global Awards</span>
-                </a>
-                <a href="regional.html" class="quick-link-card">
-                  <span class="quick-link-icon">🗺️</span>
-                  <span class="quick-link-text">Regional Awards</span>
-                </a>
-                <a href="award-structure.html" class="quick-link-card">
-                  <span class="quick-link-icon">📋</span>
-                  <span class="quick-link-text">Award Structure</span>
-                </a>
-                <a href="media-gallery.html" class="quick-link-card">
-                  <span class="quick-link-icon">📸</span>
-                  <span class="quick-link-text">Media Gallery</span>
-                </a>
-              </div>
-            </div>
-          </section>
         </div>
+
+        <!-- Award Summary at Bottom -->
+        <section class="overview-section" style="margin-top: var(--spacing-xl);">
+          <h2 class="section-title" style="font-size: 18px; margin-bottom: var(--spacing-md); text-align: center;">
+            <span class="icon">📊</span>
+            Award Summary
+          </h2>
+          <div class="stats-grid-full" id="overview-stats">
+            <!-- Stats will be rendered by JS -->
+            <div class="stat-card highlight">
+              <div class="stat-icon">🏆</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Global Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌍</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Regional Projects</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⭐</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Individual Awards</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💰</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Total Bonus</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">🌐</div>
+              <div class="stat-value">-</div>
+              <div class="stat-label">Regions</div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
 
