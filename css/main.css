@@ -1345,3 +1345,230 @@ img {
   color: var(--accent-color);
   text-align: right;
 }
+
+/* ==================== Media Gallery - Video Styles ==================== */
+.page-title {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xxl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.page-title-icon {
+  font-size: 40px;
+}
+
+/* Video Section */
+.video-section {
+  margin-bottom: var(--spacing-xxl);
+}
+
+.video-section .section-title {
+  margin-bottom: var(--spacing-md);
+}
+
+.section-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: calc(-1 * var(--spacing-md));
+  margin-bottom: var(--spacing-xl);
+}
+
+/* Award Video Card - Featured */
+.award-video-section {
+  margin-bottom: var(--spacing-xxxl);
+}
+
+.award-video-card {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.award-video-card .video-wrapper {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-glow);
+  border: 2px solid var(--primary-color);
+}
+
+.award-video-card .video-title {
+  font-size: 22px;
+  color: var(--text-primary);
+}
+
+.award-video-card .video-description {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: var(--spacing-xs);
+}
+
+.award-video-card .video-badge {
+  background: var(--primary-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.award-video-card .video-meta {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  margin-top: var(--spacing-md);
+}
+
+/* Video Grid */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Video Card */
+.video-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.video-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Video Wrapper */
+.video-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Play Button Overlay */
+.video-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.video-card:hover .video-play-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(255, 45, 85, 0.4);
+}
+
+.play-btn svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 4px;
+}
+
+.play-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(255, 45, 85, 0.5);
+}
+
+/* Video Info */
+.video-info {
+  padding: var(--spacing-lg);
+}
+
+.video-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.video-description {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-sm);
+}
+
+.video-duration {
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.video-badge-employee {
+  font-size: 12px;
+  color: var(--accent-color);
+  margin-top: var(--spacing-xs);
+  font-weight: 500;
+}
+
+/* Responsive Video Grid */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .page-title {
+    font-size: 28px;
+  }
+  
+  .page-title-icon {
+    font-size: 32px;
+  }
+  
+  .award-video-card {
+    max-width: 100%;
+  }
+  
+  .award-video-card .video-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-card .video-info {
+    padding: var(--spacing-md);
+  }
+  
+  .play-btn {
+    width: 52px;
+    height: 52px;
+  }
+  
+  .play-btn svg {
+    width: 22px;
+    height: 22px;
+  }
+}
