@@ -477,33 +477,56 @@ function renderPodium(top3, containerId, title) {
     return 'TikTok Shop';
   };
   
+  const getScore = (item) => item.score || item.points || 0;
+  
+  // Check if all top 3 have the same score
+  const allSameScore = top3.length >= 2 && top3.every(item => getScore(item) === getScore(top3[0]));
+  
+  // Get the display rank based on scores
+  const getDisplayRank = (index) => {
+    if (allSameScore) return '#1'; // All same score = all #1
+    return `#${index + 1}`;
+  };
+  
+  const getMedal = (index) => {
+    if (allSameScore) return '🥇'; // All same score = all gold
+    const medals = ['🥇', '🥈', '🥉'];
+    return medals[index] || '';
+  };
+  
+  const getPodiumClass = (index) => {
+    if (allSameScore) return 'first'; // All same score = all first place style
+    const classes = ['first', 'second', 'third'];
+    return classes[index] || '';
+  };
+  
   let html = `
     <div class="podium">
       ${top3[1] ? `
-        <div class="podium-item second">
-          <div class="podium-medal">🥈</div>
-          <div class="podium-rank">#2</div>
+        <div class="podium-item ${getPodiumClass(1)}">
+          <div class="podium-medal">${getMedal(1)}</div>
+          <div class="podium-rank">${getDisplayRank(1)}</div>
           <div class="podium-name">${top3[1].name}</div>
           <div class="podium-dept">${getDept(top3[1])}</div>
-          <div class="podium-score">${top3[1].score || top3[1].points || 0} pts</div>
+          <div class="podium-score">${getScore(top3[1])} pts</div>
         </div>
       ` : ''}
       ${top3[0] ? `
-        <div class="podium-item first">
-          <div class="podium-medal">🥇</div>
-          <div class="podium-rank">#1</div>
+        <div class="podium-item ${getPodiumClass(0)}">
+          <div class="podium-medal">${getMedal(0)}</div>
+          <div class="podium-rank">${getDisplayRank(0)}</div>
           <div class="podium-name">${top3[0].name}</div>
           <div class="podium-dept">${getDept(top3[0])}</div>
-          <div class="podium-score">${top3[0].score || top3[0].points || 0} pts</div>
+          <div class="podium-score">${getScore(top3[0])} pts</div>
         </div>
       ` : ''}
       ${top3[2] ? `
-        <div class="podium-item third">
-          <div class="podium-medal">🥉</div>
-          <div class="podium-rank">#3</div>
+        <div class="podium-item ${getPodiumClass(2)}">
+          <div class="podium-medal">${getMedal(2)}</div>
+          <div class="podium-rank">${getDisplayRank(2)}</div>
           <div class="podium-name">${top3[2].name}</div>
           <div class="podium-dept">${getDept(top3[2])}</div>
-          <div class="podium-score">${top3[2].score || top3[2].points || 0} pts</div>
+          <div class="podium-score">${getScore(top3[2])} pts</div>
         </div>
       ` : ''}
     </div>

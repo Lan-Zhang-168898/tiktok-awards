@@ -426,12 +426,12 @@
           </div>
         </div>
 
-        <!-- Top 10 Rankings -->
+        <!-- Top 3 Rankings -->
         <section class="top10-section">
           <div class="section-header">
             <h2 class="section-title" style="font-size: 20px; margin: 0;">
               <span class="icon">🌟</span>
-              Global Top 10 Winners (Full Year Rankings)
+              Global Top 3 Winners (Full Year Rankings)
             </h2>
           </div>
           
@@ -442,9 +442,6 @@
           
           <!-- Podium (Top 3) -->
           <div id="top3-podium"></div>
-          
-          <!-- Ranking List (4-10) -->
-          <div id="top10-list"></div>
         </section>
 
         <!-- Award Summary -->
@@ -692,17 +689,6 @@
             department: memberDeptMap[r.name] || 'TikTok Shop'
           }));
           renderPodium(top3, 'top3-podium');
-          
-          // Render Top 10 List (4-10)
-          if (rankings.top10.length > 3) {
-            const rankingList = rankings.top10.slice(3).map((r, i) => ({
-              rank: i + 4,
-              name: r.name,
-              score: r.points,
-              department: memberDeptMap[r.name] || ''
-            }));
-            renderRankingList(rankingList, 4, 'top10-list');
-          }
         }
         
         // Calculate and render stats
