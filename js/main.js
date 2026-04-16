@@ -745,7 +745,7 @@ function renderGlobalAwards(data, containerId, half) {
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
           <span class="card-icon">📦</span>
-          <span class="card-title">${project.project_name}</span>
+          <span class="card-title">${project.project_english_name || project.project_name}</span>
         </div>
         <div class="card-body">
           <div class="card-period">${half}</div>
@@ -856,7 +856,7 @@ function renderProjectCards(awards, region, half) {
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
           <span class="card-icon">📦</span>
-          <span class="card-title">${project.project_name}</span>
+          <span class="card-title">${project.project_english_name || project.project_name}</span>
         </div>
         <div class="card-body">
           <div class="card-period">${half}</div>
