@@ -584,18 +584,140 @@ h2 {
     .nav-link { padding: 6px 12px; font-size: 12px; }
     .region-grid { grid-template-columns: 1fr; }
 }
+
+/* 领奖台榜单样式 */
+.podium-section {
+    margin: 40px 0;
+    padding: 30px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    border-radius: 25px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.podium-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.podium-header h3 {
+    color: #ffd700;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.podium-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.podium-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.podium-avatar.gold {
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    border: 3px solid #ffd700;
+    width: 80px;
+    height: 80px;
+}
+
+.podium-avatar.silver {
+    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+    border: 3px solid #c0c0c0;
+}
+
+.podium-avatar.bronze {
+    background: linear-gradient(135deg, #cd7f32, #b87333);
+    border: 3px solid #cd7f32;
+    width: 65px;
+    height: 65px;
+}
+
+.podium-name {
+    color: #fff;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.podium-count {
+    color: #a0a0a0;
+    font-size: 0.9em;
+    background: rgba(255,215,0,0.1);
+    padding: 4px 12px;
+    border-radius: 10px;
+}
+
+.podium-first {
+    transform: translateY(-10px);
+}
+
+.podium-first .podium-name {
+    color: #ffd700;
+    font-size: 1.2em;
+}
+
+.podium-second {
+    transform: translateY(-5px);
+}
+
+.podium-second .podium-name {
+    color: #c0c0c0;
+}
+
+.podium-third .podium-name {
+    color: #cd7f32;
+}
+
+@media (max-width: 768px) {
+    .podium-container {
+        gap: 10px;
+    }
+    .podium-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+    .podium-avatar.gold {
+        width: 60px;
+        height: 60px;
+    }
+    .podium-avatar.bronze {
+        width: 45px;
+        height: 45px;
+    }
+}
+
 </style>
 
 </head>
 <body>
     
 <div class="nav-bar">
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/" class="nav-link">Home</a>
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/global.html" class="nav-link">Global</a>
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/regional.html" class="nav-link">Regional</a>
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/" class="nav-link">Departmental</a>
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/" class="nav-link">Media Gallery</a>
-    <a href="https://lan-zhang-168898.github.io/tiktok-awards/" class="nav-link">Profile</a>
+    <a href="https://www.coze.cn/s/kSovuCMEfyk/" class="nav-link">Home</a>
+    <a href="https://www.coze.cn/s/joLr79r-BBM/" class="nav-link">Global</a>
+    <a href="https://www.coze.cn/s/iaJMGPEoU9k/" class="nav-link">Regional</a>
+    <a href="#" class="nav-link">Departmental</a>
+    <a href="#" class="nav-link">Media Gallery</a>
+    <a href="#" class="nav-link">Profile</a>
 </div>
 
     
@@ -668,10 +790,36 @@ h2 {
                 </div>
             </a>
         </div>
+        
+        
+        <!-- Top 3 领奖台榜单 -->
+        <div class="podium-section">
+            <div class="podium-header">
+                <h3>🌍 Regional Top 3 Contributors</h3>
+            </div>
+            <div class="podium-container">
+                <div class="podium-item podium-second">
+                    <div class="podium-avatar silver">🥈</div>
+                    <div class="podium-name">梁洁莉</div>
+                    <div class="podium-count">4 个项目</div>
+                </div>
+                <div class="podium-item podium-first">
+                    <div class="podium-avatar gold">🥇</div>
+                    <div class="podium-name">朱家琦</div>
+                    <div class="podium-count">5 个项目</div>
+                </div>
+                <div class="podium-item podium-third">
+                    <div class="podium-avatar bronze">🥉</div>
+                    <div class="podium-name">王东</div>
+                    <div class="podium-count">4 个项目</div>
+                </div>
+            </div>
+        </div>
+    
     </div>
     
     <div class="footer">
-        <p>© 2024 TikTok Shop | <a href="https://lan-zhang-168898.github.io/tiktok-awards/">← Back to Home</a></p>
+        <p>© 2024 TikTok Shop | <a href="main.html">← Back to Home</a></p>
     </div>
     
     
