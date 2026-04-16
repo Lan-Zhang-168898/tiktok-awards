@@ -1029,7 +1029,7 @@ function renderIndividualCards(awards, region, half) {
           </div>
         </div>
       `;
-    }
+    });
   });
   
   html += '</div>';
