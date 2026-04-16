@@ -187,16 +187,32 @@
     #top10-list {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--spacing-sm);
+      gap: 6px;
     }
     
     #top10-list .ranking-item {
-      grid-template-columns: 40px 1fr 60px;
-      padding: var(--spacing-sm) var(--spacing-md);
+      grid-template-columns: 36px 1fr;
+      padding: 8px 12px;
+      gap: 8px;
     }
     
     #top10-list .ranking-dept {
-      display: none;
+      display: block;
+      font-size: 11px;
+      grid-column: 2;
+      grid-row: 2;
+      text-align: left;
+      margin-top: -4px;
+    }
+    
+    #top10-list .ranking-name {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    
+    #top10-list .ranking-score {
+      grid-row: 1 / 3;
+      align-self: center;
     }
     
     /* Stats Grid - Full Width at Bottom */
