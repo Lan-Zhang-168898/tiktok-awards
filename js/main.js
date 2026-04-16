@@ -342,6 +342,13 @@ function renderPodium(top3, containerId, title) {
   const container = document.getElementById(containerId);
   if (!container || top3.length === 0) return;
   
+  // Helper to get display department or fallback
+  const getDept = (item) => {
+    if (item.department && item.department !== 'undefined') return item.department;
+    if (item.region && item.region !== 'undefined') return item.region;
+    return 'TikTok Shop';
+  };
+  
   let html = `
     <div class="podium">
       ${top3[1] ? `
@@ -349,8 +356,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥈</div>
           <div class="podium-rank">#2</div>
           <div class="podium-name">${top3[1].name}</div>
-          <div class="podium-dept">${top3[1].department || top3[1].region || 'TikTok Shop'}</div>
-          <div class="podium-score">${top3[1].score || top3[1].points} pts</div>
+          <div class="podium-dept">${getDept(top3[1])}</div>
+          <div class="podium-score">${top3[1].score || top3[1].points || 0} pts</div>
         </div>
       ` : ''}
       ${top3[0] ? `
@@ -358,8 +365,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥇</div>
           <div class="podium-rank">#1</div>
           <div class="podium-name">${top3[0].name}</div>
-          <div class="podium-dept">${top3[0].department || top3[0].region || 'TikTok Shop'}</div>
-          <div class="podium-score">${top3[0].score || top3[0].points} pts</div>
+          <div class="podium-dept">${getDept(top3[0])}</div>
+          <div class="podium-score">${top3[0].score || top3[0].points || 0} pts</div>
         </div>
       ` : ''}
       ${top3[2] ? `
@@ -367,8 +374,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥉</div>
           <div class="podium-rank">#3</div>
           <div class="podium-name">${top3[2].name}</div>
-          <div class="podium-dept">${top3[2].department || top3[2].region || 'TikTok Shop'}</div>
-          <div class="podium-score">${top3[2].score || top3[2].points} pts</div>
+          <div class="podium-dept">${getDept(top3[2])}</div>
+          <div class="podium-score">${top3[2].score || top3[2].points || 0} pts</div>
         </div>
       ` : ''}
     </div>
