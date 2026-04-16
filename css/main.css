@@ -1118,7 +1118,26 @@ img {
   text-align: center;
 }
 
-/* ==================== Like Button Update ==================== */
+/* ==================== Like Button ==================== */
+.like-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
 .like-btn.liked {
   background: rgba(255, 45, 85, 0.15);
   border-color: var(--primary-color);

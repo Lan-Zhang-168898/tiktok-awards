@@ -605,6 +605,8 @@ function closeCommentsModal() {
 // ==================== Share/Poster Functions ====================
 
 function showShareModal(projectName, teamAward, bonus, reason, members) {
+  console.log('showShareModal called:', { projectName, teamAward, bonus });
+  
   const modal = document.getElementById('share-modal');
   const modalTitle = document.getElementById('share-modal-title');
   const posterPreview = document.getElementById('poster-preview');
@@ -759,7 +761,7 @@ function renderGlobalAwards(data, containerId, half) {
     html += `
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
-          <span class="card-icon">📦</span>
+          <span class="card-icon">🏆</span>
           <span class="card-title">${project.project_english_name || project.project_name}</span>
         </div>
         <div class="card-body">
@@ -870,7 +872,7 @@ function renderProjectCards(awards, region, half) {
     html += `
       <div class="card project-card" data-card-id="${cardId}">
         <div class="card-header">
-          <span class="card-icon">📦</span>
+          <span class="card-icon">🏆</span>
           <span class="card-title">${project.project_english_name || project.project_name}</span>
         </div>
         <div class="card-body">
