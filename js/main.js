@@ -698,7 +698,12 @@ async function downloadPoster() {
 // ==================== Global Page Functions ====================
 function renderGlobalAwards(data, containerId, half) {
   const container = document.getElementById(containerId);
-  if (!container || !data) return;
+  if (!container || !data) {
+    console.error('renderGlobalAwards: missing container or data', { container: !!container, data: !!data });
+    return;
+  }
+  
+  console.log('renderGlobalAwards called:', { half, hasH1: !!data['H1项目奖'], hasH2: !!data['H2项目奖'], h2Count: (data['H2项目奖'] || []).length });
   
   let awards = [];
   if (half === 'H1') {
@@ -706,6 +711,8 @@ function renderGlobalAwards(data, containerId, half) {
   } else {
     awards = getH2ProjectAwards(data);
   }
+  
+  console.log('Awards fetched:', awards.length, 'for half:', half);
   
   if (awards.length === 0) {
     container.innerHTML = '<div class="no-data-msg">No awards available for this period</div>';
@@ -724,7 +731,8 @@ function renderGlobalAwards(data, containerId, half) {
         reason: award.reason,
         members: [],
         department: award.department,
-        period: award.period
+        period: award.period,
+        project_english_name: award.project_english_name
       };
     }
     award.members.forEach(m => {
@@ -733,6 +741,8 @@ function renderGlobalAwards(data, containerId, half) {
       }
     });
   });
+  
+  console.log('Project groups:', Object.keys(projectGroups));
   
   let html = '<div class="awards-grid">';
   
