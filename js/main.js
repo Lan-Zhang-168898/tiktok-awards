@@ -440,15 +440,20 @@ function calculateRegionTop3FullYear(regionData, region) {
   });
   
   allIndividualAwards.forEach(award => {
-    const key = award.winner_name || award.member_name;
-    if (key) {
-      const dept = getSafeDept(award.department, region, 'Regional');
-      if (!memberScores[key]) {
-        memberScores[key] = { name: key, score: 0, awards: 0, department: dept };
+    // Handle both winner_name and members array formats
+    const memberNames = award.members || (award.winner_name ? [award.winner_name] : []);
+    const dept = getSafeDept(award.department, award.region, 'Regional');
+    
+    memberNames.forEach(memberName => {
+      const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
+      if (memberNameStr) {
+        if (!memberScores[memberNameStr]) {
+          memberScores[memberNameStr] = { name: memberNameStr, score: 0, awards: 0, department: dept };
+        }
+        memberScores[memberNameStr].score += 3;
+        memberScores[memberNameStr].awards += 1;
       }
-      memberScores[key].score += 3;
-      memberScores[key].awards += 1;
-    }
+    });
   });
   
   return Object.values(memberScores)
@@ -971,23 +976,28 @@ function renderIndividualCards(awards, region, half) {
   let html = '<div class="awards-grid">';
   
   awards.forEach(award => {
-    if (award.winner_name) {
-      const cardId = `individual_${region}_${award.winner_name.replace(/\s+/g, '_')}`;
+    // Handle both winner_name and members array formats
+    const memberNames = award.members || (award.winner_name ? [award.winner_name] : []);
+    
+    memberNames.forEach((memberName, idx) => {
+      const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
+      const cardId = `individual_${region}_${memberNameStr.replace(/\s+/g, '_')}_${idx}`;
       const likeCount = getLikeCount(cardId);
-      const reasonText = award.reason || '';
+      const reasonText = award.reason || award.award_reason || '';
       const deptDisplay = award.department || award.region || region;
+      const awardName = award.project_name || award.team_award || 'Stellar Contributor';
       
       html += `
         <div class="card individual-card" data-card-id="${cardId}">
           <div class="card-header">
             <span class="card-icon">👤</span>
-            <span class="card-title">${award.winner_name}</span>
+            <span class="card-title">${memberNameStr}</span>
           </div>
           <div class="card-meta">${deptDisplay}</div>
           <div class="card-body">
             <div class="card-period">${half} | ${award.quarter || 'Q1-Q4'}</div>
             <div class="card-award">
-              <span class="card-award-name">🌟 ${award.team_award || 'Stellar Contributor'}</span>
+              <span class="card-award-name">🌟 ${awardName}</span>
             </div>
             <div class="card-amount">${formatCurrency(award.bonus)}</div>
             <div class="card-reason-scroll">
@@ -996,13 +1006,13 @@ function renderIndividualCards(awards, region, half) {
           </div>
           <div class="card-footer">
             <div class="card-actions">
-              <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${award.winner_name.replace(/'/g, "\\'")}')">
+              <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${memberNameStr.replace(/'/g, "\\'")}')">
                 ❤️ <span class="like-count">${likeCount}</span>
               </button>
-              <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${award.winner_name.replace(/'/g, "\\'")}', 'Individual Award')">
+              <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberNameStr.replace(/'/g, "\\'")}', 'Individual Award')">
                 💬 Comment
               </button>
-              <button class="share-btn" onclick="showShareModal('${award.winner_name.replace(/'/g, "\\'")}', '${award.team_award || 'Stellar Contributor'}', '${award.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', [{name: '${award.winner_name}', email: '${award.email || ''}'}])">
+              <button class="share-btn" onclick="showShareModal('${memberNameStr.replace(/'/g, "\\'")}', '${awardName}', '${award.bonus || ''}', '${(reasonText || '').replace(/'/g, "\\'")}', [{name: '${memberNameStr}', email: '${award.email || ''}'}])">
                 📤 Share
               </button>
             </div>
