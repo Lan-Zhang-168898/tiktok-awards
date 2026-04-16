@@ -492,32 +492,12 @@
       });
     }
     
-    // Initialize quarter toggle (for LATAM)
-    function initQuarterToggle() {
-      const quarterBtns = document.querySelectorAll('.quarter-btn');
-      
-      quarterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          quarterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          AppData.currentLatamQuarter = btn.dataset.quarter;
-          
-          if (regionalData) {
-            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
-            renderPodium(top3, 'regional-top3');
-            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
-          }
-        });
-      });
-    }
-    
     document.addEventListener('DOMContentLoaded', async () => {
       // Initialize navigation
       highlightNavigation();
       initYearNavigation();
       initRegionNav();
       initAwardTypeToggle();
-      initQuarterToggle();
       
       // Load initial region data
       await loadRegionalData(currentRegion);
