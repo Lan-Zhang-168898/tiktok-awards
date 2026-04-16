@@ -280,21 +280,7 @@
     // Home page specific initialization
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        // Load rankings data
-        const rankings = await loadRankings();
-        
-        if (rankings) {
-          // Render Top 3 Podium
-          const top3 = rankings.top10?.slice(0, 3) || [];
-          renderPodium(top3, 'top3-podium');
-          
-          // Render Top 10 List (4-10)
-          if (rankings.top10?.length > 3) {
-            renderRankingList(rankings.top10, 4, 'top10-list');
-          }
-        }
-        
-        // Load all data for stats
+        // Load all data first (global + regional) for combined rankings calculation
         const [global, us, eu, sea, latam] = await Promise.all([
           loadData('global'),
           loadData('regional', 'us'),
@@ -302,6 +288,20 @@
           loadData('regional', 'sea'),
           loadData('regional', 'latam')
         ]);
+        
+        // Calculate combined rankings from H1+H2 data with department info
+        const combinedRankings = calculateCombinedRankings();
+        
+        if (combinedRankings && combinedRankings.length > 0) {
+          // Render Top 3 Podium using combined rankings (with department info)
+          const top3 = combinedRankings.slice(0, 3);
+          renderPodium(top3, 'top3-podium');
+          
+          // Render Top 10 List (4-10)
+          if (combinedRankings.length > 3) {
+            renderRankingList(combinedRankings, 4, 'top10-list');
+          }
+        }
         
         // Calculate and render stats
         renderHomeStats({ global, regional: { us, eu, sea, latam } });
