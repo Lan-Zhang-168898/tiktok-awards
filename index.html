@@ -278,7 +278,8 @@
   <script src="js/main.js"></script>
   <script>
     // Home page specific initialization
-    document.addEventListener('DOMContentLoaded', async () => {
+    // Note: Wait for main.js to load first, then use its functions
+    window.addEventListener('load', async () => {
       try {
         // Load all data first (global + regional) for combined rankings calculation
         const [global, us, eu, sea, latam] = await Promise.all([
@@ -288,6 +289,9 @@
           loadData('regional', 'sea'),
           loadData('regional', 'latam')
         ]);
+        
+        // Wait a bit to ensure AppData is updated
+        await new Promise(resolve => setTimeout(resolve, 100));
         
         // Calculate combined rankings from H1+H2 data with department info
         const combinedRankings = calculateCombinedRankings();
@@ -306,9 +310,18 @@
         // Calculate and render stats
         renderHomeStats({ global, regional: { us, eu, sea, latam } });
         
+        // Initialize search
+        initSearch();
+        
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
+    });
+    
+    // Initialize navigation immediately
+    document.addEventListener('DOMContentLoaded', () => {
+      highlightNavigation();
+      initYearNavigation();
     });
     
     // Render Home Stats - Now includes H1 + H2 data
