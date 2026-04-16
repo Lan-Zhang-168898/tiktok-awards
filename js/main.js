@@ -255,8 +255,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥈</div>
           <div class="podium-rank">#2</div>
           <div class="podium-name">${top3[1].name}</div>
-          <div class="podium-dept">${top3[1].department}</div>
-          <div class="podium-score">${top3[1].score} pts</div>
+          <div class="podium-dept">${top3[1].department || top3[1].region || 'TikTok Shop'}</div>
+          <div class="podium-score">${top3[1].score || top3[1].points} pts</div>
         </div>
       ` : ''}
       ${top3[0] ? `
@@ -264,8 +264,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥇</div>
           <div class="podium-rank">#1</div>
           <div class="podium-name">${top3[0].name}</div>
-          <div class="podium-dept">${top3[0].department}</div>
-          <div class="podium-score">${top3[0].score} pts</div>
+          <div class="podium-dept">${top3[0].department || top3[0].region || 'TikTok Shop'}</div>
+          <div class="podium-score">${top3[0].score || top3[0].points} pts</div>
         </div>
       ` : ''}
       ${top3[2] ? `
@@ -273,8 +273,8 @@ function renderPodium(top3, containerId, title) {
           <div class="podium-medal">🥉</div>
           <div class="podium-rank">#3</div>
           <div class="podium-name">${top3[2].name}</div>
-          <div class="podium-dept">${top3[2].department}</div>
-          <div class="podium-score">${top3[2].score} pts</div>
+          <div class="podium-dept">${top3[2].department || top3[2].region || 'TikTok Shop'}</div>
+          <div class="podium-score">${top3[2].score || top3[2].points} pts</div>
         </div>
       ` : ''}
     </div>
@@ -295,8 +295,8 @@ function renderRankingList(rankings, startRank = 4, containerId) {
       <div class="ranking-item">
         <span class="ranking-rank">#${r.rank || i + 1}</span>
         <span class="ranking-name">${r.name}</span>
-        <span class="ranking-dept">${r.department || ''}</span>
-        <span class="ranking-score">${r.points || r.score} pts</span>
+        <span class="ranking-dept">${r.department || r.region || ''}</span>
+        <span class="ranking-score">${r.points || r.score || 0} pts</span>
       </div>
     `;
   }
@@ -656,7 +656,8 @@ function performSearch(query) {
           type: 'Top Performer',
           level: `Rank #${r.rank}`,
           name: r.name,
-          points: r.points
+          points: r.points,
+          department: r.department || r.region || 'TikTok Shop'
         });
       }
     });
