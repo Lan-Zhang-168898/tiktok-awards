@@ -584,6 +584,7 @@
   <script src="js/main.js"></script>
   <script>
     // Render Home Stats - Now includes H1 + H2 data
+    // IMPORTANT: Project awards are counted by unique project, not by member records
     function renderHomeStats(globalData, regionalData) {
       let globalProjects = 0;
       let regionalProjects = 0;
@@ -591,26 +592,30 @@
       let totalBonus = 0;
       let uniqueWinners = new Set();
       
-      // Count Global Projects (H1 + H2)
+      // Count Global Projects (H1 + H2) - by unique project
       if (globalData) {
         const h1Awards = globalData['H1项目奖'] || [];
         const h2Awards = globalData['H2项目奖'] || [];
         const allGlobalAwards = [...h1Awards, ...h2Awards];
         
-        // Count unique projects
-        const uniqueProjects = new Set(allGlobalAwards.map(a => a.project_name));
-        globalProjects = uniqueProjects.size;
-        
-        // Sum bonuses and collect winners
+        // Group by project_name and sum bonus per project (not per record)
+        const projectBonuses = {};
         allGlobalAwards.forEach(a => {
-          if (a.bonus) totalBonus += Number(a.bonus);
+          const pname = a.project_name;
+          if (!projectBonuses[pname]) {
+            projectBonuses[pname] = Number(a.bonus) || 0;
+          }
+          // Collect winners
           if (a.members) {
             a.members.forEach(m => uniqueWinners.add(m));
           }
         });
+        
+        globalProjects = Object.keys(projectBonuses).length;
+        totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
       }
       
-      // Count Regional Projects & Individuals (H1 + H2)
+      // Count Regional Projects & Individuals (H1 + H2) - by unique project
       const regions = ['us', 'eu', 'sea', 'latam'];
       regions.forEach(region => {
         const regionData = regionalData[region];
@@ -619,19 +624,26 @@
           const h2Proj = regionData['H2项目奖'] || [];
           const allProjAwards = [...h1Proj, ...h2Proj];
           
-          const uniqueProjects = new Set(allProjAwards.map(a => a.project_name));
-          regionalProjects += uniqueProjects.size;
-          
-          const indivAwards = regionData['H2个人奖'] || [];
-          individualAwards += indivAwards.length;
-          
-          // Sum regional bonuses and collect winners
+          // Group by project_name and sum bonus per project (not per record)
+          const projectBonuses = {};
           allProjAwards.forEach(a => {
-            if (a.bonus) totalBonus += Number(a.bonus);
+            const pname = a.project_name;
+            if (!projectBonuses[pname]) {
+              projectBonuses[pname] = Number(a.bonus) || 0;
+            }
+            // Collect winners
             if (a.members) {
               a.members.forEach(m => uniqueWinners.add(m));
             }
           });
+          
+          regionalProjects += Object.keys(projectBonuses).length;
+          totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
+          
+          // Individual awards - count by person
+          const indivAwards = regionData['H2个人奖'] || [];
+          individualAwards += indivAwards.length;
+          
           indivAwards.forEach(a => {
             if (a.bonus) totalBonus += Number(a.bonus);
             if (a.winner_name) uniqueWinners.add(a.winner_name);
@@ -658,6 +670,14 @@
           <div class="stat-item">
             <div class="stat-value">${formatBonus(totalBonus)}</div>
             <div class="stat-label">Total Bonus</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">${uniqueWinners.size}</div>
+            <div class="stat-label">Team Members</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">4</div>
+            <div class="stat-label">Regions</div>
           </div>
         `;
       }
