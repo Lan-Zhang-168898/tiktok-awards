@@ -1,0 +1,95 @@
+{
+  "videos": [
+    {
+      "id": "featured-2026",
+      "title": "All Hands 颁奖典礼 (50p)",
+      "description": "2026 H1 Global E-commerce All-hands Award Ceremony Highlights",
+      "type": "featured",
+      "source": "local",
+      "url": "videos/award-video.mp4",
+      "duration": "50mins",
+      "badge": "Featured",
+      "uploadedAt": "2026-04-17"
+    },
+    {
+      "id": "sea-eu-seller",
+      "title": "SEA + EU Seller Stories",
+      "description": "Regional seller stories showcase",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/IUNrbaWK7oRErvx1p5HcfaHYntf",
+      "duration": "5mins 20secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "global-selling",
+      "title": "Global Selling Opening Video",
+      "description": "Global Selling department opening video",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/I1xFbC4tZozMGPxm7wTcFRNKn8b",
+      "duration": "2mins 10secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "latam-brazil",
+      "title": "TikTok Shop Brazil",
+      "description": "LATAM region showcase",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/N1Z9bEUaooU4jdxziswckLhSnGb",
+      "duration": "1min 9secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "us-mademyear",
+      "title": "TTS US #MadeMyYear",
+      "description": "US region campaign video",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/AZrzbdDDUoAOEkxVMALcJOfbnyU",
+      "duration": "1min 48secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "sea-fast-delivery",
+      "title": "SEA Fast Delivery",
+      "description": "SEA logistics feature",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/OXpdbLlKPoA2Wvx5tAjcB76AnQb",
+      "duration": "30secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "sea-free-return",
+      "title": "SEA Free Return",
+      "description": "SEA returns policy feature",
+      "type": "opening",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/UgsybsmKVo6QbDxmXDYc0AU3nLg",
+      "duration": "30secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "employee-interview",
+      "title": "Employee Street Interview",
+      "description": "Team member interviews",
+      "type": "story",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/XZjedBRxJoPJvnxfnDRcQgNBnOb",
+      "duration": "2mins 25secs",
+      "uploadedAt": "2026-01-01"
+    },
+    {
+      "id": "leader-version",
+      "title": "Scale New Heights - Leader Version",
+      "description": "All hands Leader version 2.11",
+      "type": "story",
+      "source": "feishu",
+      "url": "https://bytedance.larkoffice.com/file/KVCNbGUQboPCGcxPzjFcDkcmnBc",
+      "duration": null,
+      "uploadedAt": "2026-01-01"
+    }
+  ]
+}
