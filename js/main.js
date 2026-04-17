@@ -381,20 +381,26 @@ function calculateRegionTop3(regionData, region, period) {
       : getAllIndividualAwards(regionData);
     
     individualAwards.forEach(award => {
-      const key = award.winner_name;
-      if (key) {
-        if (!memberScores[key]) {
-          memberScores[key] = {
-            name: award.winner_name,
-            score: 0,
-            awards: 0,
-            email: award.email || '',
-            department: getSafeDept(award.department, region, 'Regional')
-          };
+      // Handle both winner_name and members array formats
+      const memberNames = award.members || (award.winner_name ? [award.winner_name] : []);
+      const dept = getSafeDept(award.department, region, 'Regional');
+      
+      memberNames.forEach(memberName => {
+        const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
+        if (memberNameStr) {
+          if (!memberScores[memberNameStr]) {
+            memberScores[memberNameStr] = {
+              name: memberNameStr,
+              score: 0,
+              awards: 0,
+              email: award.email || '',
+              department: dept
+            };
+          }
+          memberScores[memberNameStr].score += 3;
+          memberScores[memberNameStr].awards += 1;
         }
-        memberScores[key].score += 3;
-        memberScores[key].awards += 1;
-      }
+      });
     });
   }
   
