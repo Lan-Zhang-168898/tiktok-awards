@@ -408,19 +408,23 @@
         // LATAM: show Q buttons, hide H1/H2 buttons
         awardTypeWrapper.style.display = 'none';
         quarterToggle.style.display = 'block';
-        // Reset to Q1
-        currentAwardType = 'Q1';
+        // Reset to Q1 only if switching to LATAM
+        if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+          currentAwardType = 'Q1';
+        }
         document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.type === 'Q1');
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else {
         // Non-LATAM: show H1/H2 buttons, hide Q buttons
         awardTypeWrapper.style.display = 'block';
         quarterToggle.style.display = 'none';
-        // Reset to H1
-        currentAwardType = 'H1项目奖';
+        // Only reset if coming from LATAM (Q1-Q4)
+        if (['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+          currentAwardType = 'H1项目奖';
+        }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.type === 'H1项目奖');
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       }
     }
