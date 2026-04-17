@@ -477,8 +477,11 @@
     function initAwardTypeToggle() {
       // Non-LATAM buttons
       const typeBtns = document.querySelectorAll('#award-type-wrapper .award-type-btn');
+      console.log('initAwardTypeToggle: found', typeBtns.length, 'buttons');
+      
       typeBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          console.log('Tab clicked:', btn.dataset.type, 'currentRegion:', currentRegion);
           if (currentRegion === 'latam') return; // Don't allow clicking H buttons for LATAM
           typeBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
@@ -486,10 +489,15 @@
           
           updateLabels();
           
+          console.log('Rendering awards for:', currentAwardType, 'hasData:', !!regionalData);
           if (regionalData) {
-            const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
-            renderPodium(top3, 'regional-top3');
-            renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            try {
+              const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
+              renderPodium(top3, 'regional-top3');
+              renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            } catch (e) {
+              console.error('Error rendering awards:', e);
+            }
           }
         });
       });
