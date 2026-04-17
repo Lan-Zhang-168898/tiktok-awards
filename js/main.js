@@ -1050,7 +1050,6 @@ function renderIndividualCards(awards, region, half) {
           </div>
           <div class="card-meta">${deptDisplay}</div>
           <div class="card-body">
-            <div class="card-period">${half} | ${award.quarter || 'Q1-Q4'}</div>
             <div class="card-award">
               <span class="card-award-name">🌟 ${awardName}</span>
             </div>
