@@ -876,7 +876,7 @@
       // Filter videos based on current filter
       let filteredVideos = others;
       if (currentFilter === 'local') {
-        filteredVideos = others.filter(v => v.source === 'local');
+        filteredVideos = others.filter(v => v.source === 'local' || v.source === 'volcengine');
       } else if (currentFilter === 'feishu') {
         filteredVideos = others.filter(v => v.source === 'feishu');
       }
