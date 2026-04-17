@@ -400,6 +400,33 @@
         titleEl.textContent = regionNames[currentRegion] + ' Regional Awards';
       }
       
+      // Update H2个人奖 tab text based on region
+      const h2IndivTab = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2个人奖"]');
+      if (h2IndivTab) {
+        let tabTitle = 'Stellar Contributors';
+        let tabSubtitle = '';
+        
+        switch(currentRegion) {
+          case 'us':
+            tabTitle = 'BFCM';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          case 'eu':
+            tabTitle = 'BFCM/Tokutoku';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          case 'sea':
+            tabTitle = '11.11 & 12.12';
+            tabSubtitle = 'Stellar Contributors';
+            break;
+          default:
+            tabTitle = 'Stellar';
+            tabSubtitle = 'Contributors';
+        }
+        
+        h2IndivTab.innerHTML = `${tabTitle}<span class="btn-subtitle">${tabSubtitle}</span>`;
+      }
+      
       // Show/hide toggle wrappers based on region
       const awardTypeWrapper = document.getElementById('award-type-wrapper');
       const quarterToggle = document.getElementById('quarter-toggle');

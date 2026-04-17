@@ -1028,7 +1028,19 @@ function renderIndividualCards(awards, region, half) {
       const likeCount = getLikeCount(cardId);
       const reasonText = award.reason || award.award_reason || '';
       const deptDisplay = award.department || award.region || region;
-      const awardName = award.project_name || award.team_award || 'Stellar Contributor';
+      
+      // Determine award name based on region and department
+      let awardName = award.project_name || award.team_award || 'Stellar Contributor';
+      
+      // For EU region, check if it's Japan-related
+      if (region === 'eu' && award.project_name === 'BFCM/Tokutoku Thanks Sale Stellar Contributors') {
+        const dept = (award.department || '').toLowerCase();
+        if (dept.includes('jp') || dept.includes('japan')) {
+          awardName = 'Tokutoku Thanks Sale Stellar Contributors';
+        } else {
+          awardName = 'BFCM Stellar Contributors';
+        }
+      }
       
       html += `
         <div class="card individual-card" data-card-id="${cardId}">
