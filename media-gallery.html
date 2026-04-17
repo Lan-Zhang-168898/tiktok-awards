@@ -676,83 +676,6 @@
         </h1>
         
         <!-- Upload Section -->
-        <section class="upload-section" id="uploadSection">
-          <div class="upload-title">
-            <span>📤</span>
-            Upload New Video
-          </div>
-          <p class="section-description">Add videos to your gallery. Videos will be hosted directly on the site for seamless playback.</p>
-          
-          <div class="upload-area" id="uploadArea">
-            <div class="upload-icon">
-              <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
-            </div>
-            <p class="upload-text">
-              <strong>Click to select</strong> or drag and drop videos here
-            </p>
-            <p class="upload-hint">Videos will open in-page for seamless viewing</p>
-            <div class="upload-formats">
-              <span class="format-badge">MP4</span>
-              <span class="format-badge">WEBM</span>
-              <span class="format-badge">MOV</span>
-            </div>
-            <input type="file" id="videoInput" class="upload-input" accept="video/*" multiple>
-          </div>
-          
-          <!-- Upload Preview -->
-          <div class="upload-preview" id="uploadPreview">
-            <div class="preview-title">Selected Videos (<span id="selectedCount">0</span>)</div>
-            <div id="previewList"></div>
-            <div class="upload-guide">
-              <div class="guide-title">
-                <span>📋</span> How to Add Videos to the Site
-              </div>
-              <ol class="guide-steps">
-                <li>Download your selected video file(s) above</li>
-                <li>Go to <code>videos/</code> folder in the repository</li>
-                <li>Upload your video file(s) to that folder</li>
-                <li>Edit <code>data/media.json</code> to add video metadata</li>
-                <li>Commit changes to see videos appear in the gallery</li>
-              </ol>
-              <div style="margin-top: var(--spacing-md);">
-                <button class="btn btn-secondary" onclick="clearSelection()">Clear Selection</button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Stats -->
-          <div class="upload-stats">
-            <div class="stat-item">
-              <span class="stat-icon">📹</span>
-              <div>
-                <div class="stat-value" id="totalVideos">0</div>
-                <div class="stat-label">Total Videos</div>
-              </div>
-            </div>
-            <div class="stat-item">
-              <span class="stat-icon">🖥️</span>
-              <div>
-                <div class="stat-value" id="localVideos">0</div>
-                <div class="stat-label">In-Page Playback</div>
-              </div>
-            </div>
-            <div class="stat-item">
-              <span class="stat-icon">🔗</span>
-              <div>
-                <div class="stat-value" id="externalVideos">0</div>
-                <div class="stat-label">External Links</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs" id="filterTabs">
-          <button class="filter-tab active" data-filter="all">All Videos</button>
-          <button class="filter-tab" data-filter="local">In-Page Playback</button>
-          <button class="filter-tab" data-filter="feishu">Feishu Links</button>
-        </div>
-
         <!-- Award Video Section -->
         <section class="video-section" id="featuredSection">
           <div class="section-header">
@@ -764,24 +687,6 @@
           <p class="section-description">Highlights from the 2026 H1 Global E-commerce All-hands Award Ceremony</p>
           
           <div id="featuredVideo"></div>
-        </section>
-
-        <!-- Videos Grid -->
-        <section class="video-section" id="videosSection">
-          <div class="section-header">
-            <h2 class="section-title">
-              <span class="icon">🎥</span>
-              All Videos
-            </h2>
-          </div>
-          <p class="section-description">Browse all available videos from the 2026 H1 All-hands meeting</p>
-          
-          <div class="video-grid" id="videoGrid"></div>
-          
-          <div class="empty-state" id="emptyState" style="display: none;">
-            <div class="empty-state-icon">🎬</div>
-            <p>No videos match your filter. Try a different category.</p>
-          </div>
         </section>
 
       </div>
