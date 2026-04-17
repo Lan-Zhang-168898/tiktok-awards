@@ -461,6 +461,8 @@
       const urlRegion = getUrlParam('region') || 'us';
       currentRegion = urlRegion;
       
+      console.log('initRegionNav: urlRegion=', urlRegion, 'currentRegion=', currentRegion, 'btns=', regionBtns.length);
+      
       regionBtns.forEach(btn => {
         btn.classList.remove('active');
         if (btn.dataset.region === urlRegion) {
@@ -468,6 +470,7 @@
         }
         
         btn.addEventListener('click', () => {
+          console.log('Region clicked:', btn.dataset.region);
           regionBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentRegion = btn.dataset.region;
@@ -526,14 +529,20 @@
     }
     
     document.addEventListener('DOMContentLoaded', async () => {
+      console.log('DOMContentLoaded fired');
+      
       // Initialize navigation
       highlightNavigation();
       initYearNavigation();
       initRegionNav();
       initAwardTypeToggle();
       
+      console.log('Initial currentRegion:', currentRegion, 'currentAwardType:', currentAwardType);
+      
       // Load initial region data
       await loadRegionalData(currentRegion);
+      
+      console.log('Data loaded, regionalData:', !!regionalData);
       
       // Initialize search
       initSearch();
