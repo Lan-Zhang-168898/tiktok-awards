@@ -656,7 +656,7 @@
         <div class="year-nav-wrapper" style="text-align: center; margin: var(--spacing-lg) 0 var(--spacing-lg);">
           <div class="year-nav-compact">
             <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            <button class="year-btn" data-year="2026" id="year-2026-btn">2026</button>
           </div>
         </div>
 
@@ -907,10 +907,23 @@
       highlightNavigation();
       initYearNavigation();
       
+      // Load initial data based on URL year parameter
+      await loadHomePageData();
+      
+      // Initialize search
+      initSearch();
+    });
+    
+    // 加载HomePage数据的函数
+    async function loadHomePageData() {
       try {
+        // Get year from URL or default to 2025
+        const urlYear = getUrlParam('year') || '2025';
+        AppData.currentYear = urlYear;
+        
         // Load all data for stats (H1 + H2)
-        const [rankings, global, us, eu, sea, latam] = await Promise.all([
-          loadRankings(),
+        const [rankingsData, global, us, eu, sea, latam] = await Promise.all([
+          loadRankings(urlYear),
           loadData('global'),
           loadData('regional', 'us'),
           loadData('regional', 'eu'),
@@ -938,28 +951,38 @@
           });
         });
         
-        if (rankings && rankings.top10 && rankings.top10.length > 0) {
-          // Render Top 3 Podium from rankings data (with department lookup)
-          const top3 = rankings.top10.slice(0, 3).map(r => ({
+        // Render Top 3 Podium from rankings data
+        if (rankingsData && rankingsData.top3 && rankingsData.top3.length > 0) {
+          const top3 = rankingsData.top3.map(r => ({
             name: r.name,
             score: r.points,
-            department: memberDeptMap[r.name] || 'TikTok Shop'
+            department: r.department || memberDeptMap[r.name] || 'TikTok Shop',
+            region: r.region || null
           }));
           renderPodium(top3, 'top3-podium');
+          
+          // 如果是2026年且只有LATAM数据，添加提示
+          if (urlYear === '2026' && rankingsData.note) {
+            const podiumSection = document.getElementById('top3-podium');
+            if (podiumSection) {
+              const noteDiv = document.createElement('div');
+              noteDiv.style.cssText = 'text-align: center; margin-top: 16px; font-size: 12px; color: var(--text-secondary);';
+              noteDiv.innerHTML = `<em>${rankingsData.note}</em>`;
+              podiumSection.parentElement.appendChild(noteDiv);
+            }
+          }
         }
         
         // Calculate and render stats
         renderHomeStats(global, { us, eu, sea, latam });
         
-        // Initialize search
-        initSearch();
-        
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
-    });
+    }
     
-    // Search functionality
+    // 初始化搜索功能
+    function initSearch() {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const searchResults = document.getElementById('search-results');

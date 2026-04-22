@@ -77,6 +77,13 @@ function updateYear2026Button() {
   
   const page = window.location.pathname.split('/').pop();
   
+  // HomePage和Regional页面（LATAM区域）：2026按钮可点击，不显示Coming Soon
+  if (page === 'index.html' || page === '' || page === '/') {
+    // HomePage：2026年有LATAM数据，所以可以点击
+    year2026Btn.innerHTML = '2026';
+    return;
+  }
+  
   // Global页面：始终显示Coming Soon
   if (page === 'global.html') {
     year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span>';
@@ -204,14 +211,22 @@ async function loadData(level, region = null) {
   }
 }
 
-async function loadRankings() {
+async function loadRankings(year = null) {
   try {
     const response = await fetch('data/rankings.json');
     if (!response.ok) throw new Error('Failed to load rankings');
     
     const data = await response.json();
     AppData.rankings = data;
-    return data;
+    
+    // 如果指定了年份，返回该年份的数据
+    if (year && data[year]) {
+      return data[year];
+    }
+    
+    // 否则返回当前年份的数据
+    const currentYear = AppData.currentYear || '2025';
+    return data[currentYear] || data['2025'];
   } catch (error) {
     console.error('Error loading rankings:', error);
     return null;
