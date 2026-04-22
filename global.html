@@ -329,6 +329,28 @@
     }
     
     .auth-btn.secondary:hover { border-color: var(--primary-color); }
+    
+    /* Auth actions - primary button container */
+    .auth-actions {
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .auth-actions .auth-btn {
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 32px;
+      font-size: 16px;
+    }
+    
+    .auth-icon.redirecting svg {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.95); }
+    }
+    
     .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
     
     .auth-loading {
