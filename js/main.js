@@ -83,7 +83,6 @@ function initYearNavigation() {
     }
     
     btn.addEventListener('click', () => {
-      if (btn.dataset.year === '2026') return; // Coming Soon
       const page = window.location.pathname.split('/').pop();
       const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
       window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}`;
@@ -207,8 +206,97 @@ function getAllIndividualAwards(data) {
 // Get individual awards by quarter (for LATAM)
 function getIndividualAwardsByQuarter(data, quarter) {
   if (!data) return [];
+  // Support both legacy and year-based structure
+  const currentYear = AppData.currentYear || '2025';
+  if (hasYearStructure(data)) {
+    const yearData = data[currentYear];
+    if (!yearData) return [];
+    const allIndividual = yearData['H2个人奖'] || [];
+    return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
+  }
   const allIndividual = data['H2个人奖'] || [];
   return allIndividual.filter(a => a.quarter === quarter || a.period === quarter);
+}
+
+// ==================== Helper Functions for Year-based Data Structure ====================
+
+// Check if data uses year-based structure (LATAM 2026+)
+function hasYearStructure(data) {
+  if (!data) return false;
+  // Year-based structure has keys like "2025", "2026" which are numeric strings
+  return Object.keys(data).some(key => /^\d{4}$/.test(key));
+}
+
+// Get data for specific year
+function getYearData(data, year) {
+  if (!data) return null;
+  if (hasYearStructure(data)) {
+    return data[year] || null;
+  }
+  // Legacy structure - return entire data
+  return data;
+}
+
+// Get H1 project awards (year-based structure)
+function getH1ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['H1项目奖'] || [];
+}
+
+// Get H2 project awards (year-based structure)
+function getH2ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['H2项目奖'] || [];
+}
+
+// Get H1 individual awards (year-based structure, for LATAM 2026)
+function getH1IndividualAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['H1个人奖'] || [];
+}
+
+// Get H2 individual awards (year-based structure)
+function getH2IndividualAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  return yearData['H2个人奖'] || [];
+}
+
+// Get LATAM individual awards by year and period
+function getLatamIndividualAwards(data, year, period) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  
+  if (period === 'H1个人奖') {
+    return yearData['H1个人奖'] || [];
+  } else if (period === 'H2个人奖') {
+    return yearData['H2个人奖'] || [];
+  }
+  return [];
+}
+
+// Get available award periods for LATAM by year
+function getAvailableLatamPeriods(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  
+  const periods = [];
+  if (yearData['H1个人奖'] && yearData['H1个人奖'].length > 0) {
+    periods.push('H1个人奖');
+  }
+  if (yearData['H2个人奖'] && yearData['H2个人奖'].length > 0) {
+    periods.push('H2个人奖');
+  }
+  if (yearData['H1项目奖'] && yearData['H1项目奖'].length > 0) {
+    periods.push('H1项目奖');
+  }
+  if (yearData['H2项目奖'] && yearData['H2项目奖'].length > 0) {
+    periods.push('H2项目奖');
+  }
+  return periods;
 }
 
 // ==================== Ranking Functions ====================
@@ -414,6 +502,7 @@ function calculateRegionTop3FullYear(regionData, region) {
   if (!regionData) return [];
   
   let memberScores = {};
+  const currentYear = AppData.currentYear || '2025';
   
   const getSafeDept = (dept, reg, defaultVal) => {
     if (dept && dept !== 'undefined' && dept !== 'null' && dept !== '') return dept;
@@ -421,16 +510,27 @@ function calculateRegionTop3FullYear(regionData, region) {
     return defaultVal || 'Regional';
   };
   
-  // Include ALL award types for full year ranking
-  const h1Awards = getH1ProjectAwards(regionData);
-  const h2Awards = getH2ProjectAwards(regionData);
-  const allIndividualAwards = region === 'latam' 
-    ? getIndividualAwardsByQuarter(regionData, 'Q1').concat(
+  // Include ALL award types for full year ranking (using year-aware functions)
+  const h1Awards = getH1ProjectAwardsYear(regionData, currentYear);
+  const h2Awards = getH2ProjectAwardsYear(regionData, currentYear);
+  
+  // For LATAM, combine all quarters or H1个人奖 based on year
+  let allIndividualAwards = [];
+  if (region === 'latam') {
+    if (currentYear === '2026') {
+      // 2026: use H1个人奖
+      allIndividualAwards = getH1IndividualAwardsYear(regionData, currentYear);
+    } else {
+      // 2025: use Q1-Q4 quarters
+      allIndividualAwards = getIndividualAwardsByQuarter(regionData, 'Q1').concat(
         getIndividualAwardsByQuarter(regionData, 'Q2'),
         getIndividualAwardsByQuarter(regionData, 'Q3'),
         getIndividualAwardsByQuarter(regionData, 'Q4')
-      )
-    : getAllIndividualAwards(regionData);
+      );
+    }
+  } else {
+    allIndividualAwards = getH2IndividualAwardsYear(regionData, currentYear);
+  }
   
   // Process all awards (3 pts each)
   [...h1Awards, ...h2Awards].forEach(award => {
@@ -905,8 +1005,9 @@ function renderRegionalAwards(data, containerId, period, region) {
   if (!container || !data) return;
   
   let html = '';
+  const currentYear = AppData.currentYear || '2025';
   
-  // LATAM quarter awards (Q1, Q2, Q3, Q4)
+  // LATAM quarter awards (Q1, Q2, Q3, Q4) - for LATAM 2025
   if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
     const quarterAwards = getIndividualAwardsByQuarter(data, period);
     if (quarterAwards.length === 0) {
@@ -914,23 +1015,31 @@ function renderRegionalAwards(data, containerId, period, region) {
     } else {
       html = renderIndividualCards(quarterAwards, region, period);
     }
+  } else if (period === 'H1个人奖') {
+    // LATAM H1 individual awards (2026)
+    const h1Awards = getH1IndividualAwardsYear(data, currentYear);
+    if (h1Awards.length === 0) {
+      html = `<div class="no-data-msg">No H1 individual awards available for LATAM ${currentYear}</div>`;
+    } else {
+      html = renderIndividualCards(h1Awards, region, 'H1');
+    }
   } else if (period === 'H1项目奖') {
-    const h1Awards = getH1ProjectAwards(data);
+    const h1Awards = getH1ProjectAwardsYear(data, currentYear);
     if (h1Awards.length === 0) {
       html = '<div class="no-data-msg">No H1 project awards available for this region</div>';
     } else {
       html = renderProjectCards(h1Awards, region, 'H1');
     }
   } else if (period === 'H2项目奖') {
-    const h2Awards = getH2ProjectAwards(data);
+    const h2Awards = getH2ProjectAwardsYear(data, currentYear);
     if (h2Awards.length === 0) {
       html = '<div class="no-data-msg">No H2 project awards available for this region</div>';
     } else {
       html = renderProjectCards(h2Awards, region, 'H2');
     }
   } else if (period === 'H2个人奖') {
-    // Non-LATAM individual awards
-    const individualAwards = getAllIndividualAwards(data);
+    // Non-LATAM individual awards or LATAM 2025 H2 individual
+    const individualAwards = getH2IndividualAwardsYear(data, currentYear);
     if (individualAwards.length === 0) {
       html = '<div class="no-data-msg">No individual awards (Stellar Contributors) available for this region</div>';
     } else {

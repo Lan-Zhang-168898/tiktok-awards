@@ -417,7 +417,7 @@
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
               <button class="year-btn active" data-year="2025">2025</button>
-              <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+              <button class="year-btn" data-year="2026">2026</button>
             </div>
           </div>
         </section>
@@ -472,7 +472,7 @@
 
         <!-- Quarter Toggle (for LATAM) -->
         <div class="award-type-wrapper" id="quarter-toggle" style="display: none;">
-          <div class="award-type-toggle">
+          <div class="award-type-toggle" id="quarter-buttons">
             <button class="award-type-btn active" data-type="Q1">
               Q1
               <span class="btn-subtitle">Stellar Contributors</span>
@@ -487,6 +487,12 @@
             </button>
             <button class="award-type-btn" data-type="Q4">
               Q4
+              <span class="btn-subtitle">Stellar Contributors</span>
+            </button>
+          </div>
+          <div class="award-type-toggle" id="h1-individual-button" style="display: none;">
+            <button class="award-type-btn active" data-type="H1个人奖">
+              H1
               <span class="btn-subtitle">Stellar Contributors</span>
             </button>
           </div>
@@ -605,17 +611,32 @@
         h2IndivTab.innerHTML = `${tabTitle}<span class="btn-subtitle">${tabSubtitle}</span>`;
       }
       
-      // Show/hide toggle wrappers based on region
+      // Show/hide toggle wrappers based on region and year
       const awardTypeWrapper = document.getElementById('award-type-wrapper');
       const quarterToggle = document.getElementById('quarter-toggle');
+      const quarterButtons = document.getElementById('quarter-buttons');
+      const h1IndividualButton = document.getElementById('h1-individual-button');
+      const currentYear = AppData.currentYear;
       
       if (currentRegion === 'latam') {
-        // LATAM: show Q buttons, hide H1/H2 buttons
+        // LATAM: show appropriate buttons based on year
         awardTypeWrapper.style.display = 'none';
         quarterToggle.style.display = 'block';
-        // Reset to Q1 only if switching to LATAM
-        if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
-          currentAwardType = 'Q1';
+        
+        if (currentYear === '2026') {
+          // 2026: show H1个人奖 button only
+          quarterButtons.style.display = 'none';
+          h1IndividualButton.style.display = 'block';
+          if (!['H1个人奖'].includes(currentAwardType)) {
+            currentAwardType = 'H1个人奖';
+          }
+        } else {
+          // 2025 and earlier: show Q buttons
+          quarterButtons.style.display = 'block';
+          h1IndividualButton.style.display = 'none';
+          if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+            currentAwardType = 'Q1';
+          }
         }
         document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
@@ -624,8 +645,8 @@
         // Non-LATAM: show H1/H2 buttons, hide Q buttons
         awardTypeWrapper.style.display = 'block';
         quarterToggle.style.display = 'none';
-        // Only reset if coming from LATAM (Q1-Q4)
-        if (['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+        // Only reset if coming from LATAM (Q1-Q4 or H1个人奖)
+        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1个人奖'].includes(currentAwardType)) {
           currentAwardType = 'H1项目奖';
         }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {

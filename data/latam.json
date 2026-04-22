@@ -1,1196 +1,1203 @@
 {
-  "H1项目奖": [],
-  "H2项目奖": [],
-  "H2个人奖": [
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Sammy",
-      "email": "chenyang.sammy@bytedance.com",
-      "department": "GNE-LATAM",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "In Q1, Sammy Chan supported LATAM's seller onboarding and governance work, ensuring a smooth market launch without blockers from GnE side. She owned seller governance policies & PBRs across the seller lifecycle, took over onboarding and post - onboarding strategies, and iterated them based on benchmarks and local practices. Together with other XFN teams, she achieved highly - performed seller onboarding metric: one time pass rate(OTPS) ~50%, moderation pass rate ~84%, Jumio pass rate 78%. Additionally, Sammy led LATAM's Shoptab governance, building scalable policies and mechanisms. As STO, she drove MX Shoptab's risk - free launch on Feb 13th and ensured BR's readiness. Her proactive ownership and strategic execution delivered measurable impact, and gave strong support to LATAM e - commerce business expansion.",
-      "members": [
-        "Sammy"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Chu",
-      "email": "anthea.chu@bytedance.com",
-      "department": "Compliance Product&BP",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Anthea has played a pivotal role in the complex preparations, launch, and growth of the TikTok Shop Mexico market. Since early 2024, she has worked closely with teams from Legal, Compliance, PR, and Government Relations to ensure all compliance requirements were met. When the launch timeline shifted to early 2025, Anthea quickly adapted, monitoring the new compliance needs and ensuring that the Mexico PRDs proceeded smoothly and on time. Anthea's efforts ensured that critical risk decisions were swiftly reviewed and approved by senior leadership, particularly in the area of EDM compliance, which was crucial for the successful launch of the Mexico market. Additionally, she actively contributed to User Acceptance Testing (UAT), identifying and resolving potential compliance issues to ensure a smooth and timely market launch. Anthea takes full ownership of her work, always identifying and addressing key issues. A great example of this is her collaboration with the Legal and Government Relations teams to review the PROFECO (Mexico's consumer protection agency) checklist and prepare for the introductory meeting with PROFECO.",
-      "members": [
-        "Chu"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "金强强",
-      "email": "jinqiangqiang@bytedance.com",
-      "department": "Quality Assurance",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Qiangqiang was the QA lead for the market launching in Mexico. The market launching in Mexico took place during the Chinese New Year period, and he faced challenges such as the simultaneous settlement of merchants and creators. Qiangqiang overcame these difficulties in the following ways: 1. He led the team to establish a problem response and follow-up process, and promoted the implementation of a system where P0 issues are resolved on a daily basis, and P1 issues are resolved within two days. 2. He did a good job in registering, sorting, and promoting the resolution of issues at various stages of the market launching in Mexico. The issue registration and analysis on the QA side were comprehensive, effectively ensuring the timely repair of issues. 3. Proactively, he conducted cause analysis and classification for typical issues in the market launching in Europe and Mexico, summarized and solidified the SOP for quality assurance during market launching, which was then reused in the subsequent market launching project in Brazil. This has been of great help in the progress of the project and in shifting issue resolution to an earlier stage.",
-      "members": [
-        "金强强"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "何胜吾",
-      "email": "heshengwu.001@bytedance.com",
-      "department": "Mexico Operations-Central Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Noah has demonstrated outstanding leadership and strategic execution in Q1, significantly driving the success of the Launch Campaign. His key contributions include: 1. VV Hashtag Traffic Breakthrough: Surpassed 1 billion views, contributing 1/3 of total e - commerce traffic. 2. GMV Growth: Curated product pools drove 20% of total GMV, while strategic selections and price - locked products covered 70% GMV. 3. Best - Selling Product Incubation: Successfully launched 10 products into the national GMV Top 100, at times dominating the country's Top 5. 4. Partnership Expansion: Onboarded new merchants (e.g., SACE LADY, MILKY), nurtured influencers (e.g., @hekkerphood), and introduced new agencies (e.g., CHECK AZUL MEDIA). His data - driven decision - making, keen market insights, and execution excellence have set a new benchmark for growth in our e - commerce ecosystem. Noah's contributions in Q1 have not only delivered remarkable results but have also paved the way for sustainable success in the upcoming quarters.",
-      "members": [
-        "何胜吾"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "黄淳熠",
-      "email": "huangchunyi@bytedance.com",
-      "department": "LATAM Product",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Cara played a key POC role in the Latin America launch, coordinating across merchants, logistics, and institutions to drive the implementation of Seller Center and Pearl for AM, ensuring smooth onboarding, product listing, and order fulfillment. She led four rounds of issue resolution, fixing 138 problems and advancing 20 optimizations to ensure product stability. Post-launch, she quickly analyzed merchant conversion funnels, pinpointing and optimizing key gaps, leading to strong performance in onboarding and product listing rates across markets. With exceptional project management, cross-team collaboration, and data-driven insights, Cara ensured the successful launch of merchant-side products, laying a strong foundation for growth in Mexico.",
-      "members": [
-        "黄淳熠"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "李海晴",
-      "email": "lihaiqing@bytedance.com",
-      "department": "Mexico Operations-Durables",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Haiqing is truly customer - centric. During seller recruitment, she consistently put herself in sellers' shoes, proactively identifying and resolving onboarding pain points, significantly improving efficiency and ensuring a smoother process for quality sellers to join the platform. During seller incubation, Haiqing leveraged her expertise to develop high - impact growth strategies, accelerating merchant success. Her strategies contributed to over 40% of the team's total performance, exemplifying her strong results - driven mindset and commitment to a \"performance - first\" approach. She also places great emphasis on first - hand market insights. While defining category opening rules, Haiqing conducted in - depth research, gathering critical data and providing the GNE team with clear, actionable feedback that refined local execution standards. Additionally, she played a key role in expanding 3C category penetration within the Durables market, creating new growth opportunities. Through her keen insights and execution excellence, Haiqing has not only driven seller success but also laid a strong foundation for the platform's long - term market expansion.",
-      "members": [
-        "李海晴"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "林慧玲",
-      "email": "linhuiling@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Huilin demonstrated exceptional customer obsession and execution excellence in Q1, securing a stellar achievement as one of the top - performing CS agents for LATAM. Her outstanding performance led to CS ATY1 achieving the highest customer satisfaction score among all LATAM CS teams. Huilin consistently goes above and beyond, proactively identifying process improvements and implementing solutions that significantly enhance customer experience. Her dedication and expertise have been instrumental in building a strong foundation for LATAM's customer service operations.",
-      "members": [
-        "林慧玲"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘美玉",
-      "email": "liumeiyu.001@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Meiyu led LATAM's CS team to achieve exceptional customer satisfaction scores and agent efficiency in Q1. She effectively managed a team of 24 agents, achieving an average CSAT of 96.4% and an average handle time of 2.8 minutes, both ranking #1 among all LATAM CS teams. Meiyu's leadership and strategic focus on process optimization resulted in a 35% improvement in agent efficiency. Her dedication to customer experience and team development has been pivotal in establishing LATAM CS as a benchmark for excellence.",
-      "members": [
-        "刘美玉"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘敏敏",
-      "email": "liuminmin.009@bytedance.com",
-      "department": "LATAM Shopper Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Minmin has been instrumental in driving LATAM's Shopper Marketing success through her exceptional execution of trade marketing initiatives. She led the implementation of 15+ campaign projects, including store - level activations, brand collaborations, and festive campaigns, achieving an average ROI of 1:5. Her data - driven approach and strong stakeholder management ensured timely and effective delivery of all campaigns. Minmin's strategic insights and execution excellence have significantly contributed to LATAM's brand awareness and sales growth.",
-      "members": [
-        "刘敏敏"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘婷",
-      "email": "liuting.011@bytedance.com",
-      "department": "Mexico Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Ting played a pivotal role in ensuring smooth seller onboarding and governance for LATAM during Q1. She developed and implemented comprehensive onboarding SOPs that reduced seller onboarding time by 40%. Her proactive approach to seller management resulted in a 25% increase in active sellers. Ting's strong analytical skills and attention to detail ensured compliance with platform policies, contributing to a safer and more reliable marketplace for LATAM sellers and buyers.",
-      "members": [
-        "刘婷"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "王菲",
-      "email": "wangfei.004@bytedance.com",
-      "department": "LATAM Operations-SCM",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Faye has been a key contributor to LATAM's operations excellence in Q1. She optimized warehouse management processes, resulting in a 30% improvement in order fulfillment efficiency. Her data - driven approach to inventory management reduced stockouts by 45%. Faye's strong problem - solving skills and cross - functional collaboration ensured smooth operations during peak seasons. Her dedication to continuous improvement has significantly enhanced LATAM's operational capabilities.",
-      "members": [
-        "王菲"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "王悦",
-      "email": "wangyue.021@bytedance.com",
-      "department": "LATAM Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yue has been instrumental in driving LATAM's brand awareness through her exceptional performance in influencer marketing. She successfully onboarded 200+ influencers and managed 50+ brand collaborations, achieving a total reach of 10M+ users. Her creative campaigns and strong relationship management resulted in a 150% increase in engagement rates. Yue's strategic thinking and execution excellence have positioned LATAM as a leading e - commerce platform in the region.",
-      "members": [
-        "王悦"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "徐佳欣",
-      "email": "xujiaxin.018@bytedance.com",
-      "department": "LATAM Content Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiaxin has been a key driver of LATAM's content excellence in Q1. She developed and implemented content quality standards that improved content engagement by 60%. Her creative approach to content strategy resulted in a 40% increase in user - generated content. Jiaxin's strong collaboration with merchants and creators ensured consistent brand messaging across all touchpoints. Her dedication to quality and innovation has significantly enhanced LATAM's content ecosystem.",
-      "members": [
-        "徐佳欣"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q1",
-      "project_name": "LATAM Q1 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "朱宇轩",
-      "email": "zhuyuxuan.006@bytedance.com",
-      "department": "Brazil Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuxuan has been instrumental in driving Brazil's market success in Q1. He led the development of localization strategies that increased market penetration by 35%. His strong analytical skills and market insights enabled effective product positioning. Yuxuan's cross - functional collaboration ensured seamless execution of marketing campaigns. His dedication to understanding local consumer behavior has positioned Brazil as a key growth market for LATAM.",
-      "members": [
-        "朱宇轩"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "金强强",
-      "email": "jinqiangqiang@bytedance.com",
-      "department": "Quality Assurance",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Qiangqiang continued to demonstrate exceptional QA expertise in Q2, leading the quality assurance efforts for Brazil market launch. He established comprehensive testing frameworks that reduced post - launch issues by 50%. His proactive approach to quality management ensured smooth market operations. Qiangqiang's dedication to excellence and continuous improvement has been instrumental in LATAM's quality assurance success.",
-      "members": [
-        "金强强"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "何胜吾",
-      "email": "heshengwu.001@bytedance.com",
-      "department": "Mexico Operations-Central Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Noah continued his outstanding performance into Q2, driving significant growth in Mexico's e - commerce operations. He implemented innovative marketing strategies that increased GMV by 45% compared to Q1. His data - driven approach to campaign optimization resulted in higher ROI. Noah's leadership and strategic vision have been key to Mexico's continued success in the competitive e - commerce landscape.",
-      "members": [
-        "何胜吾"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "黄淳熠",
-      "email": "huangchunyi@bytedance.com",
-      "department": "LATAM Product",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Cara expanded her impact in Q2 by leading LATAM's product innovation initiatives. She drove 25+ product enhancements based on user feedback and market insights. Her cross - functional collaboration ensured timely delivery of high - quality features. Cara's customer - centric approach resulted in a 30% improvement in user satisfaction scores. Her strategic thinking and execution excellence continue to shape LATAM's product roadmap.",
-      "members": [
-        "黄淳熠"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "李海晴",
-      "email": "lihaiqing@bytedance.com",
-      "department": "Mexico Operations-Durables",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Haiqing maintained her exceptional performance in Q2, further expanding Mexico's durables category. She developed strategic partnerships with top brands, resulting in a 55% increase in category GMV. Her seller enablement programs trained 200+ sellers on best practices. Haiqing's commitment to seller success and market expansion has solidified Mexico's position as a leading market in LATAM.",
-      "members": [
-        "李海晴"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "林慧玲",
-      "email": "linhuiling@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Huilin achieved remarkable results in Q2, leading LATAM's customer service transformation. She implemented AI - powered support solutions that improved response times by 60%. Her team achieved the highest CSAT score among all regions for three consecutive months. Huilin's innovation and dedication have set new benchmarks for customer experience excellence in LATAM.",
-      "members": [
-        "林慧玲"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘佩佩",
-      "email": "liupeipei.007@bytedance.com",
-      "department": "Brazil Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Peipei played a critical role in Brazil's market expansion in Q2. She developed localized seller acquisition strategies that onboarded 500+ new sellers. Her training programs improved seller performance by 40%. Peipei's strong execution and market understanding have been key to Brazil's rapid growth. Her dedication to building a sustainable seller ecosystem positions Brazil for long - term success.",
-      "members": [
-        "刘佩佩"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘婷",
-      "email": "liuting.011@bytedance.com",
-      "department": "Mexico Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Ting continued to drive excellence in seller management in Q2. She optimized seller performance monitoring systems, improving seller retention by 35%. Her data - driven approach to seller support reduced churn rates significantly. Ting's strong stakeholder management and process improvements have enhanced Mexico's seller ecosystem. Her commitment to seller success continues to drive market growth.",
-      "members": [
-        "刘婷"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘宇轩",
-      "email": "liuyuxuan.015@bytedance.com",
-      "department": "LATAM Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuxuan led LATAM's growth initiatives in Q2, driving significant user acquisition improvements. He implemented targeted marketing campaigns that increased new user acquisition by 80%. His A/B testing framework optimized channel performance across all LATAM markets. Yuxuan's analytical skills and strategic thinking have been instrumental in LATAM's user growth trajectory.",
-      "members": [
-        "刘宇轩"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "王悦",
-      "email": "wangyue.021@bytedance.com",
-      "department": "LATAM Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yue expanded her marketing impact in Q2, launching successful campaigns across LATAM markets. She managed 30+ brand partnerships with a combined reach of 25M users. Her innovative content strategies increased engagement rates by 120%. Yue's creative leadership and strong brand relationships continue to elevate LATAM's market presence.",
-      "members": [
-        "王悦"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "徐佳欣",
-      "email": "xujiaxin.018@bytedance.com",
-      "department": "LATAM Content Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiaxin drove content excellence in Q2, implementing standards that increased content performance by 70%. She developed creator training programs that improved creator quality scores by 45%. Her collaboration with merchants resulted in higher quality product listings. Jiaxin's focus on content quality and creator development has strengthened LATAM's content ecosystem.",
-      "members": [
-        "徐佳欣"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "杨磊",
-      "email": "yanglei.017@bytedance.com",
-      "department": "LATAM Supply Chain",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Lei optimized LATAM's supply chain operations in Q2, reducing delivery times by 25%. He implemented warehouse automation systems that improved fulfillment efficiency by 40%. His inventory management strategies reduced stock holding costs by 30%. Lei's operational excellence and continuous improvement have significantly enhanced LATAM's logistics capabilities.",
-      "members": [
-        "杨磊"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "杨赛赛",
-      "email": "yangsaisai.003@bytedance.com",
-      "department": "Brazil Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Saisai drove Brazil's growth momentum in Q2, implementing strategies that increased GMV by 65%. She developed successful promotional campaigns during key shopping periods. Her market research provided actionable insights for product expansion. Saisai's strategic thinking and strong execution have been key to Brazil's growth acceleration.",
-      "members": [
-        "杨赛赛"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "张晓颖",
-      "email": "zhangxiaoying.008@bytedance.com",
-      "department": "LATAM Compliance",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Xiaoying ensured regulatory compliance across LATAM markets in Q2. She developed compliance frameworks that reduced regulatory risks by 60%. Her collaboration with legal teams ensured smooth market operations. Xiaoying's attention to detail and proactive approach have been essential to LATAM's compliant and sustainable growth.",
-      "members": [
-        "张晓颖"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q2",
-      "project_name": "LATAM Q2 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "张宇航",
-      "email": "zhangyuhang.012@bytedance.com",
-      "department": "Mexico Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuhang led Mexico's technical infrastructure improvements in Q2. He implemented system optimizations that reduced page load times by 50%. His monitoring solutions improved issue detection and resolution speed by 70%. Yuhang's technical expertise and problem - solving skills have enhanced Mexico's platform stability and user experience.",
-      "members": [
-        "张宇航"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Cathy",
-      "email": "cathy.gao@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Cathy has been a key driver of LATAM's operational excellence in Q3, implementing process improvements that increased team efficiency by 45%. She led the development of training programs that improved agent performance by 35%. Her data - driven approach to operations optimization reduced costs while maintaining service quality. Cathy's leadership and strategic thinking have been instrumental in building scalable operations across LATAM.",
-      "members": [
-        "Cathy"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "陈政",
-      "email": "chenzheng.021@bytedance.com",
-      "department": "Brazil Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Zheng played a critical role in Brazil's Q3 growth initiatives. He developed strategic partnerships with top local brands, increasing brand portfolio by 40%. His market expansion strategies drove GMV growth of 55% compared to Q2. Zheng's deep market understanding and strong execution have been key to Brazil's continued success.",
-      "members": [
-        "陈政"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "方一暄",
-      "email": "fangyixuan.006@bytedance.com",
-      "department": "Mexico Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yixuan led Mexico's seller success initiatives in Q3, implementing programs that increased seller productivity by 50%. She developed training curricula that improved seller performance metrics across categories. Her seller support innovations reduced onboarding time by 60%. Yixuan's dedication to seller empowerment continues to drive Mexico's seller ecosystem growth.",
-      "members": [
-        "方一暄"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "何家敏",
-      "email": "hejiamin.011@bytedance.com",
-      "department": "LATAM Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiamin drove LATAM's marketing impact in Q3, leading campaigns that achieved 15M+ impressions. She managed strategic brand partnerships with a combined ROI of 1:7. Her creative content strategies increased engagement rates by 85%. Jiamin's marketing expertise and strong stakeholder relationships have elevated LATAM's brand presence across markets.",
-      "members": [
-        "何家敏"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "胡欣羽",
-      "email": "huxinyu.019@bytedance.com",
-      "department": "LATAM Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Xinyu led LATAM's user growth strategies in Q3, implementing initiatives that increased DAU by 40%. She developed retention programs that improved user engagement by 55%. Her user research provided valuable insights for product development. Xinyu's growth mindset and strong analytical skills have been instrumental in LATAM's user acquisition and retention success.",
-      "members": [
-        "胡欣羽"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "姜雨欣",
-      "email": "jiangyuxin.007@bytedance.com",
-      "department": "Brazil Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuxin drove Brazil's marketing success in Q3, launching campaigns that achieved 8M+ impressions. She managed influencer partnerships that increased brand awareness by 120%. Her localized content strategies resonated well with Brazilian consumers. Yuxin's creative marketing approach and market insights have strengthened Brazil's brand positioning.",
-      "members": [
-        "姜雨欣"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "金天宇",
-      "email": "jintianyu.013@bytedance.com",
-      "department": "LATAM Product",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Tianyu led LATAM's product innovation in Q3, driving 30+ feature improvements based on user feedback. He implemented A/B testing frameworks that increased feature adoption by 65%. His cross - functional collaboration ensured timely delivery of high - impact features. Tianyu's product expertise and user - centric approach continue to enhance LATAM's platform experience.",
-      "members": [
-        "金天宇"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "李佳怡",
-      "email": "lijiayi.018@bytedance.com",
-      "department": "Mexico Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiayi played a key role in Mexico's operations excellence in Q3. She optimized fulfillment processes that reduced delivery times by 35%. Her inventory management strategies improved stock availability to 95%. Li Jiahui's operational improvements have significantly enhanced Mexico's customer satisfaction and operational efficiency.",
-      "members": [
-        "李佳怡"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘梦蝶",
-      "email": "liumengdie.003@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Mengdie led LATAM's customer service excellence in Q3, achieving CSAT scores of 97% across all markets. She implemented support automation that reduced response times by 55%. Her team training programs improved first - call resolution rates by 40%. Mengdie's customer obsession and leadership have set new benchmarks for service quality.",
-      "members": [
-        "刘梦蝶"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘欣宇",
-      "email": "liuxinyu.022@bytedance.com",
-      "department": "LATAM Content Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Xinyu drove content excellence in Q3, implementing standards that improved content engagement by 75%. She developed creator programs that increased creator productivity by 50%. Her content strategy increased user - generated content by 60%. Xinyu's creative leadership and quality focus have strengthened LATAM's content ecosystem.",
-      "members": [
-        "刘欣宇"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "孙佳音",
-      "email": "sunjiayin.009@bytedance.com",
-      "department": "Brazil Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiayin led Brazil's operations in Q3, driving efficiency improvements across all functions. She implemented process optimizations that increased team productivity by 45%. Her data - driven approach to operations improved decision - making speed by 50%. Jiayin's operational expertise and continuous improvement mindset have been key to Brazil's operational excellence.",
-      "members": [
-        "孙佳音"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "王嘉轩",
-      "email": "wangjiaxuan.014@bytedance.com",
-      "department": "LATAM Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jiaxuan led LATAM's technical improvements in Q3, implementing system optimizations that improved platform performance by 60%. He developed monitoring solutions that reduced issue detection time by 70%. His infrastructure improvements enhanced system reliability during peak periods. Jiaxuan's technical leadership has been essential to LATAM's platform stability.",
-      "members": [
-        "王嘉轩"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "吴雨亭",
-      "email": "wuyuting.005@bytedance.com",
-      "department": "Mexico Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuting drove Mexico's growth in Q3, implementing strategies that increased GMV by 70% compared to Q2. She developed successful promotional campaigns during key shopping events. Her market analysis provided insights for category expansion. Yuting's growth mindset and strong execution have been instrumental to Mexico's rapid expansion.",
-      "members": [
-        "吴雨亭"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q3",
-      "project_name": "LATAM Q3 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "张洁",
-      "email": "zhangjie.010@bytedance.com",
-      "department": "LATAM SCM",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jie optimized LATAM's supply chain in Q3, reducing logistics costs by 30% while improving delivery speeds. She implemented warehouse improvements that increased fulfillment capacity by 45%. Her supplier management strategies ensured reliable inventory levels. Zhang Jie's operational excellence has significantly enhanced LATAM's supply chain efficiency.",
-      "members": [
-        "张洁"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘思grace",
-      "email": "grace.liu@bytedance.com",
-      "department": "LATAM Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Grace played a key role in LATAM's Q4 growth campaigns, particularly in campaign strategy and data analysis. She drove significant improvements in campaign ROI through rigorous experimentation and rapid iteration. Her coordination across teams ensured seamless execution of mega campaigns. Grace's precision, ownership, and reliability were instrumental to the campaigns' strong results.",
-      "members": [
-        "刘思grace"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Yuan",
-      "email": "liwenyuan.034@bytedance.com",
-      "department": "Mexico Ops-Electronics",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Since transferring to TTS in January 2025, Yuan has shown remarkable growth and the ability to deliver rapid, measurable results. With exceptional learning agility and high-efficiency execution, he quickly mastered the e-commerce ecosystem and exceeded performance targets (108% in October, 116% in November). He significantly grew mobile-phone brand penetration from 2.87% to 7.3% and led the launch of OPPO and Xiaomi Super Brand Day, creating flagship industry showcases. Beyond his own achievements, Yuan mentors new hires and improves internal workflows, exemplifying long-termism, ownership, and a relentless commitment to excellence.",
-      "members": [
-        "Yuan"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘伟洋",
-      "email": "carlos.liu@bytedance.com",
-      "department": "Supply Chain And Logistics",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Amid FS's unexpected 150%+ revenue surge in Q4, Weiyang led his team to maintain strong delivery performance while staying within cost targets. Through rapid capacity modeling and resource deployment, they reduced backlog risk by 30-40%. Process optimizations in routing, consolidation, and SLA monitoring improved operational efficiency, while real-time coordination with Supply Chain and Product ensured stable performance during peak weeks. Their professionalism and data-driven execution enabled FS to absorb unprecedented volume while protecting customer experience.",
-      "members": [
-        "刘伟洋"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Parnes",
-      "email": "mariana.parnes@bytedance.com",
-      "department": "Brazil Central Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Mariana delivered exceptional impact throughout Q4 and the entire year, unlocking new growth through her leadership in our celebrity KOL strategy. By smartly leveraging brand partnerships and influencer-led brands, she strengthened creator trust and elevated their live-commerce capabilities. She consistently goes above expectations to drive brand growth: in O Boticário, she partnered cross-functionally to activate top-tier creators; in Viih Tube, she worked seamlessly with H&L to help break multiple live-commerce records. Her ownership, creativity, and relentless drive set a new benchmark for excellence. Mariana's contribution has been truly transformative and fully deserving of recognition.",
-      "members": [
-        "Parnes"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "屈仟",
-      "email": "quqian@bytedance.com",
-      "department": "Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the owner of Live & Growth Marketing for LATAM R&D, Qian made critical contributions in Q4. He served as the technical POC for multiple mega promotions-11.11, Black Friday, and 9.9 - ensuring smooth launches and resolving issues rapidly on - site. He led core capability upgrades across live streaming, flash sales, and giveaway features, while building a comprehensive monitoring and alerting system from scratch. Qian's deep technical expertise, fast response, and strong leadership significantly strengthened LATAM's live - commerce infrastructure.",
-      "members": [
-        "屈仟"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "孙曼婷",
-      "email": "sunmanting@bytedance.com",
-      "department": "Full Service",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Manting drove major improvements in FS Mexico's promotional efficiency through rigorous experimentation and strong cross-functional alignment. Her RCT-based strategy design increased Margin × GMV efficiency from 1:6 to 1:8-10 - a 30-60% uplift during Q4. She produced granular insights across categories and scenarios, enabling smarter tool selection and more predictable growth. Her analytical rigor and structured collaboration laid a critical foundation for Mexico's sustainable, profitable expansion.",
-      "members": [
-        "孙曼婷"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Star",
-      "email": "laixupeng.star@bytedance.com",
-      "department": "UG",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Joining the LATAM team in Q4, Star quickly became a core driver of the new - user hero product program. He co - designed co - funding and voucher strategies, coordinated closely with cluster teams, provided training, and resolved complex issues with speed and ownership. His work boosted DNC product coverage from 32% to 47% and delivered a CPA improvement of $0.36. During 11.11 and Black Friday, his efforts enabled record performance, reaching daily DNC of 90K and a peak GMV of $113K. Star's structured thinking and decisive execution made the program a standout success.",
-      "members": [
-        "Star"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "谢鲲游",
-      "email": "xiekunyou.666@bytedance.com",
-      "department": "Algo",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "At the start of the mega - campaign, Kunyou launched the re - architected mixed - ranking strategy and iterated over 50 versions of parameter tuning. The final rollout achieved significant gains: all GMV +2.5%, all DNC +5.35%, video GMV +5.77%, and ad revenue +0.38%. Mid - campaign, he upgraded the global recall model, driving an additional +2.1% video GMV uplift. His work strengthened overall campaign efficiency and delivered sustained GMV improvement across surfaces. Kunyou's experimentation discipline, technical depth, and ability to deliver high - impact results under tight timelines were instrumental in elevating the campaign's performance.",
-      "members": [
-        "谢鲲游"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "徐曼",
-      "email": "xuman.21@bytedance.com",
-      "department": "Algo",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Margot led multiple LATAM bubble - entry initiatives that drove meaningful traffic and GMV uplift for the mall. She delivered three major launches this quarter. In MX bubble frequency tuning, full - rollout results showed strong gains across key metrics: Mall GMV/U - Normal +2.80%, payment UV conversion +2.34%, GMV across mall surfaces +0.88%, exposure per user +0.79%, UV CTCVR +2.10%, and significant CTR and GMV per - capita improvements. In BR, bubble frequency uplift delivered positive gains in GMV/U - Normal, DAU penetration, and overall mall GMV. MX bubble ranking also showed strong positive trends, improving closed - loop GMV/U - Normal, payment conversion, mall GMV, CTR, and reducing mall UV drop - off in feeds. Through fast iteration and rigorous measurement, Margot consistently delivered high - confidence improvements to mall traffic quality and growth.",
-      "members": [
-        "徐曼"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "杨常青",
-      "email": "yangchangqing.rony@bytedance.com",
-      "department": "Global Payment-Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the payment services technical leader and LATAM mega-campaign payment support POC, Rony ensured seamless cross-team coordination and stable payment workflows for the region's key e-commerce initiatives. He aligned payment service targets with business and R&D teams, tracked real-time performance, identified potential payment risks, and built targeted contingency plans. During both pre-campaign preparation and in-campaign peaks, Rony monitored system risks in real time and drove rapid resolution of emergencies, showcasing strong cross-functional collaboration and execution. He proactively coordinated with regional payment channel providers to mitigate channel fluctuations and worked closely with other teams to address system interface anomalies, ensuring no critical payment outages during the campaign. His dedicated efforts secured reliable, high-performing payment services throughout LATAM's most intense promotion cycle and laid a solid foundation for the campaign's overall success.",
-      "members": [
-        "杨常青"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Zhu",
-      "email": "kewei.zhu@bytedance.com",
-      "department": "Design",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the creative POC for LATAM's Black Friday and Double 11 campaigns, Kewei shaped the core visual concept and established a cohesive regional design system. Working closely with business teams, they developed locally resonant creative directions aligned with global brand identity. Leveraging motion design and AI, they delivered a fully dynamic visual system at zero cost and ensured timely execution across time zones despite limited resources. Kewei also documented key learnings from LATAM's first major - scale campaigns, building a strong foundation for future creative excellence.",
-      "members": [
-        "Zhu"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "包晓娟",
-      "email": "baoxiaojuan.001@bytedance.com",
-      "department": "LATAM Ops",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Xiaojuan drove significant improvements in LATAM's operations efficiency in Q4. She led process optimization initiatives that reduced operational costs by 35% while improving service quality. Her training programs improved team performance by 50%. Xiaojuan's operational expertise and leadership have been key to LATAM's scalable operations.",
-      "members": [
-        "包晓娟"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "曹宇欣",
-      "email": "caoyuxin.001@bytedance.com",
-      "department": "LATAM Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yuxin led LATAM's user growth initiatives in Q4, implementing strategies that increased MAU by 45%. She developed successful retention programs that improved user engagement by 60%. Her data - driven approach to growth optimization has been instrumental to LATAM's user acquisition success.",
-      "members": [
-        "曹宇欣"
-      ]
-    },
-    {
-      "award_type": "H2个人奖",
-      "period": "H2",
-      "quarter": "Q4",
-      "project_name": "LATAM Q4 Stellar Contributors",
-      "team_award": "Stellar Contributors",
-      "winner_name": "陈静",
-      "email": "chenjing.001@bytedance.com",
-      "department": "LATAM Marketing",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jing drove LATAM's marketing success in Q4, leading campaigns that achieved 20M+ impressions. She managed strategic brand partnerships with strong ROI performance. Her creative content strategies increased engagement rates by 95%. Jing's marketing expertise has strengthened LATAM's brand presence across markets.",
-      "members": [
-        "陈静"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "冯纪元",
-      "email": "fengjiyuan.33@bytedance.com",
-      "department": "Supply Chain and Logistics",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Within just 1.25 years, Jiyuan successfully completed the 0 - to - 1 launch of both the Mexico FS business and the cross - border POP business in a new market. Key achievements in Q1: • 0 - to - 1 launch: Successfully launched Mexico FS business and cross - border POP business within 1.25 years despite tight resources. • Delivery speed improvement: Achieved FS standard/sensitive parcel segmentation with delivery timelines 2 - 3 days faster than Big B. • Operational efficiency: Reduced P95 delivery time from 20 days to 14 days, bringing fulfillment efficiency in line with SHEIN and Temu; all core experience metrics met quarterly targets. • Cost optimization: Launched new ORD warehouse in US reverse logistics, decreasing cost per parcel by 3.32% and generating annual savings of USD 580,000. He delivered solid execution under resource constraints, driving meaningful improvements in both speed and cost efficiency.",
-      "members": [
-        "冯纪元"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "高建光",
-      "email": "gaojianguang@bytedance.com",
-      "department": "Supply Chain and Logistics",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Jianguang delivered transformative results across logistics operations and service partner management in Q1. Key achievements in Q1: • Delivery acceleration: Spearheaded integrated full - region speedup initiative, driving 8.7% core - region speedup, 7.4% central - region improvement, and 27% overall end - to - end logistics time improvement. • Quality improvement: Led Drop off project to lift CN service providers core - region quarterly share from 94% to 98%, far exceeding targets. • Quality assurance: Personally audited nearly 28 cities network points to ensure stable post - launch operation. • Loss reduction: Built targeted management mechanisms cutting the CN service providers Aging lost rate from 0.6% to 0.22%, reducing company losses and enhancing service experience. His results demonstrate strong leadership in coordinating complex cross - functional initiatives and driving measurable operational improvements.",
-      "members": [
-        "高建光"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "高是暄",
-      "email": "gaoshixuan@bytedance.com",
-      "department": "User & Promotion Growth",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "In Q1, Shixuan demonstrated strong ownership, open collaboration, and the ability to deliver results under pressure as the owner of the logistics pricing card. Key achievements in Q1: • Mexico pricing structure: Partnered with logistics strategy team to transition Mexico from nationwide unified pricing to zoned pricing structure, increasing baseline logistics revenue by 2.2%. • Cross - border profitability: Collaborated with cross - border logistics team to optimize pricing, turning average cross - border logistics revenue per order from loss to profit. • Brazil route optimization: Worked closely with logistics team to advance route optimization, boosting order volume by 70% in key regions and addressing experience gaps. • Infrastructure building: Drove foundational initiatives across Latin America including pricing configuration, algorithm development, and Mexico - U.S. pricing infrastructure. Her work demonstrates strong ownership and the ability to drive both short - term results and long - term strategic impact.",
-      "members": [
-        "高是暄"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Herbie Huang",
-      "email": "herbie.huang@bytedance.com",
-      "department": "GNE-LATAM",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "In Q1, Herbie led the development and launch of AI solutions to improve the Seller IM experience, focused on better buyer support for logistics and aftersales inquiries. Key achievements in Q1: AI solution design & execution: Organized Seller IM AI solution design, SOP development, and operational procedures in collaboration with Product and Algo teams. Quality validation: Coordinated validation of over 1,000 real cases to ensure responses are clear, compliant, and consistent. Performance results: Logistics AI agent launched in late February achieved +10pp improvement in Seller IM CSAT and +15pp increase in automation completion rate in Mexico and Brazil. Aftersales solution also launched with strong initial results. This project represents an important step toward improving buyer experience and driving operational efficiency for sellers, with strong potential for further scaling.",
-      "members": [
-        "Herbie Huang"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "刘琦玉",
-      "email": "qianyuan.yuanyuan@bytedance.com",
-      "department": "Product",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Qiyu focused on promoting the penetration of core marketing tools and the supply of commercial broadcasts in Q1, achieving clear progress in both areas. Key achievements in Q1: - Lucky bag penetration: Based on conversion verification conclusions, implemented bonus lucky bag gameplay and simplified distribution link, increasing lucky bag UV penetration from 14% to 39%. - Flash sale expansion: Established creator flash sale application link and promoted merchant - creator matchmaking, achieving 30% flash sale penetration increase. - Go - LIVE guidance: Expanded display positions and account coverage for TT go - LIVE guidance; A/B testing in early April verified positive effects. She can quickly achieve results in familiar fields while also efficiently driving goals across teams.",
-      "members": [
-        "刘琦玉"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Rafael Lozano",
-      "email": "rafael.lozano@bytedance.com",
-      "department": "Brazil Operations-Consumables",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Rafael demonstrated exceptional performance in Q1, driving significant business impact through strategic account management and high - impact campaign execution. Key achievements in Q1: • GMV growth acceleration: Played a critical role in driving a significant step - up in overall GMV, successfully onboarding multiple key accounts and accelerating category growth. • IP campaign execution: Led the execution of several high - impact IP campaigns, including the Grand Openings for MAC and Too Faced, both of which delivered strong results and set a solid benchmark for future initiatives. • Livestream excellence: Demonstrated exceptional execution in driving merchant self - operated livestreams, achieving the highest self - live penetration across all AMs. His ability to combine strategic thinking with strong operational execution has made a meaningful impact on the business.",
-      "members": [
-        "Rafael Lozano"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Alberto Montes",
-      "email": "alberto.montes@bytedance.com",
-      "department": "Mexico Operations-Home&Living",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Alberto (Beto) delivered outstanding results in Q1, driving exceptional GMV growth and seller development through strategic execution and cross - functional collaboration. Key achievements in Q1: - GMV growth: Drove GMV growth of 176% vs Q4 2025, increasing Daily GMV from $11.4k to $31.5k. Grew active sellers from 56 to 75 (+33.9%) and doubled T3+ sellers to reach 6 by end of quarter. - T5 seller development: Helped develop the first T5 seller (Loomber Home) for the H&L cluster, executing a 360° strategy working closely with the seller to secure competitive pricing and stock availability, while coordinating with Logistics, Creators, and GnE teams. - Livestream success: Built strong showcases of Live Affiliate, achieving multiple $10k+ USD GMV sessions and one $20k+ USD session. - Team contribution: Led seller webinars to build market confidence and helped onboard new AMs to the cluster. His proactive approach to seller development and cross - functional collaboration has made a lasting impact on the H&L cluster.",
-      "members": [
-        "Alberto Montes"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Fernanda Forti Rossin",
-      "email": "fernanda.forti@bytedance.com",
-      "department": "GNE-LATAM Service Operations",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Fernanda demonstrated strong leadership in building and scaling the Brazil service team from the ground up, ensuring operational stability amid rapid business growth and vendor transitions. Key achievements in Q1: Service quality improvement: Seller CSAT improved significantly from ~50% to close to 70% under her leadership, reflecting clear gains in service quality. BPO transition execution: Remained deeply involved in frontline operations during vendor transitions, improving accuracy from ~50% to 80% and driving resolution of critical issues such as pick - up coordination and vendor switching - related tickets. External reputation turnaround: Led the turnaround of Reclame AQUI from \"Not Recommended\" to 6.0 (Regular), and further to 7.2 (Good) in Q1, strengthening external reputation metrics. Her Q1 results demonstrate strong ownership, execution rigor, and the ability to lead through complexity and drive meaningful outcomes.",
-      "members": [
-        "Fernanda Forti Rossin"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "王健康",
-      "email": "wangjiankang.23@bytedance.com",
-      "department": "Global Payment",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the product lead for BNPL in Mexico, Wangjiankang spearheaded a cross - functional initiative across Payments, Risk Control, and E - commerce (TTS), successfully launching the first BNPL product in Latin America from 0 to 1. Key achievements in Q1: • GMV uplift: Delivered 0.5% statistically confident uplift in overall e - commerce GMV with only 50% traffic allocation and no marketing subsidies, achieving 1.4% GMV penetration. • User base expansion: Partnered with TTS to expand the whitelist from 700,000 to 4.2 million users; launched credit entry point at checkout contributing 60% of newly generated credit lines. • Funnel optimization: Improved credit conversion from 24% to 32%, KYC pass rate from 80% to 96%, and approval rate from 30% to 60% through coordinated cross - functional efforts. His work demonstrates strong ownership and the ability to drive complex cross - functional initiatives from concept to launch.",
-      "members": [
-        "王健康"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "Hongdi Xu",
-      "email": "hongdi.xu25@bytedance.com",
-      "department": "User Research",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Hongdi demonstrated strong Business Partner awareness through proactive collaboration with business teams, streamlining high - volume demands into five priority research topics aligned with core business goals. Key achievements in Q1: Fieldwork execution: Independently led high - quality fieldwork in both Mexico and Brazil, covering user ecosystem studies and creator sampling with integrated qualitative and quantitative analysis. Strategic validation: Confirmed Brazil user persona aligns with business expectations, providing evidence to sustain the current UG strategy. Product optimization: Identified and drove UI optimizations including PDP seller information display and authentic review prompts; resolved localized expression issues in Mexico. Funnel diagnosis: Located pricing pain points in Brazil creator sampling process and provided specific feedback for workflow optimization. His research findings directly assisted business in achieving operational closure and informed best practices for new business models.",
-      "members": [
-        "Hongdi Xu"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "杨岩欣",
-      "email": "yangyanxin.0702@bytedance.com",
-      "department": "Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Yanxin delivered outstanding performance in Q1 2026, making significant contributions to the Latin America March Mega Sale and Oncall governance. Key achievements in Q1: • Mega Sale execution: As Tech Lead, drove successful launch of key marketing requirements, boosting merchant enrollment rate from 8.62% to 13.47% and ensuring zero internal closed - loop issues during the campaign. • Process standardization: Formulated and solidified the Mega Sale SOP, laying the groundwork for future technical capability upgrades. • Oncall optimization: Led LatAm Oncall Governance Initiative, reducing daily Oncall volume from 190 to 119 cases and S+ Mega Sale Oncall volume by 81% (from 60 to 11 cases). • Self - service improvement: Improved self - service problem resolution rate from 0% to 20% through standardized operational mechanisms and AI Agent capability upgrades. Her results demonstrate exceptional professional expertise, strong ownership, and results - oriented execution.",
-      "members": [
-        "杨岩欣"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "张文哲",
-      "email": "zhangwenzhe.james@bytedance.com",
-      "department": "Tech",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the FE Owner for LatAm Merchant Growth, Wenzhe successfully addressed severe drop - offs and low submission rates during the SellerApp Android onboarding journey. Key achievements in Q1: Performance optimization: Collaborated with cross - functional teams to implement over 10 optimizations including H5 decoupling, built - in resources, skeleton screens, and Preload. Loading speed improvement: Android LCP decreased from 8.64s to 2.8s (-67.59%) and iOS LCP from 4.97s to 1.42s (-71.42%). Conversion improvement: Registration - to - Exposure CVR jumped significantly in both MX (+14.95pp) and BR (+23.09pp). Submission rate: BR Android submission rate increased from 4.0% to 5.1%. His work demonstrates strong technical expertise and the ability to drive measurable improvements through cross - functional collaboration.",
-      "members": [
-        "张文哲"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "郑蔷",
-      "email": "zhengqiang.777@bytedance.com",
-      "department": "Product Design",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "As the lead design PoC for the Official project, Qiang built the Official brand visual system from the ground up, developing a complete Visual Identity (VI) that defined the brand tone through color, texture, and animation. Key achievements in Q1: • Visual identity development: Analyzed over 10 competitors and developed a complete VI system with reusable framework for expressing brand trust. • Journey integration: Drove implementation across the entire user journey, integrating brand elements into all key touchpoints within the product. • External consistency: Authored comprehensive design guidelines for external marketing materials, ensuring brand consistency across all channels. His strong ownership and execution were instrumental to this project, establishing a foundation for all future official endorsement designs.",
-      "members": [
-        "郑蔷"
-      ]
-    },
-    {
-      "award_type": "2026 H1个人奖",
-      "period": "2026 H1",
-      "quarter": "Q1",
-      "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
-      "team_award": "Stellar Contributors",
-      "winner_name": "周芷蔚",
-      "email": "zhouzhiwei.shirley@bytedance.com",
-      "department": "Product",
-      "region": "LATAM",
-      "original_region": "LATAM",
-      "bonus": "700",
-      "reason": "Under tight algorithmic human resources in Latin America, Zhiwei reasonably disassembled goals, strived for mid - platform human algorithm resources, and demonstrated strong professional competence in strategic products. Key achievements in Q1: Recommendation performance: Steadily achieved OKRs for three consecutive quarters, promoting implementation of localization models and Guess You Like Card strategies, contributing to +43.3% increase in BR Shopping Center recommended GMV and +12.8% increase in MX Shopping Center recommended GMV. Promotion support: Actively cooperated with business requirements during major promotions, focusing investment in recommendation support. Data - driven iteration: Built Latin American C - end Data Dashboard achieving automated attribution of key metrics and promptly identifying and promoting resolution of multiple online issues. Traffic optimization: Discovered excessive LIVE traffic issue through data analysis, launched dispersion experiment, and successfully achieved positive returns. Her work demonstrates strong strategic product thinking and the ability to drive results through data - informed decision making.",
-      "members": [
-        "周芷蔚"
-      ]
-    }
-  ]
+  "2025": {
+    "H1项目奖": [],
+    "H2项目奖": [],
+    "H2个人奖": [
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Sammy",
+        "email": "chenyang.sammy@bytedance.com",
+        "department": "GNE-LATAM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "In Q1, Sammy Chan supported LATAM's seller onboarding and governance work, ensuring a smooth market launch without blockers from GnE side. She owned seller governance policies & PBRs across the seller lifecycle, took over onboarding and post - onboarding strategies, and iterated them based on benchmarks and local practices. Together with other XFN teams, she achieved highly - performed seller onboarding metric: one time pass rate(OTPS) ~50%, moderation pass rate ~84%, Jumio pass rate 78%. Additionally, Sammy led LATAM's Shoptab governance, building scalable policies and mechanisms. As STO, she drove MX Shoptab's risk - free launch on Feb 13th and ensured BR's readiness. Her proactive ownership and strategic execution delivered measurable impact, and gave strong support to LATAM e - commerce business expansion.",
+        "members": [
+          "Sammy"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Chu",
+        "email": "anthea.chu@bytedance.com",
+        "department": "Compliance Product&BP",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Anthea has played a pivotal role in the complex preparations, launch, and growth of the TikTok Shop Mexico market. Since early 2024, she has worked closely with teams from Legal, Compliance, PR, and Government Relations to ensure all compliance requirements were met. When the launch timeline shifted to early 2025, Anthea quickly adapted, monitoring the new compliance needs and ensuring that the Mexico PRDs proceeded smoothly and on time. Anthea's efforts ensured that critical risk decisions were swiftly reviewed and approved by senior leadership, particularly in the area of EDM compliance, which was crucial for the successful launch of the Mexico market. Additionally, she actively contributed to User Acceptance Testing (UAT), identifying and resolving potential compliance issues to ensure a smooth and timely market launch. Anthea takes full ownership of her work, always identifying and addressing key issues. A great example of this is her collaboration with the Legal and Government Relations teams to review the PROFECO (Mexico's consumer protection agency) checklist and prepare for the introductory meeting with PROFECO.",
+        "members": [
+          "Chu"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "金强强",
+        "email": "jinqiangqiang@bytedance.com",
+        "department": "Quality Assurance",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Qiangqiang was the QA lead for the market launching in Mexico. The market launching in Mexico took place during the Chinese New Year period, and he faced challenges such as the simultaneous settlement of merchants and creators. Qiangqiang overcame these difficulties in the following ways: 1. He led the team to establish a problem response and follow-up process, and promoted the implementation of a system where P0 issues are resolved on a daily basis, and P1 issues are resolved within two days. 2. He did a good job in registering, sorting, and promoting the resolution of issues at various stages of the market launching in Mexico. The issue registration and analysis on the QA side were comprehensive, effectively ensuring the timely repair of issues. 3. Proactively, he conducted cause analysis and classification for typical issues in the market launching in Europe and Mexico, summarized and solidified the SOP for quality assurance during market launching, which was then reused in the subsequent market launching project in Brazil. This has been of great help in the progress of the project and in shifting issue resolution to an earlier stage.",
+        "members": [
+          "金强强"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "何胜吾",
+        "email": "heshengwu.001@bytedance.com",
+        "department": "Mexico Operations-Central Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Noah has demonstrated outstanding leadership and strategic execution in Q1, significantly driving the success of the Launch Campaign. His key contributions include: 1. VV Hashtag Traffic Breakthrough: Surpassed 1 billion views, contributing 1/3 of total e - commerce traffic. 2. GMV Growth: Curated product pools drove 20% of total GMV, while strategic selections and price - locked products covered 70% GMV. 3. Best - Selling Product Incubation: Successfully launched 10 products into the national GMV Top 100, at times dominating the country's Top 5. 4. Partnership Expansion: Onboarded new merchants (e.g., SACE LADY, MILKY), nurtured influencers (e.g., @hekkerphood), and introduced new agencies (e.g., CHECK AZUL MEDIA). His data - driven decision - making, keen market insights, and execution excellence have set a new benchmark for growth in our e - commerce ecosystem. Noah's contributions in Q1 have not only delivered remarkable results but have also paved the way for sustainable success in the upcoming quarters.",
+        "members": [
+          "何胜吾"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "黄淳熠",
+        "email": "huangchunyi@bytedance.com",
+        "department": "LATAM Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Cara played a key POC role in the Latin America launch, coordinating across merchants, logistics, and institutions to drive the implementation of Seller Center and Pearl for AM, ensuring smooth onboarding, product listing, and order fulfillment. She led four rounds of issue resolution, fixing 138 problems and advancing 20 optimizations to ensure product stability. Post-launch, she quickly analyzed merchant conversion funnels, pinpointing and optimizing key gaps, leading to strong performance in onboarding and product listing rates across markets. With exceptional project management, cross-team collaboration, and data-driven insights, Cara ensured the successful launch of merchant-side products, laying a strong foundation for growth in Mexico.",
+        "members": [
+          "黄淳熠"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "李海晴",
+        "email": "lihaiqing@bytedance.com",
+        "department": "Mexico Operations-Durables",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Haiqing is truly customer - centric. During seller recruitment, she consistently put herself in sellers' shoes, proactively identifying and resolving onboarding pain points, significantly improving efficiency and ensuring a smoother process for quality sellers to join the platform. During seller incubation, Haiqing leveraged her expertise to develop high - impact growth strategies, accelerating merchant success. Her strategies contributed to over 40% of the team's total performance, exemplifying her strong results - driven mindset and commitment to a \"performance - first\" approach. She also places great emphasis on first - hand market insights. While defining category opening rules, Haiqing conducted in - depth research, gathering critical data and providing the GNE team with clear, actionable feedback that refined local execution standards. Additionally, she played a key role in expanding 3C category penetration within the Durables market, creating new growth opportunities. Through her keen insights and execution excellence, Haiqing has not only driven seller success but also laid a strong foundation for the platform's long - term market expansion.",
+        "members": [
+          "李海晴"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "林慧玲",
+        "email": "linhuiling@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Huilin demonstrated exceptional customer obsession and execution excellence in Q1, securing a stellar achievement as one of the top - performing CS agents for LATAM. Her outstanding performance led to CS ATY1 achieving the highest customer satisfaction score among all LATAM CS teams. Huilin consistently goes above and beyond, proactively identifying process improvements and implementing solutions that significantly enhance customer experience. Her dedication and expertise have been instrumental in building a strong foundation for LATAM's customer service operations.",
+        "members": [
+          "林慧玲"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘美玉",
+        "email": "liumeiyu.001@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Meiyu led LATAM's CS team to achieve exceptional customer satisfaction scores and agent efficiency in Q1. She effectively managed a team of 24 agents, achieving an average CSAT of 96.4% and an average handle time of 2.8 minutes, both ranking #1 among all LATAM CS teams. Meiyu's leadership and strategic focus on process optimization resulted in a 35% improvement in agent efficiency. Her dedication to customer experience and team development has been pivotal in establishing LATAM CS as a benchmark for excellence.",
+        "members": [
+          "刘美玉"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘敏敏",
+        "email": "liuminmin.009@bytedance.com",
+        "department": "LATAM Shopper Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Minmin has been instrumental in driving LATAM's Shopper Marketing success through her exceptional execution of trade marketing initiatives. She led the implementation of 15+ campaign projects, including store - level activations, brand collaborations, and festive campaigns, achieving an average ROI of 1:5. Her data - driven approach and strong stakeholder management ensured timely and effective delivery of all campaigns. Minmin's strategic insights and execution excellence have significantly contributed to LATAM's brand awareness and sales growth.",
+        "members": [
+          "刘敏敏"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘婷",
+        "email": "liuting.011@bytedance.com",
+        "department": "Mexico Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Ting played a pivotal role in ensuring smooth seller onboarding and governance for LATAM during Q1. She developed and implemented comprehensive onboarding SOPs that reduced seller onboarding time by 40%. Her proactive approach to seller management resulted in a 25% increase in active sellers. Ting's strong analytical skills and attention to detail ensured compliance with platform policies, contributing to a safer and more reliable marketplace for LATAM sellers and buyers.",
+        "members": [
+          "刘婷"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王菲",
+        "email": "wangfei.004@bytedance.com",
+        "department": "LATAM Operations-SCM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Faye has been a key contributor to LATAM's operations excellence in Q1. She optimized warehouse management processes, resulting in a 30% improvement in order fulfillment efficiency. Her data - driven approach to inventory management reduced stockouts by 45%. Faye's strong problem - solving skills and cross - functional collaboration ensured smooth operations during peak seasons. Her dedication to continuous improvement has significantly enhanced LATAM's operational capabilities.",
+        "members": [
+          "王菲"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王悦",
+        "email": "wangyue.021@bytedance.com",
+        "department": "LATAM Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yue has been instrumental in driving LATAM's brand awareness through her exceptional performance in influencer marketing. She successfully onboarded 200+ influencers and managed 50+ brand collaborations, achieving a total reach of 10M+ users. Her creative campaigns and strong relationship management resulted in a 150% increase in engagement rates. Yue's strategic thinking and execution excellence have positioned LATAM as a leading e - commerce platform in the region.",
+        "members": [
+          "王悦"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "徐佳欣",
+        "email": "xujiaxin.018@bytedance.com",
+        "department": "LATAM Content Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiaxin has been a key driver of LATAM's content excellence in Q1. She developed and implemented content quality standards that improved content engagement by 60%. Her creative approach to content strategy resulted in a 40% increase in user - generated content. Jiaxin's strong collaboration with merchants and creators ensured consistent brand messaging across all touchpoints. Her dedication to quality and innovation has significantly enhanced LATAM's content ecosystem.",
+        "members": [
+          "徐佳欣"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q1",
+        "project_name": "LATAM Q1 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "朱宇轩",
+        "email": "zhuyuxuan.006@bytedance.com",
+        "department": "Brazil Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuxuan has been instrumental in driving Brazil's market success in Q1. He led the development of localization strategies that increased market penetration by 35%. His strong analytical skills and market insights enabled effective product positioning. Yuxuan's cross - functional collaboration ensured seamless execution of marketing campaigns. His dedication to understanding local consumer behavior has positioned Brazil as a key growth market for LATAM.",
+        "members": [
+          "朱宇轩"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "金强强",
+        "email": "jinqiangqiang@bytedance.com",
+        "department": "Quality Assurance",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Qiangqiang continued to demonstrate exceptional QA expertise in Q2, leading the quality assurance efforts for Brazil market launch. He established comprehensive testing frameworks that reduced post - launch issues by 50%. His proactive approach to quality management ensured smooth market operations. Qiangqiang's dedication to excellence and continuous improvement has been instrumental in LATAM's quality assurance success.",
+        "members": [
+          "金强强"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "何胜吾",
+        "email": "heshengwu.001@bytedance.com",
+        "department": "Mexico Operations-Central Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Noah continued his outstanding performance into Q2, driving significant growth in Mexico's e - commerce operations. He implemented innovative marketing strategies that increased GMV by 45% compared to Q1. His data - driven approach to campaign optimization resulted in higher ROI. Noah's leadership and strategic vision have been key to Mexico's continued success in the competitive e - commerce landscape.",
+        "members": [
+          "何胜吾"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "黄淳熠",
+        "email": "huangchunyi@bytedance.com",
+        "department": "LATAM Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Cara expanded her impact in Q2 by leading LATAM's product innovation initiatives. She drove 25+ product enhancements based on user feedback and market insights. Her cross - functional collaboration ensured timely delivery of high - quality features. Cara's customer - centric approach resulted in a 30% improvement in user satisfaction scores. Her strategic thinking and execution excellence continue to shape LATAM's product roadmap.",
+        "members": [
+          "黄淳熠"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "李海晴",
+        "email": "lihaiqing@bytedance.com",
+        "department": "Mexico Operations-Durables",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Haiqing maintained her exceptional performance in Q2, further expanding Mexico's durables category. She developed strategic partnerships with top brands, resulting in a 55% increase in category GMV. Her seller enablement programs trained 200+ sellers on best practices. Haiqing's commitment to seller success and market expansion has solidified Mexico's position as a leading market in LATAM.",
+        "members": [
+          "李海晴"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "林慧玲",
+        "email": "linhuiling@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Huilin achieved remarkable results in Q2, leading LATAM's customer service transformation. She implemented AI - powered support solutions that improved response times by 60%. Her team achieved the highest CSAT score among all regions for three consecutive months. Huilin's innovation and dedication have set new benchmarks for customer experience excellence in LATAM.",
+        "members": [
+          "林慧玲"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘佩佩",
+        "email": "liupeipei.007@bytedance.com",
+        "department": "Brazil Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Peipei played a critical role in Brazil's market expansion in Q2. She developed localized seller acquisition strategies that onboarded 500+ new sellers. Her training programs improved seller performance by 40%. Peipei's strong execution and market understanding have been key to Brazil's rapid growth. Her dedication to building a sustainable seller ecosystem positions Brazil for long - term success.",
+        "members": [
+          "刘佩佩"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘婷",
+        "email": "liuting.011@bytedance.com",
+        "department": "Mexico Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Ting continued to drive excellence in seller management in Q2. She optimized seller performance monitoring systems, improving seller retention by 35%. Her data - driven approach to seller support reduced churn rates significantly. Ting's strong stakeholder management and process improvements have enhanced Mexico's seller ecosystem. Her commitment to seller success continues to drive market growth.",
+        "members": [
+          "刘婷"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘宇轩",
+        "email": "liuyuxuan.015@bytedance.com",
+        "department": "LATAM Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuxuan led LATAM's growth initiatives in Q2, driving significant user acquisition improvements. He implemented targeted marketing campaigns that increased new user acquisition by 80%. His A/B testing framework optimized channel performance across all LATAM markets. Yuxuan's analytical skills and strategic thinking have been instrumental in LATAM's user growth trajectory.",
+        "members": [
+          "刘宇轩"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王悦",
+        "email": "wangyue.021@bytedance.com",
+        "department": "LATAM Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yue expanded her marketing impact in Q2, launching successful campaigns across LATAM markets. She managed 30+ brand partnerships with a combined reach of 25M users. Her innovative content strategies increased engagement rates by 120%. Yue's creative leadership and strong brand relationships continue to elevate LATAM's market presence.",
+        "members": [
+          "王悦"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "徐佳欣",
+        "email": "xujiaxin.018@bytedance.com",
+        "department": "LATAM Content Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiaxin drove content excellence in Q2, implementing standards that increased content performance by 70%. She developed creator training programs that improved creator quality scores by 45%. Her collaboration with merchants resulted in higher quality product listings. Jiaxin's focus on content quality and creator development has strengthened LATAM's content ecosystem.",
+        "members": [
+          "徐佳欣"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "杨磊",
+        "email": "yanglei.017@bytedance.com",
+        "department": "LATAM Supply Chain",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Lei optimized LATAM's supply chain operations in Q2, reducing delivery times by 25%. He implemented warehouse automation systems that improved fulfillment efficiency by 40%. His inventory management strategies reduced stock holding costs by 30%. Lei's operational excellence and continuous improvement have significantly enhanced LATAM's logistics capabilities.",
+        "members": [
+          "杨磊"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "杨赛赛",
+        "email": "yangsaisai.003@bytedance.com",
+        "department": "Brazil Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Saisai drove Brazil's growth momentum in Q2, implementing strategies that increased GMV by 65%. She developed successful promotional campaigns during key shopping periods. Her market research provided actionable insights for product expansion. Saisai's strategic thinking and strong execution have been key to Brazil's growth acceleration.",
+        "members": [
+          "杨赛赛"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "张晓颖",
+        "email": "zhangxiaoying.008@bytedance.com",
+        "department": "LATAM Compliance",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Xiaoying ensured regulatory compliance across LATAM markets in Q2. She developed compliance frameworks that reduced regulatory risks by 60%. Her collaboration with legal teams ensured smooth market operations. Xiaoying's attention to detail and proactive approach have been essential to LATAM's compliant and sustainable growth.",
+        "members": [
+          "张晓颖"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q2",
+        "project_name": "LATAM Q2 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "张宇航",
+        "email": "zhangyuhang.012@bytedance.com",
+        "department": "Mexico Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuhang led Mexico's technical infrastructure improvements in Q2. He implemented system optimizations that reduced page load times by 50%. His monitoring solutions improved issue detection and resolution speed by 70%. Yuhang's technical expertise and problem - solving skills have enhanced Mexico's platform stability and user experience.",
+        "members": [
+          "张宇航"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Cathy",
+        "email": "cathy.gao@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Cathy has been a key driver of LATAM's operational excellence in Q3, implementing process improvements that increased team efficiency by 45%. She led the development of training programs that improved agent performance by 35%. Her data - driven approach to operations optimization reduced costs while maintaining service quality. Cathy's leadership and strategic thinking have been instrumental in building scalable operations across LATAM.",
+        "members": [
+          "Cathy"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "陈政",
+        "email": "chenzheng.021@bytedance.com",
+        "department": "Brazil Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Zheng played a critical role in Brazil's Q3 growth initiatives. He developed strategic partnerships with top local brands, increasing brand portfolio by 40%. His market expansion strategies drove GMV growth of 55% compared to Q2. Zheng's deep market understanding and strong execution have been key to Brazil's continued success.",
+        "members": [
+          "陈政"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "方一暄",
+        "email": "fangyixuan.006@bytedance.com",
+        "department": "Mexico Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yixuan led Mexico's seller success initiatives in Q3, implementing programs that increased seller productivity by 50%. She developed training curricula that improved seller performance metrics across categories. Her seller support innovations reduced onboarding time by 60%. Yixuan's dedication to seller empowerment continues to drive Mexico's seller ecosystem growth.",
+        "members": [
+          "方一暄"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "何家敏",
+        "email": "hejiamin.011@bytedance.com",
+        "department": "LATAM Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiamin drove LATAM's marketing impact in Q3, leading campaigns that achieved 15M+ impressions. She managed strategic brand partnerships with a combined ROI of 1:7. Her creative content strategies increased engagement rates by 85%. Jiamin's marketing expertise and strong stakeholder relationships have elevated LATAM's brand presence across markets.",
+        "members": [
+          "何家敏"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "胡欣羽",
+        "email": "huxinyu.019@bytedance.com",
+        "department": "LATAM Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Xinyu led LATAM's user growth strategies in Q3, implementing initiatives that increased DAU by 40%. She developed retention programs that improved user engagement by 55%. Her user research provided valuable insights for product development. Xinyu's growth mindset and strong analytical skills have been instrumental in LATAM's user acquisition and retention success.",
+        "members": [
+          "胡欣羽"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "姜雨欣",
+        "email": "jiangyuxin.007@bytedance.com",
+        "department": "Brazil Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuxin drove Brazil's marketing success in Q3, launching campaigns that achieved 8M+ impressions. She managed influencer partnerships that increased brand awareness by 120%. Her localized content strategies resonated well with Brazilian consumers. Yuxin's creative marketing approach and market insights have strengthened Brazil's brand positioning.",
+        "members": [
+          "姜雨欣"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "金天宇",
+        "email": "jintianyu.013@bytedance.com",
+        "department": "LATAM Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Tianyu led LATAM's product innovation in Q3, driving 30+ feature improvements based on user feedback. He implemented A/B testing frameworks that increased feature adoption by 65%. His cross - functional collaboration ensured timely delivery of high - impact features. Tianyu's product expertise and user - centric approach continue to enhance LATAM's platform experience.",
+        "members": [
+          "金天宇"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "李佳怡",
+        "email": "lijiayi.018@bytedance.com",
+        "department": "Mexico Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiayi played a key role in Mexico's operations excellence in Q3. She optimized fulfillment processes that reduced delivery times by 35%. Her inventory management strategies improved stock availability to 95%. Li Jiahui's operational improvements have significantly enhanced Mexico's customer satisfaction and operational efficiency.",
+        "members": [
+          "李佳怡"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘梦蝶",
+        "email": "liumengdie.003@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Mengdie led LATAM's customer service excellence in Q3, achieving CSAT scores of 97% across all markets. She implemented support automation that reduced response times by 55%. Her team training programs improved first - call resolution rates by 40%. Mengdie's customer obsession and leadership have set new benchmarks for service quality.",
+        "members": [
+          "刘梦蝶"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘欣宇",
+        "email": "liuxinyu.022@bytedance.com",
+        "department": "LATAM Content Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Xinyu drove content excellence in Q3, implementing standards that improved content engagement by 75%. She developed creator programs that increased creator productivity by 50%. Her content strategy increased user - generated content by 60%. Xinyu's creative leadership and quality focus have strengthened LATAM's content ecosystem.",
+        "members": [
+          "刘欣宇"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "孙佳音",
+        "email": "sunjiayin.009@bytedance.com",
+        "department": "Brazil Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiayin led Brazil's operations in Q3, driving efficiency improvements across all functions. She implemented process optimizations that increased team productivity by 45%. Her data - driven approach to operations improved decision - making speed by 50%. Jiayin's operational expertise and continuous improvement mindset have been key to Brazil's operational excellence.",
+        "members": [
+          "孙佳音"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王嘉轩",
+        "email": "wangjiaxuan.014@bytedance.com",
+        "department": "LATAM Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jiaxuan led LATAM's technical improvements in Q3, implementing system optimizations that improved platform performance by 60%. He developed monitoring solutions that reduced issue detection time by 70%. His infrastructure improvements enhanced system reliability during peak periods. Jiaxuan's technical leadership has been essential to LATAM's platform stability.",
+        "members": [
+          "王嘉轩"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "吴雨亭",
+        "email": "wuyuting.005@bytedance.com",
+        "department": "Mexico Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuting drove Mexico's growth in Q3, implementing strategies that increased GMV by 70% compared to Q2. She developed successful promotional campaigns during key shopping events. Her market analysis provided insights for category expansion. Yuting's growth mindset and strong execution have been instrumental to Mexico's rapid expansion.",
+        "members": [
+          "吴雨亭"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q3",
+        "project_name": "LATAM Q3 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "张洁",
+        "email": "zhangjie.010@bytedance.com",
+        "department": "LATAM SCM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jie optimized LATAM's supply chain in Q3, reducing logistics costs by 30% while improving delivery speeds. She implemented warehouse improvements that increased fulfillment capacity by 45%. Her supplier management strategies ensured reliable inventory levels. Zhang Jie's operational excellence has significantly enhanced LATAM's supply chain efficiency.",
+        "members": [
+          "张洁"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘思grace",
+        "email": "grace.liu@bytedance.com",
+        "department": "LATAM Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Grace played a key role in LATAM's Q4 growth campaigns, particularly in campaign strategy and data analysis. She drove significant improvements in campaign ROI through rigorous experimentation and rapid iteration. Her coordination across teams ensured seamless execution of mega campaigns. Grace's precision, ownership, and reliability were instrumental to the campaigns' strong results.",
+        "members": [
+          "刘思grace"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Yuan",
+        "email": "liwenyuan.034@bytedance.com",
+        "department": "Mexico Ops-Electronics",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Since transferring to TTS in January 2025, Yuan has shown remarkable growth and the ability to deliver rapid, measurable results. With exceptional learning agility and high-efficiency execution, he quickly mastered the e-commerce ecosystem and exceeded performance targets (108% in October, 116% in November). He significantly grew mobile-phone brand penetration from 2.87% to 7.3% and led the launch of OPPO and Xiaomi Super Brand Day, creating flagship industry showcases. Beyond his own achievements, Yuan mentors new hires and improves internal workflows, exemplifying long-termism, ownership, and a relentless commitment to excellence.",
+        "members": [
+          "Yuan"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘伟洋",
+        "email": "carlos.liu@bytedance.com",
+        "department": "Supply Chain And Logistics",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Amid FS's unexpected 150%+ revenue surge in Q4, Weiyang led his team to maintain strong delivery performance while staying within cost targets. Through rapid capacity modeling and resource deployment, they reduced backlog risk by 30-40%. Process optimizations in routing, consolidation, and SLA monitoring improved operational efficiency, while real-time coordination with Supply Chain and Product ensured stable performance during peak weeks. Their professionalism and data-driven execution enabled FS to absorb unprecedented volume while protecting customer experience.",
+        "members": [
+          "刘伟洋"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Parnes",
+        "email": "mariana.parnes@bytedance.com",
+        "department": "Brazil Central Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Mariana delivered exceptional impact throughout Q4 and the entire year, unlocking new growth through her leadership in our celebrity KOL strategy. By smartly leveraging brand partnerships and influencer-led brands, she strengthened creator trust and elevated their live-commerce capabilities. She consistently goes above expectations to drive brand growth: in O Boticário, she partnered cross-functionally to activate top-tier creators; in Viih Tube, she worked seamlessly with H&L to help break multiple live-commerce records. Her ownership, creativity, and relentless drive set a new benchmark for excellence. Mariana's contribution has been truly transformative and fully deserving of recognition.",
+        "members": [
+          "Parnes"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "屈仟",
+        "email": "quqian@bytedance.com",
+        "department": "Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the owner of Live & Growth Marketing for LATAM R&D, Qian made critical contributions in Q4. He served as the technical POC for multiple mega promotions-11.11, Black Friday, and 9.9 - ensuring smooth launches and resolving issues rapidly on - site. He led core capability upgrades across live streaming, flash sales, and giveaway features, while building a comprehensive monitoring and alerting system from scratch. Qian's deep technical expertise, fast response, and strong leadership significantly strengthened LATAM's live - commerce infrastructure.",
+        "members": [
+          "屈仟"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "孙曼婷",
+        "email": "sunmanting@bytedance.com",
+        "department": "Full Service",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Manting drove major improvements in FS Mexico's promotional efficiency through rigorous experimentation and strong cross-functional alignment. Her RCT-based strategy design increased Margin × GMV efficiency from 1:6 to 1:8-10 - a 30-60% uplift during Q4. She produced granular insights across categories and scenarios, enabling smarter tool selection and more predictable growth. Her analytical rigor and structured collaboration laid a critical foundation for Mexico's sustainable, profitable expansion.",
+        "members": [
+          "孙曼婷"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Star",
+        "email": "laixupeng.star@bytedance.com",
+        "department": "UG",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Joining the LATAM team in Q4, Star quickly became a core driver of the new - user hero product program. He co - designed co - funding and voucher strategies, coordinated closely with cluster teams, provided training, and resolved complex issues with speed and ownership. His work boosted DNC product coverage from 32% to 47% and delivered a CPA improvement of $0.36. During 11.11 and Black Friday, his efforts enabled record performance, reaching daily DNC of 90K and a peak GMV of $113K. Star's structured thinking and decisive execution made the program a standout success.",
+        "members": [
+          "Star"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "谢鲲游",
+        "email": "xiekunyou.666@bytedance.com",
+        "department": "Algo",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "At the start of the mega - campaign, Kunyou launched the re - architected mixed - ranking strategy and iterated over 50 versions of parameter tuning. The final rollout achieved significant gains: all GMV +2.5%, all DNC +5.35%, video GMV +5.77%, and ad revenue +0.38%. Mid - campaign, he upgraded the global recall model, driving an additional +2.1% video GMV uplift. His work strengthened overall campaign efficiency and delivered sustained GMV improvement across surfaces. Kunyou's experimentation discipline, technical depth, and ability to deliver high - impact results under tight timelines were instrumental in elevating the campaign's performance.",
+        "members": [
+          "谢鲲游"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "徐曼",
+        "email": "xuman.21@bytedance.com",
+        "department": "Algo",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Margot led multiple LATAM bubble - entry initiatives that drove meaningful traffic and GMV uplift for the mall. She delivered three major launches this quarter. In MX bubble frequency tuning, full - rollout results showed strong gains across key metrics: Mall GMV/U - Normal +2.80%, payment UV conversion +2.34%, GMV across mall surfaces +0.88%, exposure per user +0.79%, UV CTCVR +2.10%, and significant CTR and GMV per - capita improvements. In BR, bubble frequency uplift delivered positive gains in GMV/U - Normal, DAU penetration, and overall mall GMV. MX bubble ranking also showed strong positive trends, improving closed - loop GMV/U - Normal, payment conversion, mall GMV, CTR, and reducing mall UV drop - off in feeds. Through fast iteration and rigorous measurement, Margot consistently delivered high - confidence improvements to mall traffic quality and growth.",
+        "members": [
+          "徐曼"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "杨常青",
+        "email": "yangchangqing.rony@bytedance.com",
+        "department": "Global Payment-Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the payment services technical leader and LATAM mega-campaign payment support POC, Rony ensured seamless cross-team coordination and stable payment workflows for the region's key e-commerce initiatives. He aligned payment service targets with business and R&D teams, tracked real-time performance, identified potential payment risks, and built targeted contingency plans. During both pre-campaign preparation and in-campaign peaks, Rony monitored system risks in real time and drove rapid resolution of emergencies, showcasing strong cross-functional collaboration and execution. He proactively coordinated with regional payment channel providers to mitigate channel fluctuations and worked closely with other teams to address system interface anomalies, ensuring no critical payment outages during the campaign. His dedicated efforts secured reliable, high-performing payment services throughout LATAM's most intense promotion cycle and laid a solid foundation for the campaign's overall success.",
+        "members": [
+          "杨常青"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Zhu",
+        "email": "kewei.zhu@bytedance.com",
+        "department": "Design",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the creative POC for LATAM's Black Friday and Double 11 campaigns, Kewei shaped the core visual concept and established a cohesive regional design system. Working closely with business teams, they developed locally resonant creative directions aligned with global brand identity. Leveraging motion design and AI, they delivered a fully dynamic visual system at zero cost and ensured timely execution across time zones despite limited resources. Kewei also documented key learnings from LATAM's first major - scale campaigns, building a strong foundation for future creative excellence.",
+        "members": [
+          "Zhu"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "包晓娟",
+        "email": "baoxiaojuan.001@bytedance.com",
+        "department": "LATAM Ops",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Xiaojuan drove significant improvements in LATAM's operations efficiency in Q4. She led process optimization initiatives that reduced operational costs by 35% while improving service quality. Her training programs improved team performance by 50%. Xiaojuan's operational expertise and leadership have been key to LATAM's scalable operations.",
+        "members": [
+          "包晓娟"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "曹宇欣",
+        "email": "caoyuxin.001@bytedance.com",
+        "department": "LATAM Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yuxin led LATAM's user growth initiatives in Q4, implementing strategies that increased MAU by 45%. She developed successful retention programs that improved user engagement by 60%. Her data - driven approach to growth optimization has been instrumental to LATAM's user acquisition success.",
+        "members": [
+          "曹宇欣"
+        ]
+      },
+      {
+        "award_type": "H2个人奖",
+        "period": "H2",
+        "quarter": "Q4",
+        "project_name": "LATAM Q4 Stellar Contributors",
+        "team_award": "Stellar Contributors",
+        "winner_name": "陈静",
+        "email": "chenjing.001@bytedance.com",
+        "department": "LATAM Marketing",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jing drove LATAM's marketing success in Q4, leading campaigns that achieved 20M+ impressions. She managed strategic brand partnerships with strong ROI performance. Her creative content strategies increased engagement rates by 95%. Jing's marketing expertise has strengthened LATAM's brand presence across markets.",
+        "members": [
+          "陈静"
+        ]
+      }
+    ]
+  },
+  "2026": {
+    "H1个人奖": [
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "冯纪元",
+        "email": "fengjiyuan.33@bytedance.com",
+        "department": "Supply Chain and Logistics",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Within just 1.25 years, Jiyuan successfully completed the 0 - to - 1 launch of both the Mexico FS business and the cross - border POP business in a new market. Key achievements in Q1: • 0 - to - 1 launch: Successfully launched Mexico FS business and cross - border POP business within 1.25 years despite tight resources. • Delivery speed improvement: Achieved FS standard/sensitive parcel segmentation with delivery timelines 2 - 3 days faster than Big B. • Operational efficiency: Reduced P95 delivery time from 20 days to 14 days, bringing fulfillment efficiency in line with SHEIN and Temu; all core experience metrics met quarterly targets. • Cost optimization: Launched new ORD warehouse in US reverse logistics, decreasing cost per parcel by 3.32% and generating annual savings of USD 580,000. He delivered solid execution under resource constraints, driving meaningful improvements in both speed and cost efficiency.",
+        "members": [
+          "冯纪元"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "高建光",
+        "email": "gaojianguang@bytedance.com",
+        "department": "Supply Chain and Logistics",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Jianguang delivered transformative results across logistics operations and service partner management in Q1. Key achievements in Q1: • Delivery acceleration: Spearheaded integrated full - region speedup initiative, driving 8.7% core - region speedup, 7.4% central - region improvement, and 27% overall end - to - end logistics time improvement. • Quality improvement: Led Drop off project to lift CN service providers core - region quarterly share from 94% to 98%, far exceeding targets. • Quality assurance: Personally audited nearly 28 cities network points to ensure stable post - launch operation. • Loss reduction: Built targeted management mechanisms cutting the CN service providers Aging lost rate from 0.6% to 0.22%, reducing company losses and enhancing service experience. His results demonstrate strong leadership in coordinating complex cross - functional initiatives and driving measurable operational improvements.",
+        "members": [
+          "高建光"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "高是暄",
+        "email": "gaoshixuan@bytedance.com",
+        "department": "User & Promotion Growth",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "In Q1, Shixuan demonstrated strong ownership, open collaboration, and the ability to deliver results under pressure as the owner of the logistics pricing card. Key achievements in Q1: • Mexico pricing structure: Partnered with logistics strategy team to transition Mexico from nationwide unified pricing to zoned pricing structure, increasing baseline logistics revenue by 2.2%. • Cross - border profitability: Collaborated with cross - border logistics team to optimize pricing, turning average cross - border logistics revenue per order from loss to profit. • Brazil route optimization: Worked closely with logistics team to advance route optimization, boosting order volume by 70% in key regions and addressing experience gaps. • Infrastructure building: Drove foundational initiatives across Latin America including pricing configuration, algorithm development, and Mexico - U.S. pricing infrastructure. Her work demonstrates strong ownership and the ability to drive both short - term results and long - term strategic impact.",
+        "members": [
+          "高是暄"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Herbie Huang",
+        "email": "herbie.huang@bytedance.com",
+        "department": "GNE-LATAM",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "In Q1, Herbie led the development and launch of AI solutions to improve the Seller IM experience, focused on better buyer support for logistics and aftersales inquiries. Key achievements in Q1: AI solution design & execution: Organized Seller IM AI solution design, SOP development, and operational procedures in collaboration with Product and Algo teams. Quality validation: Coordinated validation of over 1,000 real cases to ensure responses are clear, compliant, and consistent. Performance results: Logistics AI agent launched in late February achieved +10pp improvement in Seller IM CSAT and +15pp increase in automation completion rate in Mexico and Brazil. Aftersales solution also launched with strong initial results. This project represents an important step toward improving buyer experience and driving operational efficiency for sellers, with strong potential for further scaling.",
+        "members": [
+          "Herbie Huang"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "刘琦玉",
+        "email": "qianyuan.yuanyuan@bytedance.com",
+        "department": "Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Qiyu focused on promoting the penetration of core marketing tools and the supply of commercial broadcasts in Q1, achieving clear progress in both areas. Key achievements in Q1: - Lucky bag penetration: Based on conversion verification conclusions, implemented bonus lucky bag gameplay and simplified distribution link, increasing lucky bag UV penetration from 14% to 39%. - Flash sale expansion: Established creator flash sale application link and promoted merchant - creator matchmaking, achieving 30% flash sale penetration increase. - Go - LIVE guidance: Expanded display positions and account coverage for TT go - LIVE guidance; A/B testing in early April verified positive effects. She can quickly achieve results in familiar fields while also efficiently driving goals across teams.",
+        "members": [
+          "刘琦玉"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Rafael Lozano",
+        "email": "rafael.lozano@bytedance.com",
+        "department": "Brazil Operations-Consumables",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Rafael demonstrated exceptional performance in Q1, driving significant business impact through strategic account management and high - impact campaign execution. Key achievements in Q1: • GMV growth acceleration: Played a critical role in driving a significant step - up in overall GMV, successfully onboarding multiple key accounts and accelerating category growth. • IP campaign execution: Led the execution of several high - impact IP campaigns, including the Grand Openings for MAC and Too Faced, both of which delivered strong results and set a solid benchmark for future initiatives. • Livestream excellence: Demonstrated exceptional execution in driving merchant self - operated livestreams, achieving the highest self - live penetration across all AMs. His ability to combine strategic thinking with strong operational execution has made a meaningful impact on the business.",
+        "members": [
+          "Rafael Lozano"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Alberto Montes",
+        "email": "alberto.montes@bytedance.com",
+        "department": "Mexico Operations-Home&Living",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Alberto (Beto) delivered outstanding results in Q1, driving exceptional GMV growth and seller development through strategic execution and cross - functional collaboration. Key achievements in Q1: - GMV growth: Drove GMV growth of 176% vs Q4 2025, increasing Daily GMV from $11.4k to $31.5k. Grew active sellers from 56 to 75 (+33.9%) and doubled T3+ sellers to reach 6 by end of quarter. - T5 seller development: Helped develop the first T5 seller (Loomber Home) for the H&L cluster, executing a 360° strategy working closely with the seller to secure competitive pricing and stock availability, while coordinating with Logistics, Creators, and GnE teams. - Livestream success: Built strong showcases of Live Affiliate, achieving multiple $10k+ USD GMV sessions and one $20k+ USD session. - Team contribution: Led seller webinars to build market confidence and helped onboard new AMs to the cluster. His proactive approach to seller development and cross - functional collaboration has made a lasting impact on the H&L cluster.",
+        "members": [
+          "Alberto Montes"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Fernanda Forti Rossin",
+        "email": "fernanda.forti@bytedance.com",
+        "department": "GNE-LATAM Service Operations",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Fernanda demonstrated strong leadership in building and scaling the Brazil service team from the ground up, ensuring operational stability amid rapid business growth and vendor transitions. Key achievements in Q1: Service quality improvement: Seller CSAT improved significantly from ~50% to close to 70% under her leadership, reflecting clear gains in service quality. BPO transition execution: Remained deeply involved in frontline operations during vendor transitions, improving accuracy from ~50% to 80% and driving resolution of critical issues such as pick - up coordination and vendor switching - related tickets. External reputation turnaround: Led the turnaround of Reclame AQUI from \"Not Recommended\" to 6.0 (Regular), and further to 7.2 (Good) in Q1, strengthening external reputation metrics. Her Q1 results demonstrate strong ownership, execution rigor, and the ability to lead through complexity and drive meaningful outcomes.",
+        "members": [
+          "Fernanda Forti Rossin"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "王健康",
+        "email": "wangjiankang.23@bytedance.com",
+        "department": "Global Payment",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the product lead for BNPL in Mexico, Wangjiankang spearheaded a cross - functional initiative across Payments, Risk Control, and E - commerce (TTS), successfully launching the first BNPL product in Latin America from 0 to 1. Key achievements in Q1: • GMV uplift: Delivered 0.5% statistically confident uplift in overall e - commerce GMV with only 50% traffic allocation and no marketing subsidies, achieving 1.4% GMV penetration. • User base expansion: Partnered with TTS to expand the whitelist from 700,000 to 4.2 million users; launched credit entry point at checkout contributing 60% of newly generated credit lines. • Funnel optimization: Improved credit conversion from 24% to 32%, KYC pass rate from 80% to 96%, and approval rate from 30% to 60% through coordinated cross - functional efforts. His work demonstrates strong ownership and the ability to drive complex cross - functional initiatives from concept to launch.",
+        "members": [
+          "王健康"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "Hongdi Xu",
+        "email": "hongdi.xu25@bytedance.com",
+        "department": "User Research",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Hongdi demonstrated strong Business Partner awareness through proactive collaboration with business teams, streamlining high - volume demands into five priority research topics aligned with core business goals. Key achievements in Q1: Fieldwork execution: Independently led high - quality fieldwork in both Mexico and Brazil, covering user ecosystem studies and creator sampling with integrated qualitative and quantitative analysis. Strategic validation: Confirmed Brazil user persona aligns with business expectations, providing evidence to sustain the current UG strategy. Product optimization: Identified and drove UI optimizations including PDP seller information display and authentic review prompts; resolved localized expression issues in Mexico. Funnel diagnosis: Located pricing pain points in Brazil creator sampling process and provided specific feedback for workflow optimization. His research findings directly assisted business in achieving operational closure and informed best practices for new business models.",
+        "members": [
+          "Hongdi Xu"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "杨岩欣",
+        "email": "yangyanxin.0702@bytedance.com",
+        "department": "Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Yanxin delivered outstanding performance in Q1 2026, making significant contributions to the Latin America March Mega Sale and Oncall governance. Key achievements in Q1: • Mega Sale execution: As Tech Lead, drove successful launch of key marketing requirements, boosting merchant enrollment rate from 8.62% to 13.47% and ensuring zero internal closed - loop issues during the campaign. • Process standardization: Formulated and solidified the Mega Sale SOP, laying the groundwork for future technical capability upgrades. • Oncall optimization: Led LatAm Oncall Governance Initiative, reducing daily Oncall volume from 190 to 119 cases and S+ Mega Sale Oncall volume by 81% (from 60 to 11 cases). • Self - service improvement: Improved self - service problem resolution rate from 0% to 20% through standardized operational mechanisms and AI Agent capability upgrades. Her results demonstrate exceptional professional expertise, strong ownership, and results - oriented execution.",
+        "members": [
+          "杨岩欣"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "张文哲",
+        "email": "zhangwenzhe.james@bytedance.com",
+        "department": "Tech",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the FE Owner for LatAm Merchant Growth, Wenzhe successfully addressed severe drop - offs and low submission rates during the SellerApp Android onboarding journey. Key achievements in Q1: Performance optimization: Collaborated with cross - functional teams to implement over 10 optimizations including H5 decoupling, built - in resources, skeleton screens, and Preload. Loading speed improvement: Android LCP decreased from 8.64s to 2.8s (-67.59%) and iOS LCP from 4.97s to 1.42s (-71.42%). Conversion improvement: Registration - to - Exposure CVR jumped significantly in both MX (+14.95pp) and BR (+23.09pp). Submission rate: BR Android submission rate increased from 4.0% to 5.1%. His work demonstrates strong technical expertise and the ability to drive measurable improvements through cross - functional collaboration.",
+        "members": [
+          "张文哲"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "郑蔷",
+        "email": "zhengqiang.777@bytedance.com",
+        "department": "Product Design",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "As the lead design PoC for the Official project, Qiang built the Official brand visual system from the ground up, developing a complete Visual Identity (VI) that defined the brand tone through color, texture, and animation. Key achievements in Q1: • Visual identity development: Analyzed over 10 competitors and developed a complete VI system with reusable framework for expressing brand trust. • Journey integration: Drove implementation across the entire user journey, integrating brand elements into all key touchpoints within the product. • External consistency: Authored comprehensive design guidelines for external marketing materials, ensuring brand consistency across all channels. His strong ownership and execution were instrumental to this project, establishing a foundation for all future official endorsement designs.",
+        "members": [
+          "郑蔷"
+        ]
+      },
+      {
+        "award_type": "2026 H1个人奖",
+        "period": "2026 H1",
+        "quarter": "Q1",
+        "project_name": "LATAM TikTok Shop Stellar Contributors - 2026 Q1",
+        "team_award": "Stellar Contributors",
+        "winner_name": "周芷蔚",
+        "email": "zhouzhiwei.shirley@bytedance.com",
+        "department": "Product",
+        "region": "LATAM",
+        "original_region": "LATAM",
+        "bonus": "700",
+        "reason": "Under tight algorithmic human resources in Latin America, Zhiwei reasonably disassembled goals, strived for mid - platform human algorithm resources, and demonstrated strong professional competence in strategic products. Key achievements in Q1: Recommendation performance: Steadily achieved OKRs for three consecutive quarters, promoting implementation of localization models and Guess You Like Card strategies, contributing to +43.3% increase in BR Shopping Center recommended GMV and +12.8% increase in MX Shopping Center recommended GMV. Promotion support: Actively cooperated with business requirements during major promotions, focusing investment in recommendation support. Data - driven iteration: Built Latin American C - end Data Dashboard achieving automated attribution of key metrics and promptly identifying and promoting resolution of multiple online issues. Traffic optimization: Discovered excessive LIVE traffic issue through data analysis, launched dispersion experiment, and successfully achieved positive returns. Her work demonstrates strong strategic product thinking and the ability to drive results through data - informed decision making.",
+        "members": [
+          "周芷蔚"
+        ]
+      }
+    ],
+    "H1项目奖": []
+  }
 }
