@@ -32,18 +32,18 @@ const FeishuAuth = {
   },
   
   /**
-   * Attempt to open URL in Feishu app via URL Scheme
+   * Attempt to open URL in Feishu app via AppLink
    * Returns true if attempt was made, false if URL scheme not supported
    */
   tryOpenInFeishu() {
-    // Direct open the app in Feishu workspace
-    // This will open the app directly without needing to search
-    const scheme = `lark://client/workspace/app?appId=${this.APP_ID}`;
+    // Use Feishu AppLink protocol - this works from external browsers
+    // https://applink.feishu.cn/client/web_app/open?appId=xxx
+    const applink = `https://applink.feishu.cn/client/web_app/open?appId=${this.APP_ID}`;
     
-    console.log('[FeishuAuth] Attempting to open app in Feishu workspace:', scheme);
+    console.log('[FeishuAuth] Attempting to open app via AppLink:', applink);
     
-    // Direct navigation
-    window.location.href = scheme;
+    // Direct navigation to AppLink
+    window.location.href = applink;
     
     return true;
   },
