@@ -797,7 +797,7 @@
       let regionalProjects = 0;
       let individualAwards = 0;
       let totalBonus = 0;
-      let uniqueWinners = new Set();
+      let teamMemberCount = 0;
       
       // Count Global Projects (H1 + H2) - by unique project
       if (globalData) {
@@ -812,9 +812,9 @@
           if (!projectBonuses[pname]) {
             projectBonuses[pname] = Number(a.bonus) || 0;
           }
-          // Collect winners
+          // Count all members (no dedup for participation count)
           if (a.members) {
-            a.members.forEach(m => uniqueWinners.add(m));
+            teamMemberCount += a.members.length;
           }
         });
         
@@ -838,9 +838,9 @@
             if (!projectBonuses[pname]) {
               projectBonuses[pname] = Number(a.bonus) || 0;
             }
-            // Collect winners
+            // Count all members (no dedup for participation count)
             if (a.members) {
-              a.members.forEach(m => uniqueWinners.add(m));
+              teamMemberCount += a.members.length;
             }
           });
           
@@ -880,7 +880,7 @@
             <div class="stat-label">Total Bonus</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">${uniqueWinners.size}</div>
+            <div class="stat-value">${teamMemberCount}</div>
             <div class="stat-label">Team Members</div>
           </div>
           <div class="stat-item">
@@ -891,15 +891,18 @@
       }
     }
     
-    function formatBonus(amount) {
+    function formatBonus(amount, currency = 'USD') {
       if (!amount || amount === 0) return 'TBD';
+      
+      const symbol = currency === 'CNY' ? '¥' : '$';
+      
       if (amount >= 1000000) {
-        return '$' + (amount / 1000000).toFixed(1) + 'M';
+        return symbol + (amount / 1000000).toFixed(1) + 'M';
       }
       if (amount >= 1000) {
-        return '$' + (amount / 1000).toFixed(0) + 'K';
+        return symbol + (amount / 1000).toFixed(0) + 'K';
       }
-      return '$' + amount;
+      return symbol + amount;
     }
     
     // Home page specific initialization
@@ -923,18 +926,19 @@
         AppData.currentYear = urlYear;
         
         // Load all data for stats (H1 + H2)
-        const [rankingsData, global, us, eu, sea, latam] = await Promise.all([
+        const [rankingsData, global, us, eu, sea, latam, fs] = await Promise.all([
           loadRankings(urlYear),
           loadData('global', null, urlYear),
           loadData('regional', 'us', urlYear),
           loadData('regional', 'eu', urlYear),
           loadData('regional', 'sea', urlYear),
-          loadData('regional', 'latam', urlYear)
+          loadData('regional', 'latam', urlYear),
+          loadData('fs')
         ]);
         
         // Build member to department mapping from all data
         const memberDeptMap = {};
-        const allData = [global, us, eu, sea, latam];
+        const allData = [global, us, eu, sea, latam, fs];
         allData.forEach(data => {
           if (!data) return;
           const allAwards = [
@@ -974,12 +978,35 @@
           }
         }
         
-        // Calculate and render stats
-        renderHomeStats(global, { us, eu, sea, latam }, urlYear);
+        // Calculate and render stats (including FS data in global for combined stats)
+        const globalWithFS = mergeGlobalData(global, fs);
+        renderHomeStats(globalWithFS, { us, eu, sea, latam }, urlYear);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
+    }
+    
+    // 合并Global数据和FS数据
+    function mergeGlobalData(global, fs) {
+      if (!global && !fs) return null;
+      if (!global) return fs;
+      if (!fs) return global;
+      
+      return {
+        'H1项目奖': [
+          ...(global['H1项目奖'] || []),
+          ...(fs['H1项目奖'] || [])
+        ],
+        'H2项目奖': [
+          ...(global['H2项目奖'] || []),
+          ...(fs['H2项目奖'] || [])
+        ],
+        'H2个人奖': [
+          ...(global['H2个人奖'] || []),
+          ...(fs['H2个人奖'] || [])
+        ]
+      };
     }
     
     // 初始化搜索功能

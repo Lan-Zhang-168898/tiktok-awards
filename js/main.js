@@ -7,7 +7,8 @@ const AppData = {
     us: null,
     eu: null,
     sea: null,
-    latam: null
+    latam: null,
+    fs: null
   },
   rankings: null,
   currentYear: '2025',
@@ -29,20 +30,22 @@ function setUrlParam(param, value) {
   window.history.pushState({}, '', url);
 }
 
-function formatCurrency(amount) {
+function formatCurrency(amount, currency = 'USD') {
   if (!amount) return 'TBD';
-  return '$' + Number(amount).toLocaleString();
+  const symbol = currency === 'CNY' ? '¥' : '$';
+  return symbol + Number(amount).toLocaleString();
 }
 
-function formatBonus(amount) {
+function formatBonus(amount, currency = 'USD') {
   if (!amount || amount === 0) return 'TBD';
+  const symbol = currency === 'CNY' ? '¥' : '$';
   if (amount >= 1000000) {
-    return '$' + (amount / 1000000).toFixed(1) + 'M';
+    return symbol + (amount / 1000000).toFixed(1) + 'M';
   }
   if (amount >= 1000) {
-    return '$' + (amount / 1000).toFixed(0) + 'K';
+    return symbol + (amount / 1000).toFixed(0) + 'K';
   }
-  return '$' + amount;
+  return symbol + amount;
 }
 
 function truncateText(text, maxLength = 200) {
@@ -188,6 +191,8 @@ async function loadData(level, region = null, year = null) {
       dataFile = 'data/global.json';
     } else if (level === 'regional' && region) {
       dataFile = `data/${region}.json`;
+    } else if (level === 'fs') {
+      dataFile = 'data/fs.json';
     }
     
     const response = await fetch(dataFile);
@@ -200,6 +205,12 @@ async function loadData(level, region = null, year = null) {
     
     // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
+    
+    // FS数据没有多年份结构，直接返回
+    if (level === 'fs') {
+      AppData.regional.fs = data;
+      return data;
+    }
     
     if (hasYearStructure) {
       // 多年份数据结构：返回对应年份数据
