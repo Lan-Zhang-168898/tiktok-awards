@@ -792,7 +792,7 @@
   <script>
     // Render Home Stats - Now includes H1 + H2 data
     // IMPORTANT: Project awards are counted by unique project, not by member records
-    function renderHomeStats(globalData, regionalData) {
+    function renderHomeStats(globalData, regionalData, year = '2025') {
       let globalProjects = 0;
       let regionalProjects = 0;
       let individualAwards = 0;
@@ -848,7 +848,8 @@
           totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
           
           // Individual awards - count by person
-          const indivAwards = regionData['H2个人奖'] || [];
+          // 支持 H2个人奖（2025）和 Q1个人奖（2026 LATAM）
+          const indivAwards = regionData['H2个人奖'] || regionData['Q1个人奖'] || [];
           individualAwards += indivAwards.length;
           
           indivAwards.forEach(a => {
@@ -870,7 +871,7 @@
             <div class="stat-value">${regionalProjects}</div>
             <div class="stat-label">Regional Projects</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item highlight">
             <div class="stat-value">${individualAwards}</div>
             <div class="stat-label">Individual Awards</div>
           </div>
@@ -924,11 +925,11 @@
         // Load all data for stats (H1 + H2)
         const [rankingsData, global, us, eu, sea, latam] = await Promise.all([
           loadRankings(urlYear),
-          loadData('global'),
-          loadData('regional', 'us'),
-          loadData('regional', 'eu'),
-          loadData('regional', 'sea'),
-          loadData('regional', 'latam')
+          loadData('global', null, urlYear),
+          loadData('regional', 'us', urlYear),
+          loadData('regional', 'eu', urlYear),
+          loadData('regional', 'sea', urlYear),
+          loadData('regional', 'latam', urlYear)
         ]);
         
         // Build member to department mapping from all data
@@ -974,7 +975,7 @@
         }
         
         // Calculate and render stats
-        renderHomeStats(global, { us, eu, sea, latam });
+        renderHomeStats(global, { us, eu, sea, latam }, urlYear);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
