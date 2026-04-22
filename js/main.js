@@ -83,7 +83,21 @@ function initYearNavigation() {
     }
     
     btn.addEventListener('click', () => {
+      // 2026 年只有 Regional 页面的 LATAM 区域有数据
       const page = window.location.pathname.split('/').pop();
+      
+      // Global 页面不允许选择 2026
+      if (page === 'global.html' && btn.dataset.year === '2026') {
+        alert('2026 data is not available yet. Coming soon!');
+        return;
+      }
+      
+      // Regional 页面：2026 年只有 LATAM 可选
+      if (page === 'regional.html' && btn.dataset.year === '2026' && AppData.currentRegion !== 'latam') {
+        alert('2026 data is only available for LATAM region. Please select LATAM first.');
+        return;
+      }
+      
       const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
       window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}`;
     });
@@ -252,10 +266,10 @@ function getH2ProjectAwardsYear(data, year) {
 }
 
 // Get H1 individual awards (year-based structure, for LATAM 2026)
-function getH1IndividualAwardsYear(data, year) {
+function getQ1IndividualAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  return yearData['H1个人奖'] || [];
+  return yearData['Q1个人奖'] || [];
 }
 
 // Get H2 individual awards (year-based structure)
@@ -270,8 +284,8 @@ function getLatamIndividualAwards(data, year, period) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
   
-  if (period === 'H1个人奖') {
-    return yearData['H1个人奖'] || [];
+  if (period === 'Q1个人奖') {
+    return yearData['Q1个人奖'] || [];
   } else if (period === 'H2个人奖') {
     return yearData['H2个人奖'] || [];
   }
@@ -284,8 +298,8 @@ function getAvailableLatamPeriods(data, year) {
   if (!yearData) return [];
   
   const periods = [];
-  if (yearData['H1个人奖'] && yearData['H1个人奖'].length > 0) {
-    periods.push('H1个人奖');
+  if (yearData['Q1个人奖'] && yearData['Q1个人奖'].length > 0) {
+    periods.push('Q1个人奖');
   }
   if (yearData['H2个人奖'] && yearData['H2个人奖'].length > 0) {
     periods.push('H2个人奖');
@@ -514,12 +528,12 @@ function calculateRegionTop3FullYear(regionData, region) {
   const h1Awards = getH1ProjectAwardsYear(regionData, currentYear);
   const h2Awards = getH2ProjectAwardsYear(regionData, currentYear);
   
-  // For LATAM, combine all quarters or H1个人奖 based on year
+  // For LATAM, combine all quarters or Q1个人奖 based on year
   let allIndividualAwards = [];
   if (region === 'latam') {
     if (currentYear === '2026') {
-      // 2026: use H1个人奖
-      allIndividualAwards = getH1IndividualAwardsYear(regionData, currentYear);
+      // 2026: use Q1个人奖
+      allIndividualAwards = getQ1IndividualAwardsYear(regionData, currentYear);
     } else {
       // 2025: use Q1-Q4 quarters
       allIndividualAwards = getIndividualAwardsByQuarter(regionData, 'Q1').concat(
@@ -1015,9 +1029,9 @@ function renderRegionalAwards(data, containerId, period, region) {
     } else {
       html = renderIndividualCards(quarterAwards, region, period);
     }
-  } else if (period === 'H1个人奖') {
+  } else if (period === 'Q1个人奖') {
     // LATAM H1 individual awards (2026)
-    const h1Awards = getH1IndividualAwardsYear(data, currentYear);
+    const h1Awards = getQ1IndividualAwardsYear(data, currentYear);
     if (h1Awards.length === 0) {
       html = `<div class="no-data-msg">No H1 individual awards available for LATAM ${currentYear}</div>`;
     } else {

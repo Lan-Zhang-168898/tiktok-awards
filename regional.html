@@ -417,7 +417,7 @@
           <div class="year-nav-wrapper">
             <div class="year-nav-compact">
               <button class="year-btn active" data-year="2025">2025</button>
-              <button class="year-btn" data-year="2026">2026</button>
+              <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span></button>
             </div>
           </div>
         </section>
@@ -578,6 +578,14 @@
     function updateLabels() {
       document.getElementById('region-name').textContent = regionNames[currentRegion];
       
+      // Update 2026 button "Coming Soon" tag based on region
+      const year2026Btn = document.getElementById('year-2026-btn');
+      const comingSoonTag = year2026Btn ? year2026Btn.querySelector('.coming-soon-tag') : null;
+      if (comingSoonTag) {
+        // Only LATAM has 2026 data, hide "Coming Soon" for LATAM
+        comingSoonTag.style.display = currentRegion === 'latam' ? 'none' : 'inline';
+      }
+      
       // Update regional awards title
       const titleEl = document.getElementById('regional-awards-title');
       if (titleEl) {
@@ -624,11 +632,12 @@
         quarterToggle.style.display = 'block';
         
         if (currentYear === '2026') {
-          // 2026: show H1个人奖 button only
+          // 2026: show Q1个人奖 button only
           quarterButtons.style.display = 'none';
           h1IndividualButton.style.display = 'block';
-          if (!['H1个人奖'].includes(currentAwardType)) {
-            currentAwardType = 'H1个人奖';
+          h1IndividualButton.textContent = 'Q1 Stellar Contributors';
+          if (!['Q1个人奖'].includes(currentAwardType)) {
+            currentAwardType = 'Q1个人奖';
           }
         } else {
           // 2025 and earlier: show Q buttons
