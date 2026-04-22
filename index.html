@@ -852,9 +852,9 @@
           const indivAwards = regionData['H2个人奖'] || regionData['Q1个人奖'] || [];
           individualAwards += indivAwards.length;
           
+          // 个人奖的奖金计入总奖金，但获奖者不计入Team Members（Team Members只统计团队奖成员）
           indivAwards.forEach(a => {
             if (a.bonus) totalBonus += Number(a.bonus);
-            if (a.winner_name) uniqueWinners.add(a.winner_name);
           });
         }
       });
