@@ -665,11 +665,11 @@
     }
     
     // Load and render regional data
-    async function loadRegionalData(region) {
+    async function loadRegionalData(region, year = null) {
       const awardsContainer = document.getElementById('regional-awards');
       
       try {
-        regionalData = await loadData('regional', region);
+        regionalData = await loadData('regional', region, year);
         
         if (regionalData) {
           // Update page title
@@ -694,6 +694,7 @@
     function initRegionNav() {
       const regionBtns = document.querySelectorAll('.region-btn');
       const urlRegion = getUrlParam('region') || 'us';
+      const urlYear = getUrlParam('year') || '2025';
       currentRegion = urlRegion;
       
       console.log('initRegionNav: urlRegion=', urlRegion, 'currentRegion=', currentRegion, 'btns=', regionBtns.length);
@@ -705,12 +706,20 @@
         }
         
         btn.addEventListener('click', () => {
-          console.log('Region clicked:', btn.dataset.region);
+          const clickedRegion = btn.dataset.region;
+          
+          // 2026年只有LATAM有数据
+          if (urlYear === '2026' && clickedRegion !== 'latam') {
+            alert('2026 data is not available yet for this region. Coming soon!');
+            return;
+          }
+          
+          console.log('Region clicked:', clickedRegion);
           regionBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentRegion = btn.dataset.region;
+          currentRegion = clickedRegion;
           updateLabels();
-          loadRegionalData(currentRegion);
+          loadRegionalData(currentRegion, urlYear);
         });
       });
     }
@@ -766,16 +775,31 @@
     document.addEventListener('DOMContentLoaded', async () => {
       console.log('DOMContentLoaded fired');
       
+      // Get year and region from URL
+      let urlYear = getUrlParam('year') || '2025';
+      let urlRegion = getUrlParam('region') || 'us';
+      
+      // 2026年只有LATAM有数据，自动跳转到LATAM
+      if (urlYear === '2026' && urlRegion !== 'latam') {
+        console.log('2026 year with non-LATAM region, redirecting to LATAM');
+        const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
+        window.location.href = `${baseUrl}regional.html?year=2026&region=latam`;
+        return;
+      }
+      
+      AppData.currentYear = urlYear;
+      currentRegion = urlRegion;
+      
       // Initialize navigation
       highlightNavigation();
       initYearNavigation();
       initRegionNav();
       initAwardTypeToggle();
       
-      console.log('Initial currentRegion:', currentRegion, 'currentAwardType:', currentAwardType);
+      console.log('Initial currentRegion:', currentRegion, 'currentAwardType:', currentAwardType, 'year:', urlYear);
       
       // Load initial region data
-      await loadRegionalData(currentRegion);
+      await loadRegionalData(currentRegion, urlYear);
       
       console.log('Data loaded, regionalData:', !!regionalData);
       

@@ -116,7 +116,6 @@ function initYearNavigation() {
     }
     
     btn.addEventListener('click', () => {
-      // 2026 年只有 Regional 页面的 LATAM 区域有数据
       const page = window.location.pathname.split('/').pop();
       
       // Global 页面不允许选择 2026
@@ -125,14 +124,12 @@ function initYearNavigation() {
         return;
       }
       
-      // Regional 页面：2026 年只有 LATAM 可选
-      if (page === 'regional.html' && btn.dataset.year === '2026' && AppData.currentRegion !== 'latam') {
-        alert('2026 data is only available for LATAM region. Please select LATAM first.');
-        return;
-      }
-      
+      // Regional 和 HomePage：允许切换年份
+      // Regional页面会根据年份显示不同区域的状态
       const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
-      window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}`;
+      const currentRegion = getUrlParam('region');
+      const regionParam = currentRegion ? `&region=${currentRegion}` : '';
+      window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}${regionParam}`;
     });
   });
 }
@@ -183,7 +180,7 @@ function initDeptNavigation() {
 }
 
 // ==================== Data Loading Functions ====================
-async function loadData(level, region = null) {
+async function loadData(level, region = null, year = null) {
   try {
     let dataFile;
     
@@ -198,13 +195,40 @@ async function loadData(level, region = null) {
     
     const data = await response.json();
     
-    if (level === 'global') {
-      AppData.global = data;
-    } else if (level === 'regional') {
-      AppData.regional[region] = data;
-    }
+    // 根据年份筛选数据
+    const targetYear = year || AppData.currentYear || '2025';
     
-    return data;
+    // 检查数据是否是多年份结构
+    const hasYearStructure = data['2025'] || data['2026'];
+    
+    if (hasYearStructure) {
+      // 多年份数据结构：返回对应年份数据
+      if (data[targetYear]) {
+        const yearData = data[targetYear];
+        if (level === 'global') {
+          AppData.global = yearData;
+        } else if (level === 'regional') {
+          AppData.regional[region] = yearData;
+        }
+        return yearData;
+      } else {
+        // 请求的年份不存在，返回null
+        return null;
+      }
+    } else {
+      // 非多年份结构：直接返回数据（假设是2025年数据）
+      // 只有2025年时才返回数据，2026年返回null
+      if (targetYear === '2025') {
+        if (level === 'global') {
+          AppData.global = data;
+        } else if (level === 'regional') {
+          AppData.regional[region] = data;
+        }
+        return data;
+      } else {
+        return null;
+      }
+    }
   } catch (error) {
     console.error('Error loading data:', error);
     return null;
