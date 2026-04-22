@@ -39,29 +39,14 @@ const FeishuAuth = {
     const currentUrl = window.location.href;
     const targetUrl = encodeURIComponent(currentUrl);
     
-    // Try different URL schemes
-    const schemes = [
-      `lark://client/web/url?url=${targetUrl}`,
-      `feishu://client/web/url?url=${targetUrl}`,
-      `lark://client/workspace/app?appId=${this.APP_ID}`,
-      `feishu://client/workspace/app?appId=${this.APP_ID}`
-    ];
+    // Use lark:// scheme to open in Feishu
+    // This will open the current URL in Feishu's webview
+    const scheme = `lark://client/web/url?url=${targetUrl}`;
     
-    // Try the first scheme
-    const scheme = schemes[0];
+    console.log('[FeishuAuth] Attempting to open in Feishu:', scheme);
     
-    // Create an iframe to try opening the URL (less intrusive)
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    iframe.src = scheme;
-    document.body.appendChild(iframe);
-    
-    // Remove iframe after timeout
-    setTimeout(() => {
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-    }, 1000);
+    // Direct navigation - this works better than iframe
+    window.location.href = scheme;
     
     return true;
   },
