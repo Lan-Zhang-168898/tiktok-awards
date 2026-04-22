@@ -101,9 +101,165 @@
       font-weight: 600;
       box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
     }
+    
+    /* ==================== Feishu Auth Styles ==================== */
+    .auth-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg-dark);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: var(--spacing-lg);
+    }
+    
+    .auth-container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-icon { margin-bottom: var(--spacing-xl); }
+    .auth-icon svg { margin: 0 auto; }
+    
+    .auth-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .auth-description {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+      line-height: 1.6;
+    }
+    
+    .auth-instructions {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-xl);
+      margin-bottom: var(--spacing-xl);
+      text-align: left;
+    }
+    
+    .auth-instructions h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-md);
+      color: var(--text-primary);
+    }
+    
+    .auth-instructions ol { list-style: none; counter-reset: step; }
+    
+    .auth-instructions li {
+      counter-increment: step;
+      position: relative;
+      padding-left: 40px;
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .auth-instructions li:last-child { margin-bottom: 0; }
+    
+    .auth-instructions li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+    }
+    
+    .auth-instructions strong {
+      display: block;
+      font-size: 14px;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .auth-instructions p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    .auth-footer { margin-top: var(--spacing-lg); }
+    .auth-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: var(--spacing-md); }
+    
+    .auth-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    
+    .auth-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+    }
+    
+    .auth-btn.secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+    }
+    
+    .auth-btn.secondary:hover { border-color: var(--primary-color); }
+    .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
+    
+    .auth-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-lg);
+    }
+    
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid var(--bg-card);
+      border-top-color: var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
+  <!-- Auth Overlay -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-loading">
+      <div class="spinner"></div>
+      <p style="color: var(--text-secondary);">Initializing...</p>
+    </div>
+  </div>
   <div class="page-wrapper">
     <!-- Header -->
     <header class="header">
@@ -206,6 +362,9 @@
     </div>
   </div>
 
+  <!-- Feishu H5 SDK -->
+  <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
   <script>
     // Departmental page specific initialization
