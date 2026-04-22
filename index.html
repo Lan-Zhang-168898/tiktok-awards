@@ -983,31 +983,32 @@
     
     // 初始化搜索功能
     function initSearch() {
-    const searchInput = document.getElementById('search-input');
-    const searchBtn = document.getElementById('search-btn');
-    const searchResults = document.getElementById('search-results');
-    
-    function performAndShowSearch() {
-      const query = searchInput?.value || '';
-      if (!query) {
-        searchResults.classList.remove('active');
-        return;
-      }
-      const results = performSearch(query);
-      renderSearchResults(results, 'search-results');
-      searchResults.classList.add('active');
-    }
-    
-    if (searchBtn) {
-      searchBtn.addEventListener('click', performAndShowSearch);
-    }
-    
-    if (searchInput) {
-      searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          performAndShowSearch();
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResults = document.getElementById('search-results');
+      
+      function performAndShowSearch() {
+        const query = searchInput?.value || '';
+        if (!query) {
+          searchResults.classList.remove('active');
+          return;
         }
-      });
+        const results = performSearch(query);
+        renderSearchResults(results, 'search-results');
+        searchResults.classList.add('active');
+      }
+      
+      if (searchBtn) {
+        searchBtn.addEventListener('click', performAndShowSearch);
+      }
+      
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            performAndShowSearch();
+          }
+        });
+      }
     }
   </script>
 </body>
