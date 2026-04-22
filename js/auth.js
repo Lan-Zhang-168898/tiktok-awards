@@ -36,16 +36,13 @@ const FeishuAuth = {
    * Returns true if attempt was made, false if URL scheme not supported
    */
   tryOpenInFeishu() {
-    const currentUrl = window.location.href;
-    const targetUrl = encodeURIComponent(currentUrl);
+    // Direct open the app in Feishu workspace
+    // This will open the app directly without needing to search
+    const scheme = `lark://client/workspace/app?appId=${this.APP_ID}`;
     
-    // Use lark:// scheme to open in Feishu
-    // This will open the current URL in Feishu's webview
-    const scheme = `lark://client/web/url?url=${targetUrl}`;
+    console.log('[FeishuAuth] Attempting to open app in Feishu workspace:', scheme);
     
-    console.log('[FeishuAuth] Attempting to open in Feishu:', scheme);
-    
-    // Direct navigation - this works better than iframe
+    // Direct navigation
     window.location.href = scheme;
     
     return true;
