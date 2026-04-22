@@ -70,11 +70,37 @@ function highlightNavigation() {
   }
 }
 
+// 更新2026年份按钮的Coming Soon标签
+function updateYear2026Button() {
+  const year2026Btn = document.getElementById('year-2026-btn');
+  if (!year2026Btn) return;
+  
+  const page = window.location.pathname.split('/').pop();
+  
+  // Global页面：始终显示Coming Soon
+  if (page === 'global.html') {
+    year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span>';
+    return;
+  }
+  
+  // Regional页面：只有LATAM区域不显示Coming Soon
+  if (page === 'regional.html') {
+    if (AppData.currentRegion === 'latam') {
+      year2026Btn.innerHTML = '2026';
+    } else {
+      year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span>';
+    }
+  }
+}
+
 function initYearNavigation() {
   const yearBtns = document.querySelectorAll('.year-btn');
   const urlYear = getUrlParam('year') || '2025';
   
   AppData.currentYear = urlYear;
+  
+  // 初始化时更新2026按钮状态
+  updateYear2026Button();
   
   yearBtns.forEach(btn => {
     btn.classList.remove('active');
@@ -109,6 +135,9 @@ function initRegionNavigation() {
   const urlRegion = getUrlParam('region') || 'us';
   
   AppData.currentRegion = urlRegion;
+  
+  // 初始化时更新2026按钮状态
+  updateYear2026Button();
   
   regionBtns.forEach(btn => {
     btn.classList.remove('active');
