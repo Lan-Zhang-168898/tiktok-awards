@@ -1238,6 +1238,14 @@ function renderRegionalAwards(data, containerId, period, region) {
         html = renderIndividualCards(quarterAwards, region, period);
       }
     }
+  } else if (period === 'Q4个人奖') {
+    // FS/POP Q4 BFCM个人奖 (H2个人奖)
+    const individualAwards = data['H2个人奖'] || [];
+    if (individualAwards.length === 0) {
+      html = '<div class="no-data-msg">No Q4 BFCM Stellar Contributors available</div>';
+    } else {
+      html = renderIndividualCards(individualAwards, region, 'Q4 BFCM');
+    }
   } else if (period === 'Q1个人奖') {
     // LATAM H1 individual awards (2026)
     const h1Awards = getQ1IndividualAwardsYear(data, currentYear);

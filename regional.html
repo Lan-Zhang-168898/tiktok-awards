@@ -481,23 +481,27 @@
           </div>
         </div>
 
-        <!-- Quarter Toggle (for LATAM) -->
+        <!-- Quarter Toggle (for LATAM/FS/POP) -->
         <div class="award-type-wrapper" id="quarter-toggle" style="display: none;">
           <div class="award-type-toggle" id="quarter-buttons">
             <button class="award-type-btn active" data-type="Q1">
               Q1
-              <span class="btn-subtitle">Stellar Contributors</span>
+              <span class="btn-subtitle">Project Awards</span>
             </button>
             <button class="award-type-btn" data-type="Q2">
               Q2
-              <span class="btn-subtitle">Stellar Contributors</span>
+              <span class="btn-subtitle">Project Awards</span>
             </button>
             <button class="award-type-btn" data-type="Q3">
               Q3
-              <span class="btn-subtitle">Stellar Contributors</span>
+              <span class="btn-subtitle">Project Awards</span>
             </button>
             <button class="award-type-btn" data-type="Q4">
               Q4
+              <span class="btn-subtitle">Project Awards</span>
+            </button>
+            <button class="award-type-btn" data-type="Q4个人奖" id="q4-individual-btn" style="display: none;">
+              Q4 BFCM
               <span class="btn-subtitle">Stellar Contributors</span>
             </button>
           </div>
@@ -671,7 +675,13 @@
           const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
           quarterBtns.forEach(btn => {
             const q = btn.dataset.type;
-            btn.innerHTML = `${q}<span class="btn-subtitle">Stellar Contributors</span>`;
+            if (q === 'Q4个人奖') {
+              // LATAM不显示Q4 BFCM按钮
+              btn.style.display = 'none';
+            } else if (q) {
+              btn.innerHTML = `${q}<span class="btn-subtitle">Stellar Contributors</span>`;
+              btn.style.display = 'block';
+            }
           });
           
           if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
@@ -682,7 +692,7 @@
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else if (isQuarterRegion) {
-        // FS/POP: 季度结构，显示Q1-Q4项目奖独立按钮
+        // FS/POP: 季度结构，显示Q1-Q4项目奖 + Q4 BFCM个人奖按钮
         awardTypeWrapper.style.display = 'none';
         quarterToggle.style.display = 'block';
         quarterButtons.style.display = 'block';
@@ -691,12 +701,18 @@
         // 更新季度按钮文字 - 对齐US的H1/H2项目奖样式
         const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
         quarterBtns.forEach(btn => {
-          const q = btn.dataset.type; // Q1, Q2, Q3, Q4
-          btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
+          const q = btn.dataset.type;
+          if (q === 'Q4个人奖') {
+            // Q4 BFCM按钮保持个人奖样式
+            btn.style.display = 'block';
+          } else if (q) {
+            btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
+            btn.style.display = 'block';
+          }
         });
         
         // 默认显示Q1
-        if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+        if (!['Q1', 'Q2', 'Q3', 'Q4', 'Q4个人奖'].includes(currentAwardType)) {
           currentAwardType = 'Q1';
         }
         document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
@@ -852,14 +868,15 @@
         });
       });
       
-      // LATAM Q buttons
+      // LATAM / FS / POP Q buttons
       const quarterBtns = document.querySelectorAll('#quarter-toggle .award-type-btn');
       quarterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          if (currentRegion !== 'latam') return; // Only for LATAM
+          const isQuarterRegion = currentRegion === 'latam' || currentRegion === 'fs' || currentRegion === 'pop';
+          if (!isQuarterRegion) return; // Only for LATAM / FS / POP
           quarterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4
+          currentAwardType = btn.dataset.type; // Q1, Q2, Q3, Q4, Q4个人奖
           AppData.currentLatamQuarter = currentAwardType;
           
           if (regionalData) {
