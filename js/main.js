@@ -33,15 +33,8 @@ function setUrlParam(param, value) {
 function formatCurrency(amount, currency = 'USD') {
   if (!amount) return 'TBD';
   
-  // 汇率: 1 USD = 7.1 CNY
-  const EXCHANGE_RATE = 7.1;
-  
-  let usdAmount = Number(amount);
-  if (currency === 'CNY') {
-    usdAmount = Number(amount) / EXCHANGE_RATE;
-  }
-  
-  return '$' + Math.round(usdAmount).toLocaleString();
+  const symbol = currency === 'CNY' ? '¥' : '$';
+  return symbol + Number(amount).toLocaleString();
 }
 
 function formatBonus(amount, currency = 'USD') {
