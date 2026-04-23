@@ -635,6 +635,9 @@
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
       
+      // FS/POP: 季度结构 (Q1/Q2/Q3/Q4项目奖)
+      const isQuarterRegion = currentRegion === 'fs' || currentRegion === 'pop';
+      
       if (currentRegion === 'latam') {
         // LATAM: show appropriate buttons based on year
         awardTypeWrapper.style.display = 'none';
@@ -659,12 +662,51 @@
         document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
+      } else if (isQuarterRegion) {
+        // FS/POP: 季度结构，显示Q1-Q4项目奖按钮
+        awardTypeWrapper.style.display = 'block';
+        quarterToggle.style.display = 'none';
+        
+        // 修改按钮文字为季度
+        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1项目奖"]');
+        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2项目奖"]');
+        
+        if (h1Btn) {
+          h1Btn.innerHTML = 'Q1/Q2<span class="btn-subtitle">Project Awards</span>';
+          h1Btn.dataset.type = 'Q1项目奖';
+        }
+        if (h2Btn) {
+          h2Btn.innerHTML = 'Q3/Q4<span class="btn-subtitle">Project Awards</span>';
+          h2Btn.dataset.type = 'Q3项目奖';
+        }
+        
+        // 默认显示Q1项目奖
+        if (!['Q1项目奖', 'Q3项目奖'].includes(currentAwardType)) {
+          currentAwardType = 'Q1项目奖';
+        }
+        document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.type === currentAwardType);
+        });
       } else {
         // Non-LATAM: show H1/H2 buttons, hide Q buttons
         awardTypeWrapper.style.display = 'block';
         quarterToggle.style.display = 'none';
+        
+        // 恢复H1/H2按钮文字
+        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1项目奖"]');
+        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2项目奖"]');
+        
+        if (h1Btn) {
+          h1Btn.innerHTML = 'H1<span class="btn-subtitle">Project Awards</span>';
+          h1Btn.dataset.type = 'H1项目奖';
+        }
+        if (h2Btn) {
+          h2Btn.innerHTML = 'H2<span class="btn-subtitle">Project Awards</span>';
+          h2Btn.dataset.type = 'H2项目奖';
+        }
+        
         // Only reset if coming from LATAM (Q1-Q4 or H1个人奖)
-        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1个人奖'].includes(currentAwardType)) {
+        if (['Q1', 'Q2', 'Q3', 'Q4', 'H1个人奖', 'Q1项目奖', 'Q3项目奖'].includes(currentAwardType)) {
           currentAwardType = 'H1项目奖';
         }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {

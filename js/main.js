@@ -1205,8 +1205,27 @@ function renderRegionalAwards(data, containerId, period, region) {
   let html = '';
   const currentYear = AppData.currentYear || '2025';
   
-  // LATAM quarter awards (Q1, Q2, Q3, Q4) - for LATAM 2025
-  if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
+  // FS/POP: Q1/Q2项目奖 (季度结构)
+  if (period === 'Q1项目奖') {
+    const q1Awards = data['Q1项目奖'] || [];
+    const q2Awards = data['Q2项目奖'] || [];
+    const allAwards = [...q1Awards, ...q2Awards];
+    if (allAwards.length === 0) {
+      html = '<div class="no-data-msg">No Q1/Q2 project awards available</div>';
+    } else {
+      html = renderProjectCards(allAwards, region, 'Q1/Q2');
+    }
+  } else if (period === 'Q3项目奖') {
+    const q3Awards = data['Q3项目奖'] || [];
+    const q4Awards = data['Q4项目奖'] || [];
+    const allAwards = [...q3Awards, ...q4Awards];
+    if (allAwards.length === 0) {
+      html = '<div class="no-data-msg">No Q3/Q4 project awards available</div>';
+    } else {
+      html = renderProjectCards(allAwards, region, 'Q3/Q4');
+    }
+  } else if (['Q1', 'Q2', 'Q3', 'Q4'].includes(period)) {
+    // LATAM quarter awards (Q1, Q2, Q3, Q4) - for LATAM 2025
     const quarterAwards = getIndividualAwardsByQuarter(data, period);
     if (quarterAwards.length === 0) {
       html = `<div class="no-data-msg">No ${period} individual awards available for LATAM</div>`;
