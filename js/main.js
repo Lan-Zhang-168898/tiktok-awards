@@ -208,14 +208,23 @@ async function loadData(level, region = null, year = null) {
     // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
     
-    // FS/POP数据没有多年份结构，直接返回
+    // FS/POP数据没有多年份结构，只有2025年数据
+    // 2026年应该返回null
     if (level === 'fs') {
-      AppData.regional.fs = data;
-      return data;
+      if (targetYear === '2025') {
+        AppData.regional.fs = data;
+        return data;
+      } else {
+        return null;
+      }
     }
     if (level === 'pop') {
-      AppData.regional.pop = data;
-      return data;
+      if (targetYear === '2025') {
+        AppData.regional.pop = data;
+        return data;
+      } else {
+        return null;
+      }
     }
     
     if (hasYearStructure) {

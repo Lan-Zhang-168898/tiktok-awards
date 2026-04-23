@@ -832,6 +832,7 @@
       }
       
       // 1. Global Projects (仅 globalData 本身，不含 FS 和 POP)
+      // 注意：Team Members 只统计 Regional 项目奖，不包含 Global
       if (globalData) {
         const allProjAwards = [
           ...(globalData['Q1项目奖'] || []),
@@ -844,7 +845,7 @@
         const result = processProjectAwards(allProjAwards);
         globalProjects = result.projCount;
         totalBonusUSD += result.projBonus;
-        teamMemberCount += result.members;
+        // teamMemberCount 不计入 Global 项目奖的 members
       }
       
       // 2. Regional Projects
