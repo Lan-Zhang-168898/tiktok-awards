@@ -809,112 +809,192 @@
       let teamMemberCount = 0;
       
       // Helper: 统计项目奖（去重）和个人奖
-      function processRegionData(data, isCNY = false) {
-        if (!data) return { projCount: 0, projBonus: 0, indivCount: 0, indivBonus: 0, members: 0 };
+      function processProjectAwards(awards) {
+        if (!awards || awards.length === 0) return { projCount: 0, projBonus: 0, members: 0 };
         
-        const allProjAwards = [
-          ...(data['Q1项目奖'] || []), ...(data['Q2项目奖'] || []),
-          ...(data['Q3项目奖'] || []), ...(data['Q4项目奖'] || []),
-          ...(data['H1项目奖'] || []), ...(data['H2项目奖'] || [])
-        ];
-        
-        // 项目奖按project_name去重
-        const projectBonuses = {};
+        // 项目奖按project_name去重，每个项目只计一次bonus
+        const projectBonusesMap = {};
         let members = 0;
-        allProjAwards.forEach(a => {
+        
+        awards.forEach(a => {
           const pname = a.project_name;
-          if (pname && !projectBonuses[pname]) {
-            projectBonuses[pname] = convertToUSD(a.bonus, isCNY ? 'CNY' : (a.currency || 'USD'));
+          if (pname && !projectBonusesMap[pname]) {
+            projectBonusesMap[pname] = convertToUSD(a.bonus, a.currency);
           }
+          // Team Members: 不去重，累加所有项目奖的members.length
           if (a.members) members += a.members.length;
         });
         
-        const projCount = Object.keys(projectBonuses).length;
-        const projBonus = Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
+        const projCount = Object.keys(projectBonusesMap).length;
+        const projBonus = Object.values(projectBonusesMap).reduce((sum, b) => sum + b, 0);
         
-        // 个人奖
-        const allIndivAwards = [...(data['H2个人奖'] || []), ...(data['Q1个人奖'] || [])];
-        const indivCount = allIndivAwards.length;
-        const indivBonus = allIndivAwards.reduce((sum, a) => sum + convertToUSD(a.bonus, isCNY ? 'CNY' : (a.currency || 'USD')), 0);
-        
-        return { projCount, projBonus, indivCount, indivBonus, members };
+        return { projCount, projBonus, members };
       }
       
-      // 1. Global Projects (USD)
+      // 1. Global Projects (仅 globalData 本身，不含 FS 和 POP)
       if (globalData) {
-        const result = processRegionData(globalData, false);
+        const allProjAwards = [
+          ...(globalData['Q1项目奖'] || []),
+          ...(globalData['Q2项目奖'] || []),
+          ...(globalData['Q3项目奖'] || []),
+          ...(globalData['Q4项目奖'] || []),
+          ...(globalData['H1项目奖'] || []),
+          ...(globalData['H2项目奖'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
         globalProjects = result.projCount;
         totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
       }
       
-      // 2. Regional Projects - USD币种区域 (US, EU, SEA, LATAM)
-      const usdRegions = ['us', 'eu', 'sea', 'latam'];
-      usdRegions.forEach(region => {
-        const data = regionalData[region];
-        if (data) {
-          const result = processRegionData(data, false);
-          regionalProjects += result.projCount;
-          totalBonusUSD += result.projBonus + result.indivBonus;
-          teamMemberCount += result.members;
-          individualAwards += result.indivCount;
+      // 2. Regional Projects
+      // 2025: US, EU, SEA, LATAM, POP, FS = 6 regions
+      // 2026: US+POP merged, EU, SEA, LATAM, FS = 5 regions
+      const regions2025 = ['us', 'eu', 'sea', 'latam', 'fs', 'pop'];
+      const regions2026 = ['us', 'eu', 'sea', 'latam', 'fs'];
+      const regions = year === '2026' ? regions2026 : regions2025;
+      
+      // 收集所有个人奖
+      const allIndividualAwards = [];
+      
+      regions.forEach(region => {
+        let regionData = regionalData[region];
+        
+        // 2026年 US+POP 合并
+        if (year === '2026' && region === 'us') {
+          const usData = regionalData['us'] || {};
+          const popData2 = regionalData['pop'] || {};
+          regionData = {
+            'Q1项目奖': [...(usData['Q1项目奖'] || []), ...(popData2['Q1项目奖'] || [])],
+            'Q2项目奖': [...(usData['Q2项目奖'] || []), ...(popData2['Q2项目奖'] || [])],
+            'Q3项目奖': [...(usData['Q3项目奖'] || []), ...(popData2['Q3项目奖'] || [])],
+            'Q4项目奖': [...(usData['Q4项目奖'] || []), ...(popData2['Q4项目奖'] || [])],
+            'H1项目奖': [...(usData['H1项目奖'] || []), ...(popData2['H1项目奖'] || [])],
+            'H2项目奖': [...(usData['H2项目奖'] || []), ...(popData2['H2项目奖'] || [])],
+            'H2个人奖': [...(usData['H2个人奖'] || []), ...(popData2['H2个人奖'] || [])],
+            'Q1个人奖': [...(usData['Q1个人奖'] || []), ...(popData2['Q1个人奖'] || [])]
+          };
+        }
+        
+        if (regionData) {
+          // Regional 项目奖
+          const allProjAwards = [
+            ...(regionData['Q1项目奖'] || []),
+            ...(regionData['Q2项目奖'] || []),
+            ...(regionData['Q3项目奖'] || []),
+            ...(regionData['Q4项目奖'] || []),
+            ...(regionData['H1项目奖'] || []),
+            ...(regionData['H2项目奖'] || [])
+          ];
+          const projResult = processProjectAwards(allProjAwards);
+          regionalProjects += projResult.projCount;
+          totalBonusUSD += projResult.projBonus;
+          teamMemberCount += projResult.members;
+          
+          // Individual awards
+          const indivAwards = [
+            ...(regionData['H2个人奖'] || []),
+            ...(regionData['Q1个人奖'] || [])
+          ];
+          allIndividualAwards.push(...indivAwards);
         }
       });
       
-      // 3. Regional Projects - CNY币种区域 (POP, FS)
-      // POP
-      if (popData) {
-        const result = processRegionData(popData, true);
+      // 3. FS 独立数据 (如果没有在 regional 中处理)
+      if (fsData && !regions.includes('fs')) {
+        const allProjAwards = [
+          ...(fsData['Q1项目奖'] || []),
+          ...(fsData['Q2项目奖'] || []),
+          ...(fsData['Q3项目奖'] || []),
+          ...(fsData['Q4项目奖'] || []),
+          ...(fsData['H1项目奖'] || []),
+          ...(fsData['H2项目奖'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
         regionalProjects += result.projCount;
-        totalBonusUSD += result.projBonus + result.indivBonus;
+        totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
-        individualAwards += result.indivCount;
+        
+        const indivAwards = [...(fsData['H2个人奖'] || []), ...(fsData['Q1个人奖'] || [])];
+        allIndividualAwards.push(...indivAwards);
       }
       
-      // FS
-      if (fsData) {
-        const result = processRegionData(fsData, true);
+      // 4. POP 独立数据 (如果没有在 regional 中处理)
+      if (popData && !regions.includes('pop')) {
+        const allProjAwards = [
+          ...(popData['Q1项目奖'] || []),
+          ...(popData['Q2项目奖'] || []),
+          ...(popData['Q3项目奖'] || []),
+          ...(popData['Q4项目奖'] || []),
+          ...(popData['H1项目奖'] || []),
+          ...(popData['H2项目奖'] || [])
+        ];
+        const result = processProjectAwards(allProjAwards);
         regionalProjects += result.projCount;
-        totalBonusUSD += result.projBonus + result.indivBonus;
+        totalBonusUSD += result.projBonus;
         teamMemberCount += result.members;
-        individualAwards += result.indivCount;
+        
+        const indivAwards = [...(popData['H2个人奖'] || []), ...(popData['Q1个人奖'] || [])];
+        allIndividualAwards.push(...indivAwards);
       }
       
-      // Regions count
-      // 2025: US, EU, SEA, LATAM, POP, FS = 6 regions
-      // 2026: US+POP merged, EU, SEA, LATAM, FS = 5 regions
+      // Individual Awards 计数和奖金
+      individualAwards = allIndividualAwards.length;
+      const individualBonusUSD = allIndividualAwards.reduce((sum, a) => 
+        sum + convertToUSD(a.bonus, a.currency), 0);
+      totalBonusUSD += individualBonusUSD;
+      
+      // Regions count: 2025=6, 2026=5
       const regionsCount = year === '2026' ? 5 : 6;
       
       // Render stats
       const container = document.getElementById('overview-stats');
       if (container) {
         container.innerHTML = `
-          <div class="stat-item">
+          <div class="stat-card highlight">
+            <div class="stat-icon">🏆</div>
             <div class="stat-value">${globalProjects}</div>
             <div class="stat-label">Global Projects</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-card">
+            <div class="stat-icon">🌍</div>
             <div class="stat-value">${regionalProjects}</div>
             <div class="stat-label">Regional Projects</div>
           </div>
-          <div class="stat-item highlight">
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
             <div class="stat-value">${individualAwards}</div>
             <div class="stat-label">Individual Awards</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-card">
+            <div class="stat-icon">💰</div>
             <div class="stat-value">${formatBonus(totalBonusUSD)}</div>
             <div class="stat-label">Total Bonus</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
             <div class="stat-value">${teamMemberCount}</div>
             <div class="stat-label">Team Members</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-card">
+            <div class="stat-icon">🌐</div>
             <div class="stat-value">${regionsCount}</div>
             <div class="stat-label">Regions</div>
           </div>
         `;
       }
+      
+      // Debug log
+      console.log('HomePage Stats:', {
+        year,
+        globalProjects,
+        regionalProjects,
+        individualAwards,
+        totalBonusUSD: totalBonusUSD.toFixed(2),
+        teamMemberCount,
+        regionsCount,
+        indivCount: allIndividualAwards.length
+      });
     }
     
     function formatBonus(amount, currency = 'USD') {
@@ -1009,9 +1089,9 @@
           }
         }
         
-        // Calculate and render stats (including FS and POP data in global for combined stats)
-        const globalWithFS = mergeGlobalData(global, fs);
-        renderHomeStats(globalWithFS, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear);
+        // Calculate and render stats
+        // 注意：Global Projects 只包含 globalData 本身，FS 和 POP 的项目计入 Regional Projects
+        renderHomeStats(global, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
