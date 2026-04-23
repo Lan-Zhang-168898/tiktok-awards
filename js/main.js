@@ -1283,6 +1283,9 @@ function renderRegionalAwards(data, containerId, period, region) {
 }
 
 function renderProjectCards(awards, region, half) {
+  // FS/POP 使用人民币，其他区域使用美元
+  const defaultCurrency = (region === 'fs' || region === 'pop') ? 'CNY' : 'USD';
+  
   const projectGroups = {};
   awards.forEach(award => {
     const key = award.project_name;
@@ -1295,7 +1298,7 @@ function renderProjectCards(awards, region, half) {
         members: [],
         department: award.department,
         region: award.region,
-        currency: award.currency || 'USD'
+        currency: award.currency || defaultCurrency
       };
     }
     award.members.forEach(m => {
@@ -1358,12 +1361,15 @@ function renderProjectCards(awards, region, half) {
 }
 
 function renderIndividualCards(awards, region, half) {
+  // FS/POP 使用人民币，其他区域使用美元
+  const defaultCurrency = (region === 'fs' || region === 'pop') ? 'CNY' : 'USD';
+  
   let html = '<div class="awards-grid">';
   
   awards.forEach(award => {
     // Handle both winner_name and members array formats
     const memberNames = award.members || (award.winner_name ? [award.winner_name] : []);
-    const currency = award.currency || 'USD';
+    const currency = award.currency || defaultCurrency;
     
     memberNames.forEach((memberName, idx) => {
       const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
