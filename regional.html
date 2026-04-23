@@ -715,7 +715,7 @@
           // Load both US and POP data
           const [usData, popData] = await Promise.all([
             loadData('regional', 'us', currentYear),
-            loadData('regional', 'pop', currentYear)
+            loadData('pop')  // POP 数据用 loadData('pop')
           ]);
           
           // Merge US and POP data
@@ -729,6 +729,12 @@
             'H2项目奖': [...(usData?.['H2项目奖'] || []), ...(popData?.['H2项目奖'] || [])],
             'H2个人奖': [...(usData?.['H2个人奖'] || []), ...(popData?.['H2个人奖'] || [])]
           };
+        } else if (region === 'fs') {
+          // FS 数据用 loadData('fs')
+          regionalData = await loadData('fs');
+        } else if (region === 'pop') {
+          // POP 数据用 loadData('pop')
+          regionalData = await loadData('pop');
         } else {
           regionalData = await loadData('regional', region, currentYear);
         }
