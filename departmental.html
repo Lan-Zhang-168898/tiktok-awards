@@ -102,6 +102,145 @@
       box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
     }
     
+    /* Awards Container */
+    #departmental-awards {
+      margin-top: var(--spacing-xl);
+    }
+    
+    .dept-awards-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+      color: var(--text-primary);
+    }
+    
+    /* Awards Grid */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: var(--spacing-md);
+    }
+    
+    /* Individual Card Styling for Departmental */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-color);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .card-icon {
+      font-size: 24px;
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .card-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-md);
+      padding-bottom: var(--spacing-sm);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .card-body {
+      flex: 1;
+    }
+    
+    .card-award {
+      margin-bottom: var(--spacing-sm);
+    }
+    
+    .card-award-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent-color);
+    }
+    
+    .card-amount {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: var(--spacing-md);
+    }
+    
+    .card-footer {
+      margin-top: auto;
+      padding-top: var(--spacing-md);
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .card-actions {
+      display: flex;
+      gap: var(--spacing-sm);
+      flex-wrap: wrap;
+    }
+    
+    .card-actions button {
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .like-btn {
+      background: var(--bg-dark);
+      color: var(--text-secondary);
+    }
+    
+    .like-btn:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .like-btn.liked {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .comment-btn {
+      background: var(--bg-dark);
+      color: var(--text-secondary);
+    }
+    
+    .comment-btn:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    .share-btn {
+      background: var(--bg-dark);
+      color: var(--text-secondary);
+    }
+    
+    .share-btn:hover {
+      background: var(--text-primary);
+      color: white;
+    }
+    
     /* ==================== Feishu Auth Styles ==================== */
     .auth-overlay {
       position: fixed;
@@ -272,6 +411,14 @@
     }
     
     @keyframes spin { to { transform: rotate(360deg); } }
+    
+    /* No data message */
+    .no-data-msg {
+      text-align: center;
+      padding: var(--spacing-xxl);
+      color: var(--text-secondary);
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
@@ -324,31 +471,12 @@
         <!-- Department Navigation -->
         <div class="region-nav-wrapper">
           <div class="region-nav">
-            <button class="region-btn active" data-dept="sea-ops">SEA Operations</button>
-            <button class="region-btn" data-dept="jp-ops">Japan Operations</button>
-            <button class="region-btn" data-dept="uk-ops">UK Operations</button>
-            <button class="region-btn" data-dept="eu-ops">EU Operations</button>
-            <button class="region-btn" data-dept="pop">UK&EU&JP POP</button>
-            <button class="region-btn" data-dept="us-ops">US Operations & US Ops Center & GKA</button>
-            <button class="region-btn" data-dept="latam-ops">LATAM Operations</button>
-            <button class="region-btn" data-dept="fs-pop">Full Service POP</button>
-            <button class="region-btn" data-dept="governance">Governance and Experience</button>
-            <button class="region-btn" data-dept="supply-chain">Supply Chain and Logistics</button>
-            <button class="region-btn" data-dept="product">Product Design</button>
-            <button class="region-btn" data-dept="growth">User & Promotion Growth</button>
-            <button class="region-btn" data-dept="data">Data Science</button>
-            <button class="region-btn" data-dept="research">User Research</button>
-            <button class="region-btn" data-dept="strategy">Strategic Readiness and Business Communication</button>
-            <button class="region-btn" data-dept="analytics">Strategy Analytics & Resource Management</button>
+            <button class="region-btn active" data-dept="us-ops">US Operations & US Ops Center & GKA</button>
           </div>
         </div>
 
-        <!-- Coming Soon Message -->
-        <div class="coming-soon">
-          <div class="coming-soon-icon">⏳</div>
-          <h2 class="coming-soon-title">Coming Soon</h2>
-          <p class="coming-soon-text">Departmental awards will be available after the award ceremony.<br>Please check back later!</p>
-        </div>
+        <!-- Departmental Awards Container -->
+        <div id="departmental-awards"></div>
 
         <!-- Search Section -->
         <section class="search-section" style="margin-top: var(--spacing-xxl);">
@@ -390,7 +518,16 @@
   <script src="js/main.js"></script>
   <script>
     // Departmental page specific initialization
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Highlight current navigation
+      highlightNavigation();
+      
+      // Initialize year navigation
+      initYearNavigation();
+      
+      // Load and render departmental data
+      await loadAndRenderDepartmentalAwards();
+      
       // Department buttons
       const deptBtns = document.querySelectorAll('.region-btn[data-dept]');
       
@@ -400,7 +537,169 @@
           btn.classList.add('active');
         });
       });
+      
+      // Initialize search
+      initSearch();
     });
+    
+    // Load and render departmental awards
+    async function loadAndRenderDepartmentalAwards() {
+      const awardsContainer = document.getElementById('departmental-awards');
+      
+      try {
+        // Load departmental data
+        const response = await fetch('data/departmental.json');
+        if (!response.ok) throw new Error('Failed to load departmental data');
+        
+        const data = await response.json();
+        
+        // Get current year from URL or default to 2025
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentYear = urlParams.get('year') || '2025';
+        
+        // For 2025, show Q4个人奖
+        const awards = data['Q4个人奖'] || [];
+        
+        if (awards.length === 0) {
+          awardsContainer.innerHTML = '<div class="no-data-msg">No departmental awards available for this period.</div>';
+          return;
+        }
+        
+        // Render awards
+        awardsContainer.innerHTML = renderDepartmentalAwards(awards);
+        
+      } catch (error) {
+        console.error('Error loading departmental awards:', error);
+        awardsContainer.innerHTML = '<div class="no-data-msg">Failed to load awards. Please try again later.</div>';
+      }
+    }
+    
+    // Render departmental awards
+    function renderDepartmentalAwards(awards) {
+      let html = '<div class="dept-awards-title">US Operations & US Ops Center & GKA - Q4 Individual Awards</div>';
+      html += '<div class="awards-grid">';
+      
+      awards.forEach((award, idx) => {
+        const memberName = award.winner_name;
+        const cardId = `dept_us_${memberName.replace(/\s+/g, '_')}_${idx}`;
+        const likeCount = getLikeCount(cardId);
+        const bonus = award.bonus || '300';
+        const dept = award.department || 'US Operations';
+        const email = award.email || '';
+        
+        html += `
+          <div class="card individual-card" data-card-id="${cardId}">
+            <div class="card-header">
+              <span class="card-icon">👤</span>
+              <span class="card-title">${memberName}</span>
+            </div>
+            <div class="card-meta">${dept}</div>
+            <div class="card-body">
+              <div class="card-award">
+                <span class="card-award-name">🌟 ${award.award_type}</span>
+              </div>
+              <div class="card-amount">$${bonus}</div>
+            </div>
+            <div class="card-footer">
+              <div class="card-actions">
+                <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${memberName.replace(/'/g, "\\'")}')">
+                  ❤️ <span class="like-count">${likeCount}</span>
+                </button>
+                <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberName.replace(/'/g, "\\'")}', 'Individual Award')">
+                  💬 Comment
+                </button>
+                <button class="share-btn" data-project="${memberName.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify([{name: memberName, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                  📤 Share
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      return html;
+    }
+    
+    // Initialize search functionality
+    function initSearch() {
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResults = document.getElementById('search-results');
+      
+      if (!searchInput || !searchBtn) return;
+      
+      const performSearch = async () => {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (!searchTerm) {
+          searchResults.innerHTML = '';
+          return;
+        }
+        
+        try {
+          // Load departmental data
+          const response = await fetch('data/departmental.json');
+          const data = await response.json();
+          
+          const awards = data['Q4个人奖'] || [];
+          const results = [];
+          
+          awards.forEach(award => {
+            const name = (award.winner_name || '').toLowerCase();
+            const dept = (award.department || '').toLowerCase();
+            const email = (award.email || '').toLowerCase();
+            
+            if (name.includes(searchTerm) || dept.includes(searchTerm) || email.includes(searchTerm)) {
+              results.push({
+                name: award.winner_name,
+                department: award.department,
+                award: award.award_type,
+                bonus: award.bonus,
+                email: award.email
+              });
+            }
+          });
+          
+          if (results.length === 0) {
+            searchResults.innerHTML = '<div class="no-data-msg">No results found for your search.</div>';
+            return;
+          }
+          
+          let html = '<div class="section-title mb-3">Search Results (' + results.length + ')</div>';
+          html += '<div class="awards-grid">';
+          
+          results.forEach((result, idx) => {
+            html += `
+              <div class="card individual-card">
+                <div class="card-header">
+                  <span class="card-icon">👤</span>
+                  <span class="card-title">${result.name}</span>
+                </div>
+                <div class="card-meta">${result.department}</div>
+                <div class="card-body">
+                  <div class="card-award">
+                    <span class="card-award-name">🌟 ${result.award}</span>
+                  </div>
+                  <div class="card-amount">$${result.bonus}</div>
+                </div>
+              </div>
+            `;
+          });
+          
+          html += '</div>';
+          searchResults.innerHTML = html;
+          
+        } catch (error) {
+          console.error('Search error:', error);
+          searchResults.innerHTML = '<div class="no-data-msg">Search failed. Please try again.</div>';
+        }
+      };
+      
+      searchBtn.addEventListener('click', performSearch);
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+      });
+    }
   </script>
 </body>
 </html>

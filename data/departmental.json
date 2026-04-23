@@ -1,0 +1,224 @@
+{
+  "Q4个人奖": [
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Alex Chessin",
+      "bonus": "300",
+      "email": "alex.chessin@bytedance.com",
+      "members": ["Alex Chessin"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Melissa Roth",
+      "bonus": "300",
+      "email": "melissa.roth@bytedance.com",
+      "members": ["Melissa Roth"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Lanita Patton",
+      "bonus": "300",
+      "email": "lanita.patton@bytedance.com",
+      "members": ["Lanita Patton"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Destini White",
+      "bonus": "300",
+      "email": "destini.white@bytedance.com",
+      "members": ["Destini White"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Su Joo",
+      "bonus": "300",
+      "email": "su.joo@bytedance.com",
+      "members": ["Su Joo"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Ahyoon Kim",
+      "bonus": "300",
+      "email": "ahyoon.kim@bytedance.com",
+      "members": ["Ahyoon Kim"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Jae Yoo",
+      "bonus": "300",
+      "email": "jae.yoo@bytedance.com",
+      "members": ["Jae Yoo"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Joohee Park",
+      "bonus": "300",
+      "email": "joo.park@bytedance.com",
+      "members": ["Joohee Park"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Kirsten Johnson",
+      "bonus": "300",
+      "email": "kirsten.johnson@bytedance.com",
+      "members": ["Kirsten Johnson"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Beauty, Food & Beverage-Skincare",
+      "winner_name": "Lauren Kang",
+      "bonus": "300",
+      "email": "laurenkang@bytedance.com",
+      "members": ["Lauren Kang"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Haircare & Styling",
+      "winner_name": "高爽",
+      "bonus": "300",
+      "email": "gao.chloe@bytedance.com",
+      "members": ["高爽"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Haircare & Styling",
+      "winner_name": "Steven De Nicola",
+      "bonus": "300",
+      "email": "steven.denicola@bytedance.com",
+      "members": ["Steven De Nicola"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-commerce-US Operations Center-Semi-Managed Service",
+      "winner_name": "Christopher Guan",
+      "bonus": "300",
+      "email": "christopher.guan@bytedance.com",
+      "members": ["Christopher Guan"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Haircare & Styling",
+      "winner_name": "Aashni Mahajan",
+      "bonus": "300",
+      "email": "aashni.mahajan@bytedance.com",
+      "members": ["Aashni Mahajan"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Haircare & Styling",
+      "winner_name": "Phoebe Jiang",
+      "bonus": "300",
+      "email": "phoebe.jiang@bytedance.com",
+      "members": ["Phoebe Jiang"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-commerce-US Operations Center-Creator & Partner-Top Creator Short Video",
+      "winner_name": "Maya Jans",
+      "bonus": "300",
+      "email": "maya.jans@bytedance.com",
+      "members": ["Maya Jans"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Business Management",
+      "winner_name": "杨翌",
+      "bonus": "300",
+      "email": "yangyi.irene@bytedance.com",
+      "members": ["杨翌"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Business Management",
+      "winner_name": "顾梦瑜",
+      "bonus": "300",
+      "email": "gumengyu.echo@bytedance.com",
+      "members": ["顾梦瑜"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-Commerce-US Operations-Category Management-Personal Care and Lifestyle-Business Management",
+      "winner_name": "蔡成溢",
+      "bonus": "300",
+      "email": "caichengyi@bytedance.com",
+      "members": ["蔡成溢"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-commerce-US Operations Center-Seller Content-Multi-Category Seller Live",
+      "winner_name": "程传炽 Cooper",
+      "bonus": "300",
+      "email": "chengchuanchi@bytedance.com",
+      "members": ["程传炽 Cooper"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-commerce-US Operations Center-Seller Content-Multi-Category Seller Live",
+      "winner_name": "Sarah Luo",
+      "bonus": "300",
+      "email": "sarah.luo@bytedance.com",
+      "members": ["Sarah Luo"],
+      "region": "US",
+      "currency": "USD"
+    },
+    {
+      "award_type": "Q4个人奖",
+      "department": "Global E-commerce-US Operations Center-Seller Content-Multi-Category Seller Live",
+      "winner_name": "Iris Wang",
+      "bonus": "300",
+      "email": "iris.ytwang@bytedance.com",
+      "members": ["Iris Wang"],
+      "region": "US",
+      "currency": "USD"
+    }
+  ]
+}
