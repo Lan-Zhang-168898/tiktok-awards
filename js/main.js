@@ -208,9 +208,14 @@ async function loadData(level, region = null, year = null) {
     // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
     
-    // FS/POP数据没有多年份结构，只有2025年数据
-    // 2026年应该返回null
+    // ========== 数据年份规则（重要！）==========
+    // - FS/POP: 只有2025年数据，无年份结构，2026年返回null
+    // - US/EU/SEA/LATAM/Global: 有多年份结构（2025/2026），按年份返回对应数据
+    // - 没有年份结构的数据文件：视为2025年数据，2026年返回null
+    // ==========================================
+    
     if (level === 'fs') {
+      // FS数据只有2025年，无年份结构
       if (targetYear === '2025') {
         AppData.regional.fs = data;
         return data;
@@ -219,6 +224,7 @@ async function loadData(level, region = null, year = null) {
       }
     }
     if (level === 'pop') {
+      // POP数据只有2025年，无年份结构
       if (targetYear === '2025') {
         AppData.regional.pop = data;
         return data;

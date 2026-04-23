@@ -802,6 +802,15 @@
     }
     
     function renderHomeStats(globalData, regionalData, fsData, popData, year = '2025') {
+      // ========== HomePage 统计规则（重要！）==========
+      // 1. Global Projects: Global数据的项目奖去重后数量
+      // 2. Regional Projects: US+EU+SEA+LATAM+FS+POP 项目奖去重后数量总和
+      // 3. Individual Awards: 所有区域个人奖记录数总和
+      // 4. Total Bonus: Global项目奖 + Regional项目奖 + 个人奖 奖金总和（CNY÷7.1换算USD）
+      // 5. Team Members: Global + Regional 所有项目奖的成员数量（不去重，累加人次）
+      // 6. Regions: 2025年=6个(US,EU,SEA,LATAM,FS,POP), 2026年=5个(US+POP合并,EU,SEA,LATAM,FS)
+      // ==================================================
+      
       let globalProjects = 0;
       let regionalProjects = 0;
       let individualAwards = 0;
@@ -832,7 +841,7 @@
       }
       
       // 1. Global Projects (仅 globalData 本身，不含 FS 和 POP)
-      // 注意：Team Members 只统计 Regional 项目奖，不包含 Global
+      // Team Members 包含 Global + Regional 所有项目奖的成员数量
       if (globalData) {
         const allProjAwards = [
           ...(globalData['Q1项目奖'] || []),
@@ -845,7 +854,7 @@
         const result = processProjectAwards(allProjAwards);
         globalProjects = result.projCount;
         totalBonusUSD += result.projBonus;
-        // teamMemberCount 不计入 Global 项目奖的 members
+        teamMemberCount += result.members;
       }
       
       // 2. Regional Projects
