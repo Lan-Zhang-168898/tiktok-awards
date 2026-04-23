@@ -100,6 +100,13 @@ function updateYear2026Button() {
     } else {
       year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span>';
     }
+    return;
+  }
+  
+  // Departmental页面：始终显示Coming Soon
+  if (page === 'departmental.html') {
+    year2026Btn.innerHTML = '2026 <span class="coming-soon-tag" style="opacity: 0.6;">· Coming Soon</span>';
+    return;
   }
 }
 
@@ -121,8 +128,8 @@ function initYearNavigation() {
     btn.addEventListener('click', () => {
       const page = window.location.pathname.split('/').pop();
       
-      // Global 页面不允许选择 2026
-      if (page === 'global.html' && btn.dataset.year === '2026') {
+      // Global 和 Departmental 页面不允许选择 2026
+      if ((page === 'global.html' || page === 'departmental.html') && btn.dataset.year === '2026') {
         alert('2026 data is not available yet. Coming soon!');
         return;
       }
@@ -132,7 +139,9 @@ function initYearNavigation() {
       const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
       const currentRegion = getUrlParam('region');
       const regionParam = currentRegion ? `&region=${currentRegion}` : '';
-      window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}${regionParam}`;
+      const currentQuarter = getUrlParam('quarter');
+      const quarterParam = currentQuarter ? `&quarter=${currentQuarter}` : '';
+      window.location.href = `${baseUrl}${page}?year=${btn.dataset.year}${regionParam}${quarterParam}`;
     });
   });
 }
@@ -161,7 +170,8 @@ function initRegionNavigation() {
 }
 
 function initDeptNavigation() {
-  const deptBtns = document.querySelectorAll('.dept-btn');
+  // Support both .dept-btn (legacy) and .region-btn (new) with data-dept attribute
+  const deptBtns = document.querySelectorAll('.dept-btn, .region-btn[data-dept]');
   const urlDept = getUrlParam('dept');
   
   if (urlDept) {
@@ -177,7 +187,8 @@ function initDeptNavigation() {
     btn.addEventListener('click', () => {
       const page = window.location.pathname.split('/').pop();
       const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
-      window.location.href = `${baseUrl}${page}?year=${AppData.currentYear}&dept=${btn.dataset.dept}`;
+      const quarter = getUrlParam('quarter') || 'Q1';
+      window.location.href = `${baseUrl}${page}?year=${AppData.currentYear}&dept=${btn.dataset.dept}&quarter=${quarter}`;
     });
   });
 }

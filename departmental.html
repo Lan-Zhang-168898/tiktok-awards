@@ -66,7 +66,7 @@
     /* Department Navigation - Tab Style, Centered */
     .region-nav-wrapper {
       text-align: center;
-      margin-bottom: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
     }
     
     .region-nav {
@@ -102,6 +102,80 @@
       box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
     }
     
+    /* Quarter Navigation - New Style */
+    .quarter-nav-wrapper {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+    
+    .quarter-nav {
+      display: inline-flex;
+      gap: 6px;
+      background: var(--bg-card);
+      padding: 4px;
+      border-radius: 10px;
+    }
+    
+    .quarter-btn {
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .quarter-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-dark);
+    }
+    
+    .quarter-btn.active {
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 12px rgba(255, 107, 138, 0.3);
+    }
+    
+    /* Award Type Filter */
+    .award-type-filter {
+      text-align: center;
+      margin-bottom: var(--spacing-lg);
+    }
+    
+    .award-type-nav {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .award-type-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .award-type-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+    }
+    
+    .award-type-btn.active {
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
     /* Awards Container */
     #departmental-awards {
       margin-top: var(--spacing-xl);
@@ -122,7 +196,7 @@
       gap: var(--spacing-md);
     }
     
-    /* Individual Card Styling for Departmental */
+    /* Card Styles */
     .card {
       background: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -185,6 +259,26 @@
       margin-bottom: var(--spacing-md);
     }
     
+    /* Team Award specific styles */
+    .team-card {
+      border-left: 3px solid var(--accent-color);
+    }
+    
+    .team-card .card-icon {
+      color: var(--accent-color);
+    }
+    
+    .members-preview {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: var(--spacing-sm);
+    }
+    
+    .members-preview .member-count {
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    
     .card-footer {
       margin-top: auto;
       padding-top: var(--spacing-md);
@@ -239,6 +333,114 @@
     .share-btn:hover {
       background: var(--text-primary);
       color: white;
+    }
+    
+    /* Members Modal */
+    .members-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--spacing-lg);
+    }
+    
+    .members-modal.show {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      max-width: 500px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-lg);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: 0;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .modal-close:hover {
+      color: var(--primary-color);
+    }
+    
+    .modal-body {
+      padding: var(--spacing-lg);
+    }
+    
+    .member-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .member-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .member-item:last-child {
+      border-bottom: none;
+    }
+    
+    .member-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+    
+    .member-info {
+      flex: 1;
+    }
+    
+    .member-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .member-email {
+      font-size: 12px;
+      color: var(--text-secondary);
     }
     
     /* ==================== Feishu Auth Styles ==================== */
@@ -419,6 +621,30 @@
       color: var(--text-secondary);
       font-size: 16px;
     }
+    
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+    
+    .stat-item {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
   </style>
 </head>
 <body>
@@ -464,7 +690,7 @@
         <div class="year-nav-wrapper">
           <div class="year-nav-compact">
             <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
           </div>
         </div>
 
@@ -473,6 +699,24 @@
           <div class="region-nav">
             <button class="region-btn active" data-dept="us-ops">US Operations & US Ops Center & GKA</button>
           </div>
+        </div>
+
+        <!-- Quarter Navigation -->
+        <div class="quarter-nav-wrapper" id="quarter-nav-wrapper">
+          <div class="quarter-nav" id="quarter-nav">
+            <button class="quarter-btn active" data-quarter="Q1">Q1</button>
+            <button class="quarter-btn" data-quarter="Q2">Q2</button>
+            <button class="quarter-btn" data-quarter="Q3">Q3</button>
+            <button class="quarter-btn" data-quarter="Q4">Q4</button>
+          </div>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="stats-bar"></div>
+
+        <!-- Award Type Filter -->
+        <div class="award-type-filter" id="award-type-filter">
+          <div class="award-type-nav" id="award-type-nav"></div>
         </div>
 
         <!-- Departmental Awards Container -->
@@ -517,6 +761,11 @@
   <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
   <script>
+    // Departmental page state
+    let departmentalData = null;
+    let currentQuarter = 'Q1';
+    let currentAwardType = 'all';
+
     // Departmental page specific initialization
     document.addEventListener('DOMContentLoaded', async () => {
       // Highlight current navigation
@@ -525,22 +774,50 @@
       // Initialize year navigation
       initYearNavigation();
       
+      // Initialize quarter navigation
+      initQuarterNavigation();
+      
       // Load and render departmental data
       await loadAndRenderDepartmentalAwards();
-      
-      // Department buttons
-      const deptBtns = document.querySelectorAll('.region-btn[data-dept]');
-      
-      deptBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          deptBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-        });
-      });
       
       // Initialize search
       initSearch();
     });
+    
+    // Initialize quarter navigation
+    function initQuarterNavigation() {
+      const quarterBtns = document.querySelectorAll('.quarter-btn');
+      
+      // Check URL for quarter parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlQuarter = urlParams.get('quarter');
+      
+      if (urlQuarter && ['Q1', 'Q2', 'Q3', 'Q4'].includes(urlQuarter)) {
+        currentQuarter = urlQuarter;
+        quarterBtns.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.quarter === urlQuarter) {
+            btn.classList.add('active');
+          }
+        });
+      }
+      
+      quarterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          quarterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentQuarter = btn.dataset.quarter;
+          
+          // Update URL
+          const url = new URL(window.location.href);
+          url.searchParams.set('quarter', currentQuarter);
+          window.history.pushState({}, '', url);
+          
+          // Re-render awards
+          renderAwardsByQuarter();
+        });
+      });
+    }
     
     // Load and render departmental awards
     async function loadAndRenderDepartmentalAwards() {
@@ -551,22 +828,20 @@
         const response = await fetch('data/departmental.json');
         if (!response.ok) throw new Error('Failed to load departmental data');
         
-        const data = await response.json();
+        departmentalData = await response.json();
         
         // Get current year from URL or default to 2025
         const urlParams = new URLSearchParams(window.location.search);
         const currentYear = urlParams.get('year') || '2025';
         
-        // For 2025, show Q4个人奖
-        const awards = data['Q4个人奖'] || [];
-        
-        if (awards.length === 0) {
-          awardsContainer.innerHTML = '<div class="no-data-msg">No departmental awards available for this period.</div>';
+        // Check if year has data
+        if (!departmentalData[currentYear]) {
+          awardsContainer.innerHTML = '<div class="no-data-msg">No departmental awards available for ' + currentYear + '.</div>';
           return;
         }
         
-        // Render awards
-        awardsContainer.innerHTML = renderDepartmentalAwards(awards);
+        // Initial render
+        renderAwardsByQuarter();
         
       } catch (error) {
         console.error('Error loading departmental awards:', error);
@@ -574,52 +849,232 @@
       }
     }
     
+    // Render awards based on current quarter and award type
+    function renderAwardsByQuarter() {
+      const awardsContainer = document.getElementById('departmental-awards');
+      const statsBar = document.getElementById('stats-bar');
+      const awardTypeNav = document.getElementById('award-type-nav');
+      
+      if (!departmentalData) return;
+      
+      const currentYear = new URLSearchParams(window.location.search).get('year') || '2025';
+      const yearData = departmentalData[currentYear];
+      
+      if (!yearData) {
+        awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this year.</div>';
+        return;
+      }
+      
+      const quarterData = yearData[currentQuarter];
+      
+      if (!quarterData || quarterData.length === 0) {
+        awardsContainer.innerHTML = '<div class="no-data-msg">No awards available for ' + currentQuarter + ' ' + currentYear + '.</div>';
+        statsBar.innerHTML = '';
+        awardTypeNav.innerHTML = '';
+        return;
+      }
+      
+      // Get unique award types
+      const awardTypes = [...new Set(quarterData.map(a => a.award_type))];
+      
+      // If current award type is not in list, reset to 'all'
+      if (currentAwardType !== 'all' && !awardTypes.includes(currentAwardType)) {
+        currentAwardType = 'all';
+      }
+      
+      // Render award type filter
+      renderAwardTypeFilter(awardTypes);
+      
+      // Filter awards by type
+      let filteredAwards = quarterData;
+      if (currentAwardType !== 'all') {
+        filteredAwards = quarterData.filter(a => a.award_type === currentAwardType);
+      }
+      
+      // Calculate stats
+      const teamAwards = quarterData.filter(a => a.award_type === 'Team Award');
+      const individualAwards = quarterData.filter(a => a.award_type !== 'Team Award');
+      const uniqueTeams = [...new Set(teamAwards.map(a => a.department))];
+      const totalBonus = quarterData.reduce((sum, a) => sum + (parseInt(a.bonus) || 0), 0);
+      
+      // Render stats
+      statsBar.innerHTML = `
+        <div class="stat-item">
+          <div class="stat-value">${quarterData.length}</div>
+          <div class="stat-label">Total Winners</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">${uniqueTeams.length}</div>
+          <div class="stat-label">Teams</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">$${totalBonus.toLocaleString()}</div>
+          <div class="stat-label">Total Bonus</div>
+        </div>
+      `;
+      
+      // Render awards
+      awardsContainer.innerHTML = renderDepartmentalAwards(filteredAwards, currentQuarter);
+    }
+    
+    // Render award type filter
+    function renderAwardTypeFilter(awardTypes) {
+      const awardTypeNav = document.getElementById('award-type-nav');
+      
+      let html = `<button class="award-type-btn ${currentAwardType === 'all' ? 'active' : ''}" data-type="all">All</button>`;
+      
+      awardTypes.forEach(type => {
+        html += `<button class="award-type-btn ${currentAwardType === type ? 'active' : ''}" data-type="${type}">${type}</button>`;
+      });
+      
+      awardTypeNav.innerHTML = html;
+      
+      // Add click handlers
+      awardTypeNav.querySelectorAll('.award-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          awardTypeNav.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentAwardType = btn.dataset.type;
+          renderAwardsByQuarter();
+        });
+      });
+    }
+    
     // Render departmental awards
-    function renderDepartmentalAwards(awards) {
-      let html = '<div class="dept-awards-title">US Operations & US Ops Center & GKA - Q4 Individual Awards</div>';
+    function renderDepartmentalAwards(awards, quarter) {
+      if (!awards || awards.length === 0) {
+        return '<div class="no-data-msg">No awards found for the selected filter.</div>';
+      }
+      
+      let html = `<div class="dept-awards-title">US Operations & US Ops Center & GKA - ${quarter} 2025 Awards</div>`;
       html += '<div class="awards-grid">';
       
       awards.forEach((award, idx) => {
+        const isTeamAward = award.award_type === 'Team Award';
         const memberName = award.winner_name;
-        const cardId = `dept_us_${memberName.replace(/\s+/g, '_')}_${idx}`;
+        const cardId = `dept_${quarter.toLowerCase()}_${memberName.replace(/\s+/g, '_')}_${idx}`;
         const likeCount = getLikeCount(cardId);
-        const bonus = award.bonus || '300';
+        const bonus = award.bonus || 0;
         const dept = award.department || 'US Operations';
         const email = award.email || '';
+        const members = award.members || [memberName];
         
-        html += `
-          <div class="card individual-card" data-card-id="${cardId}">
-            <div class="card-header">
-              <span class="card-icon">👤</span>
-              <span class="card-title">${memberName}</span>
-            </div>
-            <div class="card-meta">${dept}</div>
-            <div class="card-body">
-              <div class="card-award">
-                <span class="card-award-name">🌟 ${award.award_type}</span>
+        const cardClass = isTeamAward ? 'card team-card' : 'card';
+        const icon = isTeamAward ? '👥' : '👤';
+        const memberCount = members.length;
+        
+        if (isTeamAward) {
+          // Team Award Card
+          html += `
+            <div class="${cardClass}" data-card-id="${cardId}">
+              <div class="card-header">
+                <span class="card-icon">${icon}</span>
+                <span class="card-title">${dept.split('-').pop().trim() || 'Team Award'}</span>
               </div>
-              <div class="card-amount">$${bonus}</div>
-            </div>
-            <div class="card-footer">
-              <div class="card-actions">
-                <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${memberName.replace(/'/g, "\\'")}')">
-                  ❤️ <span class="like-count">${likeCount}</span>
-                </button>
-                <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberName.replace(/'/g, "\\'")}', 'Individual Award')">
-                  💬 Comment
-                </button>
-                <button class="share-btn" data-project="${memberName.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify([{name: memberName, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
-                  📤 Share
-                </button>
+              <div class="card-meta">${dept}</div>
+              <div class="card-body">
+                <div class="card-award">
+                  <span class="card-award-name">🏆 ${award.award_type}</span>
+                </div>
+                <div class="card-amount">$${bonus.toLocaleString()}</div>
+                <div class="members-preview">
+                  <span class="member-count">${memberCount} members</span> including ${members.slice(0, 3).join(', ')}${memberCount > 3 ? '...' : ''}
+                </div>
+              </div>
+              <div class="card-footer">
+                <div class="card-actions">
+                  <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'team', '${memberName.replace(/'/g, "\\'")}')">
+                    ❤️ <span class="like-count">${likeCount}</span>
+                  </button>
+                  <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${dept.replace(/'/g, "\\'")}', 'Team Award')">
+                    💬 Comment
+                  </button>
+                  <button onclick="showMembersModal('${dept.replace(/'/g, "\\'")}', '${JSON.stringify(members).replace(/'/g, "&#39;")}')">
+                    👥 Members
+                  </button>
+                  <button class="share-btn" data-project="${dept.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify(members.map(m => ({name: m}))).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                    📤 Share
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        `;
+          `;
+        } else {
+          // Individual Award Card
+          html += `
+            <div class="${cardClass}" data-card-id="${cardId}">
+              <div class="card-header">
+                <span class="card-icon">${icon}</span>
+                <span class="card-title">${memberName}</span>
+              </div>
+              <div class="card-meta">${dept}</div>
+              <div class="card-body">
+                <div class="card-award">
+                  <span class="card-award-name">🌟 ${award.award_type}</span>
+                </div>
+                <div class="card-amount">$${bonus.toLocaleString()}</div>
+              </div>
+              <div class="card-footer">
+                <div class="card-actions">
+                  <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${memberName.replace(/'/g, "\\'")}')">
+                    ❤️ <span class="like-count">${likeCount}</span>
+                  </button>
+                  <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberName.replace(/'/g, "\\'")}', 'Individual Award')">
+                    💬 Comment
+                  </button>
+                  <button class="share-btn" data-project="${memberName.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify([{name: memberName, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
+                    📤 Share
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }
       });
       
       html += '</div>';
       return html;
     }
+    
+    // Show members modal
+    function showMembersModal(teamName, membersJson) {
+      const members = JSON.parse(membersJson);
+      const modal = document.getElementById('members-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalBody = document.getElementById('modal-body');
+      
+      modalTitle.textContent = teamName;
+      
+      let html = '<ul class="member-list">';
+      members.forEach(member => {
+        const initials = member.name.split(' ').map(n => n[0]).join('').toUpperCase();
+        html += `
+          <li class="member-item">
+            <div class="member-avatar">${initials}</div>
+            <div class="member-info">
+              <div class="member-name">${member.name}</div>
+              ${member.email ? `<div class="member-email">${member.email}</div>` : ''}
+            </div>
+          </li>
+        `;
+      });
+      html += '</ul>';
+      
+      modalBody.innerHTML = html;
+      modal.classList.add('show');
+    }
+    
+    // Close modal
+    function closeModal() {
+      document.getElementById('members-modal').classList.remove('show');
+    }
+    
+    // Close modal on backdrop click
+    document.getElementById('members-modal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        closeModal();
+      }
+    });
     
     // Initialize search functionality
     function initSearch() {
@@ -636,63 +1091,73 @@
           return;
         }
         
-        try {
-          // Load departmental data
-          const response = await fetch('data/departmental.json');
-          const data = await response.json();
-          
-          const awards = data['Q4个人奖'] || [];
-          const results = [];
-          
-          awards.forEach(award => {
-            const name = (award.winner_name || '').toLowerCase();
-            const dept = (award.department || '').toLowerCase();
-            const email = (award.email || '').toLowerCase();
-            
-            if (name.includes(searchTerm) || dept.includes(searchTerm) || email.includes(searchTerm)) {
-              results.push({
-                name: award.winner_name,
-                department: award.department,
-                award: award.award_type,
-                bonus: award.bonus,
-                email: award.email
-              });
-            }
-          });
-          
-          if (results.length === 0) {
-            searchResults.innerHTML = '<div class="no-data-msg">No results found for your search.</div>';
-            return;
-          }
-          
-          let html = '<div class="section-title mb-3">Search Results (' + results.length + ')</div>';
-          html += '<div class="awards-grid">';
-          
-          results.forEach((result, idx) => {
-            html += `
-              <div class="card individual-card">
-                <div class="card-header">
-                  <span class="card-icon">👤</span>
-                  <span class="card-title">${result.name}</span>
-                </div>
-                <div class="card-meta">${result.department}</div>
-                <div class="card-body">
-                  <div class="card-award">
-                    <span class="card-award-name">🌟 ${result.award}</span>
-                  </div>
-                  <div class="card-amount">$${result.bonus}</div>
-                </div>
-              </div>
-            `;
-          });
-          
-          html += '</div>';
-          searchResults.innerHTML = html;
-          
-        } catch (error) {
-          console.error('Search error:', error);
-          searchResults.innerHTML = '<div class="no-data-msg">Search failed. Please try again.</div>';
+        if (!departmentalData) {
+          searchResults.innerHTML = '<div class="no-data-msg">Please wait for data to load...</div>';
+          return;
         }
+        
+        const currentYear = new URLSearchParams(window.location.search).get('year') || '2025';
+        const yearData = departmentalData[currentYear];
+        
+        if (!yearData) {
+          searchResults.innerHTML = '<div class="no-data-msg">No data available for this year.</div>';
+          return;
+        }
+        
+        // Search all quarters
+        const allAwards = Object.keys(yearData).flatMap(q => yearData[q]);
+        const results = [];
+        
+        allAwards.forEach(award => {
+          const name = (award.winner_name || '').toLowerCase();
+          const dept = (award.department || '').toLowerCase();
+          const email = (award.email || '').toLowerCase();
+          const quarter = award.quarter || '';
+          
+          if (name.includes(searchTerm) || dept.includes(searchTerm) || email.includes(searchTerm)) {
+            results.push({
+              name: award.winner_name,
+              department: award.department,
+              award: award.award_type,
+              bonus: award.bonus,
+              email: award.email,
+              quarter: quarter
+            });
+          }
+        });
+        
+        if (results.length === 0) {
+          searchResults.innerHTML = '<div class="no-data-msg">No results found for your search.</div>';
+          return;
+        }
+        
+        let html = '<div class="section-title mb-3">Search Results (' + results.length + ')</div>';
+        html += '<div class="awards-grid">';
+        
+        results.forEach((result, idx) => {
+          const isTeamAward = result.award === 'Team Award';
+          const icon = isTeamAward ? '👥' : '👤';
+          
+          html += `
+            <div class="card ${isTeamAward ? 'team-card' : ''}">
+              <div class="card-header">
+                <span class="card-icon">${icon}</span>
+                <span class="card-title">${result.name}</span>
+              </div>
+              <div class="card-meta">${result.department}</div>
+              <div class="card-body">
+                <div class="card-award">
+                  <span class="card-award-name">🌟 ${result.award}</span>
+                </div>
+                <div class="card-amount">$${result.bonus}</div>
+              </div>
+            </div>
+          `;
+        });
+        
+        html += '</div>';
+        searchResults.innerHTML = html;
+        
       };
       
       searchBtn.addEventListener('click', performSearch);
