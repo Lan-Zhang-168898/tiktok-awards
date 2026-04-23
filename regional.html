@@ -131,7 +131,8 @@
     
     /* Award Type Toggle - Tab Style, Centered */
     .award-type-wrapper {
-      text-align: center;
+      display: flex;
+      justify-content: center;
       margin-bottom: var(--spacing-xl);
     }
     
@@ -141,7 +142,13 @@
       background: var(--bg-card);
       padding: 4px;
       border-radius: 12px;
-      max-width: 700px;
+    }
+    
+    /* Quarter toggle container - stack vertically if multiple toggles */
+    #quarter-toggle {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
     }
     
     .award-type-btn {
