@@ -668,7 +668,7 @@
           }
         } else {
           // 2025 and earlier: show Q buttons
-          quarterButtons.style.display = 'block';
+          quarterButtons.style.display = 'inline-flex';
           h1IndividualButton.style.display = 'none';
           
           // 更新季度按钮文字 - LATAM是个人奖
@@ -680,7 +680,7 @@
               btn.style.display = 'none';
             } else if (q) {
               btn.innerHTML = `${q}<span class="btn-subtitle">Stellar Contributors</span>`;
-              btn.style.display = 'block';
+              btn.style.display = '';
             }
           });
           
@@ -694,8 +694,8 @@
       } else if (isQuarterRegion) {
         // FS/POP: 季度结构，显示Q1-Q4项目奖 + Q4 BFCM个人奖按钮
         awardTypeWrapper.style.display = 'none';
-        quarterToggle.style.display = 'block';
-        quarterButtons.style.display = 'block';
+        quarterToggle.style.display = 'flex';
+        quarterButtons.style.display = 'inline-flex';
         h1IndividualButton.style.display = 'none';
         
         // 更新季度按钮文字 - 对齐US的H1/H2项目奖样式
@@ -704,10 +704,10 @@
           const q = btn.dataset.type;
           if (q === 'Q4个人奖') {
             // Q4 BFCM按钮保持个人奖样式
-            btn.style.display = 'block';
+            btn.style.display = '';
           } else if (q) {
             btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
-            btn.style.display = 'block';
+            btn.style.display = '';
           }
         });
         
