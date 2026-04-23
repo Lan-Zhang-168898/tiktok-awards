@@ -663,28 +663,17 @@
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else if (isQuarterRegion) {
-        // FS/POP: 季度结构，显示Q1-Q4项目奖按钮
-        awardTypeWrapper.style.display = 'block';
-        quarterToggle.style.display = 'none';
+        // FS/POP: 季度结构，显示Q1-Q4项目奖独立按钮
+        awardTypeWrapper.style.display = 'none';
+        quarterToggle.style.display = 'block';
+        quarterButtons.style.display = 'block';
+        h1IndividualButton.style.display = 'none';
         
-        // 修改按钮文字为季度
-        const h1Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H1项目奖"]');
-        const h2Btn = document.querySelector('#award-type-wrapper .award-type-btn[data-type="H2项目奖"]');
-        
-        if (h1Btn) {
-          h1Btn.innerHTML = 'Q1/Q2<span class="btn-subtitle">Project Awards</span>';
-          h1Btn.dataset.type = 'Q1项目奖';
+        // 默认显示Q1
+        if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
+          currentAwardType = 'Q1';
         }
-        if (h2Btn) {
-          h2Btn.innerHTML = 'Q3/Q4<span class="btn-subtitle">Project Awards</span>';
-          h2Btn.dataset.type = 'Q3项目奖';
-        }
-        
-        // 默认显示Q1项目奖
-        if (!['Q1项目奖', 'Q3项目奖'].includes(currentAwardType)) {
-          currentAwardType = 'Q1项目奖';
-        }
-        document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
+        document.querySelectorAll('#quarter-toggle .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
         });
       } else {

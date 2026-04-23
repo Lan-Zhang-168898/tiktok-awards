@@ -489,18 +489,17 @@ img {
 
 /* ==================== Award Cards ==================== */
 .awards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-lg);
   margin-top: var(--spacing-xl);
-  justify-items: center;
+  justify-content: center;
 }
 
-/* 当卡片数量少于3个时，居中显示 */
-.awards-grid:has(.card:nth-child(1):last-child),
-.awards-grid:has(.card:nth-child(2):last-child) {
-  grid-template-columns: repeat(auto-fit, minmax(350px, 380px));
-  justify-content: center;
+.awards-grid .card {
+  flex: 0 1 380px;
+  max-width: 400px;
+  min-width: 320px;
 }
 
 .card {
