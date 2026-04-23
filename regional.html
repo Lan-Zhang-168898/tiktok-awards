@@ -654,7 +654,7 @@
           // 2026: show Q1个人奖 button only
           quarterButtons.style.display = 'none';
           h1IndividualButton.style.display = 'block';
-          h1IndividualButton.textContent = 'Q1 Stellar Contributors';
+          h1IndividualButton.innerHTML = '<button class="award-type-btn active" data-type="Q1个人奖">Q1<span class="btn-subtitle">Stellar Contributors</span></button>';
           if (!['Q1个人奖'].includes(currentAwardType)) {
             currentAwardType = 'Q1个人奖';
           }
@@ -662,6 +662,14 @@
           // 2025 and earlier: show Q buttons
           quarterButtons.style.display = 'block';
           h1IndividualButton.style.display = 'none';
+          
+          // 更新季度按钮文字 - LATAM是个人奖
+          const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
+          quarterBtns.forEach(btn => {
+            const q = btn.dataset.type;
+            btn.innerHTML = `${q}<span class="btn-subtitle">Stellar Contributors</span>`;
+          });
+          
           if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
             currentAwardType = 'Q1';
           }
@@ -675,6 +683,13 @@
         quarterToggle.style.display = 'block';
         quarterButtons.style.display = 'block';
         h1IndividualButton.style.display = 'none';
+        
+        // 更新季度按钮文字 - 对齐US的H1/H2项目奖样式
+        const quarterBtns = document.querySelectorAll('#quarter-buttons .award-type-btn');
+        quarterBtns.forEach(btn => {
+          const q = btn.dataset.type; // Q1, Q2, Q3, Q4
+          btn.innerHTML = `${q}<span class="btn-subtitle">Project Awards</span>`;
+        });
         
         // 默认显示Q1
         if (!['Q1', 'Q2', 'Q3', 'Q4'].includes(currentAwardType)) {
