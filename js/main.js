@@ -32,8 +32,16 @@ function setUrlParam(param, value) {
 
 function formatCurrency(amount, currency = 'USD') {
   if (!amount) return 'TBD';
-  const symbol = currency === 'CNY' ? '¥' : '$';
-  return symbol + Number(amount).toLocaleString();
+  
+  // 汇率: 1 USD = 7.1 CNY
+  const EXCHANGE_RATE = 7.1;
+  
+  let usdAmount = Number(amount);
+  if (currency === 'CNY') {
+    usdAmount = Number(amount) / EXCHANGE_RATE;
+  }
+  
+  return '$' + Math.round(usdAmount).toLocaleString();
 }
 
 function formatBonus(amount, currency = 'USD') {
@@ -1293,7 +1301,8 @@ function renderProjectCards(awards, region, half) {
         reason: award.reason,
         members: [],
         department: award.department,
-        region: award.region
+        region: award.region,
+        currency: award.currency || 'USD'
       };
     }
     award.members.forEach(m => {
@@ -1326,7 +1335,7 @@ function renderProjectCards(awards, region, half) {
           <div class="card-award">
             <span class="card-award-name">🏆 ${awardName}</span>
           </div>
-          <div class="card-amount">${formatCurrency(project.bonus)}</div>
+          <div class="card-amount">${formatCurrency(project.bonus, project.currency)}</div>
           <div class="card-reason-scroll">
             ${reasonText}
           </div>
@@ -1361,6 +1370,7 @@ function renderIndividualCards(awards, region, half) {
   awards.forEach(award => {
     // Handle both winner_name and members array formats
     const memberNames = award.members || (award.winner_name ? [award.winner_name] : []);
+    const currency = award.currency || 'USD';
     
     memberNames.forEach((memberName, idx) => {
       const memberNameStr = typeof memberName === 'string' ? memberName : memberName.name;
@@ -1393,7 +1403,7 @@ function renderIndividualCards(awards, region, half) {
             <div class="card-award">
               <span class="card-award-name">🌟 ${awardName}</span>
             </div>
-            <div class="card-amount">${formatCurrency(award.bonus)}</div>
+            <div class="card-amount">${formatCurrency(award.bonus, currency)}</div>
             <div class="card-reason-scroll">
               ${reasonText}
             </div>
