@@ -193,6 +193,8 @@ async function loadData(level, region = null, year = null) {
       dataFile = `data/${region}.json`;
     } else if (level === 'fs') {
       dataFile = 'data/fs.json';
+    } else if (level === 'pop') {
+      dataFile = 'data/pop.json';
     }
     
     const response = await fetch(dataFile);
@@ -206,9 +208,13 @@ async function loadData(level, region = null, year = null) {
     // 检查数据是否是多年份结构
     const hasYearStructure = data['2025'] || data['2026'];
     
-    // FS数据没有多年份结构，直接返回
+    // FS/POP数据没有多年份结构，直接返回
     if (level === 'fs') {
       AppData.regional.fs = data;
+      return data;
+    }
+    if (level === 'pop') {
+      AppData.regional.pop = data;
       return data;
     }
     
