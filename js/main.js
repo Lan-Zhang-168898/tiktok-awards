@@ -268,26 +268,72 @@ async function loadRankings(year = null) {
   }
 }
 
-// ==================== Helper Functions for H1+H2 Data ====================
+// ==================== Helper Functions for Quarterly Data (Q1/Q2/Q3/Q4) ====================
 
-// Get H1 project awards only
+// Get Q1 project awards
+function getQ1ProjectAwards(data) {
+  if (!data) return [];
+  // Support both quarterly (Q1项目奖) and legacy (H1项目奖) structure
+  if (data['Q1项目奖']) {
+    return data['Q1项目奖'];
+  }
+  // Legacy: H1项目奖中quarter为Q1的
+  const h1Awards = data['H1项目奖'] || [];
+  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
+}
+
+// Get Q2 project awards
+function getQ2ProjectAwards(data) {
+  if (!data) return [];
+  if (data['Q2项目奖']) {
+    return data['Q2项目奖'];
+  }
+  const h1Awards = data['H1项目奖'] || [];
+  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
+}
+
+// Get Q3 project awards
+function getQ3ProjectAwards(data) {
+  if (!data) return [];
+  if (data['Q3项目奖']) {
+    return data['Q3项目奖'];
+  }
+  const h2Awards = data['H2项目奖'] || [];
+  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
+}
+
+// Get Q4 project awards
+function getQ4ProjectAwards(data) {
+  if (!data) return [];
+  if (data['Q4项目奖']) {
+    return data['Q4项目奖'];
+  }
+  const h2Awards = data['H2项目奖'] || [];
+  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
+}
+
+// Legacy support: Get H1 project awards (Q1 + Q2)
 function getH1ProjectAwards(data) {
   if (!data) return [];
-  return data['H1项目奖'] || [];
+  if (data['H1项目奖']) {
+    return data['H1项目奖'];
+  }
+  return [...getQ1ProjectAwards(data), ...getQ2ProjectAwards(data)];
 }
 
-// Get H2 project awards only
+// Legacy support: Get H2 project awards (Q3 + Q4)
 function getH2ProjectAwards(data) {
   if (!data) return [];
-  return data['H2项目奖'] || [];
+  if (data['H2项目奖']) {
+    return data['H2项目奖'];
+  }
+  return [...getQ3ProjectAwards(data), ...getQ4ProjectAwards(data)];
 }
 
-// Combine H1 and H2 project awards into single array
+// Combine all project awards into single array
 function getAllProjectAwards(data) {
   if (!data) return [];
-  const h1Awards = data['H1项目奖'] || [];
-  const h2Awards = data['H2项目奖'] || [];
-  return [...h1Awards, ...h2Awards];
+  return [...getQ1ProjectAwards(data), ...getQ2ProjectAwards(data), ...getQ3ProjectAwards(data), ...getQ4ProjectAwards(data)];
 }
 
 // Get all individual awards
@@ -326,22 +372,60 @@ function getYearData(data, year) {
   if (hasYearStructure(data)) {
     return data[year] || null;
   }
-  // Legacy structure - return entire data
+  // Quarterly structure - return entire data
   return data;
 }
 
-// Get H1 project awards (year-based structure)
+// Get Q1 project awards (year-based structure)
+function getQ1ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  if (yearData['Q1项目奖']) return yearData['Q1项目奖'];
+  const h1Awards = yearData['H1项目奖'] || [];
+  return h1Awards.filter(a => a.quarter === 'Q1' || a.period === 'Q1');
+}
+
+// Get Q2 project awards (year-based structure)
+function getQ2ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  if (yearData['Q2项目奖']) return yearData['Q2项目奖'];
+  const h1Awards = yearData['H1项目奖'] || [];
+  return h1Awards.filter(a => a.quarter === 'Q2' || a.period === 'Q2');
+}
+
+// Get Q3 project awards (year-based structure)
+function getQ3ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  if (yearData['Q3项目奖']) return yearData['Q3项目奖'];
+  const h2Awards = yearData['H2项目奖'] || [];
+  return h2Awards.filter(a => a.quarter === 'Q3' || a.period === 'Q3');
+}
+
+// Get Q4 project awards (year-based structure)
+function getQ4ProjectAwardsYear(data, year) {
+  const yearData = getYearData(data, year);
+  if (!yearData) return [];
+  if (yearData['Q4项目奖']) return yearData['Q4项目奖'];
+  const h2Awards = yearData['H2项目奖'] || [];
+  return h2Awards.filter(a => a.quarter === 'Q4' || a.period === 'Q4');
+}
+
+// Legacy support: Get H1 project awards (year-based structure)
 function getH1ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  return yearData['H1项目奖'] || [];
+  if (yearData['H1项目奖']) return yearData['H1项目奖'];
+  return [...getQ1ProjectAwardsYear(data, year), ...getQ2ProjectAwardsYear(data, year)];
 }
 
-// Get H2 project awards (year-based structure)
+// Legacy support: Get H2 project awards (year-based structure)
 function getH2ProjectAwardsYear(data, year) {
   const yearData = getYearData(data, year);
   if (!yearData) return [];
-  return yearData['H2项目奖'] || [];
+  if (yearData['H2项目奖']) return yearData['H2项目奖'];
+  return [...getQ3ProjectAwardsYear(data, year), ...getQ4ProjectAwardsYear(data, year)];
 }
 
 // Get H1 individual awards (year-based structure, for LATAM 2026)

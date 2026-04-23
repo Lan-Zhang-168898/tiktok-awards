@@ -563,6 +563,7 @@
     // Regional page specific initialization
     const regionNames = {
       us: 'US',
+      us_pop: 'US+POP',
       eu: 'EU+UK+JP',
       sea: 'SEA',
       latam: 'LATAM',
@@ -573,23 +574,32 @@
     let currentRegion = 'us';
     let currentAwardType = 'H1项目奖';
     let regionalData = null;
+    let allRegionalData = null; // Store all regional data for US+POP merge
     
     // Update page labels and toggle visibility
     function updateLabels() {
-      document.getElementById('region-name').textContent = regionNames[currentRegion];
+      const currentYear = AppData.currentYear;
+      let displayRegion = currentRegion;
+      
+      // In 2026, US button becomes US+POP
+      if (currentYear === '2026' && currentRegion === 'us') {
+        displayRegion = 'us_pop';
+      }
+      
+      document.getElementById('region-name').textContent = regionNames[displayRegion] || regionNames[currentRegion];
       
       // Update 2026 button "Coming Soon" tag based on region
       const year2026Btn = document.getElementById('year-2026-btn');
       const comingSoonTag = year2026Btn ? year2026Btn.querySelector('.coming-soon-tag') : null;
       if (comingSoonTag) {
-        // Only LATAM has 2026 data, hide "Coming Soon" for LATAM
-        comingSoonTag.style.display = currentRegion === 'latam' ? 'none' : 'inline';
+        // In 2026, only LATAM has independent data, others show Coming Soon
+        comingSoonTag.style.display = (currentRegion === 'latam' || currentRegion === 'fs') ? 'none' : 'inline';
       }
       
       // Update regional awards title
       const titleEl = document.getElementById('regional-awards-title');
       if (titleEl) {
-        titleEl.textContent = regionNames[currentRegion] + ' Regional Awards';
+        titleEl.textContent = (regionNames[displayRegion] || regionNames[currentRegion]) + ' Regional Awards';
       }
       
       // Update H2个人奖 tab text based on region
@@ -624,7 +634,6 @@
       const quarterToggle = document.getElementById('quarter-toggle');
       const quarterButtons = document.getElementById('quarter-buttons');
       const h1IndividualButton = document.getElementById('h1-individual-button');
-      const currentYear = AppData.currentYear;
       
       if (currentRegion === 'latam') {
         // LATAM: show appropriate buttons based on year
@@ -667,9 +676,31 @@
     // Load and render regional data
     async function loadRegionalData(region, year = null) {
       const awardsContainer = document.getElementById('regional-awards');
+      const currentYear = year || AppData.currentYear || '2025';
       
       try {
-        regionalData = await loadData('regional', region, year);
+        // For 2026 US+POP merge
+        if (currentYear === '2026' && region === 'us') {
+          // Load both US and POP data
+          const [usData, popData] = await Promise.all([
+            loadData('regional', 'us', currentYear),
+            loadData('regional', 'pop', currentYear)
+          ]);
+          
+          // Merge US and POP data
+          regionalData = {
+            ...usData,
+            'Q1项目奖': [...(usData?.['Q1项目奖'] || []), ...(popData?.['Q1项目奖'] || [])],
+            'Q2项目奖': [...(usData?.['Q2项目奖'] || []), ...(popData?.['Q2项目奖'] || [])],
+            'Q3项目奖': [...(usData?.['Q3项目奖'] || []), ...(popData?.['Q3项目奖'] || [])],
+            'Q4项目奖': [...(usData?.['Q4项目奖'] || []), ...(popData?.['Q4项目奖'] || [])],
+            'H1项目奖': [...(usData?.['H1项目奖'] || []), ...(popData?.['H1项目奖'] || [])],
+            'H2项目奖': [...(usData?.['H2项目奖'] || []), ...(popData?.['H2项目奖'] || [])],
+            'H2个人奖': [...(usData?.['H2个人奖'] || []), ...(popData?.['H2个人奖'] || [])]
+          };
+        } else {
+          regionalData = await loadData('regional', region, currentYear);
+        }
         
         if (regionalData) {
           // Update page title
@@ -708,10 +739,15 @@
         btn.addEventListener('click', () => {
           const clickedRegion = btn.dataset.region;
           
-          // 2026年只有LATAM有数据
-          if (urlYear === '2026' && clickedRegion !== 'latam') {
-            alert('2026 data is not available yet for this region. Coming soon!');
-            return;
+          // 2026年只有LATAM和FS有独立数据，US点击时显示US+POP合并
+          if (urlYear === '2026' && clickedRegion !== 'latam' && clickedRegion !== 'fs') {
+            // Allow clicking US in 2026 (will show US+POP merge)
+            if (clickedRegion === 'us') {
+              // OK - this will merge US+POP
+            } else {
+              alert('2026 data is not available yet for this region. Coming soon!');
+              return;
+            }
           }
           
           console.log('Region clicked:', clickedRegion);

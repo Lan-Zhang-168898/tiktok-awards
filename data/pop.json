@@ -1,8 +1,8 @@
 {
-  "H1项目奖": [
+  "Q1项目奖": [
     {
-      "award_type": "H1项目奖",
-      "period": "H1",
+      "award_type": "Q1项目奖",
+      "period": "Q1",
       "quarter": "Q1",
       "project_name": "Nova-springtok项目",
       "team_award": "金牌专项",
@@ -32,10 +32,12 @@
         "崔宇博"
       ],
       "currency": "CNY"
-    },
+    }
+  ],
+  "Q2项目奖": [
     {
-      "award_type": "H1项目奖",
-      "period": "H1",
+      "award_type": "Q2项目奖",
+      "period": "Q2",
       "quarter": "Q2",
       "project_name": "Nova Outdoorfun 户外专项",
       "team_award": "金牌专项",
@@ -69,8 +71,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H1项目奖",
-      "period": "H1",
+      "award_type": "Q2项目奖",
+      "period": "Q2",
       "quarter": "Q2",
       "project_name": "商家直播突破-POPMART",
       "team_award": "金牌专项",
@@ -92,8 +94,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H1项目奖",
-      "period": "H1",
+      "award_type": "Q2项目奖",
+      "period": "Q2",
       "quarter": "Q2",
       "project_name": "POP新开国（UK/EU/JP）专项",
       "team_award": "金牌专项",
@@ -141,10 +143,10 @@
       "currency": "CNY"
     }
   ],
-  "H2项目奖": [
+  "Q3项目奖": [
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q3项目奖",
+      "period": "Q3",
       "quarter": "Q3",
       "project_name": "POP新市场Peakday里程碑活动",
       "team_award": "金牌专项",
@@ -177,8 +179,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q3项目奖",
+      "period": "Q3",
       "quarter": "Q3",
       "project_name": "POP趋势品专项",
       "team_award": "金牌专项",
@@ -198,10 +200,12 @@
         "张革伟"
       ],
       "currency": "CNY"
-    },
+    }
+  ],
+  "Q4项目奖": [
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q4项目奖",
+      "period": "Q4",
       "quarter": "Q4",
       "project_name": "POP垂类达人孵化专项",
       "team_award": "金牌专项",
@@ -229,8 +233,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q4项目奖",
+      "period": "Q4",
       "quarter": "Q4",
       "project_name": "百万富翁专项",
       "team_award": "金牌专项",
@@ -259,8 +263,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q4项目奖",
+      "period": "Q4",
       "quarter": "Q4",
       "project_name": "POP商家短视频Q4突破专项",
       "team_award": "金牌专项",
@@ -288,8 +292,8 @@
       "currency": "CNY"
     },
     {
-      "award_type": "H2项目奖",
-      "period": "H2",
+      "award_type": "Q4项目奖",
+      "period": "Q4",
       "quarter": "Q4",
       "project_name": "POP CCCU治理专项",
       "team_award": "金牌专项",

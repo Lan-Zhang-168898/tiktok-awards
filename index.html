@@ -790,20 +790,25 @@
   <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
   <script>
-    // Render Home Stats - Now includes H1 + H2 data
+    // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
-    function renderHomeStats(globalData, regionalData, year = '2025') {
+    function renderHomeStats(globalData, regionalData, fsData, popData, year = '2025') {
       let globalProjects = 0;
       let regionalProjects = 0;
       let individualAwards = 0;
       let totalBonus = 0;
       let teamMemberCount = 0;
       
-      // Count Global Projects (H1 + H2) - by unique project
+      // Count Global Projects (Q1 + Q2 + Q3 + Q4) - by unique project
       if (globalData) {
+        const q1Awards = globalData['Q1项目奖'] || [];
+        const q2Awards = globalData['Q2项目奖'] || [];
+        const q3Awards = globalData['Q3项目奖'] || [];
+        const q4Awards = globalData['Q4项目奖'] || [];
+        // Legacy support
         const h1Awards = globalData['H1项目奖'] || [];
         const h2Awards = globalData['H2项目奖'] || [];
-        const allGlobalAwards = [...h1Awards, ...h2Awards];
+        const allGlobalAwards = [...q1Awards, ...q2Awards, ...q3Awards, ...q4Awards, ...h1Awards, ...h2Awards];
         
         // Group by project_name and sum bonus per project (not per record)
         const projectBonuses = {};
@@ -822,14 +827,46 @@
         totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
       }
       
-      // Count Regional Projects & Individuals (H1 + H2) - by unique project
-      const regions = ['us', 'eu', 'sea', 'latam'];
+      // Count Regional Projects & Individuals (Q1 + Q2 + Q3 + Q4) - by unique project
+      // 2025: US, EU, SEA, LATAM, POP, FS = 6 regions
+      // 2026: US+POP merged, EU, SEA, LATAM, FS = 5 regions (only LATAM and FS have 2026 data)
+      const regions2025 = ['us', 'eu', 'sea', 'latam', 'fs', 'pop'];
+      const regions2026 = ['us', 'eu', 'sea', 'latam', 'fs'];
+      const regions = year === '2026' ? regions2026 : regions2025;
+      
       regions.forEach(region => {
-        const regionData = regionalData[region];
+        let regionData = null;
+        
+        // Special handling for US+POP merged in 2026
+        if (year === '2026' && region === 'us') {
+          // US region includes US + POP data
+          const usData = regionalData['us'];
+          const popRegionData = regionalData['pop'];
+          if (usData || popRegionData) {
+            regionData = {
+              ...usData,
+              'Q1项目奖': [...(usData?.['Q1项目奖'] || []), ...(popRegionData?.['Q1项目奖'] || [])],
+              'Q2项目奖': [...(usData?.['Q2项目奖'] || []), ...(popRegionData?.['Q2项目奖'] || [])],
+              'Q3项目奖': [...(usData?.['Q3项目奖'] || []), ...(popRegionData?.['Q3项目奖'] || [])],
+              'Q4项目奖': [...(usData?.['Q4项目奖'] || []), ...(popRegionData?.['Q4项目奖'] || [])],
+              'H1项目奖': [...(usData?.['H1项目奖'] || []), ...(popRegionData?.['H1项目奖'] || [])],
+              'H2项目奖': [...(usData?.['H2项目奖'] || []), ...(popRegionData?.['H2项目奖'] || [])],
+              'H2个人奖': [...(usData?.['H2个人奖'] || []), ...(popRegionData?.['H2个人奖'] || [])]
+            };
+          }
+        } else {
+          regionData = regionalData[region];
+        }
+        
         if (regionData) {
+          // Get project awards (support both quarterly and legacy structure)
+          const q1Proj = regionData['Q1项目奖'] || [];
+          const q2Proj = regionData['Q2项目奖'] || [];
+          const q3Proj = regionData['Q3项目奖'] || [];
+          const q4Proj = regionData['Q4项目奖'] || [];
           const h1Proj = regionData['H1项目奖'] || [];
           const h2Proj = regionData['H2项目奖'] || [];
-          const allProjAwards = [...h1Proj, ...h2Proj];
+          const allProjAwards = [...q1Proj, ...q2Proj, ...q3Proj, ...q4Proj, ...h1Proj, ...h2Proj];
           
           // Group by project_name and sum bonus per project (not per record)
           const projectBonuses = {};
@@ -859,6 +896,68 @@
         }
       });
       
+      // Count FS project awards if available
+      if (fsData) {
+        const q1Awards = fsData['Q1项目奖'] || [];
+        const q2Awards = fsData['Q2项目奖'] || [];
+        const q3Awards = fsData['Q3项目奖'] || [];
+        const q4Awards = fsData['Q4项目奖'] || [];
+        const h1Awards = fsData['H1项目奖'] || [];
+        const h2Awards = fsData['H2项目奖'] || [];
+        const allAwards = [...q1Awards, ...q2Awards, ...q3Awards, ...q4Awards, ...h1Awards, ...h2Awards];
+        
+        const projectBonuses = {};
+        allAwards.forEach(a => {
+          const pname = a.project_name;
+          if (!projectBonuses[pname]) {
+            projectBonuses[pname] = Number(a.bonus) || 0;
+          }
+          if (a.members) {
+            teamMemberCount += a.members.length;
+          }
+        });
+        
+        globalProjects += Object.keys(projectBonuses).length;
+        totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
+      }
+      
+      // Count POP project awards if available
+      if (popData) {
+        const q1Awards = popData['Q1项目奖'] || [];
+        const q2Awards = popData['Q2项目奖'] || [];
+        const q3Awards = popData['Q3项目奖'] || [];
+        const q4Awards = popData['Q4项目奖'] || [];
+        const h1Awards = popData['H1项目奖'] || [];
+        const h2Awards = popData['H2项目奖'] || [];
+        const allAwards = [...q1Awards, ...q2Awards, ...q3Awards, ...q4Awards, ...h1Awards, ...h2Awards];
+        
+        const projectBonuses = {};
+        allAwards.forEach(a => {
+          const pname = a.project_name;
+          if (!projectBonuses[pname]) {
+            projectBonuses[pname] = Number(a.bonus) || 0;
+          }
+          if (a.members) {
+            teamMemberCount += a.members.length;
+          }
+        });
+        
+        globalProjects += Object.keys(projectBonuses).length;
+        totalBonus += Object.values(projectBonuses).reduce((sum, b) => sum + b, 0);
+        
+        // POP individual awards
+        const indivAwards = popData['H2个人奖'] || popData['Q1个人奖'] || [];
+        individualAwards += indivAwards.length;
+        indivAwards.forEach(a => {
+          if (a.bonus) totalBonus += Number(a.bonus);
+        });
+      }
+      
+      // Determine regions count
+      // 2025: US, EU, SEA, LATAM, POP, FS = 6 regions
+      // 2026: US+POP merged, EU, SEA, LATAM, FS = 5 regions
+      const regionsCount = year === '2026' ? 5 : 6;
+      
       // Render stats
       const container = document.getElementById('overview-stats');
       if (container) {
@@ -884,7 +983,7 @@
             <div class="stat-label">Team Members</div>
           </div>
           <div class="stat-item">
-            <div class="stat-value">4</div>
+            <div class="stat-value">${regionsCount}</div>
             <div class="stat-label">Regions</div>
           </div>
         `;
@@ -925,23 +1024,28 @@
         const urlYear = getUrlParam('year') || '2025';
         AppData.currentYear = urlYear;
         
-        // Load all data for stats (H1 + H2)
-        const [rankingsData, global, us, eu, sea, latam, fs] = await Promise.all([
+        // Load all data for stats (Q1 + Q2 + Q3 + Q4 + FS + POP)
+        const [rankingsData, global, us, eu, sea, latam, fs, pop] = await Promise.all([
           loadRankings(urlYear),
           loadData('global', null, urlYear),
           loadData('regional', 'us', urlYear),
           loadData('regional', 'eu', urlYear),
           loadData('regional', 'sea', urlYear),
           loadData('regional', 'latam', urlYear),
-          loadData('fs')
+          loadData('fs'),
+          loadData('pop')
         ]);
         
         // Build member to department mapping from all data
         const memberDeptMap = {};
-        const allData = [global, us, eu, sea, latam, fs];
+        const allData = [global, us, eu, sea, latam, fs, pop];
         allData.forEach(data => {
           if (!data) return;
           const allAwards = [
+            ...(data['Q1项目奖'] || []),
+            ...(data['Q2项目奖'] || []),
+            ...(data['Q3项目奖'] || []),
+            ...(data['Q4项目奖'] || []),
             ...(data['H1项目奖'] || []),
             ...(data['H2项目奖'] || []),
             ...(data['H2个人奖'] || [])
@@ -978,22 +1082,38 @@
           }
         }
         
-        // Calculate and render stats (including FS data in global for combined stats)
+        // Calculate and render stats (including FS and POP data in global for combined stats)
         const globalWithFS = mergeGlobalData(global, fs);
-        renderHomeStats(globalWithFS, { us, eu, sea, latam }, urlYear);
+        renderHomeStats(globalWithFS, { us, eu, sea, latam, fs: fs, pop: pop }, fs, pop, urlYear);
         
       } catch (error) {
         console.error('Error loading home page data:', error);
       }
     }
     
-    // 合并Global数据和FS数据
+    // 合并Global数据和FS数据（支持季度结构）
     function mergeGlobalData(global, fs) {
       if (!global && !fs) return null;
       if (!global) return fs;
       if (!fs) return global;
       
       return {
+        'Q1项目奖': [
+          ...(global['Q1项目奖'] || []),
+          ...(fs['Q1项目奖'] || [])
+        ],
+        'Q2项目奖': [
+          ...(global['Q2项目奖'] || []),
+          ...(fs['Q2项目奖'] || [])
+        ],
+        'Q3项目奖': [
+          ...(global['Q3项目奖'] || []),
+          ...(fs['Q3项目奖'] || [])
+        ],
+        'Q4项目奖': [
+          ...(global['Q4项目奖'] || []),
+          ...(fs['Q4项目奖'] || [])
+        ],
         'H1项目奖': [
           ...(global['H1项目奖'] || []),
           ...(fs['H1项目奖'] || [])
