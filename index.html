@@ -1152,13 +1152,16 @@
       const searchBtn = document.getElementById('search-btn');
       const searchResults = document.getElementById('search-results');
       
+      // 设置页面层级为home
+      setSearchPageLevel('home');
+      
       function performAndShowSearch() {
         const query = searchInput?.value || '';
         if (!query) {
           searchResults.classList.remove('active');
           return;
         }
-        const results = performSearch(query);
+        const results = performSearch(query, 'home');
         renderSearchResults(results, 'search-results');
         searchResults.classList.add('active');
       }

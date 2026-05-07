@@ -576,6 +576,9 @@
         
         initSearch();
         
+        // 设置页面层级为global
+        setSearchPageLevel('global');
+        
         // Search handlers
         const searchInput = document.getElementById('search-input');
         const searchBtn = document.getElementById('search-btn');
@@ -587,7 +590,7 @@
             searchResults.classList.remove('active');
             return;
           }
-          const results = performSearch(query);
+          const results = performSearch(query, 'global');
           renderSearchResults(results, 'search-results');
           searchResults.classList.add('active');
         }

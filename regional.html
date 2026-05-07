@@ -922,6 +922,9 @@
       // Initialize search
       initSearch();
       
+      // 设置页面层级为regional，并传入当前region
+      setSearchPageLevel('regional', currentRegion);
+      
       // Search handlers
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
@@ -929,7 +932,7 @@
       if (searchBtn) {
         searchBtn.addEventListener('click', () => {
           const query = searchInput?.value || '';
-          const results = performSearch(query);
+          const results = performSearch(query, 'regional', currentRegion);
           renderSearchResults(results, 'search-results');
           document.getElementById('search-results')?.classList.add('active');
         });
@@ -939,7 +942,7 @@
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
             const query = e.target.value || '';
-            const results = performSearch(query);
+            const results = performSearch(query, 'regional', currentRegion);
             renderSearchResults(results, 'search-results');
             document.getElementById('search-results')?.classList.add('active');
           }

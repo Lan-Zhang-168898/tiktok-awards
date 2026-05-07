@@ -1084,6 +1084,9 @@
       
       if (!searchInput || !searchBtn) return;
       
+      // 设置页面层级为departmental
+      setSearchPageLevel('departmental');
+      
       const performSearch = async () => {
         const searchTerm = searchInput.value.trim().toLowerCase();
         if (!searchTerm) {
@@ -1121,7 +1124,10 @@
               award: award.award_type,
               bonus: award.bonus,
               email: award.email,
-              quarter: quarter
+              quarter: quarter,
+              type: 'Individual Award',
+              level: 'Departmental',
+              levelKey: 'departmental'
             });
           }
         });

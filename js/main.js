@@ -1484,152 +1484,637 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ==================== Search Functions ====================
+// 重构后的搜索系统：支持按页面层级过滤、项目去重、精确匹配优先
+
 let searchData = null;
+let currentPageLevel = 'home'; // 'home' | 'global' | 'regional' | 'departmental'
+let currentSearchRegion = null; // 当前区域（用于regional页面）
+
+// ========== 数据解析辅助函数 ==========
+
+/**
+ * 获取数据中指定年份的数据
+ * @param {Object} data - 原始数据
+ * @param {string} year - 年份
+ * @returns {Object|null} - 指定年份的数据
+ */
+function getDataForYear(data, year) {
+  if (!data) return null;
+  const targetYear = year || AppData.currentYear || '2025';
+  // 检查是否有年份结构（如 { "2025": {...}, "2026": {...} }）
+  if (data[targetYear]) {
+    return data[targetYear];
+  }
+  // 如果数据直接在顶层（无年份结构），直接返回
+  // 对于FS/POP等无年份结构的数据，直接返回
+  if (typeof data['H1项目奖'] !== 'undefined' || typeof data['Q1个人奖'] !== 'undefined') {
+    return data;
+  }
+  return null;
+}
+
+/**
+ * 从award数组中提取所有成员（去重）
+ */
+function extractUniqueMembers(awards) {
+  const membersMap = {};
+  awards.forEach(award => {
+    if (award.members && Array.isArray(award.members)) {
+      award.members.forEach(member => {
+        const memberName = typeof member === 'string' ? member : member.name;
+        if (memberName && !membersMap[memberName]) {
+          membersMap[memberName] = {
+            name: memberName,
+            email: award.email || (typeof member === 'object' ? member.email : '')
+          };
+        }
+      });
+    }
+  });
+  return Object.values(membersMap);
+}
+
+// ========== 搜索匹配函数 ==========
+
+/**
+ * 计算搜索词与目标字符串的匹配度
+ * @param {string} searchTerm - 搜索词（小写）
+ * @param {string} target - 目标字符串（小写）
+ * @returns {number} - 匹配度分数：0=不匹配, 1=包含匹配, 2=前缀匹配, 3=精确匹配
+ */
+function calculateMatchScore(searchTerm, target) {
+  if (!target || !searchTerm) return 0;
+  const targetLower = target.toLowerCase();
+  const termLower = searchTerm.toLowerCase();
+  
+  // 精确匹配（完全相等）
+  if (targetLower === termLower) return 3;
+  // 前缀匹配（目标以搜索词开头）
+  if (targetLower.startsWith(termLower)) return 2;
+  // 包含匹配（目标包含搜索词）
+  if (targetLower.includes(termLower)) return 1;
+  return 0;
+}
+
+/**
+ * 判断搜索词是否是区域关键词
+ */
+function isRegionKeyword(term) {
+  const regionKeywords = ['us', 'eu', 'sea', 'latam', 'fs', 'pop', 'americas', 'emea', 'apac'];
+  return regionKeywords.includes(term.toLowerCase());
+}
+
+/**
+ * 判断是否应该优先匹配region字段
+ */
+function shouldMatchRegion(searchTerm, targetField) {
+  const searchLower = searchTerm.toLowerCase();
+  // 如果搜索词是区域名，优先匹配region/level字段
+  if (isRegionKeyword(searchLower)) {
+    return targetField === 'region' || targetField === 'level';
+  }
+  return false;
+}
+
+// ========== 项目去重与合并 ==========
+
+/**
+ * 对项目奖项进行去重和成员合并
+ * @param {Array} awards - 项目奖项数组
+ * @param {string} levelType - 层级类型：'global', 'regional-us'等
+ * @returns {Array} - 去重后的项目列表
+ */
+function deduplicateProjects(awards, levelType) {
+  const projectMap = {};
+  
+  awards.forEach(award => {
+    // 创建唯一键：project_name + team_award
+    const key = `${award.project_name}||${award.team_award || ''}`;
+    
+    if (!projectMap[key]) {
+      projectMap[key] = {
+        project_name: award.project_name,
+        project_english_name: award.project_english_name,
+        team_award: award.team_award,
+        bonus: award.bonus,
+        currency: award.currency,
+        reason: award.reason,
+        department: award.department,
+        region: award.region,
+        level: levelType,
+        members: [],
+        period: award.period || award.award_type,
+        award_type: award.award_type
+      };
+    }
+    
+    // 合并成员（去重）
+    if (award.members && Array.isArray(award.members)) {
+      award.members.forEach(member => {
+        const memberName = typeof member === 'string' ? member : member.name;
+        const memberEmail = typeof member === 'object' ? member.email : award.email;
+        if (memberName && !projectMap[key].members.find(m => m.name === memberName)) {
+          projectMap[key].members.push({
+            name: memberName,
+            email: memberEmail || ''
+          });
+        }
+      });
+    }
+  });
+  
+  return Object.values(projectMap);
+}
+
+// ========== 搜索初始化 ==========
 
 async function initSearch() {
   try {
-    const [global, us, eu, sea, latam, rankings] = await Promise.all([
+    const targetYear = AppData.currentYear || '2025';
+    
+    // 并行加载所有数据
+    const [global, us, eu, sea, latam, fs, pop, rankings] = await Promise.all([
       fetch('data/global.json').then(r => r.json()).catch(() => null),
       fetch('data/us.json').then(r => r.json()).catch(() => null),
       fetch('data/eu.json').then(r => r.json()).catch(() => null),
       fetch('data/sea.json').then(r => r.json()).catch(() => null),
       fetch('data/latam.json').then(r => r.json()).catch(() => null),
+      fetch('data/fs.json').then(r => r.json()).catch(() => null),
+      fetch('data/pop.json').then(r => r.json()).catch(() => null),
       fetch('data/rankings.json').then(r => r.json()).catch(() => null)
     ]);
     
+    // 根据年份解析数据
     searchData = {
-      global,
-      regional: { us, eu, sea, latam },
-      rankings
+      global: getDataForYear(global, targetYear),
+      regional: {
+        us: getDataForYear(us, targetYear),
+        eu: getDataForYear(eu, targetYear),
+        sea: getDataForYear(sea, targetYear),
+        latam: getDataForYear(latam, targetYear),
+        fs: getDataForYear(fs, targetYear),
+        pop: getDataForYear(pop, targetYear)
+      },
+      rankings: rankings,
+      rawData: { global, us, eu, sea, latam, fs, pop, rankings } // 保留原始数据用于某些场景
     };
+    
+    console.log('Search initialized for year:', targetYear);
   } catch (error) {
     console.error('Error initializing search:', error);
   }
 }
 
-function performSearch(query) {
+/**
+ * 设置当前页面层级（用于搜索范围控制）
+ */
+function setSearchPageLevel(level, region = null) {
+  currentPageLevel = level;
+  currentSearchRegion = region;
+}
+
+// ========== 核心搜索函数 ==========
+
+/**
+ * 重构后的performSearch函数
+ * @param {string} query - 搜索词
+ * @param {string} pageLevel - 页面层级：'home'|'global'|'regional'|'departmental'
+ * @param {string} currentRegion - 当前区域（用于regional页面）
+ * @returns {Array} - 搜索结果数组
+ */
+function performSearch(query, pageLevel = null, currentRegion = null) {
   if (!query || !searchData) return [];
   
-  const results = [];
-  const searchTerm = query.toLowerCase();
+  // 确定搜索范围
+  const level = pageLevel || currentPageLevel || 'home';
+  const region = currentRegion || currentSearchRegion;
   
-  if (searchData.global) {
-    const h1Awards = searchData.global['H1项目奖'] || [];
-    const h2Awards = searchData.global['H2项目奖'] || [];
-    const allGlobalAwards = [...h1Awards, ...h2Awards];
-    
-    allGlobalAwards.forEach(award => {
-      const matchName = award.project_name?.toLowerCase().includes(searchTerm);
-      const matchMember = award.members?.some(m => m.toLowerCase().includes(searchTerm));
-      const matchDept = award.department?.toLowerCase().includes(searchTerm);
-      const matchReason = award.reason?.toLowerCase().includes(searchTerm);
-      
-      if (matchName || matchMember || matchDept || matchReason) {
-        results.push({
-          type: 'Project Award',
-          level: 'Global',
-          period: award.period || 'H1/H2',
-          name: award.project_name,
-          award: award.team_award,
-          members: award.members,
-          department: award.department,
-          reason: award.reason
-        });
-      }
-    });
+  const searchTerm = query.toLowerCase().trim();
+  const results = [];
+  
+  // 根据页面层级决定搜索范围
+  if (level === 'home') {
+    // Home页：搜索所有层级
+    searchGlobalProjects(results, searchTerm);
+    searchRegionalProjects(results, searchTerm, null);
+  } else if (level === 'global') {
+    // Global页：只搜索Global数据
+    searchGlobalProjects(results, searchTerm);
+  } else if (level === 'regional') {
+    // Regional页：只搜索当前region数据
+    if (region) {
+      searchRegionalProjects(results, searchTerm, region);
+    }
+  } else if (level === 'departmental') {
+    // Departmental页：搜索departmental数据
+    searchDepartmentalProjects(results, searchTerm);
   }
   
-  ['us', 'eu', 'sea', 'latam'].forEach(region => {
+  // 搜索Top Performers（Home页显示）
+  if (level === 'home' && searchData.rankings) {
+    searchRankings(results, searchTerm);
+  }
+  
+  // 按相关度排序
+  sortByRelevance(results, searchTerm);
+  
+  // 限制返回数量
+  return results.slice(0, 50);
+}
+
+/**
+ * 搜索Global项目奖项
+ */
+function searchGlobalProjects(results, searchTerm) {
+  if (!searchData.global) return;
+  
+  // 收集所有Global项目奖项
+  const allAwards = [];
+  
+  // H1项目奖
+  const h1Awards = searchData.global['H1项目奖'] || [];
+  const h1Q1Awards = (searchData.global['Q1项目奖'] || []).concat(h1Awards.filter(a => a.period === 'Q1' || a.quarter === 'Q1'));
+  const h1Q2Awards = (searchData.global['Q2项目奖'] || []).concat(h1Awards.filter(a => a.period === 'Q2' || a.quarter === 'Q2'));
+  
+  // H2项目奖
+  const h2Awards = searchData.global['H2项目奖'] || [];
+  const h2Q3Awards = (searchData.global['Q3项目奖'] || []).concat(h2Awards.filter(a => a.period === 'Q3' || a.quarter === 'Q3'));
+  const h2Q4Awards = (searchData.global['Q4项目奖'] || []).concat(h2Awards.filter(a => a.period === 'Q4' || a.quarter === 'Q4'));
+  
+  allAwards.push(...h1Q1Awards, ...h1Q2Awards, ...h2Q3Awards, ...h2Q4Awards);
+  
+  // 去重
+  const deduplicatedProjects = deduplicateProjects(allAwards, 'Global');
+  
+  // 匹配
+  deduplicatedProjects.forEach(project => {
+    const matchResult = matchProject(project, searchTerm);
+    if (matchResult) {
+      results.push({
+        type: 'Project Award',
+        level: 'Global',
+        levelKey: 'global',
+        period: project.period || 'H1/H2',
+        name: project.project_name,
+        project_english_name: project.project_english_name,
+        award: project.team_award,
+        members: project.members,
+        memberCount: project.members.length,
+        department: project.department,
+        reason: project.reason,
+        relevanceScore: matchResult.score,
+        matchField: matchResult.field,
+        bonus: project.bonus,
+        currency: project.currency
+      });
+    }
+  });
+}
+
+/**
+ * 搜索Regional项目奖项
+ */
+function searchRegionalProjects(results, searchTerm, specificRegion = null) {
+  const regions = specificRegion ? [specificRegion] : ['us', 'eu', 'sea', 'latam', 'fs', 'pop'];
+  
+  regions.forEach(region => {
     const data = searchData.regional[region];
     if (!data) return;
     
-    const h1Awards = data['H1项目奖'] || [];
-    const h2Awards = data['H2项目奖'] || [];
-    const allRegionalAwards = [...h1Awards, ...h2Awards];
+    // 收集所有项目奖项
+    const allAwards = [];
     
-    allRegionalAwards.forEach(award => {
-      const matchName = award.project_name?.toLowerCase().includes(searchTerm);
-      const matchMember = award.members?.some(m => m.toLowerCase().includes(searchTerm));
-      const matchDept = award.department?.toLowerCase().includes(searchTerm);
-      
-      if (matchName || matchMember || matchDept) {
+    // H1项目奖 / Q1项目奖 / Q2项目奖
+    const h1Awards = data['H1项目奖'] || [];
+    allAwards.push(...(data['Q1项目奖'] || []));
+    allAwards.push(...(data['Q2项目奖'] || []));
+    allAwards.push(...h1Awards.filter(a => a.period === 'Q1' || a.quarter === 'Q1'));
+    allAwards.push(...h1Awards.filter(a => a.period === 'Q2' || a.quarter === 'Q2'));
+    
+    // H2项目奖 / Q3项目奖 / Q4项目奖
+    const h2Awards = data['H2项目奖'] || [];
+    allAwards.push(...(data['Q3项目奖'] || []));
+    allAwards.push(...(data['Q4项目奖'] || []));
+    allAwards.push(...h2Awards.filter(a => a.period === 'Q3' || a.quarter === 'Q3'));
+    allAwards.push(...h2Awards.filter(a => a.period === 'Q4' || a.quarter === 'Q4'));
+    
+    // 去重
+    const levelType = `Regional - ${region.toUpperCase()}`;
+    const deduplicatedProjects = deduplicateProjects(allAwards, levelType);
+    
+    // 匹配
+    deduplicatedProjects.forEach(project => {
+      const matchResult = matchProject(project, searchTerm);
+      if (matchResult) {
         results.push({
           type: 'Project Award',
-          level: `Regional - ${region.toUpperCase()}`,
-          period: award.period || 'H1/H2',
-          name: award.project_name,
-          award: award.team_award,
-          members: award.members,
-          department: award.department
+          level: levelType,
+          levelKey: region,
+          period: project.period || 'H1/H2',
+          name: project.project_name,
+          project_english_name: project.project_english_name,
+          award: project.team_award,
+          members: project.members,
+          memberCount: project.members.length,
+          department: project.department,
+          reason: project.reason,
+          relevanceScore: matchResult.score,
+          matchField: matchResult.field,
+          bonus: project.bonus,
+          currency: project.currency
         });
       }
     });
     
-    const individualAwards = data['H2个人奖'] || [];
+    // 搜索个人奖项
+    const individualAwards = data['H2个人奖'] || data['Q1个人奖'] || [];
     individualAwards.forEach(award => {
-      if (award.winner_name) {
-        const matchName = award.winner_name.toLowerCase().includes(searchTerm);
-        const matchDept = award.department?.toLowerCase().includes(searchTerm);
-        
-        if (matchName || matchDept) {
-          results.push({
-            type: 'Individual Award',
-            level: `Regional - ${region.toUpperCase()}`,
-            name: award.winner_name,
-            award: award.team_award,
-            department: award.department
-          });
-        }
+      const matchResult = matchIndividual(award, searchTerm);
+      if (matchResult) {
+        results.push({
+          type: 'Individual Award',
+          level: levelType,
+          levelKey: region,
+          period: award.period || award.quarter || 'H2',
+          name: award.winner_name || award.members?.[0]?.name || 'Unknown',
+          award: award.team_award || award.project_name || 'Stellar Contributor',
+          department: award.department,
+          reason: award.reason,
+          relevanceScore: matchResult.score,
+          matchField: matchResult.field,
+          bonus: award.bonus,
+          currency: award.currency,
+          email: award.email
+        });
       }
     });
   });
+}
+
+/**
+ * 搜索Departmental项目（预留接口）
+ */
+function searchDepartmentalProjects(results, searchTerm) {
+  // TODO: 如果有departmental.json数据，可以在这里添加搜索逻辑
+  console.log('Departmental search not yet implemented');
+}
+
+/**
+ * 搜索Rankings
+ */
+function searchRankings(results, searchTerm) {
+  const rankings = searchData.rankings;
+  if (!rankings) return;
   
-  if (searchData.rankings) {
-    const rankings = searchData.rankings.top10 || [];
-    rankings.forEach(r => {
-      if (r.name?.toLowerCase().includes(searchTerm)) {
+  // 支持多年份
+  const years = ['2025', '2026'];
+  years.forEach(year => {
+    const yearRankings = rankings[year]?.top10 || rankings[year]?.global || rankings[year]?.regional || [];
+    yearRankings.forEach(r => {
+      const score = calculateMatchScore(searchTerm, r.name);
+      if (score > 0) {
         results.push({
           type: 'Top Performer',
-          level: `Rank #${r.rank}`,
+          level: year,
+          levelKey: 'rankings',
           name: r.name,
-          points: r.points,
-          department: r.department || r.region || 'TikTok Shop'
+          award: r.points ? `${r.points} pts` : '',
+          department: r.department || r.region || 'TikTok Shop',
+          relevanceScore: score,
+          matchField: 'name',
+          rank: r.rank
         });
+      }
+    });
+  });
+}
+
+/**
+ * 匹配项目（返回匹配结果和分数）
+ */
+function matchProject(project, searchTerm) {
+  // 精确匹配字段
+  const exactFields = {
+    'project_name': project.project_name,
+    'project_english_name': project.project_english_name,
+    'department': project.department,
+    'team_award': project.team_award,
+    'region': project.region
+  };
+  
+  let bestScore = 0;
+  let bestField = '';
+  
+  // 1. 优先精确匹配（project_name, team_award, winner_name）
+  const priorityFields = ['project_name', 'project_english_name', 'team_award'];
+  priorityFields.forEach(field => {
+    const value = exactFields[field];
+    if (value) {
+      const score = calculateMatchScore(searchTerm, value);
+      if (score > bestScore) {
+        bestScore = score;
+        bestField = field;
+      }
+    }
+  });
+  
+  // 2. 如果搜索词是区域名，优先匹配region字段
+  if (isRegionKeyword(searchTerm) && project.region) {
+    const regionScore = calculateMatchScore(searchTerm, project.region);
+    if (regionScore >= bestScore) {
+      bestScore = regionScore;
+      bestField = 'region';
+    }
+  }
+  
+  // 3. 成员名匹配
+  if (project.members && Array.isArray(project.members)) {
+    project.members.forEach(member => {
+      const memberName = typeof member === 'string' ? member : member.name;
+      const score = calculateMatchScore(searchTerm, memberName);
+      if (score > bestScore) {
+        bestScore = score;
+        bestField = 'member';
       }
     });
   }
   
-  return results;
+  // 4. 其他字段模糊匹配
+  const otherFields = ['department'];
+  otherFields.forEach(field => {
+    const value = exactFields[field];
+    if (value) {
+      // 只有当分数更高时才更新
+      const score = calculateMatchScore(searchTerm, value);
+      if (score > bestScore) {
+        bestScore = score;
+        bestField = field;
+      }
+    }
+  });
+  
+  // 5. 包含匹配（reason等）
+  if (project.reason) {
+    const reasonScore = calculateMatchScore(searchTerm, project.reason);
+    // reason的权重较低
+    if (reasonScore > 0 && reasonScore >= bestScore - 1) {
+      bestScore = Math.max(bestScore, reasonScore);
+      bestField = bestField || 'reason';
+    }
+  }
+  
+  return bestScore > 0 ? { score: bestScore, field: bestField } : null;
 }
 
+/**
+ * 匹配个人奖项
+ */
+function matchIndividual(award, searchTerm) {
+  const name = award.winner_name || (award.members?.[0]?.name || '');
+  const dept = award.department || '';
+  
+  let bestScore = 0;
+  let bestField = '';
+  
+  // 精确匹配姓名
+  const nameScore = calculateMatchScore(searchTerm, name);
+  if (nameScore > bestScore) {
+    bestScore = nameScore;
+    bestField = 'name';
+  }
+  
+  // 部门匹配
+  const deptScore = calculateMatchScore(searchTerm, dept);
+  if (deptScore > bestScore) {
+    bestScore = deptScore;
+    bestField = 'department';
+  }
+  
+  // 成员列表匹配
+  if (award.members && Array.isArray(award.members)) {
+    award.members.forEach(member => {
+      const memberName = typeof member === 'string' ? member : member.name;
+      const score = calculateMatchScore(searchTerm, memberName);
+      if (score > bestScore) {
+        bestScore = score;
+        bestField = 'member';
+      }
+    });
+  }
+  
+  return bestScore > 0 ? { score: bestScore, field: bestField } : null;
+}
+
+/**
+ * 按相关度排序
+ */
+function sortByRelevance(results, searchTerm) {
+  results.sort((a, b) => {
+    // 首先按分数降序
+    if (b.relevanceScore !== a.relevanceScore) {
+      return b.relevanceScore - a.relevanceScore;
+    }
+    // 同分数时，精确匹配优先于前缀匹配
+    if (b.relevanceScore === 3 && a.relevanceScore === 3) return 0;
+    // 然后按类型排序：Project Award > Individual Award > Top Performer
+    const typeOrder = { 'Project Award': 0, 'Individual Award': 1, 'Top Performer': 2 };
+    return (typeOrder[a.type] || 3) - (typeOrder[b.type] || 3);
+  });
+}
+
+// ========== 搜索结果渲染 ==========
+
+/**
+ * 渲染搜索结果
+ */
 function renderSearchResults(results, containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
   
   if (results.length === 0) {
-    container.innerHTML = '<div class="no-results">No results found</div>';
+    container.innerHTML = '<div class="no-results" style="padding: 20px; text-align: center; color: var(--text-secondary);">No results found</div>';
     return;
   }
   
-  let html = '';
-  results.slice(0, 20).forEach(result => {
+  let html = `<div class="search-results-header" style="margin-bottom: 16px; font-size: 14px; color: var(--text-secondary);">Found ${results.length} result${results.length > 1 ? 's' : ''}</div>`;
+  html += '<div class="search-results-list">';
+  
+  results.forEach((result, index) => {
+    const levelColor = getLevelColor(result.levelKey);
+    const typeIcon = result.type === 'Project Award' ? '🏆' : (result.type === 'Individual Award' ? '👤' : '⭐');
+    const memberText = result.memberCount ? `${result.memberCount} member${result.memberCount > 1 ? 's' : ''}` : '';
+    const bonusText = result.bonus ? formatCurrency(result.bonus, result.currency) : '';
+    
     html += `
-      <div class="search-result-item">
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-          <span style="background: var(--primary-color); padding: 2px 8px; border-radius: 4px; font-size: 12px;">
-            ${result.type}
+      <div class="search-result-item" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 12px; cursor: pointer; transition: all 0.2s;" 
+           onclick="this.classList.toggle('expanded')">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+          <span style="background: ${levelColor.bg}; color: ${levelColor.text}; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">
+            ${typeIcon} ${result.type}
           </span>
-          <span style="color: var(--text-secondary); font-size: 12px;">${result.level}</span>
-          ${result.period ? `<span style="color: var(--accent-color); font-size: 11px;">${result.period}</span>` : ''}
+          <span style="background: var(--bg-dark); padding: 2px 8px; border-radius: 4px; font-size: 11px; color: var(--text-secondary);">
+            ${result.level}
+          </span>
+          ${result.period ? `<span style="font-size: 11px; color: var(--accent-color);">${result.period}</span>` : ''}
         </div>
-        <div style="font-weight: 600; margin-bottom: 4px;">${result.name}</div>
-        <div style="color: var(--accent-color); font-size: 14px;">${result.award || (result.points ? result.points + ' pts' : '')}</div>
-        ${result.department ? `<div style="color: var(--text-secondary); font-size: 12px;">${result.department}</div>` : ''}
+        <div style="font-weight: 600; font-size: 15px; margin-bottom: 4px; color: var(--text-primary);">
+          ${result.project_english_name || result.name}
+        </div>
+        <div style="color: var(--accent-color); font-size: 13px; margin-bottom: 4px;">
+          ${result.award || ''}
+          ${bonusText ? `<span style="margin-left: 8px; font-size: 12px;">${bonusText}</span>` : ''}
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          ${result.department ? `<div style="color: var(--text-secondary); font-size: 12px;">📁 ${result.department}</div>` : ''}
+          ${memberText ? `<div style="color: var(--text-secondary); font-size: 12px;">👥 ${memberText}</div>` : ''}
+        </div>
+        <div class="result-details" style="display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
+          ${result.reason ? `<div style="color: var(--text-secondary); font-size: 12px; line-height: 1.5;">${truncateText(result.reason, 300)}</div>` : ''}
+          ${result.members && result.members.length > 0 ? `
+            <div style="margin-top: 8px;">
+              <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 4px;">Team Members:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+                ${result.members.map(m => `<span style="background: var(--bg-dark); padding: 2px 8px; border-radius: 4px; font-size: 11px;">${m.name}</span>`).join('')}
+              </div>
+            </div>
+          ` : ''}
+        </div>
       </div>
     `;
   });
   
+  html += '</div>';
   container.innerHTML = html;
+  
+  // 添加点击展开功能
+  container.querySelectorAll('.search-result-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      // 如果点击的是按钮，不触发展开
+      if (e.target.closest('button')) return;
+      const details = item.querySelector('.result-details');
+      if (details) {
+        details.style.display = details.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+  });
+}
+
+/**
+ * 获取层级对应的颜色
+ */
+function getLevelColor(levelKey) {
+  const colors = {
+    'global': { bg: 'rgba(255, 45, 85, 0.2)', text: '#ff2d55' },
+    'us': { bg: 'rgba(0, 122, 255, 0.2)', text: '#007aff' },
+    'eu': { bg: 'rgba(88, 86, 214, 0.2)', text: '#5856d6' },
+    'sea': { bg: 'rgba(255, 149, 0, 0.2)', text: '#ff9500' },
+    'latam': { bg: 'rgba(52, 199, 89, 0.2)', text: '#34c759' },
+    'fs': { bg: 'rgba(255, 59, 48, 0.2)', text: '#ff3b30' },
+    'pop': { bg: 'rgba(175, 82, 222, 0.2)', text: '#af52de' },
+    'rankings': { bg: 'rgba(255, 204, 0, 0.2)', text: '#ffcc00' },
+    'departmental': { bg: 'rgba(90, 200, 250, 0.2)', text: '#5ac8fa' }
+  };
+  return colors[levelKey] || { bg: 'var(--bg-dark)', text: 'var(--text-secondary)' };
 }
 
 // ==================== Initialize ====================
