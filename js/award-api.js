@@ -23,7 +23,7 @@ const AwardAPI = {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 3000);
-      const res = await fetch(`${this.BASE_URL}/api/awards/_ping?user_id=ping`, {
+      const res = await fetch(`${this.BASE_URL}/api/health`, {
         signal: controller.signal
       });
       clearTimeout(timeoutId);
@@ -47,10 +47,16 @@ const AwardAPI = {
         body: JSON.stringify({ award_id: awardId, user_id: userId })
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      const resp = await res.json();
+      // Unwrap { success, data } wrapper and normalize has_liked -> liked
+      const data = resp.data || resp;
+      const result = {
+        liked: data.has_liked !== undefined ? data.has_liked : !!data.liked,
+        like_count: data.like_count || 0
+      };
       // Invalidate cache for this award
       delete this._cache[awardId];
-      return data;
+      return result;
     } catch (e) {
       console.error('[AwardAPI] toggleLike failed:', e.message);
       return null;
@@ -99,7 +105,14 @@ const AwardAPI = {
     try {
       const res = await fetch(`${this.BASE_URL}/api/awards/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      const resp = await res.json();
+      // Unwrap { success, data } wrapper and normalize has_liked -> liked
+      const raw = resp.data || resp;
+      const data = {
+        liked: raw.has_liked !== undefined ? raw.has_liked : !!raw.liked,
+        like_count: raw.like_count || 0,
+        comments: raw.comments || []
+      };
       data._timestamp = Date.now();
       this._cache[cacheKey] = data;
       return data;
