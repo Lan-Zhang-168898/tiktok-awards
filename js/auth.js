@@ -8,7 +8,7 @@ const FeishuAuth = {
   APP_ID: 'cli_a968a864a0f89bdd',
   
   // Website URL
-  WEBSITE_URL: 'https://tiktok-shop-awards.github.io/tiktok-awards/',
+  WEBSITE_URL: 'https://13966125966-jpg.github.io/tiktok-awards/',
   
   // State to track authentication status
   isAuthenticated: false,
@@ -111,30 +111,9 @@ const FeishuAuth = {
    * Handle external browser - try to redirect to Feishu
    */
   handleExternalBrowser() {
-    console.log('[FeishuAuth] External browser detected, attempting to open Feishu...');
-    
-    // First, try to open in Feishu automatically
-    this.tryOpenInFeishu();
-    
-    // Show loading state first
-    this.showRedirectingMessage();
-    
-    // After 2 seconds, check if we were able to redirect
-    // If window is still visible (user didn't switch to Feishu), show the fallback UI
-    setTimeout(() => {
-      // Check if document is still visible (user didn't switch to Feishu app)
-      if (!document.hidden && document.visibilityState === 'visible') {
-        this.showExternalAccessMessage();
-      }
-    }, 2000);
-    
-    // Also listen for visibility change as backup
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && !this.isAuthenticated) {
-        // User came back from Feishu or Feishu is not installed
-        this.showExternalAccessMessage();
-      }
-    });
+    console.log('[FeishuAuth] External browser detected - skipping Feishu redirect for development');
+    // Skip Feishu redirect - show content directly
+    this.showContent();
   },
   
   /**

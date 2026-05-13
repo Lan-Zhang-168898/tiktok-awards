@@ -3,22 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global E-commerce Recognition Hub 2025</title>
-  <link rel="stylesheet" href="css/main.css">
+  <title>Global E-commerce Recognition Hub</title>
+  <link rel="stylesheet" href="css/main.css?v=20250512k">
   <style>
     /* ==================== Home Page Specific Styles ==================== */
     .home-header {
-      padding: var(--spacing-xl) 0 var(--spacing-md);
+      padding: 0 0 var(--spacing-xs);
     }
     
     .home-title {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 800;
-      margin-bottom: var(--spacing-sm);
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 4px;
+      color: #FFFFFF;
       text-align: center;
     }
     
@@ -26,6 +23,7 @@
       font-size: 14px;
       color: var(--text-secondary);
       text-align: center;
+      margin-bottom: 0;
     }
     
     /* Compact Year Navigation */
@@ -35,7 +33,7 @@
       background: var(--bg-card);
       padding: 3px;
       border-radius: var(--radius-sm);
-      margin: var(--spacing-md) auto 0;
+      margin: var(--spacing-sm) auto 0;
       width: fit-content;
     }
     
@@ -180,7 +178,7 @@
     
     .search-btn-full:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
     }
     
     /* Top 10 List - Two Columns */
@@ -256,23 +254,16 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      background: var(--primary-color);
     }
     
     .stat-card:hover {
-      border-color: var(--primary-color);
+      border-color: #2ED0D6;
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(255, 45, 85, 0.2);
+      box-shadow: 0 8px 24px rgba(46, 208, 214, 0.2);
     }
     
-    .stat-card.highlight {
-      background: linear-gradient(145deg, rgba(255, 45, 85, 0.15), rgba(255, 149, 0, 0.1));
-      border-color: var(--primary-color);
-    }
-    
-    .stat-card.highlight::before {
-      background: linear-gradient(90deg, #FFD700, #FFA500);
-    }
+
     
     .stat-icon {
       font-size: 32px;
@@ -282,10 +273,7 @@
     .stat-value {
       font-size: 36px;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #2ED0D6;
       margin-bottom: var(--spacing-xs);
     }
     
@@ -368,7 +356,7 @@
     .quick-link-card:hover {
       border-color: var(--primary-color);
       transform: translateY(-2px);
-      background: rgba(255, 45, 85, 0.05);
+      background: rgba(246, 33, 74, 0.05);
     }
     
     .quick-link-icon {
@@ -558,7 +546,7 @@
     
     .auth-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
     }
     
     .auth-btn.secondary {
@@ -635,7 +623,7 @@
           <span class="logo-icon">🏆</span>
           <div class="logo-content">
             <span class="logo-text">Global E-commerce Recognition Hub</span>
-            <span class="logo-subtitle">Celebrating award-winning projects and individuals across Global E-commerce business.</span>
+            <span class="logo-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</span>
           </div>
         </div>
         <nav class="top-nav">
@@ -650,10 +638,16 @@
     </header>
 
     <!-- Main Content -->
-    <main class="main-content" id="main-content">
+    <main class="main-content" id="main-content" style="padding-top: var(--spacing-md);">
       <div class="container">
+        <!-- Home Header -->
+        <section class="home-header">
+          <h1 class="home-title">Global E-commerce Recognition Hub</h1>
+          <p class="home-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</p>
+        </section>
+        
         <!-- Year Selection -->
-        <div class="year-nav-wrapper" style="text-align: center; margin: var(--spacing-lg) 0 var(--spacing-lg);">
+        <div class="year-nav-wrapper" style="text-align: center; margin: 0 0 var(--spacing-md);">
           <div class="year-nav-compact">
             <button class="year-btn active" data-year="2025">2025</button>
             <button class="year-btn" data-year="2026" id="year-2026-btn">2026</button>
@@ -685,7 +679,7 @@
             Award Summary
           </h2>
           <div class="stats-grid-full" id="overview-stats">
-            <div class="stat-card highlight">
+            <div class="stat-card">
               <div class="stat-icon">🏆</div>
               <div class="stat-value">-</div>
               <div class="stat-label">Global Projects</div>
@@ -788,7 +782,7 @@
   <!-- Feishu H5 SDK -->
   <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20250512l"></script>
   <script>
     // Render Home Stats - Now includes Q1/Q2/Q3/Q4 data for FS/POP and all regional data
     // IMPORTANT: Project awards are counted by unique project, not by member records
@@ -961,7 +955,7 @@
       const container = document.getElementById('overview-stats');
       if (container) {
         container.innerHTML = `
-          <div class="stat-card highlight">
+          <div class="stat-card">
             <div class="stat-icon">🏆</div>
             <div class="stat-value">${globalProjects}</div>
             <div class="stat-label">Global Projects</div>
@@ -1031,7 +1025,13 @@
       await loadHomePageData();
       
       // Initialize search
-      initSearch();
+      await loadSearchData();
+      initSearchListeners();
+      
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        await loadHomePageData();
+      });
     });
     
     // 加载HomePage数据的函数
@@ -1146,22 +1146,32 @@
       };
     }
     
-    // 初始化搜索功能
-    function initSearch() {
+    // 初始化搜索功能 (renamed to avoid overriding main.js loadSearchData)
+    function initSearchListeners() {
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
       const searchResults = document.getElementById('search-results');
       
-      // 设置页面层级为home
-      setSearchPageLevel('home');
-      
-      function performAndShowSearch() {
+      // Bug 1 fix: Handle race condition where searchData is not yet loaded
+      async function performAndShowSearch() {
         const query = searchInput?.value || '';
         if (!query) {
           searchResults.classList.remove('active');
           return;
         }
-        const results = performSearch(query, 'home');
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
+          searchResults.classList.add('active');
+          for (let i = 0; i < 33; i++) {
+            await new Promise(r => setTimeout(r, 300));
+            if (searchData) break;
+          }
+          if (!searchData) {
+            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+            return;
+          }
+        }
+        const results = performSearch(query, 'all');
         renderSearchResults(results, 'search-results');
         searchResults.classList.add('active');
       }

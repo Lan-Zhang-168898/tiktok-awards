@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Departmental Awards - Prototype</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* ===== Department Grid ===== */
+    .dept-group {
+      margin-bottom: var(--spacing-xl);
+    }
+    .dept-group-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: var(--spacing-md);
+      padding-left: 4px;
+    }
+    .dept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+    }
+    .dept-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .dept-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--primary-color);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .dept-card:hover {
+      border-color: var(--primary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(246,33,74,0.15);
+    }
+    .dept-card:hover::before {
+      transform: scaleX(1);
+    }
+    .dept-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .dept-card-stats {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .dept-card-stats span {
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    /* ===== Department Detail View ===== */
+    .dept-detail {
+      display: none;
+    }
+    .dept-detail.active {
+      display: block;
+    }
+    .dept-list-view.hidden {
+      display: none;
+    }
+
+    .dept-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: var(--spacing-lg);
+    }
+    .dept-back-btn:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--primary-color);
+    }
+
+    .dept-detail-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .dept-detail-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .dept-detail-stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .dept-stat-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .dept-stat-pill span {
+      font-weight: 700;
+      margin-left: 4px;
+    }
+    .dept-stat-pill .val-primary { color: var(--primary-color); }
+    .dept-stat-pill .val-accent { color: var(--accent-color); }
+
+    /* Search in dept detail */
+    .dept-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 500px;
+      margin-bottom: var(--spacing-lg);
+    }
+    .dept-search .search-input {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .dept-search .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255,45,85,0.1);
+    }
+    .dept-search .search-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Quarter tabs */
+    .quarter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-lg);
+    }
+    .quarter-tab {
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quarter-tab.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+    .quarter-tab:hover:not(.active) {
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+
+    /* Award type filter */
+    .award-type-filter {
+      display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+    .award-type-btn {
+      padding: 5px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .award-type-btn.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #000;
+      font-weight: 600;
+    }
+
+    /* Awards list */
+    .dept-awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dept-award-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+    .dept-award-item:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+    .dept-award-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .dept-award-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .dept-award-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .dept-award-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .dept-award-meta span {
+      margin-right: 12px;
+    }
+    .dept-award-bonus {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+    .dept-award-type-badge {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      background: rgba(46,208,214,0.15);
+      color: var(--accent-color);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .dept-award-type-badge.spot {
+      background: rgba(246,33,74,0.15);
+      color: var(--primary-color);
+    }
+
+    .no-data-msg {
+      text-align: center;
+      color: var(--text-secondary);
+      padding: var(--spacing-xxl);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🏆</span>
+          <div class="logo-content">
+            <span class="logo-text">Global E-commerce Recognition Hub</span>
+          </div>
+        </div>
+        <nav class="top-nav">
+          <a href="index.html" class="nav-item">Home</a>
+          <a href="global.html" class="nav-item">Global</a>
+          <a href="regional.html" class="nav-item">Regional</a>
+          <a href="departmental.html" class="nav-item active">Departmental</a>
+          <a href="award-structure.html" class="nav-item">Award Structure</a>
+          <a href="media-gallery.html" class="nav-item">Media Gallery</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <div class="container">
+
+        <!-- ===== LIST VIEW: All Departments ===== -->
+        <div id="dept-list-view" class="dept-list-view">
+          <h1 class="regional-title" style="color:#fff; margin-bottom:4px;">Departmental Awards</h1>
+          <p style="color:var(--text-secondary); font-size:13px; margin-bottom:var(--spacing-xl);">Select a department to view awards and statistics</p>
+
+          <!-- SEA -->
+          <div class="dept-group">
+            <div class="dept-group-title">🌏 Southeast Asia</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('ID Ops')">
+                <div class="dept-card-name">ID Ops</div>
+                <div class="dept-card-stats"><span>12</span> awards · <span>$6.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('MY Ops')">
+                <div class="dept-card-name">MY Ops</div>
+                <div class="dept-card-stats"><span>8</span> awards · <span>$4.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('PH Ops')">
+                <div class="dept-card-name">PH Ops</div>
+                <div class="dept-card-stats"><span>6</span> awards · <span>$3.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('SG Ops')">
+                <div class="dept-card-name">SG Ops</div>
+                <div class="dept-card-stats"><span>5</span> awards · <span>$2.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('TH Ops')">
+                <div class="dept-card-name">TH Ops</div>
+                <div class="dept-card-stats"><span>9</span> awards · <span>$4.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('VN Ops')">
+                <div class="dept-card-name">VN Ops</div>
+                <div class="dept-card-stats"><span>7</span> awards · <span>$3.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('SEA Cross-border')">
+                <div class="dept-card-name">SEA Cross-border</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('SEA Central')">
+                <div class="dept-card-name">SEA Central</div>
+                <div class="dept-card-stats"><span>3</span> awards · <span>$1.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('SEA IMC')">
+                <div class="dept-card-name">SEA IMC</div>
+                <div class="dept-card-stats"><span>5</span> awards · <span>$2.5K</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- UK / EU / JP -->
+          <div class="dept-group">
+            <div class="dept-group-title">🌍 UK / EU / JP</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('JP Operations')">
+                <div class="dept-card-name">JP Operations</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('UK Operations')">
+                <div class="dept-card-name">UK Operations</div>
+                <div class="dept-card-stats"><span>6</span> awards · <span>$3.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('EU Ops + EU Ops Center')">
+                <div class="dept-card-name">EU Ops + EU Ops Center</div>
+                <div class="dept-card-stats"><span>8</span> awards · <span>$4.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('UK&EU&JP POP')">
+                <div class="dept-card-name">UK&EU&JP POP</div>
+                <div class="dept-card-stats"><span>3</span> awards · <span>$1.5K</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- US -->
+          <div class="dept-group">
+            <div class="dept-group-title">🇺🇸 US</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('US Ops + US Ops Center + GKA')">
+                <div class="dept-card-name">US Ops + US Ops Center + GKA</div>
+                <div class="dept-card-stats"><span>15</span> awards · <span>$7.5K</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LATAM -->
+          <div class="dept-group">
+            <div class="dept-group-title">🌎 LATAM</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('LATAM Operations')">
+                <div class="dept-card-name">LATAM Operations</div>
+                <div class="dept-card-stats"><span>6</span> awards · <span>$3.0K</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Global Selling -->
+          <div class="dept-group">
+            <div class="dept-group-title">🌐 Global Selling</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('Global Selling Full Service')">
+                <div class="dept-card-name">Full Service</div>
+                <div class="dept-card-stats"><span>5</span> awards · <span>$2.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Global Selling POP')">
+                <div class="dept-card-name">POP</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cross-functional -->
+          <div class="dept-group">
+            <div class="dept-group-title">⚙️ Cross-functional</div>
+            <div class="dept-grid">
+              <div class="dept-card" onclick="openDept('GNE')">
+                <div class="dept-card-name">GNE</div>
+                <div class="dept-card-stats"><span>3</span> awards · <span>$1.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Supply Chain and Logistics')">
+                <div class="dept-card-name">Supply Chain & Logistics</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Product')">
+                <div class="dept-card-name">Product</div>
+                <div class="dept-card-stats"><span>5</span> awards · <span>$2.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Design')">
+                <div class="dept-card-name">Design</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('UG')">
+                <div class="dept-card-name">UG</div>
+                <div class="dept-card-stats"><span>4</span> awards · <span>$2.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Data Science')">
+                <div class="dept-card-name">Data Science</div>
+                <div class="dept-card-stats"><span>3</span> awards · <span>$1.5K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('User Research')">
+                <div class="dept-card-name">User Research</div>
+                <div class="dept-card-stats"><span>2</span> awards · <span>$1.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Strategic Readiness and Business Communication')">
+                <div class="dept-card-name">Strategic Readiness</div>
+                <div class="dept-card-stats"><span>2</span> awards · <span>$1.0K</span></div>
+              </div>
+              <div class="dept-card" onclick="openDept('Strategy Analytics & Resource Management')">
+                <div class="dept-card-name">Strategy Analytics</div>
+                <div class="dept-card-stats"><span>3</span> awards · <span>$1.5K</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== DETAIL VIEW: Single Department ===== -->
+        <div id="dept-detail" class="dept-detail">
+          <button class="dept-back-btn" onclick="closeDept()">← Back to All Departments</button>
+
+          <div class="dept-detail-header">
+            <h2 class="dept-detail-title" id="dept-detail-name">US Ops + US Ops Center + GKA</h2>
+            <div class="dept-detail-stats">
+              <div class="dept-stat-pill">🏅 Awards <span class="val-primary" id="stat-total">15</span></div>
+              <div class="dept-stat-pill">👥 Winners <span class="val-accent" id="stat-winners">42</span></div>
+              <div class="dept-stat-pill">💰 Total Bonus <span class="val-primary" id="stat-bonus">$7.5K</span></div>
+            </div>
+          </div>
+
+          <div class="dept-search">
+            <input type="text" class="search-input" placeholder="Search by name, project...">
+            <button class="search-btn">🔍 Search</button>
+          </div>
+
+          <div class="quarter-tabs">
+            <div class="quarter-tab active">All</div>
+            <div class="quarter-tab">Q1</div>
+            <div class="quarter-tab">Q2</div>
+            <div class="quarter-tab">Q3</div>
+            <div class="quarter-tab">Q4</div>
+          </div>
+
+          <div class="award-type-filter">
+            <button class="award-type-btn active">All Types</button>
+            <button class="award-type-btn">Departmental Award</button>
+            <button class="award-type-btn">Spot Bonus</button>
+            <button class="award-type-btn">Special Recognition</button>
+          </div>
+
+          <div class="dept-awards-list" id="dept-awards-list">
+            <!-- Sample items -->
+            <div class="dept-award-item">
+              <div class="dept-award-icon">🏅</div>
+              <div class="dept-award-info">
+                <div class="dept-award-name">Sarah Johnson</div>
+                <div class="dept-award-meta"><span>Q1 2026</span><span>Team of 8</span></div>
+              </div>
+              <span class="dept-award-type-badge">Dept Award</span>
+              <div class="dept-award-bonus">$1,000</div>
+            </div>
+            <div class="dept-award-item">
+              <div class="dept-award-icon">⭐</div>
+              <div class="dept-award-info">
+                <div class="dept-award-name">Michael Chen</div>
+                <div class="dept-award-meta"><span>Q1 2026</span><span>Individual</span></div>
+              </div>
+              <span class="dept-award-type-badge spot">Spot Bonus</span>
+              <div class="dept-award-bonus">$500</div>
+            </div>
+            <div class="dept-award-item">
+              <div class="dept-award-icon">🏅</div>
+              <div class="dept-award-info">
+                <div class="dept-award-name">Campaign Optimization Project</div>
+                <div class="dept-award-meta"><span>Q2 2026</span><span>Team of 12</span></div>
+              </div>
+              <span class="dept-award-type-badge">Dept Award</span>
+              <div class="dept-award-bonus">$2,000</div>
+            </div>
+            <div class="dept-award-item">
+              <div class="dept-award-icon">🌟</div>
+              <div class="dept-award-info">
+                <div class="dept-award-name">Emily Rodriguez</div>
+                <div class="dept-award-meta"><span>Q2 2026</span><span>Individual</span></div>
+              </div>
+              <span class="dept-award-type-badge spot">Spot Bonus</span>
+              <div class="dept-award-bonus">$500</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Global E-commerce Recognition Hub. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function openDept(name) {
+      document.getElementById('dept-list-view').classList.add('hidden');
+      document.getElementById('dept-detail').classList.add('active');
+      document.getElementById('dept-detail-name').textContent = name;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function closeDept() {
+      document.getElementById('dept-list-view').classList.remove('hidden');
+      document.getElementById('dept-detail').classList.remove('active');
+    }
+    // Quarter tab toggle
+    document.querySelectorAll('.quarter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        this.parentElement.querySelectorAll('.quarter-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    // Award type toggle
+    document.querySelectorAll('.award-type-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.parentElement.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

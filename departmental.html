@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departmental Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=20250512m">
   <style>
     /* Page Header */
     .regional-header {
@@ -16,10 +16,7 @@
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 4px;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #FFFFFF;
     }
     
     .regional-subtitle {
@@ -62,599 +59,294 @@
       background: var(--primary-color);
       color: white;
     }
-    
-    /* Department Navigation - Tab Style, Centered */
-    .region-nav-wrapper {
-      text-align: center;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .region-nav {
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0;
-      background: var(--bg-card);
-      padding: 4px;
-      border-radius: 12px;
-    }
-    
-    .region-btn {
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: transparent;
-      border: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .region-btn:hover {
-      color: var(--text-primary);
-    }
-    
-    .region-btn.active {
-      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
-      color: white;
-      font-weight: 600;
-      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
-    }
-    
-    /* Quarter Navigation - New Style */
-    .quarter-nav-wrapper {
-      text-align: center;
+
+    /* ===== Department Grid ===== */
+    .dept-group {
       margin-bottom: var(--spacing-xl);
     }
-    
-    .quarter-nav {
-      display: inline-flex;
-      gap: 6px;
-      background: var(--bg-card);
-      padding: 4px;
-      border-radius: 10px;
-    }
-    
-    .quarter-btn {
-      padding: 8px 20px;
-      border-radius: 6px;
+    .dept-group-title {
       font-size: 13px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: transparent;
-      border: none;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .quarter-btn:hover {
-      color: var(--text-primary);
-      background: var(--bg-dark);
-    }
-    
-    .quarter-btn.active {
-      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
-      color: white;
       font-weight: 600;
-      box-shadow: 0 2px 12px rgba(255, 107, 138, 0.3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: var(--spacing-md);
+      padding-left: 4px;
     }
-    
-    /* Award Type Filter */
-    .award-type-filter {
-      text-align: center;
-      margin-bottom: var(--spacing-lg);
-    }
-    
-    .award-type-nav {
-      display: inline-flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-    }
-    
-    .award-type-btn {
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .award-type-btn:hover {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-    }
-    
-    .award-type-btn.active {
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-    }
-    
-    /* Awards Container */
-    #departmental-awards {
-      margin-top: var(--spacing-xl);
-    }
-    
-    .dept-awards-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: var(--spacing-lg);
-      text-align: center;
-      color: var(--text-primary);
-    }
-    
-    /* Awards Grid */
-    .awards-grid {
+    .dept-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: var(--spacing-md);
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
     }
-    
-    /* Card Styles */
-    .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-lg);
-      border: 1px solid var(--border-color);
+    .dept-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
       transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      overflow: hidden;
     }
-    
-    .card:hover {
+    .dept-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--primary-color);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+    .dept-card:hover {
+      border-color: var(--primary-color);
       transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 6px 20px rgba(246,33,74,0.15);
+    }
+    .dept-card:hover::before {
+      transform: scaleX(1);
+    }
+    .dept-card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .dept-card-stats {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .dept-card-stats span {
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+
+    /* ===== Department Detail View ===== */
+    .dept-detail {
+      display: none;
+    }
+    .dept-detail.active {
+      display: block;
+    }
+    .dept-list-view.hidden {
+      display: none;
+    }
+
+    .dept-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: var(--spacing-lg);
+    }
+    .dept-back-btn:hover {
+      background: rgba(255,255,255,0.12);
       border-color: var(--primary-color);
     }
-    
-    .card-header {
+
+    .dept-detail-header {
       display: flex;
       align-items: center;
-      gap: var(--spacing-sm);
-      margin-bottom: var(--spacing-sm);
+      justify-content: space-between;
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    
-    .card-icon {
-      font-size: 24px;
-    }
-    
-    .card-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    
-    .card-meta {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-bottom: var(--spacing-md);
-      padding-bottom: var(--spacing-sm);
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    .card-body {
-      flex: 1;
-    }
-    
-    .card-award {
-      margin-bottom: var(--spacing-sm);
-    }
-    
-    .card-award-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--accent-color);
-    }
-    
-    .card-amount {
+    .dept-detail-title {
       font-size: 24px;
       font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: var(--spacing-md);
+      color: #FFFFFF;
     }
-    
-    /* Team Award specific styles */
-    .team-card {
-      border-left: 3px solid var(--accent-color);
-    }
-    
-    .team-card .card-icon {
-      color: var(--accent-color);
-    }
-    
-    .members-preview {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: var(--spacing-sm);
-    }
-    
-    .members-preview .member-count {
-      color: var(--primary-color);
-      font-weight: 600;
-    }
-    
-    .card-footer {
-      margin-top: auto;
-      padding-top: var(--spacing-md);
-      border-top: 1px solid var(--border-color);
-    }
-    
-    .card-actions {
+
+    .dept-detail-stats {
       display: flex;
-      gap: var(--spacing-sm);
+      gap: 16px;
       flex-wrap: wrap;
     }
-    
-    .card-actions button {
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12px;
+    .dept-stat-pill {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .dept-stat-pill span {
+      font-weight: 700;
+      margin-left: 4px;
+    }
+    .dept-stat-pill .val-primary { color: var(--primary-color); }
+    .dept-stat-pill .val-accent { color: var(--accent-color); }
+
+    /* Search in dept detail */
+    .dept-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 500px;
+      margin-bottom: var(--spacing-lg);
+    }
+    .dept-search .search-input {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    .dept-search .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255,45,85,0.1);
+    }
+    .dept-search .search-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
       border: none;
+      cursor: pointer;
+    }
+
+    /* Quarter tabs */
+    .quarter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-lg);
+    }
+    .quarter-tab {
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text-secondary);
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    
-    .like-btn {
-      background: var(--bg-dark);
-      color: var(--text-secondary);
-    }
-    
-    .like-btn:hover {
+    .quarter-tab.active {
       background: var(--primary-color);
-      color: white;
+      border-color: var(--primary-color);
+      color: #fff;
     }
-    
-    .like-btn.liked {
-      background: var(--primary-color);
-      color: white;
+    .quarter-tab:hover:not(.active) {
+      border-color: var(--primary-color);
+      color: #fff;
     }
-    
-    .comment-btn {
-      background: var(--bg-dark);
-      color: var(--text-secondary);
-    }
-    
-    .comment-btn:hover {
-      background: var(--accent-color);
-      color: white;
-    }
-    
-    .share-btn {
-      background: var(--bg-dark);
-      color: var(--text-secondary);
-    }
-    
-    .share-btn:hover {
-      background: var(--text-primary);
-      color: white;
-    }
-    
-    /* Members Modal */
-    .members-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: var(--spacing-lg);
-    }
-    
-    .members-modal.show {
+
+    /* Award type filter */
+    .award-type-filter {
       display: flex;
+      gap: 8px;
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
     }
-    
-    .modal-content {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      max-width: 500px;
-      width: 100%;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--spacing-lg);
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    .modal-title {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-    
-    .modal-close {
-      background: none;
-      border: none;
-      font-size: 24px;
+    .award-type-btn {
+      padding: 5px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
       color: var(--text-secondary);
       cursor: pointer;
-      padding: 0;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: all 0.2s ease;
     }
-    
-    .modal-close:hover {
-      color: var(--primary-color);
-    }
-    
-    .modal-body {
-      padding: var(--spacing-lg);
-    }
-    
-    .member-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .member-item {
-      display: flex;
-      align-items: center;
-      gap: var(--spacing-md);
-      padding: var(--spacing-md);
-      border-bottom: 1px solid var(--border-color);
-    }
-    
-    .member-item:last-child {
-      border-bottom: none;
-    }
-    
-    .member-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--primary-color);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
+    .award-type-btn.active {
+      background: var(--accent-color);
+      border-color: var(--accent-color);
+      color: #000;
       font-weight: 600;
     }
-    
-    .member-info {
+    .award-type-btn:hover:not(.active) {
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+
+    /* Awards list */
+    .dept-awards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .dept-award-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.2s ease;
+    }
+    .dept-award-item:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+    .dept-award-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .dept-award-info {
       flex: 1;
+      min-width: 0;
     }
-    
-    .member-name {
-      font-weight: 500;
-      color: var(--text-primary);
+    .dept-award-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 2px;
     }
-    
-    .member-email {
+    .dept-award-email {
       font-size: 12px;
-      color: var(--text-secondary);
-    }
-    
-    /* ==================== Feishu Auth Styles ==================== */
-    .auth-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--bg-dark);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: var(--spacing-lg);
-    }
-    
-    .auth-container {
-      max-width: 500px;
-      width: 100%;
-      text-align: center;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .auth-icon { margin-bottom: var(--spacing-xl); }
-    .auth-icon svg { margin: 0 auto; }
-    
-    .auth-title {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: var(--spacing-md);
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .auth-description {
-      font-size: 16px;
-      color: var(--text-secondary);
-      margin-bottom: var(--spacing-xl);
-      line-height: 1.6;
-    }
-    
-    .auth-instructions {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
-      padding: var(--spacing-xl);
-      margin-bottom: var(--spacing-xl);
-      text-align: left;
-    }
-    
-    .auth-instructions h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: var(--spacing-md);
-      color: var(--text-primary);
-    }
-    
-    .auth-instructions ol { list-style: none; counter-reset: step; }
-    
-    .auth-instructions li {
-      counter-increment: step;
-      position: relative;
-      padding-left: 40px;
-      margin-bottom: var(--spacing-md);
-    }
-    
-    .auth-instructions li:last-child { margin-bottom: 0; }
-    
-    .auth-instructions li::before {
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 28px;
-      height: 28px;
-      background: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: white;
-    }
-    
-    .auth-instructions strong {
-      display: block;
-      font-size: 14px;
-      color: var(--text-primary);
+      color: rgba(255,255,255,0.45);
       margin-bottom: 4px;
     }
-    
-    .auth-instructions p {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin: 0;
-    }
-    
-    .auth-footer { margin-top: var(--spacing-lg); }
-    .auth-footer p { font-size: 13px; color: var(--text-secondary); margin-bottom: var(--spacing-md); }
-    
-    .auth-btn {
-      display: inline-block;
-      padding: 12px 32px;
-      background: var(--primary-color);
-      color: white;
-      border-radius: var(--radius-md);
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    
-    .auth-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
-    }
-    
-    .auth-btn.secondary {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-    }
-    
-    .auth-btn.secondary:hover { border-color: var(--primary-color); }
-    
-    /* Auth actions - primary button container */
-    .auth-actions {
-      margin-bottom: var(--spacing-xl);
-    }
-    
-    .auth-actions .auth-btn {
-      width: 100%;
-      max-width: 280px;
-      padding: 16px 32px;
-      font-size: 16px;
-    }
-    
-    .auth-icon.redirecting svg {
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(0.95); }
-    }
-    
-    .auth-icon.error svg circle, .auth-icon.error svg path { stroke: #FF3B30; }
-    
-    .auth-loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--spacing-lg);
-    }
-    
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--bg-card);
-      border-top-color: var(--primary-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    
-    @keyframes spin { to { transform: rotate(360deg); } }
-    
-    /* No data message */
-    .no-data-msg {
-      text-align: center;
-      padding: var(--spacing-xxl);
-      color: var(--text-secondary);
-      font-size: 16px;
-    }
-    
-    /* Stats bar */
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: var(--spacing-xl);
-      margin-bottom: var(--spacing-lg);
-      flex-wrap: wrap;
-    }
-    
-    .stat-item {
-      text-align: center;
-    }
-    
-    .stat-value {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--primary-color);
-    }
-    
-    .stat-label {
+    .dept-award-meta {
       font-size: 12px;
       color: var(--text-secondary);
+    }
+    .dept-award-meta span {
+      margin-right: 12px;
+    }
+    .dept-award-bonus {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+    .dept-award-type-badge {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 10px;
+      background: rgba(46,208,214,0.15);
+      color: var(--accent-color);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .dept-award-type-badge.spot {
+      background: rgba(246,33,74,0.15);
+      color: var(--primary-color);
+    }
+
+    .no-data-msg {
+      text-align: center;
+      color: var(--text-secondary);
+      padding: var(--spacing-xxl);
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <!-- Auth Overlay -->
-  <div class="auth-overlay" id="auth-overlay">
-    <div class="auth-loading">
-      <div class="spinner"></div>
-      <p style="color: var(--text-secondary);">Initializing...</p>
-    </div>
-  </div>
   <div class="page-wrapper">
     <!-- Header -->
     <header class="header">
@@ -663,7 +355,7 @@
           <span class="logo-icon">🏆</span>
           <div class="logo-content">
             <span class="logo-text">Global E-commerce Recognition Hub</span>
-            <span class="logo-subtitle">Celebrating award-winning projects and individuals across Global E-commerce business.</span>
+            <span class="logo-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</span>
           </div>
         </div>
         <nav class="top-nav">
@@ -689,488 +381,558 @@
         <!-- Year Navigation -->
         <div class="year-nav-wrapper">
           <div class="year-nav-compact">
-            <button class="year-btn active" data-year="2025">2025</button>
-            <button class="year-btn" data-year="2026" id="year-2026-btn">2026 <span style="opacity: 0.6;">· Coming Soon</span></button>
+            <button class="year-btn active" data-year="2026">2026</button>
           </div>
         </div>
 
-        <!-- Department Navigation -->
-        <div class="region-nav-wrapper">
-          <div class="region-nav">
-            <button class="region-btn active" data-dept="us-ops">US Operations & US Ops Center & GKA</button>
+        <!-- ===== LIST VIEW: All Departments ===== -->
+        <div id="dept-list-view" class="dept-list-view">
+          <div id="dept-groups-container">
+            <!-- Dynamically rendered -->
           </div>
         </div>
 
-        <!-- Quarter Navigation -->
-        <div class="quarter-nav-wrapper" id="quarter-nav-wrapper">
-          <div class="quarter-nav" id="quarter-nav">
-            <button class="quarter-btn active" data-quarter="Q1">Q1</button>
-            <button class="quarter-btn" data-quarter="Q2">Q2</button>
-            <button class="quarter-btn" data-quarter="Q3">Q3</button>
-            <button class="quarter-btn" data-quarter="Q4">Q4</button>
+        <!-- ===== DETAIL VIEW: Single Department ===== -->
+        <div id="dept-detail" class="dept-detail">
+          <button class="dept-back-btn" onclick="closeDept()">← Back to All Departments</button>
+
+          <div class="dept-detail-header">
+            <h2 class="dept-detail-title" id="dept-detail-name"></h2>
+            <div class="dept-detail-stats" id="dept-detail-stats">
+              <!-- Dynamically rendered -->
+            </div>
+          </div>
+
+          <!-- Top 3 Podium -->
+          <section class="podium-section">
+            <div class="section-title-main">🏆 Top 3</div>
+            <div id="dept-top3-podium"></div>
+          </section>
+
+          <div class="dept-search">
+            <input type="text" class="search-input" id="dept-search-input" placeholder="Search by name...">
+            <button class="search-btn" id="dept-search-btn">🔍 Search</button>
+          </div>
+
+          <div class="quarter-tabs" id="dept-quarter-tabs">
+            <div class="quarter-tab active" data-quarter="all">All</div>
+            <div class="quarter-tab" data-quarter="Q1">Q1</div>
+            <div class="quarter-tab" data-quarter="Q2">Q2</div>
+            <div class="quarter-tab" data-quarter="Q3">Q3</div>
+            <div class="quarter-tab" data-quarter="Q4">Q4</div>
+          </div>
+
+          <div class="award-type-filter" id="dept-award-type-filter">
+            <!-- Dynamically rendered -->
+          </div>
+
+          <div class="dept-awards-list" id="dept-awards-list">
+            <!-- Dynamically rendered -->
           </div>
         </div>
 
-        <!-- Stats Bar -->
-        <div class="stats-bar" id="stats-bar"></div>
-
-        <!-- Award Type Filter -->
-        <div class="award-type-filter" id="award-type-filter">
-          <div class="award-type-nav" id="award-type-nav"></div>
-        </div>
-
-        <!-- Departmental Awards Container -->
-        <div id="departmental-awards"></div>
-
-        <!-- Search Section -->
-        <section class="search-section" style="margin-top: var(--spacing-xxl);">
-          <h3 class="section-title text-center mb-3">
-            <span class="icon">🔍</span>
-            Search Awards
-          </h3>
-          <div class="search-box">
-            <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
-            <button class="search-btn" id="search-btn">Search</button>
-          </div>
-          <div id="search-results" class="search-results"></div>
-        </section>
       </div>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>© 2025 Global E-commerce Recognition Hub. All rights reserved.</p>
+        <p>© 2026 Global E-commerce Recognition Hub. All rights reserved.</p>
       </div>
     </footer>
   </div>
 
-  <!-- Members Modal -->
-  <div class="members-modal" id="members-modal">
-    <div class="modal-content">
+  <!-- Share Modal -->
+  <div class="share-modal" id="share-modal">
+    <div class="modal-content" style="max-width: 450px;">
       <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Team Members</h3>
-        <button class="modal-close" onclick="closeModal()">×</button>
+        <h3 class="modal-title" id="share-modal-title">Share Award</h3>
+        <button class="modal-close" onclick="closeShareModal()">×</button>
       </div>
-      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-body">
+        <div id="poster-preview"></div>
+        <div class="share-actions">
+          <button class="download-btn" onclick="downloadPoster()">📥 Download Poster</button>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- Feishu H5 SDK -->
   <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20250512m"></script>
   <script>
-    // Departmental page state
+    // ===== Departmental Page State =====
     let departmentalData = null;
-    let currentQuarter = 'Q1';
-    let currentAwardType = 'all';
+    let currentDeptName = '';
+    let currentDeptQuarter = 'all';
+    let currentDeptAwardType = 'all';
+    let deptSearchQuery = '';
 
-    // Departmental page specific initialization
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Highlight current navigation
-      highlightNavigation();
-      
-      // Initialize year navigation
-      initYearNavigation();
-      
-      // Initialize quarter navigation
-      initQuarterNavigation();
-      
-      // Load and render departmental data
-      await loadAndRenderDepartmentalAwards();
-      
-      // Initialize search
-      initSearch();
-    });
-    
-    // Initialize quarter navigation
-    function initQuarterNavigation() {
-      const quarterBtns = document.querySelectorAll('.quarter-btn');
-      
-      // Check URL for quarter parameter
-      const urlParams = new URLSearchParams(window.location.search);
-      const urlQuarter = urlParams.get('quarter');
-      
-      if (urlQuarter && ['Q1', 'Q2', 'Q3', 'Q4'].includes(urlQuarter)) {
-        currentQuarter = urlQuarter;
-        quarterBtns.forEach(btn => {
-          btn.classList.remove('active');
-          if (btn.dataset.quarter === urlQuarter) {
-            btn.classList.add('active');
-          }
-        });
+    // ===== Department Group Definitions =====
+    const DEPT_GROUPS = [
+      {
+        title: '🌏 Southeast Asia',
+        departments: [
+          { name: 'ID Ops', fullName: 'ID Ops' },
+          { name: 'MY Ops', fullName: 'MY Ops' },
+          { name: 'PH Ops', fullName: 'PH Ops' },
+          { name: 'SG Ops', fullName: 'SG Ops' },
+          { name: 'TH Ops', fullName: 'TH Ops' },
+          { name: 'VN Ops', fullName: 'VN Ops' },
+          { name: 'SEA Cross-border', fullName: 'SEA Cross-border' },
+          { name: 'SEA Central', fullName: 'SEA Central' },
+          { name: 'SEA IMC', fullName: 'SEA IMC' }
+        ]
+      },
+      {
+        title: '🌍 UK / EU / JP',
+        departments: [
+          { name: 'JP Operations', fullName: 'JP Operations' },
+          { name: 'UK Operations', fullName: 'UK Operations' },
+          { name: 'EU Ops + EU Ops Center', fullName: 'EU Ops + EU Ops Center' },
+          { name: 'UK&EU&JP POP', fullName: 'UK&EU&JP POP' }
+        ]
+      },
+      {
+        title: '🇺🇸 US',
+        departments: [
+          { name: 'US Ops + US Ops Center + GKA', fullName: 'US Ops + US Ops Center + GKA' }
+        ]
+      },
+      {
+        title: '🌎 LATAM',
+        departments: [
+          { name: 'LATAM Operations', fullName: 'LATAM Operations' }
+        ]
+      },
+      {
+        title: '🌐 Global Selling',
+        departments: [
+          { name: 'Full Service', fullName: 'Global Selling Full Service' },
+          { name: 'POP', fullName: 'Global Selling POP' }
+        ]
+      },
+      {
+        title: '⚙️ Cross-functional',
+        departments: [
+          { name: 'GNE', fullName: 'GNE' },
+          { name: 'Supply Chain & Logistics', fullName: 'Supply Chain and Logistics' },
+          { name: 'Product', fullName: 'Product' },
+          { name: 'Design', fullName: 'Design' },
+          { name: 'UG', fullName: 'UG' },
+          { name: 'Data Science', fullName: 'Data Science' },
+          { name: 'User Research', fullName: 'User Research' },
+          { name: 'Strategic Readiness', fullName: 'Strategic Readiness and Business Communication' },
+          { name: 'Strategy Analytics', fullName: 'Strategy Analytics & Resource Management' }
+        ]
       }
-      
-      quarterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          quarterBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentQuarter = btn.dataset.quarter;
-          
-          // Update URL
-          const url = new URL(window.location.href);
-          url.searchParams.set('quarter', currentQuarter);
-          window.history.pushState({}, '', url);
-          
-          // Re-render awards
-          renderAwardsByQuarter();
-        });
+    ];
+
+    // ===== Initialization =====
+    document.addEventListener('DOMContentLoaded', async () => {
+      highlightNavigation();
+      initYearNavigation();
+
+      // Handle year change
+      window.addEventListener('yearChanged', async () => {
+        await loadAndRenderDepartmentalAwards();
       });
-    }
-    
-    // Load and render departmental awards
+
+      await loadAndRenderDepartmentalAwards();
+    });
+
+    // ===== Load Data =====
     async function loadAndRenderDepartmentalAwards() {
-      const awardsContainer = document.getElementById('departmental-awards');
-      
       try {
-        // Load departmental data
-        const response = await fetch('data/departmental.json');
+        const response = await fetch('data/departmental.json?v=20260512a');
         if (!response.ok) throw new Error('Failed to load departmental data');
-        
         departmentalData = await response.json();
-        
-        // Get current year from URL or default to 2025
-        const urlParams = new URLSearchParams(window.location.search);
-        const currentYear = urlParams.get('year') || '2025';
-        
-        // Check if year has data
-        if (!departmentalData[currentYear]) {
-          awardsContainer.innerHTML = '<div class="no-data-msg">No departmental awards available for ' + currentYear + '.</div>';
-          return;
-        }
-        
-        // Initial render
-        renderAwardsByQuarter();
-        
       } catch (error) {
         console.error('Error loading departmental awards:', error);
-        awardsContainer.innerHTML = '<div class="no-data-msg">Failed to load awards. Please try again later.</div>';
+        departmentalData = {};
+      }
+
+      renderDeptListView();
+
+      // If a department was previously open, refresh detail view
+      if (currentDeptName) {
+        renderDeptDetailView();
       }
     }
-    
-    // Render awards based on current quarter and award type
-    function renderAwardsByQuarter() {
-      const awardsContainer = document.getElementById('departmental-awards');
-      const statsBar = document.getElementById('stats-bar');
-      const awardTypeNav = document.getElementById('award-type-nav');
-      
-      if (!departmentalData) return;
-      
-      const currentYear = new URLSearchParams(window.location.search).get('year') || '2025';
+
+    // ===== Get All Awards for Current Year =====
+    function getAllAwardsForYear() {
+      const currentYear = getUrlParam('year') || '2026';
       const yearData = departmentalData[currentYear];
-      
-      if (!yearData) {
-        awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this year.</div>';
-        return;
-      }
-      
-      const quarterData = yearData[currentQuarter];
-      
-      if (!quarterData || quarterData.length === 0) {
-        awardsContainer.innerHTML = '<div class="no-data-msg">No awards available for ' + currentQuarter + ' ' + currentYear + '.</div>';
-        statsBar.innerHTML = '';
-        awardTypeNav.innerHTML = '';
-        return;
-      }
-      
-      // Get unique award types
-      const awardTypes = [...new Set(quarterData.map(a => a.award_type))];
-      
-      // If current award type is not in list, reset to 'all'
-      if (currentAwardType !== 'all' && !awardTypes.includes(currentAwardType)) {
-        currentAwardType = 'all';
-      }
-      
-      // Render award type filter
-      renderAwardTypeFilter(awardTypes);
-      
-      // Filter awards by type
-      let filteredAwards = quarterData;
-      if (currentAwardType !== 'all') {
-        filteredAwards = quarterData.filter(a => a.award_type === currentAwardType);
-      }
-      
-      // Calculate stats
-      const teamAwards = quarterData.filter(a => a.award_type === 'Team Award');
-      const individualAwards = quarterData.filter(a => a.award_type !== 'Team Award');
-      const uniqueTeams = [...new Set(teamAwards.map(a => a.department))];
-      const totalBonus = quarterData.reduce((sum, a) => sum + (parseInt(a.bonus) || 0), 0);
-      
-      // Render stats
-      statsBar.innerHTML = `
-        <div class="stat-item">
-          <div class="stat-value">${quarterData.length}</div>
-          <div class="stat-label">Total Winners</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">${uniqueTeams.length}</div>
-          <div class="stat-label">Teams</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-value">$${totalBonus.toLocaleString()}</div>
-          <div class="stat-label">Total Bonus</div>
-        </div>
-      `;
-      
-      // Render awards
-      awardsContainer.innerHTML = renderDepartmentalAwards(filteredAwards, currentQuarter);
-    }
-    
-    // Render award type filter
-    function renderAwardTypeFilter(awardTypes) {
-      const awardTypeNav = document.getElementById('award-type-nav');
-      
-      let html = `<button class="award-type-btn ${currentAwardType === 'all' ? 'active' : ''}" data-type="all">All</button>`;
-      
-      awardTypes.forEach(type => {
-        html += `<button class="award-type-btn ${currentAwardType === type ? 'active' : ''}" data-type="${type}">${type}</button>`;
+      if (!yearData) return [];
+
+      let allAwards = [];
+      ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+        if (yearData[q] && Array.isArray(yearData[q])) {
+          yearData[q].forEach(award => {
+            allAwards.push({ ...award, _quarter: q });
+          });
+        }
       });
-      
-      awardTypeNav.innerHTML = html;
-      
-      // Add click handlers
-      awardTypeNav.querySelectorAll('.award-type-btn').forEach(btn => {
+      return allAwards;
+    }
+
+    // ===== Get Awards for a Specific Department =====
+    function getAwardsForDept(deptFullName) {
+      const allAwards = getAllAwardsForYear();
+      return allAwards.filter(a => a.department === deptFullName);
+    }
+
+    // ===== Compute Stats for a Department =====
+    function computeDeptStats(awards) {
+      const awardCount = awards.length;
+      const totalBonus = awards.reduce((sum, a) => sum + (parseInt(a.bonus) || 0), 0);
+      const allWinners = new Set();
+      awards.forEach(a => {
+        if (a.winner_name) allWinners.add(a.winner_name);
+        if (a.members && Array.isArray(a.members)) {
+          a.members.forEach(m => allWinners.add(m));
+        }
+      });
+      return { awardCount, winnerCount: allWinners.size, totalBonus };
+    }
+
+    // ===== Format Bonus =====
+    function getCurrencySymbol(currency) {
+      const symbols = { 'USD': '$', 'RMB': '¥', 'GBP': '£', 'EUR': '€', 'IDR': 'Rp', 'THB': '฿', 'VND': '₫', 'MYR': 'RM', 'PHP': '₱', 'SGD': 'S$', 'JPY': '¥' };
+      return symbols[currency] || '$';
+    }
+    function formatBonusShort(amount, currency) {
+      const sym = getCurrencySymbol(currency);
+      if (!amount || amount === 0) return sym + '0';
+      if (amount >= 1000000) return sym + (amount / 1000000).toFixed(1) + 'M';
+      if (amount >= 1000) return sym + (amount / 1000).toFixed(1) + 'K';
+      return sym + amount;
+    }
+    function formatBonusFull(amount, currency) {
+      const sym = getCurrencySymbol(currency);
+      if (!amount || amount === 0) return sym + '0';
+      return sym + Number(amount).toLocaleString();
+    }
+
+    // ===== Render Department List View =====
+    function renderDeptListView() {
+      const container = document.getElementById('dept-groups-container');
+      const hasData = Object.keys(departmentalData || {}).length > 0;
+
+      let html = '';
+
+      DEPT_GROUPS.forEach(group => {
+        html += `<div class="dept-group">`;
+        html += `<div class="dept-group-title">${group.title}</div>`;
+        html += `<div class="dept-grid">`;
+
+        group.departments.forEach(dept => {
+          const awards = getAwardsForDept(dept.fullName);
+          const stats = computeDeptStats(awards);
+
+          html += `<div class="dept-card" onclick="openDept('${dept.fullName.replace(/'/g, "\\'")}')">`;
+          html += `<div class="dept-card-name">${dept.name}</div>`;
+          if (hasData && stats.awardCount > 0) {
+            html += `<div class="dept-card-stats"><span>${stats.awardCount}</span> awards · <span>${formatBonusShort(stats.totalBonus, stats.dominantCurrency)}</span></div>`;
+          } else {
+            html += `<div class="dept-card-stats">No awards yet</div>`;
+          }
+          html += `</div>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      if (!hasData) {
+        html += `<div class="no-data-msg">No awards data yet</div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ===== Open Department Detail =====
+    function openDept(deptName) {
+      currentDeptName = deptName;
+      currentDeptQuarter = 'all';
+      currentDeptAwardType = 'all';
+      deptSearchQuery = '';
+
+      document.getElementById('dept-list-view').classList.add('hidden');
+      document.getElementById('dept-detail').classList.add('active');
+      document.getElementById('dept-detail-name').textContent = deptName;
+
+      // Reset search input
+      const searchInput = document.getElementById('dept-search-input');
+      if (searchInput) searchInput.value = '';
+
+      // Reset quarter tabs
+      document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.quarter === 'all');
+      });
+
+      renderDeptDetailView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== Close Department Detail =====
+    function closeDept() {
+      currentDeptName = '';
+      document.getElementById('dept-list-view').classList.remove('hidden');
+      document.getElementById('dept-detail').classList.remove('active');
+    }
+
+    // ===== Render Department Podium =====
+    function renderDeptPodium(awards) {
+      // Calculate scores: individual award = bonus amount, team award = bonus / member count per person
+      const personScores = {};
+      awards.forEach(a => {
+        const members = a.members || [];
+        const name = a.winner_name || 'Unknown';
+        const bonus = a.bonus || 0;
+        if (a.award_type === 'Departmental Award' && members.length > 1) {
+          members.forEach(m => {
+            if (!personScores[m]) personScores[m] = { name: m, score: 0, email: '', department: a.department };
+            personScores[m].score += Math.round(bonus / members.length);
+            if (!personScores[m].email && a.email) personScores[m].email = a.email;
+          });
+        } else {
+          if (!personScores[name]) personScores[name] = { name: name, score: 0, email: '', department: a.department };
+          personScores[name].score += bonus;
+          if (!personScores[name].email && a.email) personScores[name].email = a.email;
+        }
+      });
+
+      const sorted = Object.values(personScores).sort((a, b) => b.score - a.score);
+      if (sorted.length === 0) {
+        document.getElementById('dept-top3-podium').innerHTML = '<div class="no-data-msg">No rankings available</div>';
+        return;
+      }
+
+      // Group by rank (handle ties)
+      const rankedGroups = [];
+      let currentRank = 1;
+      for (let i = 0; i < sorted.length; i++) {
+        if (i > 0 && sorted[i].score < sorted[i-1].score) currentRank = i + 1;
+        if (rankedGroups.length === 0 || rankedGroups[rankedGroups.length-1].rank !== currentRank) {
+          rankedGroups.push({ rank: currentRank, score: sorted[i].score, people: [sorted[i]] });
+        } else {
+          rankedGroups[rankedGroups.length-1].people.push(sorted[i]);
+        }
+      }
+
+      // Only take top 3 rank groups
+      const topRanks = rankedGroups.filter(g => g.rank <= 3).slice(0, 3);
+
+      const getMedal = (rank) => rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
+      const getClass = (rank) => rank === 1 ? 'first' : rank === 2 ? 'second' : 'third';
+
+      function renderCard(person, rank) {
+        return `
+          <div class="podium-item ${getClass(rank)}">
+            <div class="podium-medal">${getMedal(rank)}</div>
+            <div class="podium-rank">#${rank}</div>
+            <div class="podium-name">${person.name}</div>
+            <div class="podium-score">${person.score} pts</div>
+          </div>`;
+      }
+
+      function renderTieCard(group) {
+        return `
+          <div class="podium-item ${getClass(group.rank)}">
+            <div class="podium-medal">${getMedal(group.rank)}</div>
+            <div class="podium-rank">#${group.rank}</div>
+            <div class="podium-name">${group.people.length} people tied</div>
+            <div class="podium-score">${group.score} pts</div>
+          </div>`;
+      }
+
+      // Layout: rank2 on left, rank1 in center, rank3 on right
+      let html = '<div class="podium">';
+      topRanks.forEach(group => {
+        if (group.rank === 1) return; // handle rank1 later (center)
+      });
+      // Left: rank2
+      const r2 = topRanks.find(g => g.rank === 2);
+      if (r2) {
+        if (r2.people.length === 1) html += renderCard(r2.people[0], 2);
+        else html += renderTieCard(r2);
+      }
+      // Center: rank1
+      const r1 = topRanks.find(g => g.rank === 1);
+      if (r1) html += renderCard(r1.people[0], 1);
+      // Right: rank3
+      const r3 = topRanks.find(g => g.rank === 3);
+      if (r3) {
+        if (r3.people.length === 1) html += renderCard(r3.people[0], 3);
+        else html += renderTieCard(r3);
+      }
+      html += '</div>';
+
+      // If rank1 has ties, show note below
+      if (r1 && r1.people.length > 1) {
+        const names = r1.people.map(p => p.name).join(', ');
+        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:8px;">🥇 Tied: ${names}</div>`;
+      }
+      if (r2 && r2.people.length > 1) {
+        const names = r2.people.map(p => p.name).join(', ');
+        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:4px;">🥈 Tied: ${names}</div>`;
+      }
+
+      document.getElementById('dept-top3-podium').innerHTML = html;
+    }
+
+    // ===== Render Department Detail View =====
+    function renderDeptDetailView() {
+      if (!currentDeptName) return;
+
+      const allDeptAwards = getAwardsForDept(currentDeptName);
+      const stats = computeDeptStats(allDeptAwards);
+
+      // Render stats
+      const statsContainer = document.getElementById('dept-detail-stats');
+      statsContainer.innerHTML = `
+
+      `;
+
+      // Filter by quarter
+      let filteredAwards = allDeptAwards;
+      if (currentDeptQuarter !== 'all') {
+        filteredAwards = filteredAwards.filter(a => a._quarter === currentDeptQuarter);
+      }
+
+      // Filter by award type
+      if (currentDeptAwardType !== 'all') {
+        filteredAwards = filteredAwards.filter(a => a.award_type === currentDeptAwardType);
+      }
+
+      // Filter by search
+      if (deptSearchQuery) {
+        const q = deptSearchQuery.toLowerCase();
+        filteredAwards = filteredAwards.filter(a => {
+          const nameMatch = (a.winner_name || '').toLowerCase().includes(q);
+          const memberMatch = (a.members || []).some(m => m.toLowerCase().includes(q));
+          return nameMatch || memberMatch;
+        });
+      }
+
+      // Render award type filter
+      renderDeptAwardTypeFilter(allDeptAwards);
+
+      // Render Top 3 podium
+      renderDeptPodium(allDeptAwards);
+
+      // Render award list
+      renderDeptAwardList(filteredAwards);
+    }
+
+    // ===== Render Award Type Filter =====
+    function renderDeptAwardTypeFilter(allDeptAwards) {
+      const filterContainer = document.getElementById('dept-award-type-filter');
+      const typeOrder = ['Spot Bonus', 'Departmental Award', 'Special Recognition'];
+      const types = [...new Set(allDeptAwards.map(a => a.award_type))].filter(Boolean).sort((a, b) => {
+        const ia = typeOrder.indexOf(a); const ib = typeOrder.indexOf(b);
+        return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      });
+
+      let html = `<button class="award-type-btn ${currentDeptAwardType === 'all' ? 'active' : ''}" data-type="all">All Types</button>`;
+      types.forEach(type => {
+        const displayType = type === 'Departmental Award' ? 'Team Award' : type;
+        html += `<button class="award-type-btn ${currentDeptAwardType === type ? 'active' : ''}" data-type="${type}">${displayType}</button>`;
+      });
+
+      filterContainer.innerHTML = html;
+
+      // Bind click handlers
+      filterContainer.querySelectorAll('.award-type-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          awardTypeNav.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+          currentDeptAwardType = btn.dataset.type;
+          filterContainer.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentAwardType = btn.dataset.type;
-          renderAwardsByQuarter();
+          renderDeptDetailView();
         });
       });
     }
-    
-    // Render departmental awards
-    function renderDepartmentalAwards(awards, quarter) {
+
+    // ===== Render Award List =====
+    function renderDeptAwardList(awards) {
+      const listContainer = document.getElementById('dept-awards-list');
+
       if (!awards || awards.length === 0) {
-        return '<div class="no-data-msg">No awards found for the selected filter.</div>';
+        listContainer.innerHTML = '<div class="no-data-msg">No awards found for the selected filters.</div>';
+        return;
       }
-      
-      let html = `<div class="dept-awards-title">US Operations & US Ops Center & GKA - ${quarter} 2025 Awards</div>`;
-      html += '<div class="awards-grid">';
-      
-      awards.forEach((award, idx) => {
-        const isTeamAward = award.award_type === 'Team Award';
-        const memberName = award.winner_name;
-        const cardId = `dept_${quarter.toLowerCase()}_${memberName.replace(/\s+/g, '_')}_${idx}`;
-        const likeCount = getLikeCount(cardId);
-        const bonus = award.bonus || 0;
-        const dept = award.department || 'US Operations';
+
+      let html = '';
+      awards.forEach(award => {
+        const icon = award.award_type === 'Spot Bonus' ? '⭐' : (award.award_type === 'Special Recognition' ? '🌟' : '🏆');
+        const badgeClass = award.award_type === 'Spot Bonus' ? 'spot' : '';
+        const badgeLabel = award.award_type === 'Departmental Award' ? 'Team Award' : award.award_type;
+        const quarter = award._quarter || '';
+        const memberCount = (award.members && award.members.length) || 0;
+        const memberInfo = memberCount > 0 ? `Team of ${memberCount}` : 'Individual';
+        const bonus = formatBonusFull(award.bonus, award.currency);
+        const name = award.winner_name || 'Unknown';
         const email = award.email || '';
-        const members = award.members || [memberName];
-        
-        const cardClass = isTeamAward ? 'card team-card' : 'card';
-        const icon = isTeamAward ? '👥' : '👤';
-        const memberCount = members.length;
-        
-        if (isTeamAward) {
-          // Team Award Card
-          html += `
-            <div class="${cardClass}" data-card-id="${cardId}">
-              <div class="card-header">
-                <span class="card-icon">${icon}</span>
-                <span class="card-title">${dept.split('-').pop().trim() || 'Team Award'}</span>
-              </div>
-              <div class="card-meta">${dept}</div>
-              <div class="card-body">
-                <div class="card-award">
-                  <span class="card-award-name">🏆 ${award.award_type}</span>
-                </div>
-                <div class="card-amount">$${bonus.toLocaleString()}</div>
-                <div class="members-preview">
-                  <span class="member-count">${memberCount} members</span> including ${members.slice(0, 3).join(', ')}${memberCount > 3 ? '...' : ''}
-                </div>
-              </div>
-              <div class="card-footer">
-                <div class="card-actions">
-                  <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'team', '${memberName.replace(/'/g, "\\'")}')">
-                    ❤️ <span class="like-count">${likeCount}</span>
-                  </button>
-                  <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${dept.replace(/'/g, "\\'")}', 'Team Award')">
-                    💬 Comment
-                  </button>
-                  <button onclick="showMembersModal('${dept.replace(/'/g, "\\'")}', '${JSON.stringify(members).replace(/'/g, "&#39;")}')">
-                    👥 Members
-                  </button>
-                  <button class="share-btn" data-project="${dept.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify(members.map(m => ({name: m}))).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
-                    📤 Share
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        } else {
-          // Individual Award Card
-          html += `
-            <div class="${cardClass}" data-card-id="${cardId}">
-              <div class="card-header">
-                <span class="card-icon">${icon}</span>
-                <span class="card-title">${memberName}</span>
-              </div>
-              <div class="card-meta">${dept}</div>
-              <div class="card-body">
-                <div class="card-award">
-                  <span class="card-award-name">🌟 ${award.award_type}</span>
-                </div>
-                <div class="card-amount">$${bonus.toLocaleString()}</div>
-              </div>
-              <div class="card-footer">
-                <div class="card-actions">
-                  <button class="like-btn ${likeCount > 0 ? 'liked' : ''}" onclick="toggleLike('${cardId}', 'individual', '${memberName.replace(/'/g, "\\'")}')">
-                    ❤️ <span class="like-count">${likeCount}</span>
-                  </button>
-                  <button class="comment-btn" onclick="showCommentsModal('${cardId}', '${memberName.replace(/'/g, "\\'")}', 'Individual Award')">
-                    💬 Comment
-                  </button>
-                  <button class="share-btn" data-project="${memberName.replace(/'/g, "\\'")}" data-award="${award.award_type}" data-bonus="${bonus}" data-reason="" data-members='${JSON.stringify([{name: memberName, email: email}]).replace(/'/g, "&#39;")}' onclick="showShareModalFromBtn(this)">
-                    📤 Share
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        }
-      });
-      
-      html += '</div>';
-      return html;
-    }
-    
-    // Show members modal
-    function showMembersModal(teamName, membersJson) {
-      const members = JSON.parse(membersJson);
-      const modal = document.getElementById('members-modal');
-      const modalTitle = document.getElementById('modal-title');
-      const modalBody = document.getElementById('modal-body');
-      
-      modalTitle.textContent = teamName;
-      
-      let html = '<ul class="member-list">';
-      members.forEach(member => {
-        const initials = member.name.split(' ').map(n => n[0]).join('').toUpperCase();
+
         html += `
-          <li class="member-item">
-            <div class="member-avatar">${initials}</div>
-            <div class="member-info">
-              <div class="member-name">${member.name}</div>
-              ${member.email ? `<div class="member-email">${member.email}</div>` : ''}
+          <div class="dept-award-item">
+            <div class="dept-award-icon">${icon}</div>
+            <div class="dept-award-info">
+              <div class="dept-award-name">${name}</div>
+              ${email ? `<div class="dept-award-email">${email}</div>` : ''}
+              <div class="dept-award-meta">
+                ${quarter ? `<span>${quarter} 2026</span>` : ''}
+                <span>${memberInfo}</span>
+              </div>
             </div>
-          </li>
+            <span class="dept-award-type-badge ${badgeClass}">${badgeLabel}</span>
+            <div class="dept-award-bonus">${bonus}</div>
+          </div>
         `;
       });
-      html += '</ul>';
-      
-      modalBody.innerHTML = html;
-      modal.classList.add('show');
+
+      listContainer.innerHTML = html;
     }
-    
-    // Close modal
-    function closeModal() {
-      document.getElementById('members-modal').classList.remove('show');
-    }
-    
-    // Close modal on backdrop click
-    document.getElementById('members-modal').addEventListener('click', (e) => {
-      if (e.target === e.currentTarget) {
-        closeModal();
+
+    // ===== Quarter Tab Handlers =====
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentDeptQuarter = tab.dataset.quarter;
+          renderDeptDetailView();
+        });
+      });
+
+      // Search handlers
+      const searchInput = document.getElementById('dept-search-input');
+      const searchBtn = document.getElementById('dept-search-btn');
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          deptSearchQuery = (searchInput.value || '').trim();
+          renderDeptDetailView();
+        });
       }
-    });
-    
-    // Initialize search functionality
-    function initSearch() {
-      const searchInput = document.getElementById('search-input');
-      const searchBtn = document.getElementById('search-btn');
-      const searchResults = document.getElementById('search-results');
-      
-      if (!searchInput || !searchBtn) return;
-      
-      // 设置页面层级为departmental
-      setSearchPageLevel('departmental');
-      
-      const performSearch = async () => {
-        const searchTerm = searchInput.value.trim().toLowerCase();
-        if (!searchTerm) {
-          searchResults.innerHTML = '';
-          return;
-        }
-        
-        if (!departmentalData) {
-          searchResults.innerHTML = '<div class="no-data-msg">Please wait for data to load...</div>';
-          return;
-        }
-        
-        const currentYear = new URLSearchParams(window.location.search).get('year') || '2025';
-        const yearData = departmentalData[currentYear];
-        
-        if (!yearData) {
-          searchResults.innerHTML = '<div class="no-data-msg">No data available for this year.</div>';
-          return;
-        }
-        
-        // Search all quarters
-        const allAwards = Object.keys(yearData).flatMap(q => yearData[q]);
-        const results = [];
-        
-        allAwards.forEach(award => {
-          const name = (award.winner_name || '').toLowerCase();
-          const dept = (award.department || '').toLowerCase();
-          const email = (award.email || '').toLowerCase();
-          const quarter = award.quarter || '';
-          
-          if (name.includes(searchTerm) || dept.includes(searchTerm) || email.includes(searchTerm)) {
-            results.push({
-              name: award.winner_name,
-              department: award.department,
-              award: award.award_type,
-              bonus: award.bonus,
-              email: award.email,
-              quarter: quarter,
-              type: 'Individual Award',
-              level: 'Departmental',
-              levelKey: 'departmental'
-            });
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            deptSearchQuery = (searchInput.value || '').trim();
+            renderDeptDetailView();
           }
         });
-        
-        if (results.length === 0) {
-          searchResults.innerHTML = '<div class="no-data-msg">No results found for your search.</div>';
-          return;
-        }
-        
-        let html = '<div class="section-title mb-3">Search Results (' + results.length + ')</div>';
-        html += '<div class="awards-grid">';
-        
-        results.forEach((result, idx) => {
-          const isTeamAward = result.award === 'Team Award';
-          const icon = isTeamAward ? '👥' : '👤';
-          
-          html += `
-            <div class="card ${isTeamAward ? 'team-card' : ''}">
-              <div class="card-header">
-                <span class="card-icon">${icon}</span>
-                <span class="card-title">${result.name}</span>
-              </div>
-              <div class="card-meta">${result.department}</div>
-              <div class="card-body">
-                <div class="card-award">
-                  <span class="card-award-name">🌟 ${result.award}</span>
-                </div>
-                <div class="card-amount">$${result.bonus}</div>
-              </div>
-            </div>
-          `;
+        searchInput.addEventListener('input', () => {
+          if (!searchInput.value.trim()) {
+            deptSearchQuery = '';
+            renderDeptDetailView();
+          }
         });
-        
-        html += '</div>';
-        searchResults.innerHTML = html;
-        
-      };
-      
-      searchBtn.addEventListener('click', performSearch);
-      searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch();
-      });
-    }
+      }
+    });
   </script>
 </body>
 </html>

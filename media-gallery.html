@@ -4,17 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Media Gallery - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=20250512k">
   <style>
     /* Page Title */
     .page-title {
       font-size: 32px;
       font-weight: 800;
       margin-bottom: var(--spacing-xl);
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-color);
       display: flex;
       align-items: center;
       gap: var(--spacing-sm);
@@ -423,7 +420,7 @@
     
     /* Featured Award Video */
     .award-video-card {
-      max-width: 600px;
+      max-width: 280px;
     }
     
     .award-video-card .video-thumbnail {
@@ -894,7 +891,7 @@
   <!-- Feishu H5 SDK -->
   <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20250512l"></script>
   <script>
     // Video data
     let videosData = {
@@ -979,17 +976,22 @@
       
       // Add click handlers
       document.querySelectorAll('.video-card').forEach(card => {
+        // Skip <a> tags - they already have href for native link behavior
+        if (card.tagName === 'A') return;
         card.addEventListener('click', () => {
           const videoId = card.dataset.videoId;
           const video = videosData.videos.find(v => v.id === videoId);
-          if (video) openModal(video);
+          if (video) {
+            openModal(video);
+          }
         });
       });
     }
     
     // Render single video card
     function renderVideoCard(video, isFeatured = false) {
-      const isLocal = video.source === 'local';
+      const isLocal = video.source === 'local' || video.source === 'volcengine';
+      const isExternal = video.source === 'feishu' || video.source === 'external';
       const cardClass = isLocal ? 'video-card local-video' : 'video-card';
       const thumbnailClass = isLocal ? 'video-thumbnail local' : 'video-thumbnail';
       
@@ -1004,7 +1006,7 @@
       let durationHtml = video.duration ? `<span class="video-duration">⏱ ${video.duration}</span>` : '';
       
       let externalHint = '';
-      if (!isLocal) {
+      if (isExternal) {
         externalHint = `
           <p class="external-link-hint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1017,22 +1019,36 @@
         `;
       }
       
+      const cardContent = `
+        <div class="${thumbnailClass}">
+          <div class="play-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+        <div class="video-info">
+          <h3 class="video-title">${video.title}</h3>
+          ${video.description ? `<p class="video-description">${video.description}</p>` : ''}
+          <div class="video-meta">
+            ${badgeHtml}
+            ${durationHtml}
+          </div>
+          ${externalHint}
+        </div>
+      `;
+      
+      // External video: wrap in <a> tag for native link behavior (avoids popup blocker)
+      if (isExternal) {
+        return `
+          <a href="${video.url}" target="_blank" rel="noopener noreferrer" class="${cardClass}" data-video-id="${video.id}" style="text-decoration: none; color: inherit; display: block; max-width: 280px;">
+            ${cardContent}
+          </a>
+        `;
+      }
+      
+      // Local video: use div (click opens modal player)
       return `
-        <div class="${cardClass}" data-video-id="${video.id}" ${isFeatured ? 'style="max-width: 600px;"' : ''}>
-          <div class="${thumbnailClass}">
-            <div class="play-icon">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-          </div>
-          <div class="video-info">
-            <h3 class="video-title">${video.title}</h3>
-            ${video.description ? `<p class="video-description">${video.description}</p>` : ''}
-            <div class="video-meta">
-              ${badgeHtml}
-              ${durationHtml}
-            </div>
-            ${externalHint}
-          </div>
+        <div class="${cardClass}" data-video-id="${video.id}" ${isFeatured ? 'style="max-width: 280px;"' : ''}>
+          ${cardContent}
         </div>
       `;
     }

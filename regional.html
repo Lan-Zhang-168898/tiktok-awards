@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Regional Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main.css?v=20250512k">
   <style>
     /* ==================== Regional Page Specific Styles ==================== */
     .regional-header {
@@ -16,10 +16,7 @@
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 4px;
-      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #FFFFFF;
     }
     
     .regional-subtitle {
@@ -93,10 +90,10 @@
     }
     
     .region-btn.active {
-      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+      background: linear-gradient(135deg, var(--primary-color), #F86482);
       color: white;
       font-weight: 600;
-      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
+      box-shadow: 0 2px 12px rgba(246, 33, 74, 0.3);
     }
     
     /* Podium Section */
@@ -125,8 +122,8 @@
       font-weight: 600;
       color: var(--text-primary);
       margin: var(--spacing-md) 0;
-      padding-left: var(--spacing-sm);
-      border-left: 3px solid var(--primary-color);
+      padding-left: 0;
+      border-left: none;
     }
     
     /* Award Type Toggle - Tab Style, Centered */
@@ -175,10 +172,10 @@
     }
     
     .award-type-btn.active {
-      background: linear-gradient(135deg, var(--primary-color), #ff6b8a);
+      background: linear-gradient(135deg, var(--primary-color), #F86482);
       color: white;
       font-weight: 600;
-      box-shadow: 0 2px 12px rgba(255, 45, 85, 0.3);
+      box-shadow: 0 2px 12px rgba(246, 33, 74, 0.3);
     }
     
     .award-type-btn .btn-subtitle {
@@ -333,7 +330,7 @@
     
     .auth-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 45, 85, 0.3);
+      box-shadow: 0 4px 12px rgba(246, 33, 74, 0.3);
     }
     
     .auth-btn.secondary {
@@ -383,6 +380,65 @@
     }
     
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Inline Search */
+    .inline-search {
+      display: flex;
+      gap: var(--spacing-sm);
+      max-width: 500px;
+      margin: 0 auto var(--spacing-lg);
+    }
+    
+    .inline-search .search-input {
+      flex: 1;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      outline: none;
+      transition: all 0.3s ease;
+    }
+    
+    .inline-search .search-input:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(255, 45, 85, 0.1);
+    }
+    
+    .inline-search .search-btn {
+      padding: 10px 20px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      background: var(--primary-color);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .inline-search .search-btn:hover {
+      background: #e02548;
+      transform: translateY(-1px);
+    }
+    
+    /* Search Results */
+    .search-results-section {
+      margin-top: var(--spacing-lg);
+      display: none;
+    }
+    
+    .search-results-section.active {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .inline-search {
+        flex-direction: column;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -401,7 +457,7 @@
           <span class="logo-icon">🏆</span>
           <div class="logo-content">
             <span class="logo-text">Global E-commerce Recognition Hub</span>
-            <span class="logo-subtitle">Celebrating award-winning projects and individuals across Global E-commerce business.</span>
+            <span class="logo-subtitle">Celebrating outstanding projects and individuals across TikTok Shop.</span>
           </div>
         </div>
         <nav class="top-nav">
@@ -445,6 +501,14 @@
           </div>
         </div>
 
+
+        <!-- Inline Search -->
+        <div class="inline-search">
+          <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+          <button class="search-btn" id="search-btn">🔍 Search</button>
+        </div>
+        <div id="search-results" class="search-results-section"></div>
+
         <!-- Regional Top 3 Podium -->
         <section class="podium-section">
           <h2 class="section-title-main">
@@ -466,11 +530,11 @@
         <!-- Award Type Toggle - For Non-LATAM Regions -->
         <div class="award-type-wrapper" id="award-type-wrapper">
           <div class="award-type-toggle">
-            <button class="award-type-btn active" data-type="H1项目奖">
+            <button class="award-type-btn" data-type="H1项目奖">
               H1
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
-            <button class="award-type-btn" data-type="H2项目奖">
+            <button class="award-type-btn active" data-type="H2项目奖">
               H2
               <span class="btn-subtitle">Impactful XFN Projects</span>
             </button>
@@ -573,7 +637,7 @@
     </div>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=20250512l"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -587,7 +651,7 @@
     };
     
     let currentRegion = 'us';
-    let currentAwardType = 'H1项目奖';
+    let currentAwardType = 'H2项目奖';
     let regionalData = null;
     let allRegionalData = null; // Store all regional data for US+POP merge
     
@@ -738,7 +802,7 @@
         
         // Only reset if coming from LATAM (Q1-Q4 or H1个人奖)
         if (['Q1', 'Q2', 'Q3', 'Q4', 'H1个人奖', 'Q1项目奖', 'Q3项目奖'].includes(currentAwardType)) {
-          currentAwardType = 'H1项目奖';
+          currentAwardType = 'H2项目奖';
         }
         document.querySelectorAll('#award-type-wrapper .award-type-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.type === currentAwardType);
@@ -824,7 +888,7 @@
             if (clickedRegion === 'us') {
               // OK - this will merge US+POP
             } else {
-              alert('2026 data is not available yet for this region. Coming soon!');
+              showToast('2026 data is not available yet for this region. Coming soon!');
               return;
             }
           }
@@ -895,12 +959,13 @@
       let urlYear = getUrlParam('year') || '2025';
       let urlRegion = getUrlParam('region') || 'us';
       
-      // 2026年只有LATAM有数据，自动跳转到LATAM
-      if (urlYear === '2026' && urlRegion !== 'latam') {
-        console.log('2026 year with non-LATAM region, redirecting to LATAM');
+      // 2026年只有LATAM和FS有独立数据，非LATAM/FS区域显示提示而不是跳转
+      if (urlYear === '2026' && urlRegion !== 'latam' && urlRegion !== 'fs' && urlRegion !== 'us') {
+        // Show alert and switch to LATAM for initial load only
+        showToast('2026 data is not available yet for this region. Switching to LATAM.');
+        urlRegion = 'latam';
         const baseUrl = window.location.href.split('?')[0].replace(/\/[^\/]*$/, '/');
-        window.location.href = `${baseUrl}regional.html?year=2026&region=latam`;
-        return;
+        window.history.replaceState({}, '', `${baseUrl}regional.html?year=2026&region=latam`);
       }
       
       AppData.currentYear = urlYear;
@@ -920,34 +985,58 @@
       console.log('Data loaded, regionalData:', !!regionalData);
       
       // Initialize search
-      initSearch();
+      await loadSearchData();
       
-      // 设置页面层级为regional，并传入当前region
-      setSearchPageLevel('regional', currentRegion);
-      
-      // Search handlers
+      // Search handlers - bind outside try-catch to ensure always available
       const searchInput = document.getElementById('search-input');
       const searchBtn = document.getElementById('search-btn');
-      
-      if (searchBtn) {
-        searchBtn.addEventListener('click', () => {
-          const query = searchInput?.value || '';
-          const results = performSearch(query, 'regional', currentRegion);
-          renderSearchResults(results, 'search-results');
-          document.getElementById('search-results')?.classList.add('active');
-        });
+      const searchResults = document.getElementById('search-results');
+
+      async function performAndShowSearch(query) {
+        if (!query) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
+          searchResults.classList.add('active');
+          const checkInterval = setInterval(() => {
+            if (searchData) {
+              clearInterval(checkInterval);
+              performAndShowSearch(query);
+            }
+          }, 300);
+          setTimeout(() => clearInterval(checkInterval), 10000);
+          return;
+        }
+        const results = performSearch(query, 'regional');
+        renderSearchResults(results, 'search-results');
+        searchResults.classList.add('active');
       }
-      
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => performAndShowSearch(searchInput?.value));
+      }
       if (searchInput) {
         searchInput.addEventListener('keypress', (e) => {
-          if (e.key === 'Enter') {
-            const query = e.target.value || '';
-            const results = performSearch(query, 'regional', currentRegion);
-            renderSearchResults(results, 'search-results');
-            document.getElementById('search-results')?.classList.add('active');
-          }
+          if (e.key === 'Enter') performAndShowSearch(searchInput?.value);
         });
       }
+      
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        const newYear = e.detail.year;
+        // 2026年：非LATAM/FS/US区域切换到LATAM
+        if (newYear === '2026' && !['latam', 'fs', 'us'].includes(currentRegion)) {
+          showToast('2026 data is not available yet for this region. Switching to LATAM.');
+          currentRegion = 'latam';
+          // Update region buttons
+          document.querySelectorAll('.region-btn').forEach(b => {
+            b.classList.toggle('active', b.dataset.region === 'latam');
+          });
+        }
+        await loadRegionalData(currentRegion, newYear);
+      });
     });
   </script>
 </body>
