@@ -945,12 +945,18 @@ async function _isApiMode() {
   return _useApiMode;
 }
 
-// Toggle like (heart)
+// Toggle like (heart) - like only, no unlike
 async function toggleLike(cardId, awardType, awardName) {
   if (await _isApiMode()) {
     // API mode
     try {
       const user = await getCurrentUser();
+      // Check if already liked - if so, do nothing
+      const existing = await AwardAPI.getAwardData(cardId, user.userId);
+      if (existing && existing.liked) {
+        // Already liked, don't toggle
+        return;
+      }
       const result = await AwardAPI.toggleLike(cardId, user.userId);
       if (result) {
         updateLikeDisplay(cardId, result.liked, result.like_count);
@@ -965,15 +971,16 @@ async function toggleLike(cardId, awardType, awardName) {
   const storageKey = `like_${cardId}`;
   let likes = _lsGetLikes();
   
+  // Already liked? Do nothing
   if (likes[storageKey]) {
-    delete likes[storageKey];
-  } else {
-    likes[storageKey] = {
-      type: awardType,
-      name: awardName,
-      timestamp: Date.now()
-    };
+    return;
   }
+  
+  likes[storageKey] = {
+    type: awardType,
+    name: awardName,
+    timestamp: Date.now()
+  };
   
   _lsSetLikes(likes);
   updateLikeDisplay(cardId, !!likes[storageKey], likes[storageKey] ? 1 : 0);
@@ -995,9 +1002,9 @@ function updateLikeDisplay(cardId, isLiked, likeCount) {
 }
 
 function getLikeCount(cardId) {
-  // Synchronous - returns 0 initially; real data loaded async by loadAllCardInteractions
-  // Still check localStorage for immediate display in fallback mode
-  if (_useApiMode === false) {
+  // In API mode: return 0 initially, loadAllCardInteractions will update async
+  // In localStorage mode or before API check: read from localStorage for immediate display
+  if (_useApiMode !== true) {
     const storageKey = `like_${cardId}`;
     const likes = _lsGetLikes();
     return likes[storageKey] ? 1 : 0;
