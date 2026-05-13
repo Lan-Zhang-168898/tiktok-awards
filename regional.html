@@ -637,7 +637,8 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=20250512l"></script>
+  <script src="js/award-api.js?v=20250520a"></script>
+  <script src="js/main.js?v=20250520a"></script>
   <script>
     // Regional page specific initialization
     const regionNames = {
@@ -855,6 +856,8 @@
           
           // Render all awards
           renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, region);
+          // Load like/comment interactions from API
+          loadAllCardInteractions();
         } else {
           awardsContainer.innerHTML = '<div class="no-data-msg">No data available for this region.</div>';
         }
@@ -925,6 +928,7 @@
               const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
               renderPodium(top3, 'regional-top3');
               renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+              loadAllCardInteractions();
             } catch (e) {
               console.error('Error rendering awards:', e);
             }
@@ -947,6 +951,7 @@
             const top3 = calculateRegionTop3FullYear(regionalData, currentRegion);
             renderPodium(top3, 'regional-top3');
             renderRegionalAwards(regionalData, 'regional-awards', currentAwardType, currentRegion);
+            loadAllCardInteractions();
           }
         });
       });

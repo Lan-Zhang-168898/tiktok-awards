@@ -518,7 +518,8 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=20250512l"></script>
+  <script src="js/award-api.js?v=20250520a"></script>
+  <script src="js/main.js?v=20250520a"></script>
   <script>
     // Global page specific initialization
     let currentHalf = 'H1';
@@ -540,6 +541,7 @@
           
           if (globalData) {
             renderGlobalAwards(globalData, 'global-awards', currentHalf);
+            loadAllCardInteractions();
           }
         });
       });
@@ -614,6 +616,9 @@
           // Render awards by default (H1)
           console.log('Calling renderGlobalAwards with half:', currentHalf);
           renderGlobalAwards(globalData, 'global-awards', currentHalf);
+          
+          // Load like/comment interactions from API
+          loadAllCardInteractions();
         }
         
         await loadSearchData();
@@ -634,6 +639,8 @@
             renderPodium(top3, 'global-top3');
             // Re-render awards with current half
             renderGlobalAwards(globalData, 'global-awards', currentHalf);
+            // Reload interactions for new cards
+            loadAllCardInteractions();
           } else {
             document.getElementById('global-top3').innerHTML = '';
             document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';

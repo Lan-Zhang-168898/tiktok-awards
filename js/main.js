@@ -1,4 +1,4 @@
-// MAIN.JS VERSION: 20250512b
+// MAIN.JS VERSION: 20250520a
 // TikTok Shop Stars Awards - Main JavaScript
 
 // ==================== Global Data Store ====================
@@ -916,11 +916,54 @@ function renderRankingList(rankings, startRank = 4, containerId) {
 }
 
 // ==================== Card Interaction Functions ====================
+// Uses AIPA API with localStorage fallback
+
+// localStorage fallback helpers
+function _lsGetLikes() {
+  return JSON.parse(localStorage.getItem('likes') || '{}');
+}
+function _lsSetLikes(likes) {
+  localStorage.setItem('likes', JSON.stringify(likes));
+}
+function _lsGetComments(cardId) {
+  return JSON.parse(localStorage.getItem(`comments_${cardId}`) || '[]');
+}
+function _lsSetComments(cardId, comments) {
+  localStorage.setItem(`comments_${cardId}`, JSON.stringify(comments));
+}
+
+// Track if API mode is active
+let _useApiMode = null; // null = not checked yet, true/false
+
+async function _isApiMode() {
+  if (_useApiMode !== null) return _useApiMode;
+  if (typeof AwardAPI !== 'undefined') {
+    _useApiMode = await AwardAPI.checkAvailability();
+  } else {
+    _useApiMode = false;
+  }
+  return _useApiMode;
+}
 
 // Toggle like (heart)
-function toggleLike(cardId, awardType, awardName) {
+async function toggleLike(cardId, awardType, awardName) {
+  if (await _isApiMode()) {
+    // API mode
+    try {
+      const user = await getCurrentUser();
+      const result = await AwardAPI.toggleLike(cardId, user.userId);
+      if (result) {
+        updateLikeDisplay(cardId, result.liked, result.like_count);
+        return;
+      }
+    } catch (e) {
+      console.warn('[toggleLike] API failed, falling back to localStorage', e);
+    }
+  }
+
+  // localStorage fallback
   const storageKey = `like_${cardId}`;
-  let likes = JSON.parse(localStorage.getItem('likes') || '{}');
+  let likes = _lsGetLikes();
   
   if (likes[storageKey]) {
     delete likes[storageKey];
@@ -932,16 +975,16 @@ function toggleLike(cardId, awardType, awardName) {
     };
   }
   
-  localStorage.setItem('likes', JSON.stringify(likes));
-  updateLikeDisplay(cardId, likes[storageKey]);
+  _lsSetLikes(likes);
+  updateLikeDisplay(cardId, !!likes[storageKey], likes[storageKey] ? 1 : 0);
 }
 
-function updateLikeDisplay(cardId, isLiked) {
+function updateLikeDisplay(cardId, isLiked, likeCount) {
   const likeBtn = document.querySelector(`[data-card-id="${cardId}"] .like-btn`);
   if (likeBtn) {
     const countSpan = likeBtn.querySelector('.like-count');
     if (countSpan) {
-      countSpan.textContent = isLiked ? '1' : '0';
+      countSpan.textContent = (likeCount !== undefined) ? likeCount : (isLiked ? '1' : '0');
     }
     if (isLiked) {
       likeBtn.classList.add('liked');
@@ -952,9 +995,14 @@ function updateLikeDisplay(cardId, isLiked) {
 }
 
 function getLikeCount(cardId) {
-  const storageKey = `like_${cardId}`;
-  const likes = JSON.parse(localStorage.getItem('likes') || '{}');
-  return likes[storageKey] ? 1 : 0;
+  // Synchronous - returns 0 initially; real data loaded async by loadAllCardInteractions
+  // Still check localStorage for immediate display in fallback mode
+  if (_useApiMode === false) {
+    const storageKey = `like_${cardId}`;
+    const likes = _lsGetLikes();
+    return likes[storageKey] ? 1 : 0;
+  }
+  return 0;
 }
 
 // ==================== Comment Functions ====================
@@ -968,26 +1016,13 @@ function showCommentsModal(cardId, awardName, awardType) {
   
   modalTitle.textContent = `${awardName}`;
   
-  // Load existing comments
-  const storageKey = `comments_${cardId}`;
-  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
-  
-  if (comments.length === 0) {
-    commentList.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
-  } else {
-    commentList.innerHTML = comments.map(c => `
-      <div class="comment-item">
-        <div class="comment-author">${c.author || 'Anonymous'}</div>
-        <div class="comment-text">${c.text}</div>
-        <div class="comment-date">${new Date(c.timestamp).toLocaleDateString()}</div>
-      </div>
-    `).join('');
-  }
-  
   // Store current card info
   modal.dataset.cardId = cardId;
   modal.dataset.awardName = awardName;
   modal.dataset.awardType = awardType;
+  
+  // Show loading state
+  commentList.innerHTML = '<div class="no-comments">Loading comments...</div>';
   
   // Clear and focus input
   if (commentInput) {
@@ -996,9 +1031,55 @@ function showCommentsModal(cardId, awardName, awardType) {
   }
   
   modal.classList.add('active');
+  
+  // Load comments asynchronously
+  _loadCommentsForModal(cardId);
 }
 
-function submitComment() {
+async function _loadCommentsForModal(cardId) {
+  const commentList = document.getElementById('comment-list');
+  if (!commentList) return;
+  
+  if (await _isApiMode()) {
+    try {
+      const user = await getCurrentUser();
+      const data = await AwardAPI.getAwardData(cardId, user.userId);
+      if (data && data.comments) {
+        _renderComments(commentList, data.comments, true);
+        return;
+      }
+    } catch (e) {
+      console.warn('[showCommentsModal] API failed, falling back to localStorage', e);
+    }
+  }
+  
+  // localStorage fallback
+  const comments = _lsGetComments(cardId);
+  _renderComments(commentList, comments, false);
+}
+
+function _renderComments(container, comments, isApiMode) {
+  if (!comments || comments.length === 0) {
+    container.innerHTML = '<div class="no-comments">No comments yet. Be the first!</div>';
+    return;
+  }
+  container.innerHTML = comments.map(c => {
+    const author = isApiMode ? (c.username || 'Anonymous') : (c.author || 'Anonymous');
+    const text = isApiMode ? c.content : c.text;
+    const dateStr = isApiMode
+      ? (c.created_at ? new Date(c.created_at).toLocaleDateString() : '')
+      : new Date(c.timestamp).toLocaleDateString();
+    return `
+      <div class="comment-item">
+        <div class="comment-author">${author}</div>
+        <div class="comment-text">${text}</div>
+        <div class="comment-date">${dateStr}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+async function submitComment() {
   const modal = document.getElementById('comments-modal');
   const commentInput = document.getElementById('comment-input');
   const commentList = document.getElementById('comment-list');
@@ -1008,8 +1089,27 @@ function submitComment() {
   const text = commentInput.value.trim();
   if (!text) return;
   
-  const storageKey = `comments_${modal.dataset.cardId}`;
-  const comments = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  const cardId = modal.dataset.cardId;
+  
+  if (await _isApiMode()) {
+    try {
+      const user = await getCurrentUser();
+      const result = await AwardAPI.addComment(cardId, user.userId, user.username, text);
+      if (result) {
+        commentInput.value = '';
+        // Refresh the full comment list from API
+        await _loadCommentsForModal(cardId);
+        // Update comment count on card if visible
+        _updateCommentCountOnCard(cardId);
+        return;
+      }
+    } catch (e) {
+      console.warn('[submitComment] API failed, falling back to localStorage', e);
+    }
+  }
+  
+  // localStorage fallback
+  const comments = _lsGetComments(cardId);
   
   comments.push({
     text: text,
@@ -1017,7 +1117,7 @@ function submitComment() {
     timestamp: Date.now()
   });
   
-  localStorage.setItem(storageKey, JSON.stringify(comments));
+  _lsSetComments(cardId, comments);
   commentInput.value = '';
   
   // Update display
@@ -1031,6 +1131,49 @@ function submitComment() {
       <div class="comment-date">Just now</div>
     </div>
   `;
+}
+
+// Update comment count badge on a card
+function _updateCommentCountOnCard(cardId) {
+  const commentBtn = document.querySelector(`[data-card-id="${cardId}"] .comment-btn`);
+  // Currently the UI just shows "💬 Comment" without a count
+  // This is a placeholder if we want to add count display later
+}
+
+// ==================== Batch Load Interactions ====================
+/**
+ * After cards are rendered, batch load all like/comment data from API
+ * and update the UI. Call this after renderGlobalAwards or renderRegionalAwards.
+ */
+async function loadAllCardInteractions() {
+  // Check API availability first
+  if (!(await _isApiMode())) {
+    // In localStorage fallback mode, no batch loading needed
+    // Cards already show correct localStorage state via getLikeCount
+    return;
+  }
+  
+  const user = await getCurrentUser();
+  const cards = document.querySelectorAll('[data-card-id]');
+  if (cards.length === 0) return;
+  
+  const awardIds = [];
+  cards.forEach(card => {
+    awardIds.push(card.dataset.cardId);
+  });
+  
+  try {
+    const dataMap = await AwardAPI.batchGetAwardData(awardIds, user.userId);
+    
+    // Update each card's UI
+    for (const [awardId, data] of Object.entries(dataMap)) {
+      if (data) {
+        updateLikeDisplay(awardId, data.liked, data.like_count);
+      }
+    }
+  } catch (e) {
+    console.error('[loadAllCardInteractions] Failed to load interactions:', e);
+  }
 }
 
 function closeCommentsModal() {
