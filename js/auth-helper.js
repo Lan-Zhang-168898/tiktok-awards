@@ -37,19 +37,31 @@ const FeishuAuthHelper = {
         window.h5sdk.ready(() => { console.log('[AuthHelper] h5sdk ready'); resolve(); });
       });
 
-      // Step 3: Request auth code
-      if (!window.tt || !window.tt.requestAuthCode) {
-        console.warn('[AuthHelper] tt.requestAuthCode not available');
-        return this._getFallbackUser();
+      // Step 3: Try requestAccess (recommended by Feishu) first, then fallback to requestAuthCode
+      var code = null;
+
+      if (window.tt && window.tt.requestAccess) {
+        console.log('[AuthHelper] Trying requestAccess (recommended API)...');
+        code = await new Promise((resolve) => {
+          window.tt.requestAccess({
+            appID: 'cli_aa8858d3f0a6dccd',
+            scopeList: [],
+            success: (res) => { console.log('[AuthHelper] requestAccess success'); resolve(res.code); },
+            fail: (err) => { console.warn('[AuthHelper] requestAccess fail:', JSON.stringify(err)); resolve(null); }
+          });
+        });
       }
 
-      const code = await new Promise((resolve) => {
-        window.tt.requestAuthCode({
-          appId: 'cli_aa8858d3f0a6dccd',
-          success: (res) => { console.log('[AuthHelper] Got auth code'); resolve(res.code); },
-          fail: (err) => { console.warn('[AuthHelper] requestAuthCode fail:', JSON.stringify(err)); resolve(null); }
+      if (!code && window.tt && window.tt.requestAuthCode) {
+        console.log('[AuthHelper] Trying requestAuthCode (legacy API)...');
+        code = await new Promise((resolve) => {
+          window.tt.requestAuthCode({
+            appId: 'cli_aa8858d3f0a6dccd',
+            success: (res) => { console.log('[AuthHelper] Got auth code'); resolve(res.code); },
+            fail: (err) => { console.warn('[AuthHelper] requestAuthCode fail:', JSON.stringify(err)); resolve(null); }
+          });
         });
-      });
+      }
 
       if (!code) {
         return this._getFallbackUser();
