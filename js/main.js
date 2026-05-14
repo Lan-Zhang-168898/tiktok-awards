@@ -1223,29 +1223,27 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     memberNames = members;
   }
   
-  // Generate poster HTML
+  // Generate poster HTML - landscape layout
   posterPreview.innerHTML = `
     <div class="poster-container" id="poster-content">
       <div class="poster-gradient"></div>
       <div class="poster-content">
-        <div class="poster-header">
-          <div class="poster-brand">Global E-commerce Recognition Hub</div>
+        <div class="poster-left">
+          <div class="poster-header">
+            <div class="poster-brand">Global E-commerce Recognition Hub</div>
+          </div>
+          <div class="poster-project">${projectName}</div>
+          <div class="poster-award">${teamAward || 'Global Excellence Award'}</div>
+          <div class="poster-bonus">${formatCurrency(bonus)}</div>
         </div>
-        
-        <div class="poster-project">${projectName}</div>
-        
-        <div class="poster-award">${teamAward || 'Global Excellence Award'}</div>
-        
-        <div class="poster-bonus">${formatCurrency(bonus)}</div>
-        
-        <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
-        
-        <div class="poster-members-label">Team Members</div>
-        <div class="poster-members">${memberNames}</div>
-        
-        <div class="poster-footer">
-          <div class="poster-line"></div>
-          <div class="poster-brand-footer">TikTok Shop</div>
+        <div class="poster-right">
+          <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
+          <div class="poster-members-label">Team Members</div>
+          <div class="poster-members">${memberNames}</div>
+          <div class="poster-footer">
+            <div class="poster-line"></div>
+            <div class="poster-brand-footer">TikTok Shop</div>
+          </div>
         </div>
       </div>
     </div>
