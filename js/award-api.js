@@ -122,34 +122,53 @@ const AwardAPI = {
       return cached;
     }
 
-    // Try multiple GET endpoint patterns
-    const paths = [
-      `/api/awards/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
-      `/api/getAwardData/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
-      `/api/award/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
-    ];
+    const emptyData = { liked: false, like_count: 0, comments: [] };
 
-    for (const path of paths) {
-      try {
-        const res = await fetch(`${this.BASE_URL}${path}`, { signal: AbortSignal.timeout(8000) });
-        if (res.ok) {
-          const resp = await res.json();
-          const raw = resp.data || resp;
-          const data = {
-            liked: raw.has_liked !== undefined ? raw.has_liked : !!raw.liked,
-            like_count: raw.like_count || 0,
-            comments: raw.comments || []
-          };
-          data._timestamp = Date.now();
-          this._cache[cacheKey] = data;
-          return data;
-        }
-      } catch (e) {
-        continue;
+    // Primary: GET /api/awards/:award_id?user_id=xxx
+    try {
+      const res = await fetch(`${this.BASE_URL}/api/awards/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`, { signal: AbortSignal.timeout(8000) });
+      if (res.ok) {
+        const resp = await res.json();
+        const raw = resp.data || resp;
+        const data = {
+          liked: raw.has_liked !== undefined ? raw.has_liked : !!raw.liked,
+          like_count: raw.like_count || 0,
+          comments: raw.comments || []
+        };
+        data._timestamp = Date.now();
+        this._cache[cacheKey] = data;
+        return data;
       }
+      // 404 means no data yet for this award — return empty defaults
+      if (res.status === 404) {
+        emptyData._timestamp = Date.now();
+        this._cache[cacheKey] = emptyData;
+        return emptyData;
+      }
+    } catch (e) {
+      // Network error — try fallback
     }
-    console.error('[AwardAPI] getAwardData failed: all paths returned non-200');
-    return null;
+
+    // Fallback: GET /api/comment/:award_id (comments only, no like data)
+    try {
+      const res2 = await fetch(`${this.BASE_URL}/api/comment/${encodeURIComponent(awardId)}`, { signal: AbortSignal.timeout(8000) });
+      if (res2.ok) {
+        const resp2 = await res2.json();
+        const raw2 = resp2.data || resp2;
+        const comments = Array.isArray(raw2) ? raw2 : (raw2.comments || []);
+        const data = { liked: false, like_count: 0, comments };
+        data._timestamp = Date.now();
+        this._cache[cacheKey] = data;
+        return data;
+      }
+    } catch (e) {
+      // Both endpoints failed
+    }
+
+    // Return empty defaults instead of null so UI shows zeros
+    emptyData._timestamp = Date.now();
+    this._cache[cacheKey] = emptyData;
+    return emptyData;
   },
 
   /**
