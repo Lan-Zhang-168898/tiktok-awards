@@ -463,8 +463,477 @@
   <script src="js/auth.js"></script>
   <script src="js/award-api.js?v=20250514e"></script>
   <script src="js/main.js?v=20250520a"></script>
-  
+  <script>
+    // ===== Departmental Page State =====
+    let departmentalData = null;
+    let currentDeptName = '';
+    let currentDeptQuarter = 'all';
+    let currentDeptAwardType = 'all';
+    let deptSearchQuery = '';
 
+    // ===== Department Group Definitions =====
+    const DEPT_GROUPS = [
+      {
+        title: '🌏 Southeast Asia',
+        departments: [
+          { name: 'ID Ops', fullName: 'ID Ops' },
+          { name: 'MY Ops', fullName: 'MY Ops' },
+          { name: 'PH Ops', fullName: 'PH Ops' },
+          { name: 'SG Ops', fullName: 'SG Ops' },
+          { name: 'TH Ops', fullName: 'TH Ops' },
+          { name: 'VN Ops', fullName: 'VN Ops' },
+          { name: 'SEA Cross-border', fullName: 'SEA Cross-border' },
+          { name: 'SEA Central', fullName: 'SEA Central' },
+          { name: 'SEA IMC', fullName: 'SEA IMC' }
+        ]
+      },
+      {
+        title: '🌍 UK / EU / JP',
+        departments: [
+          { name: 'JP Operations', fullName: 'JP Operations' },
+          { name: 'UK Operations', fullName: 'UK Operations' },
+          { name: 'EU Ops + EU Ops Center', fullName: 'EU Ops + EU Ops Center' },
+          { name: 'UK&EU&JP POP', fullName: 'UK&EU&JP POP' }
+        ]
+      },
+      {
+        title: '🇺🇸 US',
+        departments: [
+          { name: 'US Ops + US Ops Center + GKA', fullName: 'US Ops + US Ops Center + GKA' }
+        ]
+      },
+      {
+        title: '🌎 LATAM',
+        departments: [
+          { name: 'LATAM Operations', fullName: 'LATAM Operations' }
+        ]
+      },
+      {
+        title: '🌐 Global Selling',
+        departments: [
+          { name: 'Full Service', fullName: 'Global Selling Full Service' },
+          { name: 'POP', fullName: 'Global Selling POP' }
+        ]
+      },
+      {
+        title: '⚙️ Cross-functional',
+        departments: [
+          { name: 'GNE', fullName: 'GNE' },
+          { name: 'Supply Chain & Logistics', fullName: 'Supply Chain and Logistics' },
+          { name: 'Product', fullName: 'Product' },
+          { name: 'Design', fullName: 'Design' },
+          { name: 'UG', fullName: 'UG' },
+          { name: 'Data Science', fullName: 'Data Science' },
+          { name: 'User Research', fullName: 'User Research' },
+          { name: 'Strategic Readiness', fullName: 'Strategic Readiness and Business Communication' },
+          { name: 'Strategy Analytics', fullName: 'Strategy Analytics & Resource Management' }
+        ]
+      }
+    ];
 
+    // ===== Initialization =====
+    document.addEventListener('DOMContentLoaded', async () => {
+      highlightNavigation();
+      initYearNavigation();
+
+      // Handle year change
+      window.addEventListener('yearChanged', async () => {
+        await loadAndRenderDepartmentalAwards();
+      });
+
+      await loadAndRenderDepartmentalAwards();
+    });
+
+    // ===== Load Data =====
+    async function loadAndRenderDepartmentalAwards() {
+      try {
+        const response = await fetch('data/departmental.json?v=20260512a');
+        if (!response.ok) throw new Error('Failed to load departmental data');
+        departmentalData = await response.json();
+      } catch (error) {
+        console.error('Error loading departmental awards:', error);
+        departmentalData = {};
+      }
+
+      renderDeptListView();
+
+      // If a department was previously open, refresh detail view
+      if (currentDeptName) {
+        renderDeptDetailView();
+      }
+    }
+
+    // ===== Get All Awards for Current Year =====
+    function getAllAwardsForYear() {
+      const currentYear = getUrlParam('year') || '2026';
+      const yearData = departmentalData[currentYear];
+      if (!yearData) return [];
+
+      let allAwards = [];
+      ['Q1', 'Q2', 'Q3', 'Q4'].forEach(q => {
+        if (yearData[q] && Array.isArray(yearData[q])) {
+          yearData[q].forEach(award => {
+            allAwards.push({ ...award, _quarter: q });
+          });
+        }
+      });
+      return allAwards;
+    }
+
+    // ===== Get Awards for a Specific Department =====
+    function getAwardsForDept(deptFullName) {
+      const allAwards = getAllAwardsForYear();
+      return allAwards.filter(a => a.department === deptFullName);
+    }
+
+    // ===== Compute Stats for a Department =====
+    function computeDeptStats(awards) {
+      const awardCount = awards.length;
+      const totalBonus = awards.reduce((sum, a) => sum + (parseInt(a.bonus) || 0), 0);
+      const allWinners = new Set();
+      awards.forEach(a => {
+        if (a.winner_name) allWinners.add(a.winner_name);
+        if (a.members && Array.isArray(a.members)) {
+          a.members.forEach(m => allWinners.add(m));
+        }
+      });
+      return { awardCount, winnerCount: allWinners.size, totalBonus };
+    }
+
+    // ===== Format Bonus =====
+    function getCurrencySymbol(currency) {
+      const symbols = { 'USD': '$', 'RMB': '¥', 'GBP': '£', 'EUR': '€', 'IDR': 'Rp', 'THB': '฿', 'VND': '₫', 'MYR': 'RM', 'PHP': '₱', 'SGD': 'S$', 'JPY': '¥' };
+      return symbols[currency] || '$';
+    }
+    function formatBonusShort(amount, currency) {
+      const sym = getCurrencySymbol(currency);
+      if (!amount || amount === 0) return sym + '0';
+      if (amount >= 1000000) return sym + (amount / 1000000).toFixed(1) + 'M';
+      if (amount >= 1000) return sym + (amount / 1000).toFixed(1) + 'K';
+      return sym + amount;
+    }
+    function formatBonusFull(amount, currency) {
+      const sym = getCurrencySymbol(currency);
+      if (!amount || amount === 0) return sym + '0';
+      return sym + Number(amount).toLocaleString();
+    }
+
+    // ===== Render Department List View =====
+    function renderDeptListView() {
+      const container = document.getElementById('dept-groups-container');
+      const hasData = Object.keys(departmentalData || {}).length > 0;
+
+      let html = '';
+
+      DEPT_GROUPS.forEach(group => {
+        html += `<div class="dept-group">`;
+        html += `<div class="dept-group-title">${group.title}</div>`;
+        html += `<div class="dept-grid">`;
+
+        group.departments.forEach(dept => {
+          const awards = getAwardsForDept(dept.fullName);
+          const stats = computeDeptStats(awards);
+
+          html += `<div class="dept-card" onclick="openDept('${dept.fullName.replace(/'/g, "\\'")}')">`;
+          html += `<div class="dept-card-name">${dept.name}</div>`;
+          if (hasData && stats.awardCount > 0) {
+            html += `<div class="dept-card-stats"><span>${stats.awardCount}</span> awards · <span>${formatBonusShort(stats.totalBonus, stats.dominantCurrency)}</span></div>`;
+          } else {
+            html += `<div class="dept-card-stats">No awards yet</div>`;
+          }
+          html += `</div>`;
+        });
+
+        html += `</div></div>`;
+      });
+
+      if (!hasData) {
+        html += `<div class="no-data-msg">No awards data yet</div>`;
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ===== Open Department Detail =====
+    function openDept(deptName) {
+      currentDeptName = deptName;
+      currentDeptQuarter = 'all';
+      currentDeptAwardType = 'all';
+      deptSearchQuery = '';
+
+      document.getElementById('dept-list-view').classList.add('hidden');
+      document.getElementById('dept-detail').classList.add('active');
+      document.getElementById('dept-detail-name').textContent = deptName;
+
+      // Reset search input
+      const searchInput = document.getElementById('dept-search-input');
+      if (searchInput) searchInput.value = '';
+
+      // Reset quarter tabs
+      document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.quarter === 'all');
+      });
+
+      renderDeptDetailView();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ===== Close Department Detail =====
+    function closeDept() {
+      currentDeptName = '';
+      document.getElementById('dept-list-view').classList.remove('hidden');
+      document.getElementById('dept-detail').classList.remove('active');
+    }
+
+    // ===== Render Department Podium =====
+    function renderDeptPodium(awards) {
+      // Calculate scores: individual award = bonus amount, team award = bonus / member count per person
+      const personScores = {};
+      awards.forEach(a => {
+        const members = a.members || [];
+        const name = a.winner_name || 'Unknown';
+        const bonus = a.bonus || 0;
+        if (a.award_type === 'Departmental Award' && members.length > 1) {
+          members.forEach(m => {
+            if (!personScores[m]) personScores[m] = { name: m, score: 0, email: '', department: a.department };
+            personScores[m].score += Math.round(bonus / members.length);
+            if (!personScores[m].email && a.email) personScores[m].email = a.email;
+          });
+        } else {
+          if (!personScores[name]) personScores[name] = { name: name, score: 0, email: '', department: a.department };
+          personScores[name].score += bonus;
+          if (!personScores[name].email && a.email) personScores[name].email = a.email;
+        }
+      });
+
+      const sorted = Object.values(personScores).sort((a, b) => b.score - a.score);
+      if (sorted.length === 0) {
+        document.getElementById('dept-top3-podium').innerHTML = '<div class="no-data-msg">No rankings available</div>';
+        return;
+      }
+
+      // Group by rank (handle ties)
+      const rankedGroups = [];
+      let currentRank = 1;
+      for (let i = 0; i < sorted.length; i++) {
+        if (i > 0 && sorted[i].score < sorted[i-1].score) currentRank = i + 1;
+        if (rankedGroups.length === 0 || rankedGroups[rankedGroups.length-1].rank !== currentRank) {
+          rankedGroups.push({ rank: currentRank, score: sorted[i].score, people: [sorted[i]] });
+        } else {
+          rankedGroups[rankedGroups.length-1].people.push(sorted[i]);
+        }
+      }
+
+      // Only take top 3 rank groups
+      const topRanks = rankedGroups.filter(g => g.rank <= 3).slice(0, 3);
+
+      const getMedal = (rank) => rank === 1 ? '🥇' : rank === 2 ? '🥈' : '🥉';
+      const getClass = (rank) => rank === 1 ? 'first' : rank === 2 ? 'second' : 'third';
+
+      function renderCard(person, rank) {
+        return `
+          <div class="podium-item ${getClass(rank)}">
+            <div class="podium-medal">${getMedal(rank)}</div>
+            <div class="podium-rank">#${rank}</div>
+            <div class="podium-name">${person.name}</div>
+            <div class="podium-score">${person.score} pts</div>
+          </div>`;
+      }
+
+      function renderTieCard(group) {
+        return `
+          <div class="podium-item ${getClass(group.rank)}">
+            <div class="podium-medal">${getMedal(group.rank)}</div>
+            <div class="podium-rank">#${group.rank}</div>
+            <div class="podium-name">${group.people.length} people tied</div>
+            <div class="podium-score">${group.score} pts</div>
+          </div>`;
+      }
+
+      // Layout: rank2 on left, rank1 in center, rank3 on right
+      let html = '<div class="podium">';
+      topRanks.forEach(group => {
+        if (group.rank === 1) return; // handle rank1 later (center)
+      });
+      // Left: rank2
+      const r2 = topRanks.find(g => g.rank === 2);
+      if (r2) {
+        if (r2.people.length === 1) html += renderCard(r2.people[0], 2);
+        else html += renderTieCard(r2);
+      }
+      // Center: rank1
+      const r1 = topRanks.find(g => g.rank === 1);
+      if (r1) html += renderCard(r1.people[0], 1);
+      // Right: rank3
+      const r3 = topRanks.find(g => g.rank === 3);
+      if (r3) {
+        if (r3.people.length === 1) html += renderCard(r3.people[0], 3);
+        else html += renderTieCard(r3);
+      }
+      html += '</div>';
+
+      // If rank1 has ties, show note below
+      if (r1 && r1.people.length > 1) {
+        const names = r1.people.map(p => p.name).join(', ');
+        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:8px;">🥇 Tied: ${names}</div>`;
+      }
+      if (r2 && r2.people.length > 1) {
+        const names = r2.people.map(p => p.name).join(', ');
+        html += `<div style="font-size:12px;color:var(--text-secondary);text-align:center;margin-top:4px;">🥈 Tied: ${names}</div>`;
+      }
+
+      document.getElementById('dept-top3-podium').innerHTML = html;
+    }
+
+    // ===== Render Department Detail View =====
+    function renderDeptDetailView() {
+      if (!currentDeptName) return;
+
+      const allDeptAwards = getAwardsForDept(currentDeptName);
+      const stats = computeDeptStats(allDeptAwards);
+
+      // Render stats
+      const statsContainer = document.getElementById('dept-detail-stats');
+      statsContainer.innerHTML = `
+
+      `;
+
+      // Filter by quarter
+      let filteredAwards = allDeptAwards;
+      if (currentDeptQuarter !== 'all') {
+        filteredAwards = filteredAwards.filter(a => a._quarter === currentDeptQuarter);
+      }
+
+      // Filter by award type
+      if (currentDeptAwardType !== 'all') {
+        filteredAwards = filteredAwards.filter(a => a.award_type === currentDeptAwardType);
+      }
+
+      // Filter by search
+      if (deptSearchQuery) {
+        const q = deptSearchQuery.toLowerCase();
+        filteredAwards = filteredAwards.filter(a => {
+          const nameMatch = (a.winner_name || '').toLowerCase().includes(q);
+          const memberMatch = (a.members || []).some(m => m.toLowerCase().includes(q));
+          return nameMatch || memberMatch;
+        });
+      }
+
+      // Render award type filter
+      renderDeptAwardTypeFilter(allDeptAwards);
+
+      // Render Top 3 podium
+      renderDeptPodium(allDeptAwards);
+
+      // Render award list
+      renderDeptAwardList(filteredAwards);
+    }
+
+    // ===== Render Award Type Filter =====
+    function renderDeptAwardTypeFilter(allDeptAwards) {
+      const filterContainer = document.getElementById('dept-award-type-filter');
+      const typeOrder = ['Spot Bonus', 'Departmental Award', 'Special Recognition'];
+      const types = [...new Set(allDeptAwards.map(a => a.award_type))].filter(Boolean).sort((a, b) => {
+        const ia = typeOrder.indexOf(a); const ib = typeOrder.indexOf(b);
+        return (ia === -1 ? 999 : ia) - (ib === -1 ? 999 : ib);
+      });
+
+      let html = `<button class="award-type-btn ${currentDeptAwardType === 'all' ? 'active' : ''}" data-type="all">All Types</button>`;
+      types.forEach(type => {
+        const displayType = type === 'Departmental Award' ? 'Team Award' : type;
+        html += `<button class="award-type-btn ${currentDeptAwardType === type ? 'active' : ''}" data-type="${type}">${displayType}</button>`;
+      });
+
+      filterContainer.innerHTML = html;
+
+      // Bind click handlers
+      filterContainer.querySelectorAll('.award-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentDeptAwardType = btn.dataset.type;
+          filterContainer.querySelectorAll('.award-type-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderDeptDetailView();
+        });
+      });
+    }
+
+    // ===== Render Award List =====
+    function renderDeptAwardList(awards) {
+      const listContainer = document.getElementById('dept-awards-list');
+
+      if (!awards || awards.length === 0) {
+        listContainer.innerHTML = '<div class="no-data-msg">No awards found for the selected filters.</div>';
+        return;
+      }
+
+      let html = '';
+      awards.forEach(award => {
+        const icon = award.award_type === 'Spot Bonus' ? '⭐' : (award.award_type === 'Special Recognition' ? '🌟' : '🏆');
+        const badgeClass = award.award_type === 'Spot Bonus' ? 'spot' : '';
+        const badgeLabel = award.award_type === 'Departmental Award' ? 'Team Award' : award.award_type;
+        const quarter = award._quarter || '';
+        const memberCount = (award.members && award.members.length) || 0;
+        const memberInfo = memberCount > 0 ? `Team of ${memberCount}` : 'Individual';
+        const bonus = formatBonusFull(award.bonus, award.currency);
+        const name = award.winner_name || 'Unknown';
+        const email = award.email || '';
+
+        html += `
+          <div class="dept-award-item">
+            <div class="dept-award-icon">${icon}</div>
+            <div class="dept-award-info">
+              <div class="dept-award-name">${name}</div>
+              ${email ? `<div class="dept-award-email">${email}</div>` : ''}
+              <div class="dept-award-meta">
+                ${quarter ? `<span>${quarter} 2026</span>` : ''}
+                <span>${memberInfo}</span>
+              </div>
+            </div>
+            <span class="dept-award-type-badge ${badgeClass}">${badgeLabel}</span>
+            <div class="dept-award-bonus">${bonus}</div>
+          </div>
+        `;
+      });
+
+      listContainer.innerHTML = html;
+    }
+
+    // ===== Quarter Tab Handlers =====
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('#dept-quarter-tabs .quarter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentDeptQuarter = tab.dataset.quarter;
+          renderDeptDetailView();
+        });
+      });
+
+      // Search handlers
+      const searchInput = document.getElementById('dept-search-input');
+      const searchBtn = document.getElementById('dept-search-btn');
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          deptSearchQuery = (searchInput.value || '').trim();
+          renderDeptDetailView();
+        });
+      }
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            deptSearchQuery = (searchInput.value || '').trim();
+            renderDeptDetailView();
+          }
+        });
+        searchInput.addEventListener('input', () => {
+          if (!searchInput.value.trim()) {
+            deptSearchQuery = '';
+            renderDeptDetailView();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

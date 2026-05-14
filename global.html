@@ -520,9 +520,137 @@
 
   <script src="js/award-api.js?v=20250514e"></script>
   <script src="js/main.js?v=20250520a"></script>
-  
+  <script>
+    // Global page specific initialization
+    let currentHalf = 'H1';
+    let globalData = null;
+    
+    // Period toggle handler
+    function initPeriodToggle() {
+      const periodBtns = document.querySelectorAll('.period-btn');
+      
+      periodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const period = btn.dataset.period;
+          if (period === currentHalf) return;
+          
+          periodBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          currentHalf = period;
+          
+          if (globalData) {
+            renderGlobalAwards(globalData, 'global-awards', currentHalf);
+            loadAllCardInteractions();
+          }
+        });
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Search handlers - always bind regardless of data loading errors (Bug 4 fix)
+      const searchInput = document.getElementById('search-input');
+      const searchBtn = document.getElementById('search-btn');
+      const searchResults = document.getElementById('search-results');
+      
+      // Bug 1 fix: Handle race condition where searchData is not yet loaded
+      async function performAndShowSearch() {
+        console.log("[Search Debug] called, query:", searchInput?.value, "searchData:", !!searchData);
+        const query = searchInput?.value || '';
+        if (!query) {
+          searchResults.classList.remove('active');
+          return;
+        }
+        // If search data is still loading, show loading message and retry
+        if (!searchData) {
+          searchResults.innerHTML = '<div class="no-results">Loading search data, please wait...</div>';
+          searchResults.classList.add('active');
+          // Wait for search data to be loaded (retry every 300ms, up to 10s)
+          for (let i = 0; i < 33; i++) {
+            await new Promise(r => setTimeout(r, 300));
+            if (searchData) break;
+          }
+          if (!searchData) {
+            searchResults.innerHTML = '<div class="no-results">Search data failed to load. Please try again later.</div>';
+            return;
+          }
+        }
+        const results = performSearch(query, 'global'); // Bug 3 fix: search all data, not just global
+        renderSearchResults(results, 'search-results');
+        searchResults.classList.add('active');
+      }
+      
+      if (searchBtn) {
+        searchBtn.addEventListener('click', performAndShowSearch);
+      }
+      
+      if (searchInput) {
+        searchInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            performAndShowSearch();
+          }
+        });
+      }
+      
+      // Data loading in try-catch (search binding is already done above)
+      try {
+        highlightNavigation();
+        initYearNavigation();
+        initPeriodToggle();
+        
+        globalData = await loadData('global');
+        
+        console.log('=== GLOBAL PAGE DEBUG ===');
+        console.log('globalData loaded:', !!globalData);
+        if (globalData) {
+          console.log('H1项目奖 count:', (globalData['H1项目奖'] || []).length);
+          console.log('H2项目奖 count:', (globalData['H2项目奖'] || []).length);
+          console.log('Data keys:', Object.keys(globalData));
+        }
+        
+        if (globalData) {
+          // Calculate and render FULL YEAR Top 3
+          const top3 = calculateGlobalTop3FullYear(globalData);
+          renderPodium(top3, 'global-top3');
+          
+          // Render awards by default (H1)
+          console.log('Calling renderGlobalAwards with half:', currentHalf);
+          renderGlobalAwards(globalData, 'global-awards', currentHalf);
+          
+          // Load like/comment interactions from API
+          loadAllCardInteractions();
+        }
+        
+        await loadSearchData();
 
-
-
+      } catch (error) {
+        console.error('Error loading global page:', error);
+        document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+      }
+      
+      // Handle year change without page reload
+      window.addEventListener('yearChanged', async (e) => {
+        const newYear = e.detail.year;
+        try {
+          globalData = await loadData('global', null, newYear);
+          if (globalData) {
+            // Re-render full year Top 3
+            const top3 = calculateGlobalTop3FullYear(globalData);
+            renderPodium(top3, 'global-top3');
+            // Re-render awards with current half
+            renderGlobalAwards(globalData, 'global-awards', currentHalf);
+            // Reload interactions for new cards
+            loadAllCardInteractions();
+          } else {
+            document.getElementById('global-top3').innerHTML = '';
+            document.getElementById('global-awards').innerHTML = '<div class="no-data-msg">No global awards available for ' + newYear + '.</div>';
+          }
+        } catch (err) {
+          console.error('Error reloading global data on year change:', err);
+          document.getElementById('global-awards').innerHTML = '<p style="color: var(--text-secondary);">Failed to load data. Please try again later.</p>';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
