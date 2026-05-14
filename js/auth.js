@@ -5,10 +5,10 @@
 
 const FeishuAuth = {
   // App ID from Feishu Developer Console
-  APP_ID: 'cli_a968a864a0f89bdd',
+  APP_ID: 'cli_aa8858d3f0a6dccd',
   
   // Website URL
-  WEBSITE_URL: 'https://13966125966-jpg.github.io/tiktok-awards/',
+  WEBSITE_URL: 'https://tiktok-shop-awards.github.io/tiktok-awards/',
   
   // State to track authentication status
   isAuthenticated: false,

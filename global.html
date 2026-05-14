@@ -521,7 +521,8 @@
     </div>
   </div>
 
-  <script src="js/award-api.js?v=20250514h"></script>
+    <script src="https://lf1-cdn-tos.bytegoofy.com/goofy/lark/op/h5-js-sdk-1.5.16.js"></script>
+<script src="js/award-api.js?v=20250514h"></script>
   <script src="js/main.js?v=20250520a"></script>
   <script>
     // Global page specific initialization
@@ -659,64 +660,5 @@
 
 
 
-<script>
-(function(){
-  var BASE="https://da1e5fb0.aipa.bytedance.net";
-  var box=document.createElement("div");
-  box.id="auth-test";
-  box.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;padding:20px;overflow-y:auto;font:13px/1.6 monospace;color:#eee";
-  box.innerHTML="<b style='font-size:16px'>🔬 Auth Login API Test</b><br><br>Running...<br><br>";
-  box.onclick=function(){box.remove()};
-  document.body.appendChild(box);
-  function log(s){box.innerHTML+=s+"<br>";box.scrollTop=box.scrollHeight}
-  async function run(){
-    // 1. Check if /api/auth/login exists
-    log("─── 1. POST /api/auth/login (fake code) ───");
-    try{var r=await fetch(BASE+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:"test_fake_code"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));var t=await r.text();log("Response: "+t.substring(0,500))}catch(e){log("FAIL: "+e.message)}
-
-    // 2. Check if we have authCode from FeishuAuth
-    log("<br>─── 2. Check FeishuAuth ───");
-    if(typeof FeishuAuth!=='undefined'){
-      log("FeishuAuth exists: ✅");
-      log("authenticated: "+(FeishuAuth.userInfo?FeishuAuth.userInfo.authenticated:false));
-      log("authCode: "+(FeishuAuth.userInfo?FeishuAuth.userInfo.authCode:"none"));
-      log("timestamp: "+(FeishuAuth.userInfo?FeishuAuth.userInfo.timestamp:"none"));
-    } else {
-      log("FeishuAuth: ❌ not found");
-    }
-
-    // 3. Check h5sdk/tt
-    log("<br>─── 3. Check Feishu SDK ───");
-    log("window.h5sdk: "+(window.h5sdk?"✅":"❌"));
-    log("window.tt: "+(window.tt?"✅":"❌"));
-    log("tt.requestAuthCode: "+(window.tt&&window.tt.requestAuthCode?"✅":"❌"));
-
-    // 4. Try getting real authCode
-    log("<br>─── 4. Try getting real authCode ───");
-    if(window.tt&&window.tt.requestAuthCode){
-      window.tt.requestAuthCode({
-        appId:"cli_aa8858d3f0a6dccd",
-        success:function(res){
-          log("Got authCode: "+res.code+" ✅");
-          // Test login with real code
-          log("<br>─── 5. POST /api/auth/login (real code) ───");
-          fetch(BASE+"/api/auth/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({code:res.code}),signal:AbortSignal.timeout(8000)}).then(function(r){
-            log("Status: "+r.status+(r.ok?" ✅":" ❌"));
-            return r.text();
-          }).then(function(t){log("Response: "+t.substring(0,500))}).catch(function(e){log("FAIL: "+e.message)});
-        },
-        fail:function(err){
-          log("requestAuthCode failed: "+JSON.stringify(err));
-        }
-      });
-    } else {
-      log("Cannot get authCode - SDK not available");
-    }
-
-    log("<br><b style='color:#58a6ff'>Waiting for authCode test... Click anywhere to close.</b>");
-  }
-  setTimeout(run,1500);
-})();
-</script>
 </body>
 </html>
