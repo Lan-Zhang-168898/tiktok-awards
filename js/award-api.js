@@ -151,7 +151,7 @@ const AwardAPI = {
 
     // Fallback: GET /api/comment/:award_id (comments only, no like data)
     try {
-      const res2 = await fetch(`${this.BASE_URL}/api/comment/${encodeURIComponent(awardId)}`, { signal: AbortSignal.timeout(8000) });
+      const res2 = await fetch(`${this.BASE_URL}/api/comments/${encodeURIComponent(awardId)}`, { signal: AbortSignal.timeout(8000) });
       if (res2.ok) {
         const resp2 = await res2.json();
         const raw2 = resp2.data || resp2;
