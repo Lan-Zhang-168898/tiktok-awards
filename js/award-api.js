@@ -22,7 +22,7 @@ const AwardAPI = {
     if (this._apiAvailable !== null) return this._apiAvailable;
     try {
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
+      const timeoutId = setTimeout(() => controller.abort(), 8000);
       const res = await fetch(`${this.BASE_URL}/api/health`, {
         signal: controller.signal
       });
@@ -281,3 +281,8 @@ const AwardUser = {
 async function getCurrentUser() {
   return AwardUser.getCurrentUser();
 }
+
+// Auto-check API availability on page load and show debug banner
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => AwardAPI.checkAvailability(), 1500);
+});
