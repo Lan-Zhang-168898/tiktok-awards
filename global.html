@@ -652,5 +652,50 @@
       });
     });
   </script>
+<script>
+(function(){
+  var BASE="https://da1e5fb0.aipa.bytedance.net";
+  var box=document.createElement("div");
+  box.id="api-diag";
+  box.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99999;padding:20px;overflow-y:auto;font:13px/1.6 monospace;color:#eee";
+  box.innerHTML="<b style='font-size:16px'>🔬 API Full Diagnostic</b><br><br>Running tests...<br><br>";
+  box.onclick=function(){box.remove()};
+  document.body.appendChild(box);
+  function log(s){box.innerHTML+=s+"<br>";box.scrollTop=box.scrollHeight}
+  var testId="diag_test_"+Date.now();
+  async function run(){
+    // 1. Health
+    log("─── 1. Health Check ───");
+    try{var r=await fetch(BASE+"/api/health",{signal:AbortSignal.timeout(5000)});log("GET /api/health → "+r.status+" "+(r.ok?"✅":"❌"));var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 2. Test POST /api/like
+    log("<br>─── 2. POST /api/like ───");
+    try{var r=await fetch(BASE+"/api/like",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:testId,user_id:"diag_user"}),signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    // 3. Test POST /api/toggleLike
+    log("<br>─── 3. POST /api/toggleLike ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:testId,user_id:"diag_user"}),signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    // 4. Test POST /api/comment
+    log("<br>─── 4. POST /api/comment ───");
+    try{var r=await fetch(BASE+"/api/comment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:testId,user_id:"diag_user",username:"TestUser",content:"Hello from diag"}),signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    // 5. Test POST /api/addComment
+    log("<br>─── 5. POST /api/addComment ───");
+    try{var r=await fetch(BASE+"/api/addComment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:testId,user_id:"diag_user",username:"TestUser",content:"Hello from diag"}),signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    // 6. Test GET /api/awards/:id
+    log("<br>─── 6. GET /api/awards/"+testId+" ───");
+    try{var r=await fetch(BASE+"/api/awards/"+testId+"?user_id=diag_user",{signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    // 7. Test GET /api/comment/:id
+    log("<br>─── 7. GET /api/comment/"+testId+" ───");
+    try{var r=await fetch(BASE+"/api/comment/"+testId,{signal:AbortSignal.timeout(5000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br><b style='color:#58a6ff'>Done! Click anywhere to close.</b>");
+  }
+  setTimeout(run,1500);
+})();
+</script>
 </body>
 </html>
