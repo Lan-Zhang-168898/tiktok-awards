@@ -1,6 +1,7 @@
 /**
- * Feishu Auth - Minimal version
- * Auth is handled by award-api.js, this file just shows content
+ * Feishu Auth - Minimal stub
+ * Real auth is handled by award-api.js using h5sdk
+ * This file just shows content and does NOT call any Feishu APIs
  */
 const FeishuAuth = {
   APP_ID: 'cli_aa8858d3f0a6dccd',
@@ -8,7 +9,7 @@ const FeishuAuth = {
   userInfo: null,
 
   async init() {
-    console.log('[FeishuAuth] init - show content directly');
+    // Just show content, nothing else
     var overlay = document.getElementById('auth-overlay');
     var content = document.getElementById('main-content');
     if (overlay) overlay.style.display = 'none';
@@ -17,14 +18,9 @@ const FeishuAuth = {
 
   isInFeishu() {
     return !!(window.h5sdk || window.tt);
-  },
-
-  getCurrentUrl() {
-    return window.location.href.split('?')[0];
   }
 };
 
-// Auto init
 document.addEventListener('DOMContentLoaded', function() {
   FeishuAuth.init();
 });

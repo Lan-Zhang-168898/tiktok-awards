@@ -237,60 +237,17 @@ const AwardUser = {
   async getCurrentUser() {
     if (this._cachedUser) return this._cachedUser;
 
-    // 1. Try Feishu SDK to get real name (works when app is properly published)
-    if (window.h5sdk || window.tt) {
-      try {
-        var tt = window.tt;
-        if (tt && tt.requestAuthCode) {
-          // MUST wait for h5sdk.ready before calling requestAuthCode
-          await new Promise(function(resolve) {
-            if (window.h5sdk && window.h5sdk.ready) {
-              window.h5sdk.ready(function() { resolve(); });
-            } else {
-              resolve();
-            }
-          });
-          var code = await new Promise(function(resolve) {
-            tt.requestAuthCode({
-              appId: 'cli_aa8858d3f0a6dccd',
-              success: function(res) { console.log('[Auth] requestAuthCode success'); resolve(res.code); },
-              fail: function(err) { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); resolve(null); }
-            });
-          });
-          if (code) {
-            // Try to get user info via AIPA backend
-            try {
-              var loginRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ code: code }),
-                signal: AbortSignal.timeout(5000)
-              });
-              if (loginRes.ok) {
-                var loginData = await loginRes.json();
-                if (loginData.success && loginData.data) {
-                  this._cachedUser = { userId: loginData.data.user_id, username: loginData.data.username || '' };
-                  console.log('[Auth] Got Feishu user:', loginData.data.username);
-                  return this._cachedUser;
-                }
-              }
-            } catch (e) {
-              console.warn('[AwardUser] Auth login failed:', e.message);
-            }
-          }
-        }
-      } catch (e) {
-        console.warn('[AwardUser] Feishu auth failed:', e.message);
+    // Use FeishuAuthHelper if available, otherwise fallback
+    if (typeof FeishuAuthHelper !== 'undefined') {
+      this._cachedUser = await FeishuAuthHelper.getUser();
+    } else {
+      var uid = localStorage.getItem('award_uid');
+      if (!uid) {
+        uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+        localStorage.setItem('award_uid', uid);
       }
+      this._cachedUser = { userId: uid, username: '' };
     }
-
-    // 2. Fallback: persistent random ID from localStorage
-    var uid = localStorage.getItem('award_uid');
-    if (!uid) {
-      uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
-      localStorage.setItem('award_uid', uid);
-    }
-    this._cachedUser = { userId: uid, username: '' };
     return this._cachedUser;
   },
 
