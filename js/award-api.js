@@ -68,15 +68,15 @@ const AwardAPI = {
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const resp = await res.json();
-      // Unwrap { success, data } wrapper and normalize has_liked -> liked
-      const data = resp.data || resp;
-      const result = {
-        liked: data.has_liked !== undefined ? data.has_liked : !!data.liked,
-        like_count: data.like_count || 0
-      };
       // Invalidate cache for this award
       delete this._cache[awardId];
-      return result;
+      // Backend returns: {success, action: "like"/"unlike", message}
+      // action="like" means liked, action="unlike" means unliked
+      const isLiked = resp.action === 'like';
+      // Fetch fresh count from backend
+      const freshData = await this.getAwardData(awardId, userId);
+      const likeCount = freshData ? freshData.like_count : (isLiked ? 1 : 0);
+      return { liked: isLiked, like_count: likeCount };
     } catch (e) {
       console.error('[AwardAPI] toggleLike failed:', e.message);
       return null;
@@ -100,10 +100,11 @@ const AwardAPI = {
         })
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
+      const resp = await res.json();
       // Invalidate cache for this award
       delete this._cache[awardId];
-      return data;
+      // Backend returns: {success, message, data: {id, award_id, user_id, username, content, createdAt}}
+      return resp.data || resp;
     } catch (e) {
       console.error('[AwardAPI] addComment failed:', e.message);
       return null;
