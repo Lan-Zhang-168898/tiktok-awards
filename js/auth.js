@@ -290,13 +290,9 @@ const FeishuAuth = {
    * Show error message
    */
   showError(message) {
-    console.log('[FeishuAuth] Showing error:', message);
-    
-    const overlay = document.getElementById('auth-overlay');
-    if (overlay) {
-      overlay.innerHTML = this.getErrorHTML(message);
-      overlay.style.display = 'flex';
-    }
+    console.log('[FeishuAuth] Auth error (showing content anyway):', message);
+    // Don't block the page - show content even if auth fails
+    this.showContent();
   },
   
   /**

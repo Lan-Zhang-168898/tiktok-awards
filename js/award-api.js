@@ -236,7 +236,45 @@ const AwardUser = {
   async getCurrentUser() {
     if (this._cachedUser) return this._cachedUser;
 
-    // Use persistent random ID stored in localStorage (no login needed)
+    // 1. Try Feishu SDK to get real name (works when app is properly published)
+    if (window.h5sdk || window.tt) {
+      try {
+        var tt = window.tt;
+        if (tt && tt.requestAuthCode) {
+          var code = await new Promise(function(resolve) {
+            tt.requestAuthCode({
+              appId: 'cli_aa8858d3f0a6dccd',
+              success: function(res) { resolve(res.code); },
+              fail: function() { resolve(null); }
+            });
+          });
+          if (code) {
+            // Try to get user info via AIPA backend
+            try {
+              var loginRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ code: code }),
+                signal: AbortSignal.timeout(5000)
+              });
+              if (loginRes.ok) {
+                var loginData = await loginRes.json();
+                if (loginData.success && loginData.data) {
+                  this._cachedUser = { userId: loginData.data.user_id, username: loginData.data.username || '' };
+                  return this._cachedUser;
+                }
+              }
+            } catch (e) {
+              console.warn('[AwardUser] Auth login failed:', e.message);
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('[AwardUser] Feishu auth failed:', e.message);
+      }
+    }
+
+    // 2. Fallback: persistent random ID from localStorage
     var uid = localStorage.getItem('award_uid');
     if (!uid) {
       uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
