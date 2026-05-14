@@ -1067,8 +1067,8 @@ img {
 
 .poster-container {
   width: 100%;
-  max-width: 700px;
-  min-height: 340px;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
   position: relative;
   background: linear-gradient(135deg, #0d1b3e 0%, #000000 100%);
   border-radius: var(--radius-md);
@@ -1094,12 +1094,13 @@ img {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  padding: 36px 40px;
-  gap: 36px;
+  padding: 32px 40px;
+  gap: 32px;
+  height: 100%;
 }
 
 .poster-left {
-  flex: 0 0 45%;
+  flex: 0 0 38%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1113,16 +1114,17 @@ img {
   justify-content: center;
   text-align: left;
   border-left: 1px solid rgba(212, 175, 55, 0.3);
-  padding-left: 36px;
+  padding-left: 32px;
+  overflow: hidden;
 }
 
 .poster-header {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   flex-shrink: 0;
 }
 
 .poster-brand {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
   letter-spacing: 2px;
   color: #d4af37;
@@ -1130,65 +1132,71 @@ img {
 }
 
 .poster-project {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: white;
-  margin-bottom: 12px;
-  line-height: 1.3;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .poster-award {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   letter-spacing: 1px;
   color: #d4af37;
-  margin-bottom: 16px;
-  flex-shrink: 0;
+  margin-bottom: 12px;
 }
 
 .poster-bonus {
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 700;
   color: white;
   margin-bottom: 0;
-  flex-shrink: 0;
 }
 
 .poster-reason {
-  font-size: 12px;
+  font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin-bottom: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
 }
 
 .poster-members-label {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 1px;
   color: #d4af37;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .poster-members {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.9);
-  line-height: 1.5;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .poster-footer {
   margin-top: auto;
   width: 100%;
-  padding-top: 16px;
+  padding-top: 10px;
   flex-shrink: 0;
 }
 
 .poster-line {
   height: 1px;
   background: linear-gradient(90deg, #d4af37, transparent);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .poster-brand-footer {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: white;
 }
