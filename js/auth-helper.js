@@ -14,6 +14,7 @@ const FeishuAuthHelper = {
   },
 
   _updateDebugPanel() {
+    if (!document.body) return;
     var panel = document.getElementById('auth-debug-panel');
     if (!panel) {
       panel = document.createElement('div');
@@ -162,3 +163,8 @@ const FeishuAuthHelper = {
     return this._user;
   }
 };
+
+// Auto-trigger auth on page load to show debug panel
+document.addEventListener('DOMContentLoaded', function() {
+  FeishuAuthHelper.getUser();
+});
