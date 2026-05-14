@@ -1068,7 +1068,7 @@ img {
 .poster-container {
   width: 100%;
   max-width: 800px;
-  aspect-ratio: 16 / 9;
+  min-height: 450px;
   position: relative;
   background: linear-gradient(135deg, #0d1b3e 0%, #000000 100%);
   border-radius: var(--radius-md);
@@ -1096,7 +1096,6 @@ img {
   align-items: stretch;
   padding: 32px 40px;
   gap: 32px;
-  height: 100%;
 }
 
 .poster-left {
@@ -1159,10 +1158,6 @@ img {
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
   margin-bottom: 10px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 8;
-  -webkit-box-orient: vertical;
 }
 
 .poster-members-label {
@@ -1176,10 +1171,6 @@ img {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.4;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }
 
 .poster-footer {
