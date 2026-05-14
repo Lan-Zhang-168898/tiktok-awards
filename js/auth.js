@@ -72,38 +72,30 @@ const FeishuAuth = {
    */
   async init() {
     console.log('[FeishuAuth] Initializing...');
-    console.log('[FeishuAuth] Is in Feishu:', this.isInFeishu());
     
-    // Check if already authenticated (session storage)
-    const storedAuth = sessionStorage.getItem('feishu_auth');
-    if (storedAuth) {
-      const authData = JSON.parse(storedAuth);
-      if (authData.expires > Date.now()) {
-        console.log('[FeishuAuth] Using cached authentication');
-        this.isAuthenticated = true;
-        this.userInfo = authData.userInfo;
-        this.showContent();
-        return;
-      } else {
-        sessionStorage.removeItem('feishu_auth');
+    // ALWAYS show content immediately - never block the page
+    this.showContent();
+    
+    // Try Feishu auth in background (non-blocking)
+    try {
+      const storedAuth = sessionStorage.getItem('feishu_auth');
+      if (storedAuth) {
+        const authData = JSON.parse(storedAuth);
+        if (authData.expires > Date.now()) {
+          console.log('[FeishuAuth] Using cached authentication');
+          this.isAuthenticated = true;
+          this.userInfo = authData.userInfo;
+          return;
+        } else {
+          sessionStorage.removeItem('feishu_auth');
+        }
       }
-    }
-    
-    // Check URL for auth code (from OAuth callback)
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get('code');
-    
-    if (code) {
-      console.log('[FeishuAuth] Received code from URL');
-      await this.handleAuthCallback(code);
-      return;
-    }
-    
-    if (this.isInFeishu()) {
-      await this.initFeishuSSO();
-    } else {
-      // External browser - try to open in Feishu automatically
-      this.handleExternalBrowser();
+      
+      if (this.isInFeishu()) {
+        this.initFeishuSSO();
+      }
+    } catch (e) {
+      console.warn('[FeishuAuth] Background auth failed:', e.message);
     }
   },
   
