@@ -747,5 +747,46 @@
   setTimeout(run,1500);
 })();
 </script>
+<script>
+(function(){
+  var BASE="https://da1e5fb0.aipa.bytedance.net";
+  var box=document.createElement("div");
+  box.id="deep-diag";
+  box.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;padding:20px;overflow-y:auto;font:13px/1.6 monospace;color:#eee";
+  box.innerHTML="<b style='font-size:16px'>🔬 Deep Request Diagnostic</b><br><br>Running...<br><br>";
+  box.onclick=function(){box.remove()};
+  document.body.appendChild(box);
+  function log(s){box.innerHTML+=s+"<br>";box.scrollTop=box.scrollHeight}
+  async function run(){
+    // 1. GET health - check ALL response headers
+    log("─── 1. GET /api/health - Full Headers ───");
+    try{var r=await fetch(BASE+"/api/health",{signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var h=[];r.headers.forEach(function(v,k){h.push(k+": "+v)});log("Headers:<br>"+h.join("<br>"));log("Body: "+(await r.text()).substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 2. OPTIONS preflight test
+    log("<br>─── 2. OPTIONS /api/toggleLike (preflight) ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"OPTIONS",headers:{"Origin":"https://tiktok-shop-awards.github.io","Access-Control-Request-Method":"POST","Access-Control-Request-Headers":"Content-Type"},signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var h=[];r.headers.forEach(function(v,k){h.push(k+": "+v)});log("Headers:<br>"+h.join("<br>"));log("Body: "+(await r.text()).substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 3. POST with no-cors mode
+    log("<br>─── 3. POST /api/toggleLike (no-cors mode) ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:"test",user_id:"test"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);log("Type: "+r.type);log("Ok: "+r.ok);var h=[];r.headers.forEach(function(v,k){h.push(k+": "+v)});log("Headers:<br>"+h.join("<br>"))}catch(e){log("FAIL: "+e.message)}
+
+    // 4. XHR POST test (alternative to fetch)
+    log("<br>─── 4. XHR POST /api/toggleLike ───");
+    var xhr=new XMLHttpRequest();
+    xhr.open("POST",BASE+"/api/toggleLike",true);
+    xhr.setRequestHeader("Content-Type","application/json");
+    xhr.onload=function(){log("XHR Status: "+xhr.status);log("XHR Response: "+xhr.responseText.substring(0,300))};
+    xhr.onerror=function(){log("XHR Error: Network error (likely CORS block)")};
+    xhr.send(JSON.stringify({award_id:"test",user_id:"test"}));
+
+    // 5. Check if it's a redirect issue
+    log("<br>─── 5. GET /api/toggleLike (redirect check) ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"GET",redirect:"manual",signal:AbortSignal.timeout(8000)});log("Status: "+r.status);log("Type: "+r.type);log("Redirected: "+r.redirected);var h=[];r.headers.forEach(function(v,k){h.push(k+": "+v)});log("Headers:<br>"+h.join("<br>"))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br><b style='color:#58a6ff'>Done! Click anywhere to close.</b>");
+  }
+  setTimeout(run,1500);
+})();
+</script>
 </body>
 </html>
