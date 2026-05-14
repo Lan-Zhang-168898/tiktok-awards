@@ -32,8 +32,6 @@ const AwardAPI = {
       console.warn('[AwardAPI] API not reachable, falling back to localStorage', e.message);
       this._apiAvailable = false;
     }
-    // Show debug banner
-    this._showDebugBanner();
     return this._apiAvailable;
   },
 
@@ -63,7 +61,7 @@ const AwardAPI = {
    */
   async toggleLike(awardId, userId) {
     try {
-      const res = await fetch(`${this.BASE_URL}/api/like`, {
+      const res = await fetch(`${this.BASE_URL}/api/toggleLike`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ award_id: awardId, user_id: userId })
@@ -91,7 +89,7 @@ const AwardAPI = {
    */
   async addComment(awardId, userId, username, content) {
     try {
-      const res = await fetch(`${this.BASE_URL}/api/comment`, {
+      const res = await fetch(`${this.BASE_URL}/api/addComment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -124,24 +122,34 @@ const AwardAPI = {
       return cached;
     }
 
-    try {
-      const res = await fetch(`${this.BASE_URL}/api/awards/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const resp = await res.json();
-      // Unwrap { success, data } wrapper and normalize has_liked -> liked
-      const raw = resp.data || resp;
-      const data = {
-        liked: raw.has_liked !== undefined ? raw.has_liked : !!raw.liked,
-        like_count: raw.like_count || 0,
-        comments: raw.comments || []
-      };
-      data._timestamp = Date.now();
-      this._cache[cacheKey] = data;
-      return data;
-    } catch (e) {
-      console.error('[AwardAPI] getAwardData failed:', e.message);
-      return null;
+    // Try multiple GET endpoint patterns
+    const paths = [
+      `/api/awards/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
+      `/api/getAwardData/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
+      `/api/award/${encodeURIComponent(awardId)}?user_id=${encodeURIComponent(userId)}`,
+    ];
+
+    for (const path of paths) {
+      try {
+        const res = await fetch(`${this.BASE_URL}${path}`, { signal: AbortSignal.timeout(8000) });
+        if (res.ok) {
+          const resp = await res.json();
+          const raw = resp.data || resp;
+          const data = {
+            liked: raw.has_liked !== undefined ? raw.has_liked : !!raw.liked,
+            like_count: raw.like_count || 0,
+            comments: raw.comments || []
+          };
+          data._timestamp = Date.now();
+          this._cache[cacheKey] = data;
+          return data;
+        }
+      } catch (e) {
+        continue;
+      }
     }
+    console.error('[AwardAPI] getAwardData failed: all paths returned non-200');
+    return null;
   },
 
   /**
@@ -281,8 +289,3 @@ const AwardUser = {
 async function getCurrentUser() {
   return AwardUser.getCurrentUser();
 }
-
-// Auto-check API availability on page load and show debug banner
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => AwardAPI.checkAvailability(), 1500);
-});
