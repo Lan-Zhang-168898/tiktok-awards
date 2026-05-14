@@ -660,5 +660,29 @@
 
 
 
+<script>
+(function(){
+  var box=document.createElement("div");
+  box.id="auth-d2";
+  box.style.cssText="position:fixed;top:10px;right:10px;background:#111;color:#eee;padding:15px;font:12px/1.5 monospace;z-index:99999;max-width:400px;border-radius:8px;border:1px solid #444";
+  box.innerHTML="Auth check...";
+  box.onclick=function(){box.remove()};
+  document.body.appendChild(box);
+  function log(s){box.innerHTML+="<br>"+s;box.scrollTop=box.scrollHeight}
+  log("h5sdk:"+!!window.h5sdk);
+  log("tt:"+!!window.tt);
+  log("tt.requestAuthCode:"+!!(window.tt&&window.tt.requestAuthCode));
+  if(window.tt&&window.tt.requestAuthCode){
+    window.tt.requestAuthCode({
+      appId:"cli_aa8858d3f0a6dccd",
+      success:function(res){log("SUCCESS code:"+res.code.substring(0,10)+"...")},
+      fail:function(err){log("FAIL:"+JSON.stringify(err))}
+    });
+  } else {
+    log("No SDK available");
+  }
+  log("Click to close");
+})();
+</script>
 </body>
 </html>
