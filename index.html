@@ -413,19 +413,7 @@
     }
     
     /* ==================== Feishu Auth Styles ==================== */
-    .auth-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: var(--bg-dark);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      padding: var(--spacing-lg);
-    }
+    
     
     .auth-container {
       max-width: 500px;
@@ -588,21 +576,9 @@
     }
     
     /* Loading spinner */
-    .auth-loading {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--spacing-lg);
-    }
     
-    .spinner {
-      width: 48px;
-      height: 48px;
-      border: 3px solid var(--bg-card);
-      border-top-color: var(--primary-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
+    
+    
     
     @keyframes spin {
       to { transform: rotate(360deg); }
@@ -611,12 +587,7 @@
 </head>
 <body>
   <!-- Auth Overlay -->
-  <div class="auth-overlay" id="auth-overlay">
-    <div class="auth-loading">
-      <div class="spinner"></div>
-      <p style="color: var(--text-secondary);">Initializing...</p>
-    </div>
-  </div>
+  
   
   <div class="page-wrapper">
     <!-- Header -->
