@@ -1281,7 +1281,9 @@ async function downloadPoster() {
     
     const canvas = await html2canvas(posterContent, {
       backgroundColor: '#0d1b3e',
-      scale: 2,
+      scale: 1,
+      width: 1920,
+      height: 1080,
       useCORS: true,
       logging: false
     });
