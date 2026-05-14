@@ -518,7 +518,7 @@
     </div>
   </div>
 
-  <script src="js/award-api.js?v=20250514e"></script>
+  <script src="js/award-api.js?v=20250514f"></script>
   <script src="js/main.js?v=20250520a"></script>
   <script>
     // Global page specific initialization
@@ -782,6 +782,38 @@
     // 5. Check if it's a redirect issue
     log("<br>─── 5. GET /api/toggleLike (redirect check) ───");
     try{var r=await fetch(BASE+"/api/toggleLike",{method:"GET",redirect:"manual",signal:AbortSignal.timeout(8000)});log("Status: "+r.status);log("Type: "+r.type);log("Redirected: "+r.redirected);var h=[];r.headers.forEach(function(v,k){h.push(k+": "+v)});log("Headers:<br>"+h.join("<br>"))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br><b style='color:#58a6ff'>Done! Click anywhere to close.</b>");
+  }
+  setTimeout(run,1500);
+})();
+</script>
+<script>
+(function(){
+  var BASE="https://da1e5fb0.aipa.bytedance.net";
+  var box=document.createElement("div");
+  box.id="verify-diag";
+  box.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;padding:20px;overflow-y:auto;font:13px/1.6 monospace;color:#eee";
+  box.innerHTML="<b style='font-size:16px'>🔬 Verify POST Routes After Fix</b><br><br>Running...<br><br>";
+  box.onclick=function(){box.remove()};
+  document.body.appendChild(box);
+  function log(s){box.innerHTML+=s+"<br>";box.scrollTop=box.scrollHeight}
+  var tid="vtest_"+Date.now();
+  async function run(){
+    log("─── 1. GET /api/health ───");
+    try{var r=await fetch(BASE+"/api/health",{signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));log("Body: "+(await r.text()).substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br>─── 2. POST /api/like (toggleLike) ───");
+    try{var r=await fetch(BASE+"/api/like",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:tid,user_id:"verify_user"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));var t=await r.text();log("Body: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br>─── 3. POST /api/comment ───");
+    try{var r=await fetch(BASE+"/api/comment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:tid,user_id:"verify_user",username:"VerifyTest",content:"Test comment"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));var t=await r.text();log("Body: "+t.substring(0,300))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br>─── 4. GET /api/awards/"+tid+" ───");
+    try{var r=await fetch(BASE+"/api/awards/"+tid+"?user_id=verify_user",{signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));var t=await r.text();log("Body: "+t.substring(0,500))}catch(e){log("FAIL: "+e.message)}
+
+    log("<br>─── 5. GET /api/comment/"+tid+" ───");
+    try{var r=await fetch(BASE+"/api/comment/"+tid,{signal:AbortSignal.timeout(8000)});log("Status: "+r.status+(r.ok?" ✅":" ❌"));var t=await r.text();log("Body: "+t.substring(0,500))}catch(e){log("FAIL: "+e.message)}
 
     log("<br><b style='color:#58a6ff'>Done! Click anywhere to close.</b>");
   }

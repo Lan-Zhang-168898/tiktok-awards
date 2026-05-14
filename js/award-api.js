@@ -61,7 +61,7 @@ const AwardAPI = {
    */
   async toggleLike(awardId, userId) {
     try {
-      const res = await fetch(`${this.BASE_URL}/api/toggleLike`, {
+      const res = await fetch(`${this.BASE_URL}/api/like`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ award_id: awardId, user_id: userId })
@@ -89,7 +89,7 @@ const AwardAPI = {
    */
   async addComment(awardId, userId, username, content) {
     try {
-      const res = await fetch(`${this.BASE_URL}/api/addComment`, {
+      const res = await fetch(`${this.BASE_URL}/api/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
