@@ -1,94 +1,117 @@
 /**
- * Feishu Auth Helper v6 - with visible debug
+ * Feishu Auth Helper v7
+ * Per Feishu docs: load JSSDK, then use requestAccess
+ * Try without h5sdk.config first (simple SSO)
  */
 const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_aa8858d3f0a6dccd',
 
-  _log(s) {
-    console.log('[AuthHelper]', s);
-    var d = document.getElementById('auth-dbg');
-    if (!d) {
-      d = document.createElement('div');
-      d.id = 'auth-dbg';
-      d.style.cssText = 'position:fixed;bottom:10px;left:10px;background:#111;color:#0f0;padding:8px 12px;font:11px/1.4 monospace;z-index:99999;border-radius:6px;max-width:400px;max-height:200px;overflow-y:auto;cursor:pointer;opacity:0.9';
-      d.onclick = function(){ d.remove(); };
-      document.body.appendChild(d);
-    }
-    d.innerHTML += s + '<br>';
-    d.scrollTop = d.scrollHeight;
-  },
-
   async getUser() {
     if (this._user) return this._user;
 
-    // Step 1: Check AIPA headers
-    this._log('Checking headers...');
-    try {
-      var headersRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/headers', {
-        signal: AbortSignal.timeout(5000)
-      });
-      var headersText = await headersRes.text();
-      this._log('Headers: ' + headersText.substring(0, 300));
-    } catch (e) {
-      this._log('Headers fail: ' + e.message);
+    // Step 1: If h5sdk/tt already available
+    if (window.h5sdk || window.tt) {
+      return this._tryAuth();
     }
 
-    // Step 2: Check h5sdk/tt
-    this._log('h5sdk:' + !!window.h5sdk + ' tt:' + !!window.tt);
-
-    if (window.h5sdk || window.tt) {
-      this._log('SDK available, trying auth...');
+    // Step 2: Load JSSDK dynamically (only in Feishu browser)
+    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+    if (isInFeishu) {
       try {
-        if (window.h5sdk && window.h5sdk.ready) {
-          await new Promise(r => window.h5sdk.ready(() => { this._log('h5sdk ready'); r(); }));
-        }
-        var tt = window.tt || {};
-        var code = null;
-
-        if (tt.requestAccess) {
-          this._log('Trying requestAccess...');
-          code = await new Promise(r => {
-            tt.requestAccess({ appID: this.APP_ID, scopeList: [],
-              success: res => { this._log('requestAccess OK!'); r(res.code); },
-              fail: err => { this._log('requestAccess fail: ' + JSON.stringify(err)); r(null); }
-            });
-          });
-        }
-        if (!code && tt.requestAuthCode) {
-          this._log('Trying requestAuthCode...');
-          code = await new Promise(r => {
-            tt.requestAuthCode({ appId: this.APP_ID,
-              success: res => { this._log('requestAuthCode OK!'); r(res.code); },
-              fail: err => { this._log('requestAuthCode fail: ' + JSON.stringify(err)); r(null); }
-            });
-          });
-        }
-
-        if (code) {
-          this._log('Got code, logging in...');
-          var loginRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ code: code }),
-            signal: AbortSignal.timeout(8000)
-          });
-          var loginText = await loginRes.text();
-          this._log('Login: ' + loginText.substring(0, 200));
-          var loginData = JSON.parse(loginText);
-          if (loginData.success && loginData.data) {
-            this._user = { userId: loginData.data.user_id, username: loginData.data.username || '' };
-            this._log('User: ' + this._user.username);
-            return this._user;
-          }
+        await this._loadJSSDK();
+        await new Promise(r => setTimeout(r, 300));
+        if (window.h5sdk || window.tt) {
+          return this._tryAuth();
         }
       } catch (e) {
-        this._log('SDK error: ' + e.message);
+        console.warn('[AuthHelper] JSSDK load failed:', e);
       }
     }
 
-    // Fallback
-    this._log('Using fallback ID');
+    return this._getFallbackUser();
+  },
+
+  _loadJSSDK() {
+    return new Promise((resolve, reject) => {
+      var s = document.createElement('script');
+      s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.44.js';
+      s.onload = () => { console.log('[AuthHelper] JSSDK loaded'); resolve(); };
+      s.onerror = (e) => { console.warn('[AuthHelper] JSSDK load error'); reject(e); };
+      document.head.appendChild(s);
+    });
+  },
+
+  async _tryAuth() {
+    try {
+      var h5sdk = window.h5sdk;
+      var tt = window.tt;
+      if (!h5sdk && !tt) return this._getFallbackUser();
+
+      // Wait for h5sdk.ready
+      if (h5sdk && h5sdk.ready) {
+        await new Promise(r => h5sdk.ready(() => { console.log('[AuthHelper] h5sdk ready'); r(); }));
+      }
+
+      // Try requestAccess first (recommended)
+      var code = null;
+      if (tt && tt.requestAccess) {
+        console.log('[AuthHelper] Trying requestAccess...');
+        code = await new Promise(r => {
+          tt.requestAccess({
+            appID: this.APP_ID,
+            scopeList: [],
+            success: res => { console.log('[AuthHelper] requestAccess OK'); r(res.code); },
+            fail: err => { console.warn('[AuthHelper] requestAccess fail:', JSON.stringify(err)); r(null); }
+          });
+        });
+      }
+
+      // Fallback to requestAuthCode
+      if (!code && tt && tt.requestAuthCode) {
+        console.log('[AuthHelper] Trying requestAuthCode...');
+        code = await new Promise(r => {
+          tt.requestAuthCode({
+            appId: this.APP_ID,
+            success: res => { console.log('[AuthHelper] requestAuthCode OK'); r(res.code); },
+            fail: err => { console.warn('[AuthHelper] requestAuthCode fail:', JSON.stringify(err)); r(null); }
+          });
+        });
+      }
+
+      if (code) {
+        return await this._loginWithCode(code);
+      }
+    } catch (e) {
+      console.warn('[AuthHelper] Auth error:', e.message);
+    }
+    return this._getFallbackUser();
+  },
+
+  async _loginWithCode(code) {
+    try {
+      const res = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: code }),
+        signal: AbortSignal.timeout(8000)
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success && data.data) {
+          this._user = { userId: data.data.user_id, username: data.data.username || '' };
+          console.log('[AuthHelper] Got user:', this._user.username);
+          sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
+          return this._user;
+        }
+      }
+    } catch (e) {
+      console.warn('[AuthHelper] Login failed:', e.message);
+    }
+    return this._getFallbackUser();
+  },
+
+  _getFallbackUser() {
     var uid = localStorage.getItem('award_uid');
     if (!uid) {
       uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
