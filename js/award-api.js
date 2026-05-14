@@ -21,38 +21,12 @@ const AwardAPI = {
   async checkAvailability() {
     if (this._apiAvailable !== null) return this._apiAvailable;
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000);
-      const res = await fetch(`${this.BASE_URL}/api/health`, {
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
+      const res = await fetch(`${this.BASE_URL}/api/health`, { signal: AbortSignal.timeout(8000) });
       this._apiAvailable = res.ok;
     } catch (e) {
-      console.warn('[AwardAPI] API not reachable, falling back to localStorage', e.message);
       this._apiAvailable = false;
     }
     return this._apiAvailable;
-  },
-
-  _showDebugBanner() {
-    const existing = document.getElementById('api-debug-banner');
-    if (existing) return;
-    const banner = document.createElement('div');
-    banner.id = 'api-debug-banner';
-    const isOnline = this._apiAvailable;
-    banner.style.cssText = 'position:fixed;bottom:10px;right:10px;padding:8px 14px;border-radius:8px;font-size:12px;z-index:99999;font-family:monospace;max-width:300px;line-height:1.4;cursor:pointer;' +
-      (isOnline
-        ? 'background:#e6f9ee;color:#1a7f37;border:1px solid #1a7f37;'
-        : 'background:#fff0f0;color:#cf222e;border:1px solid #cf222e;');
-    banner.innerHTML = isOnline
-      ? '✅ API Connected<br><small>AIPA backend is active</small>'
-      : '⚠️ API Offline<br><small>Using localStorage (data NOT shared)</small>';
-    banner.title = 'Click to dismiss';
-    banner.onclick = () => banner.remove();
-    document.body.appendChild(banner);
-    // Auto-hide after 8s
-    setTimeout(() => { if (banner.parentNode) banner.remove(); }, 8000);
   },
 
   /**

@@ -1152,10 +1152,6 @@ img {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   margin-bottom: 20px;
   padding: 0 10px;
   flex-shrink: 1;
@@ -1174,7 +1170,6 @@ img {
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.4;
   max-width: 90%;
-  max-height: 90px;
   overflow: hidden;
   flex-shrink: 1;
 }
