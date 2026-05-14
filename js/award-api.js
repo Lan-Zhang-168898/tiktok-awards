@@ -242,11 +242,19 @@ const AwardUser = {
       try {
         var tt = window.tt;
         if (tt && tt.requestAuthCode) {
+          // MUST wait for h5sdk.ready before calling requestAuthCode
+          await new Promise(function(resolve) {
+            if (window.h5sdk && window.h5sdk.ready) {
+              window.h5sdk.ready(function() { resolve(); });
+            } else {
+              resolve();
+            }
+          });
           var code = await new Promise(function(resolve) {
             tt.requestAuthCode({
               appId: 'cli_aa8858d3f0a6dccd',
-              success: function(res) { resolve(res.code); },
-              fail: function() { resolve(null); }
+              success: function(res) { console.log('[Auth] requestAuthCode success'); resolve(res.code); },
+              fail: function(err) { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); resolve(null); }
             });
           });
           if (code) {
@@ -262,6 +270,7 @@ const AwardUser = {
                 var loginData = await loginRes.json();
                 if (loginData.success && loginData.data) {
                   this._cachedUser = { userId: loginData.data.user_id, username: loginData.data.username || '' };
+                  console.log('[Auth] Got Feishu user:', loginData.data.username);
                   return this._cachedUser;
                 }
               }
