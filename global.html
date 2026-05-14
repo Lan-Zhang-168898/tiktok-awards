@@ -697,5 +697,55 @@
   setTimeout(run,1500);
 })();
 </script>
+<script>
+(function(){
+  var BASE="https://da1e5fb0.aipa.bytedance.net";
+  var box=document.createElement("div");
+  box.id="cors-diag";
+  box.style.cssText="position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:99999;padding:20px;overflow-y:auto;font:13px/1.6 monospace;color:#eee";
+  box.innerHTML="<b style='font-size:16px'>🔬 CORS + API Diagnostic</b><br><br>Running...<br><br>";
+  box.onclick=function(){box.remove()};
+  document.body.appendChild(box);
+  function log(s){box.innerHTML+=s+"<br>";box.scrollTop=box.scrollHeight}
+  async function run(){
+    // 1. Simple GET (no preflight needed)
+    log("─── 1. GET /api/health (simple request) ───");
+    try{var r=await fetch(BASE+"/api/health",{signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200));log("Headers: content-type="+r.headers.get("content-type")+" access-control-allow-origin="+r.headers.get("access-control-allow-origin"))}catch(e){log("FAIL: "+e.message)}
+
+    // 2. POST with JSON body (triggers CORS preflight)
+    log("<br>─── 2. POST /api/toggleLike (preflight) ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:"cors_test",user_id:"test"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200));log("Headers: access-control-allow-origin="+r.headers.get("access-control-allow-origin")+" access-control-allow-methods="+r.headers.get("access-control-allow-methods"))}catch(e){log("FAIL: "+e.message)}
+
+    // 3. POST as text/plain (no preflight)
+    log("<br>─── 3. POST /api/toggleLike (text/plain, no preflight) ───");
+    try{var r=await fetch(BASE+"/api/toggleLike",{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({award_id:"cors_test",user_id:"test"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 4. POST /api/like (original code path)
+    log("<br>─── 4. POST /api/like (original path) ───");
+    try{var r=await fetch(BASE+"/api/like",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:"cors_test",user_id:"test"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 5. POST /api/comment
+    log("<br>─── 5. POST /api/comment ───");
+    try{var r=await fetch(BASE+"/api/comment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:"cors_test",user_id:"test",username:"Test",content:"hi"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 6. POST /api/addComment
+    log("<br>─── 6. POST /api/addComment ───");
+    try{var r=await fetch(BASE+"/api/addComment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({award_id:"cors_test",user_id:"test",username:"Test",content:"hi"}),signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 7. GET /api/awards/cors_test
+    log("<br>─── 7. GET /api/awards/cors_test ───");
+    try{var r=await fetch(BASE+"/api/awards/cors_test?user_id=test",{signal:AbortSignal.timeout(8000)});log("Status: "+r.status);var t=await r.text();log("Response: "+t.substring(0,200))}catch(e){log("FAIL: "+e.message)}
+
+    // 8. Check current page origin
+    log("<br>─── 8. Current Origin ───");
+    log("Origin: "+window.location.origin);
+    log("Protocol: "+window.location.protocol);
+    log("Host: "+window.location.host);
+
+    log("<br><b style='color:#58a6ff'>Done! Click anywhere to close.</b>");
+  }
+  setTimeout(run,1500);
+})();
+</script>
 </body>
 </html>
