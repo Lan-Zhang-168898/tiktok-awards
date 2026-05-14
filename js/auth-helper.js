@@ -1,6 +1,8 @@
 /**
- * Feishu Auth Helper v5 - Safe OAuth redirect
- * Prevents infinite redirect loops
+ * Feishu Auth Helper v6
+ * 1. Check headers for user info
+ * 2. Try requestAccess/requestAuthCode if h5sdk/tt available
+ * 3. Fallback to random ID
  */
 const FeishuAuthHelper = {
   _user: null,
@@ -9,72 +11,72 @@ const FeishuAuthHelper = {
   async getUser() {
     if (this._user) return this._user;
 
-    // Step 1: Check URL for code (from OAuth callback)
-    var urlParams = new URLSearchParams(window.location.search);
-    var code = urlParams.get('code');
+    // Step 1: Try AIPA headers endpoint to see what Feishu sends
+    try {
+      var headersRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/headers', {
+        signal: AbortSignal.timeout(5000)
+      });
+      if (headersRes.ok) {
+        var headersData = await headersRes.json();
+        console.log('[AuthHelper] Headers response:', JSON.stringify(headersData));
+        // Check if headers contain user info
+        if (headersData.user_id || headersData.open_id) {
+          this._user = {
+            userId: headersData.user_id || headersData.open_id,
+            username: headersData.username || headersData.name || ''
+          };
+          console.log('[AuthHelper] Got user from headers:', this._user.username);
+          return this._user;
+        }
+      }
+    } catch (e) {
+      console.warn('[AuthHelper] Headers check failed:', e.message);
+    }
 
-    if (code) {
-      console.log('[AuthHelper] Got code from URL');
-      // Clean URL immediately
-      var cleanUrl = window.location.pathname + window.location.hash;
-      window.history.replaceState({}, '', cleanUrl);
-
+    // Step 2: Try h5sdk/tt if available (won't be in Feishu desktop, but just in case)
+    if (window.h5sdk || window.tt) {
       try {
-        const loginRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ code: code }),
-          signal: AbortSignal.timeout(8000)
-        });
-        if (loginRes.ok) {
-          const loginData = await loginRes.json();
-          if (loginData.success && loginData.data) {
-            this._user = { userId: loginData.data.user_id, username: loginData.data.username || '' };
-            console.log('[AuthHelper] Got user:', this._user.username);
-            sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
-            return this._user;
+        if (window.h5sdk && window.h5sdk.ready) {
+          await new Promise(r => window.h5sdk.ready(() => r()));
+        }
+        var tt = window.tt || {};
+        var code = null;
+
+        if (tt.requestAccess) {
+          code = await new Promise(r => {
+            tt.requestAccess({ appID: this.APP_ID, scopeList: [],
+              success: res => r(res.code), fail: () => r(null) });
+          });
+        }
+        if (!code && tt.requestAuthCode) {
+          code = await new Promise(r => {
+            tt.requestAuthCode({ appId: this.APP_ID,
+              success: res => r(res.code), fail: () => r(null) });
+          });
+        }
+
+        if (code) {
+          var loginRes = await fetch('https://da1e5fb0.aipa.bytedance.net/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code: code }),
+            signal: AbortSignal.timeout(8000)
+          });
+          if (loginRes.ok) {
+            var loginData = await loginRes.json();
+            if (loginData.success && loginData.data) {
+              this._user = { userId: loginData.data.user_id, username: loginData.data.username || '' };
+              sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
+              return this._user;
+            }
           }
         }
       } catch (e) {
-        console.warn('[AuthHelper] AIPA login failed:', e.message);
+        console.warn('[AuthHelper] SDK auth failed:', e.message);
       }
-      // Code exchange failed - mark this attempt to prevent retry loop
-      sessionStorage.setItem('auth_attempted', 'true');
-      console.warn('[AuthHelper] Code exchange failed, using fallback');
-      return this._getFallbackUser();
     }
 
-    // Step 2: Check cached user
-    var cached = sessionStorage.getItem('feishu_user');
-    if (cached) {
-      try {
-        this._user = JSON.parse(cached);
-        if (this._user && this._user.userId) return this._user;
-      } catch (e) {}
-    }
-
-    // Step 3: Check if we already tried OAuth this session (prevent loop)
-    if (sessionStorage.getItem('auth_attempted') === 'true') {
-      console.log('[AuthHelper] Already tried OAuth this session, using fallback');
-      return this._getFallbackUser();
-    }
-
-    // Step 4: If in Feishu, redirect to OAuth ONCE
-    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
-    if (isInFeishu) {
-      sessionStorage.setItem('auth_attempted', 'true');
-      var redirectUri = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
-      var oauthUrl = 'https://open.feishu.cn/open-apis/authen/v1/authorize?app_id=' + this.APP_ID + '&redirect_uri=' + redirectUri;
-      console.log('[AuthHelper] Redirecting to OAuth');
-      window.location.href = oauthUrl;
-      return new Promise(() => {});
-    }
-
-    // Step 5: Not in Feishu, fallback
-    return this._getFallbackUser();
-  },
-
-  _getFallbackUser() {
+    // Step 3: Fallback
     var uid = localStorage.getItem('award_uid');
     if (!uid) {
       uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
