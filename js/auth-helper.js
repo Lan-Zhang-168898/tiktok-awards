@@ -1,7 +1,6 @@
 /**
- * Feishu Auth Helper v4
- * OAuth redirect flow - NO h5sdk, NO requestAuthCode
- * Uses standard Feishu OAuth authorize URL
+ * Feishu Auth Helper v5 - Safe OAuth redirect
+ * Prevents infinite redirect loops
  */
 const FeishuAuthHelper = {
   _user: null,
@@ -16,6 +15,7 @@ const FeishuAuthHelper = {
 
     if (code) {
       console.log('[AuthHelper] Got code from URL');
+      // Clean URL immediately
       var cleanUrl = window.location.pathname + window.location.hash;
       window.history.replaceState({}, '', cleanUrl);
 
@@ -38,6 +38,10 @@ const FeishuAuthHelper = {
       } catch (e) {
         console.warn('[AuthHelper] AIPA login failed:', e.message);
       }
+      // Code exchange failed - mark this attempt to prevent retry loop
+      sessionStorage.setItem('auth_attempted', 'true');
+      console.warn('[AuthHelper] Code exchange failed, using fallback');
+      return this._getFallbackUser();
     }
 
     // Step 2: Check cached user
@@ -49,9 +53,16 @@ const FeishuAuthHelper = {
       } catch (e) {}
     }
 
-    // Step 3: If in Feishu, redirect to OAuth authorize
+    // Step 3: Check if we already tried OAuth this session (prevent loop)
+    if (sessionStorage.getItem('auth_attempted') === 'true') {
+      console.log('[AuthHelper] Already tried OAuth this session, using fallback');
+      return this._getFallbackUser();
+    }
+
+    // Step 4: If in Feishu, redirect to OAuth ONCE
     var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
     if (isInFeishu) {
+      sessionStorage.setItem('auth_attempted', 'true');
       var redirectUri = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
       var oauthUrl = 'https://open.feishu.cn/open-apis/authen/v1/authorize?app_id=' + this.APP_ID + '&redirect_uri=' + redirectUri;
       console.log('[AuthHelper] Redirecting to OAuth');
@@ -59,7 +70,11 @@ const FeishuAuthHelper = {
       return new Promise(() => {});
     }
 
-    // Step 4: Not in Feishu, fallback
+    // Step 5: Not in Feishu, fallback
+    return this._getFallbackUser();
+  },
+
+  _getFallbackUser() {
     var uid = localStorage.getItem('award_uid');
     if (!uid) {
       uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
