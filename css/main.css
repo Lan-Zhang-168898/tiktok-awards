@@ -1068,7 +1068,7 @@ img {
 .poster-container {
   width: 100%;
   max-width: 400px;
-  aspect-ratio: 3 / 4;
+  min-height: 500px;
   position: relative;
   background: linear-gradient(180deg, #0d1b3e 0%, #000000 100%);
   border-radius: var(--radius-md);
@@ -1089,11 +1089,7 @@ img {
 }
 
 .poster-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
