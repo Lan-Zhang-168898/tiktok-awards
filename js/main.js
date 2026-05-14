@@ -1064,14 +1064,14 @@ function _renderComments(container, comments, isApiMode) {
     return;
   }
   container.innerHTML = comments.map(c => {
-    const author = isApiMode ? (c.username || 'Anonymous') : (c.author || 'Anonymous');
+    const author = isApiMode ? (c.username || '') : (c.author || '');
     const text = isApiMode ? c.content : c.text;
     const dateStr = isApiMode
       ? (c.created_at ? new Date(c.created_at).toLocaleDateString() : '')
       : new Date(c.timestamp).toLocaleDateString();
     return `
       <div class="comment-item">
-        <div class="comment-author">${author}</div>
+        ${author ? `<div class="comment-author">${author}</div>` : ''}
         <div class="comment-text">${text}</div>
         <div class="comment-date">${dateStr}</div>
       </div>

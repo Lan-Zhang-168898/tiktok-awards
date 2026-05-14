@@ -236,65 +236,14 @@ const AwardUser = {
   async getCurrentUser() {
     if (this._cachedUser) return this._cachedUser;
 
-    // 1. Try FeishuAuth.userInfo first (if auth.js is loaded and user is authenticated)
-    if (typeof FeishuAuth !== 'undefined' && FeishuAuth.userInfo && FeishuAuth.userInfo.authenticated) {
-      // FeishuAuth only stores authCode, not user name/open_id
-      // We need to get the actual user info from Feishu SDK
+    // Use persistent random ID stored in localStorage (no login needed)
+    var uid = localStorage.getItem('award_uid');
+    if (!uid) {
+      uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
+      localStorage.setItem('award_uid', uid);
     }
-
-    // 2. Try Feishu h5sdk/tt to get user info
-    if (window.h5sdk || window.tt) {
-      try {
-        const user = await this._getFeishuUser();
-        if (user) {
-          this._cachedUser = user;
-          return user;
-        }
-      } catch (e) {
-        console.warn('[AwardUser] Failed to get Feishu user info:', e.message);
-      }
-    }
-
-    // 3. Fallback to dev user
-    this._cachedUser = { userId: 'dev_user', username: 'Developer' };
+    this._cachedUser = { userId: uid, username: '' };
     return this._cachedUser;
-  },
-
-  async _getFeishuUser() {
-    // Try tt.getUserInfo or h5sdk user info APIs
-    const tt = window.tt;
-    if (!tt) return null;
-
-    // Try tt.requestAuthCode first to ensure we have a session
-    // Then try to get user info
-    return new Promise((resolve) => {
-      // Some Feishu H5 SDK versions support getUserInfo
-      if (tt.getUserInfo) {
-        tt.getUserInfo({
-          success: (res) => {
-            const userId = res.openId || res.open_id || res.userId || 'feishu_unknown';
-            const username = res.name || res.userName || res.nick || 'Feishu User';
-            resolve({ userId, username });
-          },
-          fail: () => {
-            // If getUserInfo fails, try getting info from the auth context
-            resolve(null);
-          }
-        });
-      } else if (tt.getNetworkType) {
-        // h5sdk is ready but no getUserInfo - use auth code as identifier
-        if (typeof FeishuAuth !== 'undefined' && FeishuAuth.userInfo && FeishuAuth.userInfo.authCode) {
-          resolve({
-            userId: 'feishu_' + FeishuAuth.userInfo.authCode.substring(0, 16),
-            username: 'Feishu User'
-          });
-        } else {
-          resolve(null);
-        }
-      } else {
-        resolve(null);
-      }
-    });
   },
 
   /**
