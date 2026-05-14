@@ -1,60 +1,76 @@
 /**
- * Feishu Auth Helper v8 - with debug panel
+ * Feishu Auth Helper v9
  * Per Feishu docs: load JSSDK, then use requestAccess
+ * No visible UI - console logging only
  */
 const FeishuAuthHelper = {
   _user: null,
   APP_ID: 'cli_aa8858d3f0a6dccd',
-  _debug: [],
 
-  _log(msg) {
-    console.log('[AuthHelper] ' + msg);
-    this._debug.push(msg);
-    this._updateDebugPanel();
-  },
+  // Suppress Feishu SDK error banners
+  _suppressSDKErrors() {
+    // Hide any SDK-injected error banners via CSS
+    var style = document.createElement('style');
+    style.textContent = '[class*="sdk-error"],[class*="auth-error"],[class*="lark-error"],[id*="sdk-error"],[id*="auth-error"],.error-toast,.sdk-error-bar,[class*="error-bar"],[class*="Error"],[class*="notice-bar"]{display:none!important}';
+    document.head.appendChild(style);
 
-  _updateDebugPanel() {
-    if (!document.body) return;
-    var panel = document.getElementById('auth-debug-panel');
-    if (!panel) {
-      panel = document.createElement('div');
-      panel.id = 'auth-debug-panel';
-      panel.style.cssText = 'position:fixed;bottom:10px;left:10px;background:rgba(0,0,0,0.9);color:#0f0;font:11px/1.5 monospace;padding:10px;border-radius:8px;z-index:99999;max-width:320px;max-height:220px;overflow-y:auto;border:1px solid #0f0;cursor:pointer';
-      panel.title = 'Click to dismiss';
-      panel.onclick = () => panel.remove();
-      document.body.appendChild(panel);
+    // Also use MutationObserver to remove any SDK error popups
+    var self = this;
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var text = node.textContent || '';
+            if (text.includes('认证失败') || text.includes('授权失败') || text.includes('Auth fail') || text.includes('Error')) {
+              if (!node.querySelector || (!node.querySelector('img') && !node.querySelector('.award-card'))) {
+                // Likely an SDK error banner, hide it
+                node.style.display = 'none';
+                console.log('[Auth] Suppressed SDK banner:', text.substring(0, 50));
+              }
+            }
+          }
+        });
+      });
+    });
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true });
     }
-    panel.innerHTML = '<b>🔍 Auth Debug</b><br>' + this._debug.map(s => '• ' + s).join('<br>');
+
+    // Intercept h5sdk.error
+    if (window.h5sdk && window.h5sdk.error) {
+      window.h5sdk.error(function(err) {
+        console.warn('[Auth] h5sdk error (suppressed):', JSON.stringify(err));
+      });
+    }
   },
 
   async getUser() {
     if (this._user) return this._user;
 
-    this._log('Feishu UA:' + /Lark|Feishu/i.test(navigator.userAgent));
-    this._log('h5sdk:' + !!window.h5sdk + ' tt:' + !!window.tt);
+    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
+    console.log('[Auth] Feishu UA:', isInFeishu, 'h5sdk:', !!window.h5sdk, 'tt:', !!window.tt);
+
+    // Suppress SDK error banners early
+    this._suppressSDKErrors();
 
     // Step 1: If h5sdk/tt already available
     if (window.h5sdk || window.tt) {
-      this._log('SDK already exists');
       return this._tryAuth();
     }
 
     // Step 2: Load JSSDK dynamically (only in Feishu browser)
-    var isInFeishu = /Lark|Feishu/i.test(navigator.userAgent);
     if (isInFeishu) {
       try {
-        this._log('Loading JSSDK v1.5.44...');
         await this._loadJSSDK();
         await new Promise(r => setTimeout(r, 500));
-        this._log('After load - h5sdk:' + !!window.h5sdk + ' tt:' + !!window.tt);
+        console.log('[Auth] After load - h5sdk:', !!window.h5sdk, 'tt:', !!window.tt);
+        this._suppressSDKErrors();
         if (window.h5sdk || window.tt) {
           return this._tryAuth();
         }
       } catch (e) {
-        this._log('JSSDK load FAILED: ' + e.message);
+        console.warn('[Auth] JSSDK load failed:', e);
       }
-    } else {
-      this._log('Not Feishu UA, skip');
     }
 
     return this._getFallbackUser();
@@ -64,8 +80,8 @@ const FeishuAuthHelper = {
     return new Promise((resolve, reject) => {
       var s = document.createElement('script');
       s.src = 'https://lf-scm-cn.feishucdn.com/lark/op/h5-js-sdk-1.5.44.js';
-      s.onload = () => { this._log('JSSDK script loaded'); resolve(); };
-      s.onerror = (e) => { this._log('JSSDK script ERROR'); reject(e); };
+      s.onload = () => { console.log('[Auth] JSSDK loaded'); resolve(); };
+      s.onerror = (e) => { console.warn('[Auth] JSSDK load error'); reject(e); };
       document.head.appendChild(s);
     });
   },
@@ -74,55 +90,47 @@ const FeishuAuthHelper = {
     try {
       var h5sdk = window.h5sdk;
       var tt = window.tt;
-      if (!h5sdk && !tt) {
-        this._log('No SDK for auth');
-        return this._getFallbackUser();
-      }
+      if (!h5sdk && !tt) return this._getFallbackUser();
 
       // Wait for h5sdk.ready
       if (h5sdk && h5sdk.ready) {
-        this._log('Waiting h5sdk.ready...');
-        await new Promise(r => h5sdk.ready(() => { this._log('h5sdk ready!'); r(); }));
+        await new Promise(r => h5sdk.ready(() => { console.log('[Auth] h5sdk ready'); r(); }));
       }
 
       // Try requestAccess first
       var code = null;
       if (tt && tt.requestAccess) {
-        this._log('Trying requestAccess...');
+        console.log('[Auth] Trying requestAccess...');
         code = await new Promise(r => {
           tt.requestAccess({
             appID: this.APP_ID,
             scopeList: [],
-            success: res => { this._log('requestAccess OK!'); r(res.code); },
-            fail: err => { this._log('requestAccess FAIL: ' + JSON.stringify(err)); r(null); }
+            success: res => { console.log('[Auth] requestAccess OK'); r(res.code); },
+            fail: err => { console.warn('[Auth] requestAccess fail:', JSON.stringify(err)); r(null); }
           });
         });
-      } else {
-        this._log('tt.requestAccess N/A');
       }
 
       // Fallback to requestAuthCode
       if (!code && tt && tt.requestAuthCode) {
-        this._log('Trying requestAuthCode...');
+        console.log('[Auth] Trying requestAuthCode...');
         code = await new Promise(r => {
           tt.requestAuthCode({
             appId: this.APP_ID,
-            success: res => { this._log('requestAuthCode OK!'); r(res.code); },
-            fail: err => { this._log('requestAuthCode FAIL: ' + JSON.stringify(err)); r(null); }
+            success: res => { console.log('[Auth] requestAuthCode OK'); r(res.code); },
+            fail: err => { console.warn('[Auth] requestAuthCode fail:', JSON.stringify(err)); r(null); }
           });
         });
-      } else if (!code) {
-        this._log('tt.requestAuthCode N/A');
       }
 
       if (code) {
-        this._log('Got code, calling /api/auth/login...');
+        console.log('[Auth] Got code, calling login...');
         return await this._loginWithCode(code);
       } else {
-        this._log('No code obtained');
+        console.warn('[Auth] No code obtained');
       }
     } catch (e) {
-      this._log('Auth error: ' + e.message);
+      console.warn('[Auth] Error:', e.message);
     }
     return this._getFallbackUser();
   },
@@ -135,19 +143,19 @@ const FeishuAuthHelper = {
         body: JSON.stringify({ code: code }),
         signal: AbortSignal.timeout(8000)
       });
-      this._log('Login API status: ' + res.status);
+      console.log('[Auth] Login API status:', res.status);
       if (res.ok) {
         const data = await res.json();
-        this._log('Login response: ' + JSON.stringify(data));
+        console.log('[Auth] Login response:', JSON.stringify(data));
         if (data.success && data.data) {
           this._user = { userId: data.data.user_id, username: data.data.username || '' };
-          this._log('Got user: ' + this._user.username + ' (' + this._user.userId + ')');
+          console.log('[Auth] Got user:', this._user.username, this._user.userId);
           sessionStorage.setItem('feishu_user', JSON.stringify(this._user));
           return this._user;
         }
       }
     } catch (e) {
-      this._log('Login FAILED: ' + e.message);
+      console.warn('[Auth] Login failed:', e.message);
     }
     return this._getFallbackUser();
   },
@@ -158,13 +166,8 @@ const FeishuAuthHelper = {
       uid = 'u_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6);
       localStorage.setItem('award_uid', uid);
     }
-    this._log('Fallback user: ' + uid);
+    console.log('[Auth] Using fallback user:', uid);
     this._user = { userId: uid, username: '' };
     return this._user;
   }
 };
-
-// Auto-trigger auth on page load to show debug panel
-document.addEventListener('DOMContentLoaded', function() {
-  FeishuAuthHelper.getUser();
-});
