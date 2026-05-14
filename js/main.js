@@ -1102,9 +1102,15 @@ async function submitComment() {
         // Update comment count on card if visible
         _updateCommentCountOnCard(cardId);
         return;
+      } else {
+        console.error('[submitComment] addComment returned null - API may have failed');
+        alert('Comment failed to post. Please try again.');
+        return;
       }
     } catch (e) {
-      console.warn('[submitComment] API failed, falling back to localStorage', e);
+      console.warn('[submitComment] API failed:', e);
+      alert('Comment failed to post: ' + e.message);
+      return;
     }
   }
   

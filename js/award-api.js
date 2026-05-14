@@ -89,13 +89,14 @@ const AwardAPI = {
    */
   async addComment(awardId, userId, username, content) {
     try {
+      const displayName = username || ('User ' + userId.substring(userId.length - 4));
       const res = await fetch(`${this.BASE_URL}/api/comment`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           award_id: awardId,
           user_id: userId,
-          username: username,
+          username: displayName,
           content: content
         })
       });
