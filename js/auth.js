@@ -71,32 +71,10 @@ const FeishuAuth = {
    * Initialize authentication flow
    */
   async init() {
-    console.log('[FeishuAuth] Initializing...');
+    console.log('[FeishuAuth] Initializing - skip auth, show content directly');
     
-    // ALWAYS show content immediately - never block the page
+    // ALWAYS show content immediately - auth is handled by award-api.js
     this.showContent();
-    
-    // Try Feishu auth in background (non-blocking)
-    try {
-      const storedAuth = sessionStorage.getItem('feishu_auth');
-      if (storedAuth) {
-        const authData = JSON.parse(storedAuth);
-        if (authData.expires > Date.now()) {
-          console.log('[FeishuAuth] Using cached authentication');
-          this.isAuthenticated = true;
-          this.userInfo = authData.userInfo;
-          return;
-        } else {
-          sessionStorage.removeItem('feishu_auth');
-        }
-      }
-      
-      if (this.isInFeishu()) {
-        this.initFeishuSSO();
-      }
-    } catch (e) {
-      console.warn('[FeishuAuth] Background auth failed:', e.message);
-    }
   },
   
   /**
