@@ -212,7 +212,7 @@ img {
   background: var(--bg-card);
   padding: 3px;
   border-radius: 6px;
-  margin: 16px auto 0;
+  margin: 20px auto 0;
   width: fit-content;
 }
 
@@ -1073,9 +1073,9 @@ img {
 
 #poster-preview .poster-corner-icon {
   position: absolute !important;
-  bottom: 52px !important;
-  left: 52px !important;
-  height: 80px !important;
+  bottom: 64px !important;
+  left: 64px !important;
+  height: 96px !important;
   width: auto !important;
   max-width: none !important;
   z-index: 2 !important;
@@ -1083,8 +1083,8 @@ img {
 }
 
 .poster-container {
-  width: 1920px;
-  height: 1080px;
+  width: 2560px;
+  height: 1440px;
   background: linear-gradient(135deg, #0d1b3e 0%, #050a1a 40%, #000000 100%);
   position: relative;
   overflow: hidden;
@@ -1098,7 +1098,7 @@ img {
 .poster-container::before {
   content: '';
   position: absolute;
-  top: 32px; left: 32px; right: 32px; bottom: 32px;
+  top: 40px; left: 40px; right: 40px; bottom: 40px;
   border: 2px solid rgba(212, 175, 55, 0.4);
   pointer-events: none;
   z-index: 1;
@@ -1106,7 +1106,7 @@ img {
 .poster-container::after {
   content: '';
   position: absolute;
-  top: 40px; left: 40px; right: 40px; bottom: 40px;
+  top: 50px; left: 50px; right: 50px; bottom: 50px;
   border: 1px solid rgba(212, 175, 55, 0.15);
   pointer-events: none;
   z-index: 1;
@@ -1130,15 +1130,15 @@ img {
 
 /* 顶部标题区 */
 .poster-header {
-  margin-top: 36px;
+  margin-top: 56px;
   text-align: center;
   z-index: 2;
 }
 
 .poster-brand {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
-  letter-spacing: 6px;
+  letter-spacing: 8px;
   color: #d4af37;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -1151,46 +1151,46 @@ img {
   width: 120px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
-  margin: 16px auto 0;
+  margin: 20px auto 0;
   z-index: 2;
 }
 
 /* 核心奖项信息 - 居中 */
 .poster-center {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 32px;
   z-index: 2;
 }
 
 .poster-award-type {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 400;
   letter-spacing: 3px;
   color: #d4af37;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 
 .poster-project-name {
-  font-size: 42px;
+  font-size: 52px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
-  margin-bottom: 8px;
-  max-width: 1400px;
+  margin-bottom: 12px;
+  max-width: 2000px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .poster-bonus {
-  font-size: 56px;
+  font-size: 72px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .poster-bonus-label {
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 2px;
   color: rgba(212, 175, 55, 0.7);
   text-transform: uppercase;
@@ -1200,10 +1200,10 @@ img {
 .poster-body {
   display: flex;
   flex-direction: row;
-  gap: 40px;
-  margin-top: 20px;
+  gap: 60px;
+  margin-top: 32px;
   z-index: 2;
-  padding: 0 120px;
+  padding: 0 200px;
   width: 100%;
   flex: 1 1 0;
   min-height: 0;
@@ -1224,38 +1224,38 @@ img {
 }
 
 .poster-section-label {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 600;
   letter-spacing: 2px;
   color: #d4af37;
   text-transform: uppercase;
-  margin-bottom: 6px;
-  padding-bottom: 4px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
 }
 
 .poster-reason {
-  font-size: 15px;
+  font-size: 18px;
   color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
+  line-height: 1.6;
   flex: 1 1 auto;
 }
 
 .poster-members {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 4px 20px;
-  font-size: 14px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px 28px;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.85);
-  line-height: 1.4;
+  line-height: 1.5;
   flex: 1 1 auto;
 }
 
 .poster-members.members-compact {
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2px 12px;
-  font-size: 11px;
-  line-height: 1.3;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px 16px;
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .poster-member-item {
@@ -1267,9 +1267,9 @@ img {
 /* 左下角购物袋图标 */
 .poster-corner-icon {
   position: absolute !important;
-  bottom: 52px !important;
-  left: 52px !important;
-  height: 80px !important;
+  bottom: 64px !important;
+  left: 64px !important;
+  height: 96px !important;
   width: auto !important;
   max-width: none !important;
   z-index: 2 !important;
@@ -1279,7 +1279,7 @@ img {
 /* 底部 */
 .poster-footer {
   margin-top: auto;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
   text-align: center;
   z-index: 2;
 }

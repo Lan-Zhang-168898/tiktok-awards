@@ -1251,7 +1251,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
       <div class="poster-body">
         <div class="poster-reason-section">
           <div class="poster-section-label">Project Highlights</div>
-          <div class="poster-reason">${(reason || 'Outstanding contribution to the team').length > 300 ? (reason || 'Outstanding contribution to the team').substring(0, 300) + '...' : (reason || 'Outstanding contribution to the team')}</div>
+          <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
         </div>
         <div class="poster-members-section">
           <div class="poster-section-label">Team Members</div>
@@ -1272,12 +1272,11 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   const preview = document.getElementById('poster-preview');
   const posterEl = preview ? preview.querySelector('.poster-container') : null;
   if (posterEl && preview) {
-    // Calculate scale based on modal-content max-width (800px) minus padding
     const targetWidth = Math.min(window.innerWidth - 64, 800);
-    const scale = targetWidth / 1920;
+    const scale = targetWidth / 2560;
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
-    preview.style.height = Math.ceil(1080 * scale) + 'px';
+    preview.style.height = Math.ceil(1440 * scale) + 'px';
     preview.style.position = 'relative';
     preview.style.overflow = 'hidden';
   }
@@ -1320,8 +1319,8 @@ async function downloadPoster() {
     const canvas = await html2canvas(posterContent, {
       backgroundColor: '#0d1b3e',
       scale: 2,
-      width: 1920,
-      height: 1080,
+      width: 2560,
+      height: 1440,
       useCORS: true,
       logging: false,
       onclone: function(clonedDoc) {
