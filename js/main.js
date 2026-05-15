@@ -1240,7 +1240,6 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
       <div class="poster-gradient"></div>
       <div class="poster-header">
         <div class="poster-brand">Global E-commerce Recognition Hub</div>
-        <div class="poster-year">${currentYear}</div>
       </div>
       <div class="poster-divider"></div>
       <div class="poster-center">

@@ -1130,69 +1130,63 @@ img {
 
 /* 顶部标题区 */
 .poster-header {
-  margin-top: 80px;
+  margin-top: 48px;
   text-align: center;
   z-index: 2;
 }
 
 .poster-brand {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   color: #d4af37;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
-.poster-year {
-  font-size: 36px;
-  font-weight: 300;
-  letter-spacing: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  text-transform: uppercase;
-}
+
 
 /* 分隔线 */
 .poster-divider {
   width: 120px;
   height: 2px;
   background: linear-gradient(90deg, transparent, #d4af37, transparent);
-  margin: 24px auto 0;
+  margin: 16px auto 0;
   z-index: 2;
 }
 
 /* 核心奖项信息 - 居中 */
 .poster-center {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 28px;
   z-index: 2;
 }
 
 .poster-award-type {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 400;
   letter-spacing: 3px;
   color: #d4af37;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .poster-project-name {
-  font-size: 52px;
+  font-size: 48px;
   font-weight: 700;
   color: #ffffff;
   line-height: 1.2;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   max-width: 1400px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .poster-bonus {
-  font-size: 72px;
+  font-size: 64px;
   font-weight: 700;
   color: #ffffff;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .poster-bonus-label {
@@ -1207,7 +1201,7 @@ img {
   display: flex;
   flex-direction: row;
   gap: 60px;
-  margin-top: 40px;
+  margin-top: 28px;
   z-index: 2;
   padding: 0 160px;
   width: 100%;
@@ -1285,7 +1279,7 @@ img {
 /* 底部 */
 .poster-footer {
   margin-top: auto;
-  margin-bottom: 56px;
+  margin-bottom: 44px;
   text-align: center;
   z-index: 2;
 }
