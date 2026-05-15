@@ -1251,7 +1251,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
       <div class="poster-body">
         <div class="poster-reason-section">
           <div class="poster-section-label">Project Highlights</div>
-          <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
+          <div class="poster-reason">${(reason || 'Outstanding contribution to the team').length > 300 ? (reason || 'Outstanding contribution to the team').substring(0, 300) + '...' : (reason || 'Outstanding contribution to the team')}</div>
         </div>
         <div class="poster-members-section">
           <div class="poster-section-label">Team Members</div>
