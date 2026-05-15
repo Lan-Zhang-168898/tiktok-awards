@@ -1269,22 +1269,21 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     </div>
   `;
   
-  modal.classList.add('active');
+  // Calculate and apply poster scaling BEFORE showing modal to prevent flicker
+  const preview = document.getElementById('poster-preview');
+  const posterEl = preview ? preview.querySelector('.poster-container') : null;
+  if (posterEl && preview) {
+    // Calculate scale based on modal-content max-width (800px) minus padding
+    const targetWidth = Math.min(window.innerWidth - 64, 800);
+    const scale = targetWidth / 1920;
+    posterEl.style.transform = 'scale(' + scale + ')';
+    posterEl.style.transformOrigin = 'top left';
+    preview.style.height = Math.ceil(1080 * scale) + 'px';
+    preview.style.position = 'relative';
+    preview.style.overflow = 'hidden';
+  }
   
-  // Scale poster preview to fit the modal
-  requestAnimationFrame(() => {
-    const preview = document.getElementById('poster-preview');
-    const poster = preview ? preview.querySelector('.poster-container') : null;
-    if (poster && preview) {
-      const previewWidth = preview.clientWidth;
-      const scale = previewWidth / 1920;
-      poster.style.transform = 'scale(' + scale + ')';
-      poster.style.transformOrigin = 'top left';
-      preview.style.height = Math.ceil(1080 * scale) + 'px';
-      preview.style.position = 'relative';
-      preview.style.overflow = 'hidden';
-    }
-  });
+  modal.classList.add('active');
 }
 function closeShareModal() {
   const modal = document.getElementById('share-modal');
