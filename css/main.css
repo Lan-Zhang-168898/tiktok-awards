@@ -1062,10 +1062,8 @@ img {
 #poster-preview {
   width: 100%;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #000;
+  position: relative;
+  background: transparent;
 }
 
 #poster-preview .poster-container {

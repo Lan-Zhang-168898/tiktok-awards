@@ -1281,6 +1281,8 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
       poster.style.transform = 'scale(' + scale + ')';
       poster.style.transformOrigin = 'top left';
       preview.style.height = Math.ceil(1080 * scale) + 'px';
+      preview.style.position = 'relative';
+      preview.style.overflow = 'hidden';
     }
   });
 }
@@ -1311,6 +1313,12 @@ async function downloadPoster() {
       });
     }
     
+    // Temporarily remove transform for accurate html2canvas capture
+    const savedTransform = posterContent.style.transform;
+    const savedTransformOrigin = posterContent.style.transformOrigin;
+    posterContent.style.transform = 'none';
+    posterContent.style.transformOrigin = 'top left';
+
     const canvas = await html2canvas(posterContent, {
       backgroundColor: '#0d1b3e',
       scale: 1,
@@ -1319,6 +1327,10 @@ async function downloadPoster() {
       useCORS: true,
       logging: false
     });
+
+    // Restore transform for preview
+    posterContent.style.transform = savedTransform;
+    posterContent.style.transformOrigin = savedTransformOrigin;
     
     // Convert to image and download
     const link = document.createElement('a');
