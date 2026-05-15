@@ -1057,138 +1057,225 @@ img {
   box-shadow: 0 4px 16px rgba(246, 33, 74, 0.3);
 }
 
-/* ==================== Poster Styles ==================== */
-/* Poster preview is now generated via Canvas, these are minimal fallback styles */
+/* ==================== Poster Styles (Certificate Style) ==================== */
 #poster-preview img {
   width: 100%;
-  border-radius: 8px;
   display: block;
 }
 
 .poster-container {
   width: 1920px;
   height: 1080px;
+  background: linear-gradient(135deg, #0d1b3e 0%, #050a1a 40%, #000000 100%);
   position: relative;
-  background: linear-gradient(135deg, #0d1b3e 0%, #000000 100%);
   overflow: hidden;
-  font-size: 16px; /* base for em calculations */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* 装饰：四角金色边框 */
+.poster-container::before {
+  content: '';
+  position: absolute;
+  top: 32px; left: 32px; right: 32px; bottom: 32px;
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  pointer-events: none;
+  z-index: 1;
+}
+.poster-container::after {
+  content: '';
+  position: absolute;
+  top: 40px; left: 40px; right: 40px; bottom: 40px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .poster-gradient {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(13, 27, 62, 0.9) 0%, 
-    rgba(0, 0, 0, 0.95) 50%,
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg,
+    rgba(13, 27, 62, 0.9) 0%,
+    rgba(5, 10, 26, 0.95) 40%,
     rgba(0, 0, 0, 1) 100%);
-  z-index: 1;
+  z-index: 0;
 }
 
-.poster-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  padding: 4% 5%;
-  gap: 3%;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.poster-left {
-  flex: 0 0 35%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-}
-
-.poster-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-  border-left: 2px solid rgba(212, 175, 55, 0.3);
-  padding-left: 3%;
-}
-
+/* 顶部标题区 */
 .poster-header {
-  margin-bottom: 0.5em;
+  margin-top: 80px;
+  text-align: center;
+  z-index: 2;
 }
 
 .poster-brand {
-  font-size: 0.8em;
+  font-size: 22px;
   font-weight: 400;
-  letter-spacing: 0.15em;
+  letter-spacing: 8px;
   color: #d4af37;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.poster-year {
+  font-size: 36px;
+  font-weight: 300;
+  letter-spacing: 14px;
+  color: rgba(255, 255, 255, 0.6);
   text-transform: uppercase;
 }
 
-.poster-project {
-  font-size: 1.8em;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 0.3em;
-  line-height: 1.2;
+/* 分隔线 */
+.poster-divider {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 24px auto 0;
+  z-index: 2;
 }
 
-.poster-award {
-  font-size: 1em;
+/* 核心奖项信息 - 居中 */
+.poster-center {
+  text-align: center;
+  margin-top: 40px;
+  z-index: 2;
+}
+
+.poster-award-type {
+  font-size: 24px;
   font-weight: 400;
-  letter-spacing: 0.05em;
+  letter-spacing: 3px;
   color: #d4af37;
-  margin-bottom: 0.5em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.poster-project-name {
+  font-size: 52px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .poster-bonus {
-  font-size: 2.8em;
+  font-size: 72px;
   font-weight: 700;
-  color: white;
-  margin-bottom: 0;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 
-.poster-reason {
-  font-size: 0.9em;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin-bottom: 0.6em;
-}
-
-.poster-members-label {
-  font-size: 0.75em;
-  letter-spacing: 0.1em;
-  color: #d4af37;
-  margin-bottom: 0.2em;
+.poster-bonus-label {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: rgba(212, 175, 55, 0.7);
   text-transform: uppercase;
 }
 
+/* 下方内容区 - 左右分栏 */
+.poster-body {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  margin-top: 40px;
+  z-index: 2;
+  padding: 0 160px;
+  width: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.poster-reason-section {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.poster-members-section {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.poster-section-label {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #d4af37;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.poster-reason {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  flex: 1 1 auto;
+}
+
 .poster-members {
-  font-size: 0.85em;
-  color: rgba(255, 255, 255, 0.9);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 24px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  flex: 1 1 auto;
+}
+
+.poster-members.members-compact {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px 16px;
+  font-size: 13px;
   line-height: 1.5;
 }
 
-.poster-footer {
-  margin-top: auto;
-  width: 100%;
-  padding-top: 0.6em;
+.poster-member-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.poster-line {
-  height: 2px;
-  background: linear-gradient(90deg, #d4af37, transparent);
-  margin-bottom: 0.4em;
+/* 左下角购物袋图标 */
+.poster-corner-icon {
+  position: absolute;
+  bottom: 52px;
+  left: 52px;
+  height: 80px;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 底部 */
+.poster-footer {
+  margin-top: auto;
+  margin-bottom: 56px;
+  text-align: center;
+  z-index: 2;
+}
+
+.poster-footer-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  margin: 0 auto 10px;
 }
 
 .poster-brand-footer {
-  font-size: 1em;
+  font-size: 22px;
   font-weight: 600;
-  color: white;
+  color: #ffffff;
+  letter-spacing: 3px;
 }
 
 /* ==================== Like Button ==================== */
