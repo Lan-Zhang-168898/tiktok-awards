@@ -1071,9 +1071,14 @@ img {
   /* Will be scaled by JS to fit the preview */
 }
 
-#poster-preview img {
-  width: 100%;
-  display: block;
+#poster-preview .poster-corner-icon {
+  position: absolute;
+  bottom: 52px;
+  left: 52px;
+  height: 80px;
+  width: auto;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .poster-container {
