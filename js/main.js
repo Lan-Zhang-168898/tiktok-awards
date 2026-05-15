@@ -1240,28 +1240,28 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
       <div class="poster-gradient"></div>
       <div class="poster-header">
         <div class="poster-brand">Global E-commerce Recognition Hub</div>
-        <div class="poster-year">\${currentYear}</div>
+        <div class="poster-year">${currentYear}</div>
       </div>
       <div class="poster-divider"></div>
       <div class="poster-center">
-        <div class="poster-award-type">\${teamAward || 'Global Excellence Award'}</div>
-        <div class="poster-project-name">\${projectName}</div>
-        <div class="poster-bonus">\${formatCurrency(bonus)}</div>
+        <div class="poster-award-type">${teamAward || 'Global Excellence Award'}</div>
+        <div class="poster-project-name">${projectName}</div>
+        <div class="poster-bonus">${formatCurrency(bonus)}</div>
         <div class="poster-bonus-label">Award Bonus</div>
       </div>
       <div class="poster-body">
         <div class="poster-reason-section">
           <div class="poster-section-label">Project Highlights</div>
-          <div class="poster-reason">\${reason || 'Outstanding contribution to the team'}</div>
+          <div class="poster-reason">${reason || 'Outstanding contribution to the team'}</div>
         </div>
         <div class="poster-members-section">
           <div class="poster-section-label">Team Members</div>
-          <div class="\${membersClass}">
-            \${memberList}
+          <div class="${membersClass}">
+            ${memberList}
           </div>
         </div>
       </div>
-      <img class="poster-corner-icon" src="\${SHOPPING_BAG_ICON}" />
+      <img class="poster-corner-icon" src="${SHOPPING_BAG_ICON}" />
       <div class="poster-footer">
         <div class="poster-footer-line"></div>
         <div class="poster-brand-footer">TikTok Shop</div>
