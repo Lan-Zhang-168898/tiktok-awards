@@ -1020,7 +1020,7 @@
       }
       
       const cardContent = `
-        <div class="${thumbnailClass}">
+        <div class="${thumbnailClass}" ${video.thumbnail ? 'style="background-image:url(\''+video.thumbnail+'\'); background-size:cover; background-position:center;"' : ''}>
           <div class="play-icon">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
           </div>
