@@ -328,9 +328,13 @@
       position: relative;
       aspect-ratio: 16/9;
       background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
     
     .video-thumbnail::before {
@@ -930,8 +934,9 @@
               type: "featured",
               source: "feishu",
               url: "https://bytedance.larkoffice.com/file/Cc0rbwAHmo04Srx9SdqcqQhOnrg",
-              duration: null,
-              badge: "Featured"
+              duration: "50mins",
+              badge: "Featured",
+              thumbnail: "images/video-cover-featured.png"
             }
           ]
         };
