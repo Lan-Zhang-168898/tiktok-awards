@@ -1138,7 +1138,7 @@ img {
 .poster-brand {
   font-size: 24px;
   font-weight: 400;
-  letter-spacing: 8px;
+  letter-spacing: 4px;
   color: #d4af37;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -1173,6 +1173,7 @@ img {
 
 .poster-project-name {
   letter-spacing: 1px;
+  word-spacing: normal;
   font-size: 52px;
   font-weight: 700;
   color: #ffffff;
@@ -1760,6 +1761,7 @@ img {
 }
 .poster-container.poster-long-content .poster-project-name {
   letter-spacing: 1px;
+  word-spacing: normal;
   font-size: 40px;
   margin-bottom: 8px;
 }
