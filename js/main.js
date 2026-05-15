@@ -1279,7 +1279,9 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     const scale = targetWidth / 2560;
     posterEl.style.transform = 'scale(' + scale + ')';
     posterEl.style.transformOrigin = 'top left';
-    preview.style.height = Math.ceil(1440 * scale) + 'px';
+    // Use actual content height for dynamic sizing
+    const actualHeight = posterEl.scrollHeight;
+    preview.style.height = Math.ceil(actualHeight * scale) + 'px';
     preview.style.position = 'relative';
     preview.style.overflow = 'hidden';
   }
@@ -1319,11 +1321,13 @@ async function downloadPoster() {
     posterContent.style.transform = 'none';
     posterContent.style.transformOrigin = 'top left';
 
+    // Use actual content height for dynamic poster
+    const posterActualHeight = posterContent.scrollHeight;
     const canvas = await html2canvas(posterContent, {
       backgroundColor: '#0d1b3e',
       scale: 2,
       width: 2560,
-      height: 1440,
+      height: Math.max(posterActualHeight, 1080),
       useCORS: true,
       logging: false,
       onclone: function(clonedDoc) {

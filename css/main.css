@@ -1084,7 +1084,7 @@ img {
 
 .poster-container {
   width: 2560px;
-  height: 1440px;
+  min-height: 1080px;
   background: linear-gradient(135deg, #0d1b3e 0%, #050a1a 40%, #000000 100%);
   position: relative;
   overflow: hidden;
