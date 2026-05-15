@@ -1084,7 +1084,6 @@ img {
 
 .poster-container {
   width: 2560px;
-  min-height: 1280px;
   background: linear-gradient(135deg, #0d1b3e 0%, #050a1a 40%, #000000 100%);
   position: relative;
   overflow: hidden;
@@ -1205,7 +1204,6 @@ img {
   z-index: 2;
   padding: 0 120px;
   width: 100%;
-  flex: 1 1 0;
 }
 
 .poster-reason-section {
@@ -1275,7 +1273,7 @@ img {
 
 /* 底部 */
 .poster-footer {
-  margin-top: auto;
+  margin-top: 40px;
   margin-bottom: 40px;
   text-align: center;
   z-index: 2;
