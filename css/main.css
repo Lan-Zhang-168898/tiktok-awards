@@ -152,11 +152,7 @@ img {
 .logo-text {
   font-size: 18px;
   font-weight: 700;
-  color: transparent;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #F6214A;
 }
 
 .logo-subtitle {
