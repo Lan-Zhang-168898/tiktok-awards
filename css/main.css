@@ -1112,6 +1112,12 @@ img {
   z-index: 1;
 }
 
+/* Remove pseudo-element borders for html2canvas capture */
+.poster-container.poster-no-decorations::before,
+.poster-container.poster-no-decorations::after {
+  display: none;
+}
+
 .poster-gradient {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;

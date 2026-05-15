@@ -1321,11 +1321,29 @@ async function downloadPoster() {
 
     const canvas = await html2canvas(posterContent, {
       backgroundColor: '#0d1b3e',
-      scale: 1,
+      scale: 2,
       width: 1920,
       height: 1080,
       useCORS: true,
-      logging: false
+      logging: false,
+      onclone: function(clonedDoc) {
+        // Fix html2canvas z-index rendering issues
+        const clonedPoster = clonedDoc.getElementById('poster-content');
+        if (clonedPoster) {
+          // Remove pseudo-element borders (html2canvas renders them on top of text)
+          clonedPoster.classList.add('poster-no-decorations');
+          // Ensure gradient stays behind text
+          const gradient = clonedPoster.querySelector('.poster-gradient');
+          if (gradient) {
+            gradient.style.zIndex = '-1';
+          }
+          // Ensure all text elements are above overlays
+          clonedPoster.querySelectorAll('.poster-header, .poster-center, .poster-body, .poster-footer, .poster-divider, .poster-corner-icon').forEach(function(el) {
+            el.style.position = 'relative';
+            el.style.zIndex = '10';
+          });
+        }
+      }
     });
 
     // Restore transform for preview
