@@ -1270,6 +1270,19 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
   `;
   
   modal.classList.add('active');
+  
+  // Scale poster preview to fit the modal
+  requestAnimationFrame(() => {
+    const preview = document.getElementById('poster-preview');
+    const poster = preview ? preview.querySelector('.poster-container') : null;
+    if (poster && preview) {
+      const previewWidth = preview.clientWidth;
+      const scale = previewWidth / 1920;
+      poster.style.transform = 'scale(' + scale + ')';
+      poster.style.transformOrigin = 'top left';
+      preview.style.height = Math.ceil(1080 * scale) + 'px';
+    }
+  });
 }
 function closeShareModal() {
   const modal = document.getElementById('share-modal');
