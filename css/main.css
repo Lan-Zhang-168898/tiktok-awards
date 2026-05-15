@@ -1072,13 +1072,14 @@ img {
 }
 
 #poster-preview .poster-corner-icon {
-  position: absolute;
-  bottom: 52px;
-  left: 52px;
-  height: 80px;
-  width: auto;
-  z-index: 2;
-  pointer-events: none;
+  position: absolute !important;
+  bottom: 52px !important;
+  left: 52px !important;
+  height: 80px !important;
+  width: auto !important;
+  max-width: none !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
 }
 
 .poster-container {
@@ -1265,13 +1266,14 @@ img {
 
 /* 左下角购物袋图标 */
 .poster-corner-icon {
-  position: absolute;
-  bottom: 52px;
-  left: 52px;
-  height: 80px;
-  width: auto;
-  z-index: 2;
-  pointer-events: none;
+  position: absolute !important;
+  bottom: 52px !important;
+  left: 52px !important;
+  height: 80px !important;
+  width: auto !important;
+  max-width: none !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
 }
 
 /* 底部 */
