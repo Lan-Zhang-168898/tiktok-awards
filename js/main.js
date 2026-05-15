@@ -1224,8 +1224,7 @@ function showShareModal(projectName, teamAward, bonus, reason, members) {
     if (names.length > 40) {
       membersClass += ' members-compact';
     }
-    memberList = names.map(name => `<div class="poster-member-item">${name}</div>`).join('
-            ');
+    memberList = names.map(name => `<div class="poster-member-item">${name}</div>`).join(' ');
   } else {
     memberList = members;
   }
