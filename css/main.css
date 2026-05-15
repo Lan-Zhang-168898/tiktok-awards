@@ -1206,21 +1206,18 @@ img {
   padding: 0 120px;
   width: 100%;
   flex: 1 1 0;
-  min-height: 0;
 }
 
 .poster-reason-section {
   flex: 1.2;
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 
 .poster-members-section {
   flex: 0.8;
   display: flex;
   flex-direction: column;
-  min-height: 0;
 }
 
 .poster-section-label {
