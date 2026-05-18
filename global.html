@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Global Awards - Global E-commerce Recognition Hub</title>
-  <link rel="stylesheet" href="css/main.css?v=20260515x">
+  <link rel="stylesheet" href="css/main.css?v=20250512k">
   <style>
     /* ==================== Global Page Specific Styles ==================== */
     .home-header {
@@ -121,6 +121,34 @@
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
+    }
+
+    .search-clear {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .search-clear:hover {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border-color: var(--primary-color);
+    }
+
+    .search-clear.visible {
+      display: flex;
     }
     
     /* Period Toggle - Beautiful Tab Style */
@@ -405,6 +433,7 @@
           <!-- Inline Search - Left aligned -->
           <div class="inline-search" style="margin: 0 0 var(--spacing-lg) 0; justify-content: flex-start;">
             <input type="text" class="search-input" id="search-input" placeholder="Search by name, project, department...">
+            <button class="search-clear" id="search-clear" title="Clear search">✕</button>
             <button class="search-btn" id="search-btn">🔍 Search</button>
           </div>
           
@@ -495,7 +524,7 @@
 <script src="js/auth.js?v=20250514h"></script>
   <script src="js/auth-helper.js?v=20260514a"></script>
   <script src="js/award-api.js?v=20250514n"></script>
-  <script src="js/main.js?v=20260515x"></script>
+  <script src="js/main.js?v=20260515c"></script>
   <script>
     // Global page specific initialization
     let currentHalf = 'H1';
@@ -564,6 +593,30 @@
         searchInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
             performAndShowSearch();
+          }
+        });
+      }
+      
+      // Clear search button
+      const searchClear = document.getElementById('search-clear');
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          searchInput.value = '';
+          searchResults.classList.remove('active');
+          searchResults.innerHTML = '';
+          searchClear.classList.remove('visible');
+          searchInput.focus();
+        });
+      }
+      // Show/hide clear button based on input
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          if (searchInput.value.trim()) {
+            searchClear?.classList.add('visible');
+          } else {
+            searchClear?.classList.remove('visible');
+            searchResults.classList.remove('active');
+            searchResults.innerHTML = '';
           }
         });
       }
