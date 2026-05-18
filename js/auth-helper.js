@@ -5,7 +5,7 @@
  */
 const FeishuAuthHelper = {
   _user: null,
-  APP_ID: 'cli_aa8858d3f0a6dccd',
+  APP_ID: 'cli_a968a864a0f89bdd',
 
   // Register error handler BEFORE any SDK calls to prevent SDK from showing error banners
   _registerErrorHandler() {

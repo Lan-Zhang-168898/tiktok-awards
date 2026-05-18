@@ -4,7 +4,7 @@
  * If in Feishu: show content, let auth-helper.js handle identity
  */
 const FeishuAuth = {
-  APP_ID: 'cli_aa8858d3f0a6dccd',
+  APP_ID: 'cli_a968a864a0f89bdd',
 
   async init() {
     // Check if running inside Feishu client
