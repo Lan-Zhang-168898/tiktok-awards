@@ -349,6 +349,18 @@
     .dept-award-meta span {
       margin-right: 12px;
     }
+    .dept-award-reason {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.5;
+      margin-top: 4px;
+      max-height: 60px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
     .dept-award-bonus {
       font-size: 18px;
       font-weight: 700;
@@ -920,6 +932,7 @@
                 ${quarter ? `<span>${quarter} 2026</span>` : ''}
                 <span>${memberInfo}</span>
               </div>
+              ${award.reason ? `<div class="dept-award-reason">${award.reason}</div>` : ''}
             </div>
             <span class="dept-award-type-badge ${badgeClass}">${badgeLabel}</span>
             <div class="dept-award-bonus">${bonus}</div>
